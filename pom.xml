@@ -37,6 +37,11 @@
 			</exclusions>
 		</dependency>
 		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		
 		<dependency> 
 			<groupId>org.apache.tomcat.embed</groupId> 
 			<artifactId>tomcat-embed-jasper</artifactId> 
@@ -60,6 +65,13 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
+		</dependency>
+		
+		<!--  ModelMapper 의존성 추가  -->
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>2.3.6</version>
 		</dependency>
 		
 	</dependencies>

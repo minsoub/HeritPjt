@@ -6,9 +6,14 @@ import org.apache.ibatis.annotations.Mapper;
 
 import kr.co.neodreams.herit.model.Admin;
 
+/**
+ * 관리자 정보 관리 Mapper Interface
+ * 
+ * @author hist
+ *
+ */
 @Mapper
-public interface LoginMapper {
-
+public interface AdminMapper {
 	/**
 	 * 관리자 로그인 정보 조회
 	 * 
@@ -60,5 +65,4 @@ public interface LoginMapper {
 	 * @throws Exception
 	 */
 	void updateAdmin(Admin data) throws Exception;
-	
 }

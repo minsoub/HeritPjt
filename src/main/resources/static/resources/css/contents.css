@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+/* ========================= 
+	Login
+ ========================= */
+.wrapLogin{position:absolute;top:50%;left:50%;height:590px;margin:-295px 0 0 -200px;text-align:center;}
+.wrapLogin .cnt{width:400px;margin:23px auto 0;padding-top:314px;background:url(/resources/images/contents/obj_login.png) no-repeat center top;}
+.wrapLogin .cnt input{width:100%;height:50px;padding:0 18px;margin-bottom:15px;font-size:16px;line-height:48px;border:1px solid #dcdcdc;}
+.wrapLogin .cnt .btn{width:100%;height:50px;margin-bottom:15px;line-height:50px;font-size:24px;color:#fff;text-align:center;-webkit-border-radius:0;border-radius:0;border:0;background:#11a3ff;}
+.wrapLogin .cnt .txt{margin-top:15px;font-size:12px;color:#b9b9b9;text-align:center;}
+
+/* ========================= 
+	Contents
+ ========================= */
+ /* table */
+table td.noData{padding:120px 0 150px;text-align:center;border-bottom:0}
+table td.noData .ico{margin:0 auto 28px;}
+table .thumbProd{padding:5px 0;text-align:center;}
+table .thumbProd img{width:100px;}
+table .thumbProd .txt{display:block;width:100px;height:26px;margin:7px 0 0 0;font-size:12px;text-align:center;line-height:26px;color:#004163;-webkit-border-radius:6px;border-radius:6px;background:#ace9ff;}
+table td .graph{position:relative;width:320px;margin:0 auto 0 50px;-webkit-border-radius:7px;border-radius:7px;background:#e3e3e3;}
+table td .graph .bar{height:14px;-webkit-border-radius:7px;border-radius:7px;background:#46b9b2;}
+
+.tblTypeC td .listThumbProd,
+.tblTypeC .imgThumb{padding:10px 0;}
+.tblTypeC .imgThumb img{max-width:150px;}
+.tblTypeC .thumbProd{text-align:left;}
+
+.txtBbs{font-size:16px;color:#333;line-height:29px;}
+.slctDate{position:relative;margin:15px auto 0;text-align:center;}
+.slctDate .monthPic,
+.slctDate .yearPic input{width:82px;padding:0;font-size:20px;color:#333;border:0;outline:none}
+.slctDate > a{display:inline-block;margin:0 20px;vertical-align:middle;}
+#ui-monthpicker-div{width:238px;top:32px !important;left:50% !important;margin-left:-119px !important;}
+#ui-monthpicker-div .ui-state-default{line-height:22px !important;}
+.slctDate .yearPic{display:inline-block;position:relative;vertical-align:middle;}
+.slctDate .yearPic input{position:relative;padding:0;border:0;background:transparent;z-index:10;}
+.slctDate .yearPic:after{content:'';display:block;position:absolute;top:50%;right:0;width:29px;height:29px;margin:-15px 0 0 0;vertical-align:middle;background:url(/resources/images/common/btn_cal.png) no-repeat 0 0;background-size:100%;z-index:0;}
+
+/* ========================= 
+	Popup
+ ========================= */
+ .wrapPop.popListBuyer{}
+ .wrapPop.popListBuyer .scrollArea{max-height:400px;}
+
+ .wrapPop.popCate{}
+ .wrapPop.popCate table tbody td{padding:7px 10px 7px 15px;text-align:left;}
+ .wrapPop.popCate table td .wrapper{overflow:hidden;height:26px;line-height:26px;}
+ .wrapPop.popCate table td .btn{font-size:0;}
+ .wrapPop.popCate table td .btn a{display:inline-block;vertical-align:middle;}
+ .wrapPop.popCate table td .btn a + a{margin-left:4px;}
+ .wrapPop.popCate table td .name{float:left;width:338px;padding-left:14px;line-height:25px;}
+ .wrapPop.popCate table td .btnAdd{display:block;}

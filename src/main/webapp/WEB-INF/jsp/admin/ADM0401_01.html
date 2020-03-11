@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="description" content="Herit 서비스 솔루션 관리자">
+	<title>Herit 관리자</title>
+	<link rel="stylesheet" href="/resources/css/common.css" />
+	<link rel="stylesheet" href="/resources/css/contents.css" />
+	<script type="text/javascript" src="/resources/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="/resources/js/common.js"></script>
+</head>
+<body>
+<div class="wrap">
+	<!-- header -->
+	<div class="header">
+		<div class="innerWrap">
+			<h1 class="logo"><a href=""><img src="/resources/images/common/logo.png" alt="HERIT"></a></h1>
+			<div class="fr">
+				<div class="infoLog">
+					관리자
+					<span class="btnWrap"><a href="" class="btnDefault"><img src="/resources/images/common/ico_log.gif" alt=""> 로그아웃</a></span>
+				</div>
+				<div class="wrapGnb">
+					<ul>
+						<li><a href="">회원관리</a>
+							<ul class="depth2">
+								<li><a href="">정회원</a></li>
+								<li><a href="">휴면회원</a></li>
+								<li><a href="">탈퇴회원</a></li>
+							</ul>
+						</li>
+						<li><a href="">검진데이터</a>
+							<ul class="depth2">
+								<li><a href="">건강검진 요청</a></li>
+								<li><a href="">건강검진 현황</a></li>
+								<li><a href="">건강병원 등록</a></li>
+							</ul>
+						</li>
+						<li><a href="">미션관리</a>
+							<ul class="depth2">
+								<li><a href="">미션 달성 현황</a></li>
+								<li><a href="">걸음수 미션 현황</a></li>
+								<li><a href="">건강검진 미션 현황</a></li>
+								<li><a href="">공유 미션 현황</a></li>
+							</ul>
+						</li>
+						<li><a href="" class="active">포인트관리</a>
+							<ul class="depth2">
+								<li><a href="">포인트 현황</a></li>
+								<li><a href="">개인별 포인트 현황</a></li>
+								<li><a href="">상품관리</a></li>
+								<li><a href="">포인트 몰</a></li>
+								<li><a href="">구매내역</a></li>
+							</ul>
+						</li>
+						<li><a href="">결제관리</a>
+							<ul class="depth2">
+								<li><a href="">결제 내역</a></li>
+								<li><a href="">요금제 정보</a></li>
+							</ul>
+						</li>
+						<li><a href="">통계</a>
+							<ul class="depth2">
+								<li><a href="">통계</a></li>
+							</ul>
+						</li>
+						<li><a href="">관리자관리</a>
+							<ul class="depth2">
+								<li><a href="">관리자 관리</a></li>
+								<li><a href="">권한 관리</a></li>
+								<li><a href="">문의 내역</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //header -->
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<div class="wrapSnb">
+			<h2 class="tit">포인트 관리</h2>
+			<ul class="snb">
+				<li><a href="" class="active">포인트 현황</a></li>
+				<li><a href="">개인별 포인트 현황</a></li>
+				<li><a href="">상품관리</a></li>
+				<li><a href="">포인트 몰</a></li>
+				<li><a href="">구매내역</a></li>
+			</ul>
+		</div>
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">포인트 현황</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">포인트 관리</a></li>
+					<li><a href="">포인트 현황</a></li>
+				</ol>
+			</div>
+			<h3 class="cntTitLg">전체 누적 (과거년도 포함)</h3>
+			<div class="bxCnt mtSm">
+				<table class="tblTypeA">
+					<thead>
+						<tr>
+							<th>지급 포인트</th>
+							<th>사용 포인트</th>
+							<th>소멸 포인트</th>
+							<th>보유 포힌트</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>200,000</td>
+							<td>160,000</td>
+							<td>150,000</td>
+							<td>15,300</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="slctDate">
+				<a href=""><img src="/resources/images/contents/btn_date_prev.gif" alt="이전"></a><span class="yearPic"><input type="text" readonly value="2019"></span><a href=""><img src="/resources/images/contents/btn_date_next.gif" alt="다음"></a>
+			</div>
+			<script type="text/javascript" src="/resources/js/moment.min.js"></script>
+			<script type="text/javascript" src="/resources/js/datepicker.all.js"></script>
+			<script type="text/javascript" src="/resources/js/datepicker.en.js"></script>
+			<link rel="stylesheet" href="/resources/css/yearpicker.css">
+			<script type="text/javascript">
+				$(function(){
+					yearPicker();
+				});
+			</script>
+			<table class="tblTypeA mtSm">
+				<thead>
+					<tr>
+						<th>월</th>
+						<th>지급 포인트</th>
+						<th>사용 포인트</th>
+						<th>소멸 포인트</th>
+						<th>보유 포인트</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<td>총 계</td>
+						<td>106,400</td>
+						<td>-33,000</td>
+						<td>3,400</td>
+						<td>15,300</td>
+					</tr>
+				</tfoot>
+				<tbody>
+						<tr>
+							<td>12월</td>
+							<td>2,500</td>
+							<td>-1,300</td>
+							<td>50</td>
+							<td>15,300</td>
+						</tr>
+						<tr>
+							<td>11월</td>
+							<td>4,000</td>
+							<td>-3,000</td>
+							<td>100</td>
+							<td>13,200</td>
+						</tr>
+						<tr>
+							<td>10월</td>
+							<td>8,400</td>
+							<td>-3,000</td>
+							<td>100</td>
+							<td>10,500</td>
+						</tr>
+						<tr>
+							<td>9월</td>
+							<td>9,300</td>
+							<td>-3,000</td>
+							<td>100</td>
+							<td>8,600</td>
+						</tr>
+						<tr>
+							<td>8월</td>
+							<td>8,700</td>
+							<td>-3,000</td>
+							<td>100</td>
+							<td>4,300</td>
+						</tr>
+						<tr>
+							<td>7월</td>
+							<td>10,000</td>
+							<td>-3,000</td>
+							<td>100</td>
+							<td>16,230</td>
+						</tr>
+						<tr>
+							<td>6월</td>
+							<td>9,700</td>
+							<td>-3,000</td>
+							<td>100</td>
+							<td>14,320</td>
+						</tr>
+						<tr>
+							<td>5월</td>
+							<td>6,400</td>
+							<td>-3,000</td>
+							<td>600</td>
+							<td>10,000</td>
+						</tr>
+						<tr>
+							<td>4월</td>
+							<td>10,000</td>
+							<td>-3,000</td>
+							<td>400</td>
+							<td>8,500</td>
+						</tr>
+						<tr>
+							<td>3월</td>
+							<td>9,700</td>
+							<td>-3,000</td>
+							<td>700</td>
+							<td>3,200</td>
+						</tr>
+						<tr>
+							<td>2월</td>
+							<td>10,000</td>
+							<td>-3,000</td>
+							<td>600</td>
+							<td>10,000</td>
+						</tr>
+						<tr>
+							<td>1월</td>
+							<td>9,700</td>
+							<td>-3,000</td>
+							<td>700</td>
+							<td>7,500</td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+	<!-- footer -->
+	<div class="footer">
+		<div class="innerWrap">
+			<p class="logo"><img src="/resources/images/common/logo_footer.gif" alt="HERIT"></p>
+			<p class="copy">Copyright (c) 2020 neodreams. All right reserved. </p>
+		</div>
+	</div>
+	<!-- //footer -->
+</div>
+</body>
+</html>

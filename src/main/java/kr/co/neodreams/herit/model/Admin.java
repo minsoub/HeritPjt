@@ -9,6 +9,7 @@ import lombok.Data;
 public class Admin {
 	private String id;
 	private String name;
+	private String pass;
 	private String email;
 	private String phone;
 	private String htel;

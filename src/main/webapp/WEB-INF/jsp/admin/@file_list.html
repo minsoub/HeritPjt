@@ -1,0 +1,444 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>@@@coding file list - HERIT 관리자</title>
+	<style type="text/css">
+		@font-face {
+			font-family:'NanumSquare';
+			src:url(/resources/fonts/NanumSquareR.eot);
+			src:url(/resources/fonts/NanumSquareR.eot?#iefix) format('embedded-opentype'), /* IE6-IE8 */
+				url(/resources/fonts/NanumSquareR.woff) format('woff'); /* Modern Browsers */
+		}
+		body{padding:0 30px;margin:0;font-family:sans-serif;font-size:12px;}
+		.ac{text-align:center;}
+		a{vertical-align:middle;text-decoration:none;}
+		.header h1{margin:20px 0;color:#555;font-family:NanumSquare, sans-serif}
+		table{width:100%;border-collapse:collapse;border:1px solid #ccc;}
+		table tr td{padding:7px;color:#444;font-size:13px;border-right:1px solid #ccc;border-bottom:1px solid #ccc;word-break:break-all;}
+		table tr td:last-of-type{border-right:none;}
+		table tr.title td{padding:15px 5px;color:#fff;font-weight:bold;text-align:center;border-right:0px;background:#000;}
+		table tr td.th{color:#222;font-weight: bold;background:#eaeaea !important;}
+		table tr.disabled td{color:#888;background:#eaeaea;}
+	</style>
+</head>
+<body>
+<div class="header" id="top">
+	 <h1><b style="color:#11a3ff">HERIT [어드민]</b> 퍼블리싱 파일 리스트</h1>	
+</div>
+<table>
+	<colgroup>
+		<col width="150" />
+		<col width="150" />
+		<col width="150" />
+		<col width="180" />
+		<col width="200" />
+		<col width="180" />
+	</colgroup>
+	<tbody>
+		<tr class="title">
+			<td>메뉴 구분</td>
+			<td>Depth1</td>
+			<td>Depth2</td>
+			<td>Depth3</td>
+			<td>파일명</td>
+			<td>memo</td>
+		</tr>
+		<!-- <tr>
+			<td class="th">코딩 가이드</td>			
+			<td></td>
+			<td></td>
+			<td><a href="@style_guide.html" target="_blank">@style_guide.html</a></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr> -->
+		
+		<tr>
+		  <td class="th">로그인</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td><a href="login.html" target="_blank">login.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td rowspan="10" class="th">회원관리</td>
+		  <td rowspan="8">정회원</td>
+		  <td rowspan="3">리스트</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0101_01.html" target="_blank">ADM0101_01.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>no data (검색된 회원 없을 시)</td>
+		  <td><a href="ADM0101_01_nodata01.html" target="_blank">ADM0101_01_nodata01.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td> no data (등록된 회원 없을 시)</td>
+		  <td><a href="ADM0101_01_nodata02.html" target="_blank">ADM0101_01_nodata02.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>결제내역</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0101_02.html" target="_blank">ADM0101_02.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>포인트 내역</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0101_03.html" target="_blank">ADM0101_03.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>미션현황</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0101_04.html" target="_blank">ADM0101_04.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td rowspan="2">검진데이터</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0101_05.html" target="_blank">ADM0101_05.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>no data (내역 없을 시)</td>
+		  <td><a href="ADM0101_01_nodata03.html" target="_blank">ADM0101_01_nodata03.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>휴면회원</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>탈퇴회원</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td rowspan="10" class="th">검진데이터</td>
+		  <td rowspan="3">건강검진 요청</td>
+		  <td>리스트</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0201_01.html" target="_blank">ADM0201_01.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>수기등록</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0201_02.html" target="_blank">ADM0201_02.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>등록</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0201_03.html" target="_blank">ADM0201_03.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td rowspan="3">건강검진 현황</td>
+		  <td>리스트</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0202_01.html" target="_blank">ADM0202_01.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>상세</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0202_02.html" target="_blank">ADM0202_02.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>수정</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0202_03.html" target="_blank">ADM0202_03.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td rowspan="4">검진병원 등록</td>
+		  <td>리스트</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0203_01.html" target="_blank">ADM0203_01.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>등록</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0203_02.html" target="_blank">ADM0203_02.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>상세</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0203_03.html" target="_blank">ADM0203_03.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>수정</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0203_04.html" target="_blank">ADM0203_04.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td rowspan="4" class="th">미션관리</td>
+		  <td>미션 달성 현황</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td rowspan="4"><!-- <a href="ADM0301_01.html" target="_blank">ADM0301_01.html</a> -->		    ** 내용 변경 예상으로 추후 작업 예정</td>
+		  <td rowspan="4">&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>걸음 수 미션 현황</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+	  </tr>
+		<tr>
+		  <td>건강검진 미션 현황</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+	  </tr>
+		<tr>
+		  <td>공유 미션 현황</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+	  </tr>
+		<tr>
+		  <td rowspan="12" class="th">포인트 관리</td>
+		  <td>포인트 현황</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0401_01.html" target="_blank">ADM0401_01.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td rowspan="2">개인별 포인트 현황</td>
+		  <td>목록</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0402_01.html" target="_blank">ADM0402_01.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>상세</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0402_02.html" target="_blank">ADM0402_02.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td rowspan="4">상품관리</td>
+		  <td>목록</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0403_01.html" target="_blank">ADM0403_01.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>등록</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0403_02.html" target="_blank">ADM0403_02.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>상세</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0403_03.html" target="_blank">ADM0403_03.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>수정</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0403_04.html" target="_blank">ADM0403_04.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td rowspan="4">포인트 몰</td>
+		  <td>목록</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0404_01.html" target="_blank">ADM0404_01.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>등록</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0404_02.html" target="_blank">ADM0404_02.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>상세</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0404_03.html" target="_blank">ADM0404_03.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>수정</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0404_04.html" target="_blank">ADM0404_04.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>구매내역</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0405_01.html" target="_blank">ADM0405_01.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td rowspan="5" class="th">결제관리</td>
+		  <td rowspan="2">결제내역</td>
+		  <td>목록</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0501_01.html" target="_blank">ADM0501_01.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>상세</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0501_02.html" target="_blank">ADM0501_02.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td rowspan="3">요금제 정보</td>
+		  <td>목록</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0502_01.html" target="_blank">ADM0502_01.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>등록</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0502_02.html" target="_blank">ADM0502_02.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>상세</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0502_03.html" target="_blank">ADM0502_03.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td rowspan="2" class="th">통계</td>
+		  <td>일일 방문 통계</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0601_01.html" target="_blank">ADM0601_01.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>페이지 통계</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0601_02.html" target="_blank">ADM0601_02.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td rowspan="8" class="th">관리자 관리</td>
+		  <td rowspan="3">관리자 관리</td>
+		  <td>목록</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0701_01.html" target="_blank">ADM0701_01.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>등록</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0701_02.html" target="_blank">ADM0701_02.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>상세</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0701_03.html" target="_blank">ADM0701_03.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td rowspan="2">권한 관리</td>
+		  <td>목록</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0702_01.html" target="_blank">ADM0702_01.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>등록</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0702_02.html" target="_blank">ADM0702_02.html</a></td>
+		  <td>* 상세 화면은 버튼만 수정, 삭제, 목록으로 조정됨</td>
+      </tr>
+		<tr>
+		  <td rowspan="3">문의 내역</td>
+		  <td>목록</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0703_01.html" target="_blank">ADM0703_01.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>상세</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0703_02.html" target="_blank">ADM0703_02.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>수정</td>
+		  <td>&nbsp;</td>
+		  <td><a href="ADM0703_03.html" target="_blank">ADM0703_03.html</a></td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td rowspan="7" class="th">&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+      </tr>
+		<tr>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+      </tr>
+	</tbody>
+</table>
+</body>
+</html>

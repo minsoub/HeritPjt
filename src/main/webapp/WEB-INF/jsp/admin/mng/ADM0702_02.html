@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="description" content="Herit 서비스 솔루션 관리자">
+	<title>Herit 관리자</title>
+	<link rel="stylesheet" href="/resources/css/common.css" />
+	<link rel="stylesheet" href="/resources/css/contents.css" />
+	<script type="text/javascript" src="/resources/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="/resources/js/common.js"></script>
+</head>
+<body>
+<div class="wrap">
+	<!-- header -->
+	<div class="header">
+		<div class="innerWrap">
+			<h1 class="logo"><a href=""><img src="/resources/images/common/logo.png" alt="HERIT"></a></h1>
+			<div class="fr">
+				<div class="infoLog">
+					관리자
+					<span class="btnWrap"><a href="" class="btnDefault"><img src="/resources/images/common/ico_log.gif" alt=""> 로그아웃</a></span>
+				</div>
+				<div class="wrapGnb">
+					<ul>
+						<li><a href="">회원관리</a>
+							<ul class="depth2">
+								<li><a href="">정회원</a></li>
+								<li><a href="">휴면회원</a></li>
+								<li><a href="">탈퇴회원</a></li>
+							</ul>
+						</li>
+						<li><a href="">검진데이터</a>
+							<ul class="depth2">
+								<li><a href="">건강검진 요청</a></li>
+								<li><a href="">건강검진 현황</a></li>
+								<li><a href="">건강병원 등록</a></li>
+							</ul>
+						</li>
+						<li><a href="">미션관리</a>
+							<ul class="depth2">
+								<li><a href="">미션 달성 현황</a></li>
+								<li><a href="">걸음수 미션 현황</a></li>
+								<li><a href="">건강검진 미션 현황</a></li>
+								<li><a href="">공유 미션 현황</a></li>
+							</ul>
+						</li>
+						<li><a href="">포인트관리</a>
+							<ul class="depth2">
+								<li><a href="">포인트 현황</a></li>
+								<li><a href="">개인별 포인트 현황</a></li>
+								<li><a href="">상품관리</a></li>
+								<li><a href="">포인트 몰</a></li>
+								<li><a href="">구매내역</a></li>
+							</ul>
+						</li>
+						<li><a href="">결제관리</a>
+							<ul class="depth2">
+								<li><a href="">결제 내역</a></li>
+								<li><a href="">요금제 정보</a></li>
+							</ul>
+						</li>
+						<li><a href="">통계</a>
+							<ul class="depth2">
+								<li><a href="">통계</a></li>
+							</ul>
+						</li>
+						<li><a href="" class="active">관리자관리</a>
+							<ul class="depth2">
+								<li><a href="">관리자 관리</a></li>
+								<li><a href="">권한 관리</a></li>
+								<li><a href="">문의 내역</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //header -->
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<div class="wrapSnb">
+			<h2 class="tit">관리자 관리</h2>
+			<ul class="snb">
+				<li><a href="">관리자 관리</a></li>
+				<li><a href="" class="active">권한 관리</a></li>
+				<li><a href="">문의 내역</a></li>
+			</ul>
+		</div>
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">권한 관리 등록</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">관리자 관리</a></li>
+					<li><a href="">권한 관리</a></li>
+				</ol>
+			</div>
+			<h3 class="cntTitLg">권한 정보</h3>
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="110">
+					<col>
+				</colgroup>
+				<tr>
+					<td>권한명</td>
+					<td><input type="text" name=""></td>
+				</tr>
+				<tr>
+					<td>설명</td>
+					<td><input type="text" name=""></td>
+				</tr>
+			</table>
+
+			<h3 class="cntTitLg">메뉴 접근 권한</h3>
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="110">
+					<col>
+				</colgroup>
+				<!-- ###### input name, id값은 임의로 부여했으니 개발시 수정 가능합니다.
+				label fo 값과 input id값은 동일하게 부여해주세요~~~
+				-->
+				<tr class="tit">
+					<th>회원 관리</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="a01" id="a0101"> <label for="a0101">권한 부여</label>
+							<input type="radio" name="a01" checked id="a0102"> <label for="a0102">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="110">
+					<col>
+					<col width="110">
+					<col>
+				</colgroup>
+				<tr class="tit">
+					<th>검진데이터</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="b01" id="b0101"> <label for="b0101">권한 부여</label>
+							<input type="radio" name="b01" checked id="b0102"> <label for="b0102">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>검진결과 데이터</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="b02" id="b0201"> <label for="b0201">권한 부여</label>
+							<input type="radio" name="b02" checked id="b0202"> <label for="b0202">권한 미부여</label>
+						</div>
+					</td>
+					<th>데이터 등록</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="b03" id="b0301"> <label for="b0301">권한 부여</label>
+							<input type="radio" name="b03" checked id="b0302"> <label for="b0302">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>					
+					<th>검진기관</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="b04" id="b0401"> <label for="b0401">권한 부여</label>
+							<input type="radio" name="b04" checked id="b0402"> <label for="b0402">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="110">
+					<col>
+					<col width="110">
+					<col>
+				</colgroup>
+				<tr class="tit">
+					<th>미션관리</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="c01" id="c0101"> <label for="c0101">권한 부여</label>
+							<input type="radio" name="c01" checked id="c0102"> <label for="c0102">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>미션수행현황</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="c02" id="c0201"> <label for="c0201">권한 부여</label>
+							<input type="radio" name="c02" checked id="c0202"> <label for="c0202">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="110">
+					<col>
+					<col width="110">
+					<col>
+				</colgroup>
+				<tr class="tit">
+					<th>포인트관리</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="d01" id="d0101"> <label for="d0101">권한 부여</label>
+							<input type="radio" name="d01" checked id="d0102"> <label for="d0102">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>포인트현황</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="d02" id="d0201"> <label for="d0201">권한 부여</label>
+							<input type="radio" name="d02" checked id="d0202"> <label for="d0202">권한 미부여</label>
+						</div>
+					</td>
+					<th>개인별포인트현황</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="d03" id="d0301"> <label for="d0301">권한 부여</label>
+							<input type="radio" name="d03" checked id="d0302"> <label for="d0302">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>상품관리</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="d04" id="d0401"> <label for="d0401">권한 부여</label>
+							<input type="radio" name="d04" checked id="d0402"> <label for="d0402">권한 미부여</label>
+						</div>
+					</td>
+					<th>포인트몰</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="d05" id="d0501"> <label for="d0501">권한 부여</label>
+							<input type="radio" name="d05" checked id="d0502"> <label for="d0502">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>구매내역</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="d06" id="d0601"> <label for="d0601">권한 부여</label>
+							<input type="radio" name="d06" checked id="d0602"> <label for="d0602">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+			
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="110">
+					<col>
+					<col width="110">
+					<col>
+				</colgroup>
+				<tr class="tit">
+					<th>결제관리</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="e01" id="e0101"> <label for="e0101">권한 부여</label>
+							<input type="radio" name="e01" checked id="e0102"> <label for="e0102">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>결제내역</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="e02" id="e0201"> <label for="e0201">권한 부여</label>
+							<input type="radio" name="e02" checked id="e0202"> <label for="e0202">권한 미부여</label>
+						</div>
+					</td>
+					<th>요금제정보</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="e03" id="e0301"> <label for="e0301">권한 부여</label>
+							<input type="radio" name="e03" checked id="e0302"> <label for="e0302">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="110">
+					<col>
+					<col width="110">
+					<col>
+				</colgroup>
+				<tr class="tit">
+					<th>통계</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="f01" id="f0101"> <label for="f0101">권한 부여</label>
+							<input type="radio" name="f01" checked id="f0102"> <label for="f0102">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>일일방문통계</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="f02" id="f0201"> <label for="f0201">권한 부여</label>
+							<input type="radio" name="f02" checked id="f0202"> <label for="f0202">권한 미부여</label>
+						</div>
+					</td>
+					<th>페이지별접속통계</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="f03" id="f0301"> <label for="f0301">권한 부여</label>
+							<input type="radio" name="f03" checked id="f0302"> <label for="f0302">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+			
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="110">
+					<col>
+					<col width="110">
+					<col>
+				</colgroup>
+				<tr class="tit">
+					<th>관리자 관리</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="g01" id="g0101"> <label for="g0101">권한 부여</label>
+							<input type="radio" name="g01" checked id="g0102"> <label for="g0102">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>관리자 관리</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="g02" id="g0201"> <label for="g0201">권한 부여</label>
+							<input type="radio" name="g02" checked id="g0202"> <label for="g0202">권한 미부여</label>
+						</div>
+					</td>
+					<th>권한관리</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="g03" id="g0301"> <label for="g0301">권한 부여</label>
+							<input type="radio" name="g03" checked id="g0302"> <label for="g0302">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>문의내역</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="g04" id="g0401"> <label for="g0401">권한 부여</label>
+							<input type="radio" name="g04" checked id="g0402"> <label for="g0402">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<!-- btn -->
+			<div class="btnWrap mtMmd">
+				<a href="" class="btnDefault">수정</a>
+				<a href="" class="btnDefault">삭제</a>
+				<a href="" class="btnDefault">목록</a>
+			</div>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+	<!-- footer -->
+	<div class="footer">
+		<div class="innerWrap">
+			<p class="logo"><img src="/resources/images/common/logo_footer.gif" alt="HERIT"></p>
+			<p class="copy">Copyright (c) 2020 neodreams. All right reserved. </p>
+		</div>
+	</div>
+	<!-- //footer -->
+</div>
+</body>
+</html>

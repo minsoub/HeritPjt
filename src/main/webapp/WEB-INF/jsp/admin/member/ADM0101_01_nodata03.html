@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="description" content="Herit 서비스 솔루션 관리자">
+	<title>Herit 관리자</title>
+	<link rel="stylesheet" href="/resources/css/common.css" />
+	<link rel="stylesheet" href="/resources/css/contents.css" />
+	<script type="text/javascript" src="/resources/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="/resources/js/common.js"></script>
+	<!-- date picker -->
+	<script type="text/javascript" src="/resources/js/plugins.js"></script>
+	<link rel="stylesheet" href="/resources/css/jquery-ui-1.9.2.custom.min.css">
+</head>
+<body>
+<div class="wrap">
+	<!-- header -->
+	<div class="header">
+		<div class="innerWrap">
+			<h1 class="logo"><a href=""><img src="/resources/images/common/logo.png" alt="HERIT"></a></h1>
+			<div class="fr">
+				<div class="infoLog">
+					관리자
+					<span class="btnWrap"><a href="" class="btnDefault"><img src="/resources/images/common/ico_log.gif" alt=""> 로그아웃</a></span>
+				</div>
+				<div class="wrapGnb">
+					<ul>
+						<li><a href="" class="active">회원관리</a>
+							<ul class="depth2">
+								<li><a href="">정회원</a></li>
+								<li><a href="">휴면회원</a></li>
+								<li><a href="">탈퇴회원</a></li>
+							</ul>
+						</li>
+						<li><a href="">검진데이터</a>
+							<ul class="depth2">
+								<li><a href="">검진결과 등록</a></li>
+							</ul>
+						</li>
+						<li><a href="">미션관리</a>
+							<ul class="depth2">
+								<li><a href="">미션 달성 현황</a></li>
+								<li><a href="">걸음수 미션 현황</a></li>
+								<li><a href="">건강검진 미션 현황</a></li>
+								<li><a href="">공유 미션 현황</a></li>
+							</ul>
+						</li>
+						<li><a href="">포인트관리</a>
+							<ul class="depth2">
+								<li><a href="">포인트 현황</a></li>
+								<li><a href="">개인별 포인트 현황</a></li>
+								<li><a href="">상품관리</a></li>
+								<li><a href="">포인트 몰</a></li>
+								<li><a href="">구매내역</a></li>
+							</ul>
+						</li>
+						<li><a href="">결제관리</a>
+							<ul class="depth2">
+								<li><a href="">결제 내역</a></li>
+								<li><a href="">요금제 정보</a></li>
+							</ul>
+						</li>
+						<li><a href="">통계</a>
+							<ul class="depth2">
+								<li><a href="">통계</a></li>
+							</ul>
+						</li>
+						<li><a href="">관리자관리</a>
+							<ul class="depth2">
+								<li><a href="">관리자 관리</a></li>
+								<li><a href="">권한 관리</a></li>
+								<li><a href="">문의 내역</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //header -->
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<div class="wrapSnb">
+			<h2 class="tit">회원관리</h2>
+			<ul class="snb">
+				<li><a href="" class="active">정회원</a></li>
+				<li><a href="">휴면회원</a></li>
+				<li><a href="">탈퇴회원</a></li>
+			</ul>
+		</div>
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">정회원 상세</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">회원관리</a></li>
+					<li><a href="">정회원</a></li>
+				</ol>
+			</div>
+			<div class="bxCnt mtMmd">
+				<table class="tblTypeB">
+					<colgroup>
+						<col width="100px">
+						<col>
+						<col width="115px">
+						<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>아이디</th>
+							<td>skfauafkak@naver.com</td>
+							<th>비밀번호</th>
+							<td><p class="btnWrap"><a href="javascript:openLayer('.popSendPw');" class="btnColorC w50">임시 비밀번호 발송</a></p></td>
+						</tr>
+						<tr>
+							<th>성명</th>
+							<td>홍길동</td>
+							<th>핸드폰</th>
+							<td>010-3468-1298</td>
+						</tr>
+						<tr>
+							<th>생년월일</th>
+							<td>1982.09.11</td>
+							<th>성별</th>
+							<td>남자</td>
+						</tr>
+						<tr>
+							<th>요금제</th>
+							<td>BLUE</td>
+							<th>요금종료일</th>
+							<td>2020.12.31. 17:15</td>
+						</tr>
+						<tr>
+							<th>가입일</th>
+							<td>2020.12.10. 15:00</td>
+							<th>최종접속일</th>
+							<td>2020.12.31. 15:00</td>
+						</tr>
+						<tr>
+							<th>약관 동의일</th>
+							<td>2020.12.10. 15:00</td>
+							<th>마케팅동의</th>
+							<td>O</td>
+						</tr>
+						<tr>
+							<th>회원상태</th>
+							<td>정회원</td>
+							<th>최종마케팅 동의일</th>
+							<td>2020.12.31. 15:00</td>
+						</tr>
+						<tr>
+							<th>검진데이터<br>연동 병원</th>
+							<td colspan="3">
+								<ul>
+									<li>서울대병원(2018.12.31. 15:00)</li>
+									<li>인하대병원(2019.05.13. 17:24)</li>
+									<li>아산현대병원(2019. 05.13. 17:24)</li>
+								</ul>
+							</td>
+						</tr>				
+					</tbody>
+				</table>
+				<div class="btnWrap mtSm tac">
+					<a href="" class="btnColorA">회원탈퇴</a>
+					<a href="" class="btnDefault">목록</a>
+				</div>
+			</div>
+
+			<ul class="tab typeA mtXl">
+				<li><a href="ADM0101_02.html" class="active">결제내역</a></li>
+				<li><a href="ADM0101_03.html">포인트 내역</a></li>
+				<li><a href="ADM0101_04.html">미션현황</a></li>
+				<li><a href="ADM0101_05.html">검진데이터</a></li>
+			</ul>
+			<div class="bxSrchForm mtSm">
+				<select name="">
+					<option value="">전체</option>
+					<option value="">결제완료</option>
+					<option value="">결제 취소</option>
+				</select>
+				<label for="" class="mlSMd">조회기간</label>
+				<input type="text" value="" class="datePic"> <span class="dash">~</span> <input type="text" value="" class="datePic">
+				<button type="button" class="btnPrimary sizeSm">검색</button>
+			</div>
+			<table class="tblTypeA mtSm">
+				<thead>
+					<tr>
+						<th>날짜</th>
+						<th>상태</th>
+						<th>결제 상품</th>
+						<th>결제액</th>
+						<th>합계</th>
+						<th>결제 취소</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="6" class="noData">
+							<p class="ico"><img src="/resources/images/contents/ico_nodata03.gif" alt=""></p>
+							등록된 정보가 없습니다.
+						</td>
+					</tr>
+				</tbody>
+			</table>			
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+	<!-- footer -->
+	<div class="footer">
+		<div class="innerWrap">
+			<p class="logo"><img src="/resources/images/common/logo_footer.gif" alt="HERIT"></p>
+			<p class="copy">Copyright (c) 2020 neodreams. All right reserved. </p>
+		</div>
+	</div>
+	<!-- //footer -->
+</div>
+
+<!-- laeyr poup - 임시비밀번호 발송 -->
+<div class="wrapPop popSendPw">
+	<div class="popCnt sizeMd">
+		<h1 class="titPop">임시 비밀번호 발송</h1>
+		<p class="btnClose">
+			<a href=""><img src="/resources/images/common/btn_close_pop.png" alt="레이어 닫기"></a>
+		</p>
+		<div class="cnt">
+			<div class="bxCnt">
+				<h2 class="tit">임시 비밀번호 발송</h2>
+				<ul class="listTxt">
+					<li>- SMS를 통해 회원에게 비밀번호를 발송합니다.</li>
+					<li>- 전송 성공여부와 관계없이 임시 비밀번호로 설정됩니다.</li>
+				</ul>
+			</div>
+			<!-- btn -->
+			<p class="btnWrap">
+				<a href="" class="btnColorB">발송</a>
+				<a href="" class="btnDefault btnClose">취소</a>
+			</p>
+		</div>
+	</div>
+</div>
+<!-- //laeyr poup - 임시비밀번호 발송 -->
+</body>
+</html>
