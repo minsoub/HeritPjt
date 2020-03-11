@@ -44,7 +44,7 @@ public class AdminController {
 	{	
 		HttpSession session = request.getSession();
 		
-		Admin data = service.selectAdminLoginById(param.getId(), param.getPass());
+		Admin data = service.selectAdminLoginById(param);
 		ModelAndView mv = new ModelAndView();
 		
 		if (data != null)

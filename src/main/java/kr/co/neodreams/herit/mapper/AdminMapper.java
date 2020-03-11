@@ -17,22 +17,20 @@ public interface AdminMapper {
 	/**
 	 * 관리자 로그인 정보 조회
 	 * 
-	 * @param id
-	 * @param pass
+	 * @param data
 	 * @return
 	 * @throws Exception
 	 */
-	Admin selectAdminLoginById(String id, String pass) throws Exception;
+	Admin selectAdminLoginById(Admin data) throws Exception;
 	
 	/**
 	 * 관리자 상세 정보 조회
 	 * 
-	 * @param id
-	 * @param pass
+	 * @param data
 	 * @return
 	 * @throws Exception
 	 */
-	Admin selectAdminById(String id, String pass) throws Exception;
+	Admin selectAdminById(Admin data) throws Exception;
 	
 	/**
 	 * 전체 관리자 리스트 조회
