@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<div class="wrapSnb">
+			<h2 class="tit">관리자 관리</h2>
+			<ul class="snb">
+				<li><a th:href="@{list}">관리자 관리</a></li>
+				<li><a th:href="@{authlist}" class="active">권한 관리</a></li>
+				<li><a th:href="@{faqlist}">문의 내역</a></li>
+			</ul>
+		</div>
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">권한 관리 등록</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">관리자 관리</a></li>
+					<li><a href="">권한 관리</a></li>
+				</ol>
+			</div>
+			<h3 class="cntTitLg">권한 정보</h3>
+			<form name="frm" id="frm">
+			<input type="hidden" name="mode" id="mode" th:value="${mode}">
+			<input type="hidden" name="seq"  id="seq"  th:value="${seq}">
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="110">
+					<col>
+				</colgroup>
+				<tr>
+					<td>권한명</td>
+					<td><input type="text" name="auth_name" id="auth_name" th:value="${info.auth_name}"></td>
+				</tr>
+				<tr>
+					<td>설명</td>
+					<td><input type="text" name="auth_desc" id="auth_desc" th:value="${info.auth_desc}"></td>
+				</tr>
+			</table>
+
+			<h3 class="cntTitLg">메뉴 접근 권한</h3>
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="110">
+					<col>
+				</colgroup>
+				<!-- ###### input name, id값은 임의로 부여했으니 개발시 수정 가능합니다.
+				label fo 값과 input id값은 동일하게 부여해주세요~~~
+				-->
+				<tr class="tit">
+					<th>회원 관리</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="a01" id="a0101" value="Y" th:checked="${info.a01 == 'Y'}"> <label for="a0101">권한 부여</label>
+							<input type="radio" name="a01" checked id="a0102" value="N" th:checked="${info.a01 == 'N' or info.a01 == ''}"> <label for="a0102">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="110">
+					<col>
+					<col width="110">
+					<col>
+				</colgroup>
+				<tr class="tit">
+					<th>검진데이터</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="b01" id="b0101" value="Y" th:checked="${info.b01 == 'Y'}"> <label for="b0101">권한 부여</label>
+							<input type="radio" name="b01" checked id="b0102" value="N" th:checked="${info.b01 == 'N' or info.b01 == ''}"> <label for="b0102">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>검진결과 데이터</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="b02" id="b0201" value="Y" th:checked="${info.b02 == 'Y'}"> <label for="b0201">권한 부여</label>
+							<input type="radio" name="b02" checked id="b0202" value="N" th:checked="${info.b02 == 'N' or info.b02 == ''}"> <label for="b0202">권한 미부여</label>
+						</div>
+					</td>
+					<th>데이터 등록</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="b03" id="b0301" value="Y" th:checked="${info.b03 == 'Y'}"> <label for="b0301">권한 부여</label>
+							<input type="radio" name="b03" checked id="b0302" value="N" th:checked="${info.b03 == 'N' or info.b03 == ''}"> <label for="b0302">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>					
+					<th>검진기관</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="b04" id="b0401" value="Y" th:checked="${info.b04 == 'Y'}"> <label for="b0401">권한 부여</label>
+							<input type="radio" name="b04" checked id="b0402" value="N" th:checked="${info.b04 == 'N' or info.b04 == ''}"> <label for="b0402">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="110">
+					<col>
+					<col width="110">
+					<col>
+				</colgroup>
+				<tr class="tit">
+					<th>미션관리</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="c01" id="c0101" value="Y" th:checked="${info.c01 == 'Y'}"> <label for="c0101">권한 부여</label>
+							<input type="radio" name="c01" checked id="c0102" value="N" th:checked="${info.c01 == 'N' or info.c01 == ''}"> <label for="c0102">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>미션수행현황</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="c02" id="c0201" value="Y" th:checked="${info.c02 == 'Y'}"> <label for="c0201">권한 부여</label>
+							<input type="radio" name="c02" checked id="c0202" value="N" th:checked="${info.c02 == 'N' or info.c02 == ''}"> <label for="c0202">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="110">
+					<col>
+					<col width="110">
+					<col>
+				</colgroup>
+				<tr class="tit">
+					<th>포인트관리</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="d01" id="d0101" value="Y" th:checked="${info.d01 == 'Y'}"> <label for="d0101">권한 부여</label>
+							<input type="radio" name="d01" checked id="d0102" value="N" th:checked="${info.d01 == 'N' or info.d01 == ''}"> <label for="d0102">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>포인트현황</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="d02" id="d0201" value="Y" th:checked="${info.d02 == 'Y'}"> <label for="d0201">권한 부여</label>
+							<input type="radio" name="d02" checked id="d0202" value="N" th:checked="${info.d02 == 'N' or info.d02 == ''}"> <label for="d0202">권한 미부여</label>
+						</div>
+					</td>
+					<th>개인별포인트현황</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="d03" id="d0301" value="Y" th:checked="${info.d03 == 'Y'}"> <label for="d0301">권한 부여</label>
+							<input type="radio" name="d03" checked id="d0302" value="N" th:checked="${info.d03 == 'N' or info.d03 == ''}"> <label for="d0302">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>상품관리</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="d04" id="d0401" value="Y" th:checked="${info.d04 == 'Y'}"> <label for="d0401">권한 부여</label>
+							<input type="radio" name="d04" checked id="d0402" value="N" th:checked="${info.d04 == 'N' or info.d04 == ''}"> <label for="d0402">권한 미부여</label>
+						</div>
+					</td>
+					<th>포인트몰</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="d05" id="d0501" value="Y" th:checked="${info.d05 == 'Y'}"> <label for="d0501">권한 부여</label>
+							<input type="radio" name="d05" checked id="d0502" value="N" th:checked="${info.d05 == 'N' or info.d05 == ''}"> <label for="d0502">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>구매내역</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="d06" id="d0601" value="Y" th:checked="${info.d06 == 'Y'}"> <label for="d0601">권한 부여</label>
+							<input type="radio" name="d06" checked id="d0602" value="N" th:checked="${info.d06 == 'N' or info.d06 == ''}"> <label for="d0602">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+			
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="110">
+					<col>
+					<col width="110">
+					<col>
+				</colgroup>
+				<tr class="tit">
+					<th>결제관리</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="e01" id="e0101" value="Y" th:checked="${info.e01 == 'Y'}"> <label for="e0101">권한 부여</label>
+							<input type="radio" name="e01" checked id="e0102" value="N" th:checked="${info.e01 == 'N' or info.e01 == ''}"> <label for="e0102">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>결제내역</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="e02" id="e0201" value="Y" th:checked="${info.e02 == 'Y'}"> <label for="e0201">권한 부여</label>
+							<input type="radio" name="e02" checked id="e0202" value="N" th:checked="${info.e02 == 'N' or info.e02 == ''}"> <label for="e0202">권한 미부여</label>
+						</div>
+					</td>
+					<th>요금제정보</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="e03" id="e0301" value="Y" th:checked="${info.e03 == 'Y'}"> <label for="e0301">권한 부여</label>
+							<input type="radio" name="e03" checked id="e0302" value="N" th:checked="${info.e03 == 'N' or info.e03 == ''}"> <label for="e0302">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="110">
+					<col>
+					<col width="110">
+					<col>
+				</colgroup>
+				<tr class="tit">
+					<th>통계</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="f01" id="f0101" value="Y" th:checked="${info.f01 == 'Y'}"> <label for="f0101">권한 부여</label>
+							<input type="radio" name="f01" checked id="f0102" value="N" th:checked="${info.f01 == 'N' or info.f01 == ''}"> <label for="f0102">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>일일방문통계</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="f02" id="f0201" value="Y" th:checked="${info.f02 == 'Y'}"> <label for="f0201">권한 부여</label>
+							<input type="radio" name="f02" checked id="f0202" value="N" th:checked="${info.f02 == 'N' or info.f02 == ''}"> <label for="f0202">권한 미부여</label>
+						</div>
+					</td>
+					<th>페이지별접속통계</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="f03" id="f0301" value="Y" th:checked="${info.f03 == 'Y'}"> <label for="f0301">권한 부여</label>
+							<input type="radio" name="f03" checked id="f0302" value="N" th:checked="${info.f03 == 'N' or info.f03 == ''}"> <label for="f0302">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+			
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="110">
+					<col>
+					<col width="110">
+					<col>
+				</colgroup>
+				<tr class="tit">
+					<th>관리자 관리</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="g01" id="g0101" value="Y" th:checked="${info.g01 == 'Y'}"> <label for="g0101">권한 부여</label>
+							<input type="radio" name="g01" checked id="g0102" value="N" th:checked="${info.g01 == 'N' or info.g01 == ''}"> <label for="g0102">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>관리자 관리</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="g02" id="g0201" value="Y" th:checked="${info.g02 == 'Y'}"> <label for="g0201">권한 부여</label>
+							<input type="radio" name="g02" checked id="g0202" value="N" th:checked="${info.g02 == 'N' or info.g02 == ''}"> <label for="g0202">권한 미부여</label>
+						</div>
+					</td>
+					<th>권한관리</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="g03" id="g0301" value="Y" th:checked="${info.g03 == 'Y'}"> <label for="g0301">권한 부여</label>
+							<input type="radio" name="g03" checked id="g0302" value="N" th:checked="${info.g03 == 'N' or info.g03 == ''}"> <label for="g0302">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>문의내역</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="g04" id="g0401" value="Y" th:checked="${info.g04 == 'Y'}"> <label for="g0401">권한 부여</label>
+							<input type="radio" name="g04" checked id="g0402" value="N" th:checked="${info.g04 == 'N' or info.g04 == ''}"> <label for="g0402">권한 미부여</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<!-- btn -->
+			<div class="btnWrap mtMmd">
+				<a href="" id="btnSave"   class="btnDefault">저장</a>
+				<th:block th:if="${mode == 'U'}">
+    				<a href="" id="btnDelete" class="btnDefault">삭제</a>
+				</th:block>								
+				<a th:href="@{authlist}" class="btnDefault">목록</a>
+			</div>
+			</form>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('7', '0', '0'); //menu script
+
+	
+	$('#btnSave').click(function(){
+		if ($("#auth_name").val() == "")
+		{
+			alert("권한명을 입력하지 않았습니다!!!");
+			$("#auth_name").focus();
+			return;
+		}		
+		if ($("#auth_desc").val() == "N")
+		{
+			alert("권한 정보 설명을 입력하지 않았습니다!!!");
+			$("#auth_desc").focus();
+			return;
+		}
+		authProcess();
+	});
+	
+	$('#btnDelete').click(function(){
+		$("#mode").val("D");
+		authProcess();
+	});
+});
+
+function authProcess()
+{
+	
+	var params = {
+			"mode"      : $("#mode").val(),
+			"seq"       : $("#seq").val(),
+			"auth_name" : $("#auth_name").val(),
+			"auth_desc" : $('#auth_desc').val(),
+			"a01"       : $(":input:radio[name=a01]:checked").val(),
+			"b01"       : $(":input:radio[name=b01]:checked").val(),
+			"b02"       : $(":input:radio[name=b02]:checked").val(),
+			"b03"       : $(":input:radio[name=b03]:checked").val(),
+			"b04"       : $(":input:radio[name=b04]:checked").val(),
+			"c01"       : $(":input:radio[name=c01]:checked").val(),
+			"c02"       : $(":input:radio[name=c02]:checked").val(),
+			"d01"       : $(":input:radio[name=d01]:checked").val(),
+			"d02"       : $(":input:radio[name=d02]:checked").val(),
+			"d03"       : $(":input:radio[name=d03]:checked").val(),
+			"d04"       : $(":input:radio[name=d04]:checked").val(),
+			"d05"       : $(":input:radio[name=d05]:checked").val(),
+			"d06"       : $(":input:radio[name=d06]:checked").val(),
+			"e01"       : $(":input:radio[name=e01]:checked").val(),
+			"e02"       : $(":input:radio[name=e02]:checked").val(),
+			"e03"       : $(":input:radio[name=e03]:checked").val(),
+			"f01"       : $(":input:radio[name=f01]:checked").val(),
+			"f02"       : $(":input:radio[name=f02]:checked").val(),
+			"f03"       : $(":input:radio[name=f03]:checked").val(),
+			"g01"       : $(":input:radio[name=g01]:checked").val(),
+			"g02"       : $(":input:radio[name=g02]:checked").val(),
+			"g03"       : $(":input:radio[name=g03]:checked").val(),
+			"g04"       : $(":input:radio[name=g04]:checked").val()
+	};		
+	goJsonInput(params, "authProccess", "authlist");		
+}
+
+</script>	

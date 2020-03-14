@@ -18,9 +18,16 @@ public class LoginService {
 	@Autowired
 	private ModelMapper modelMapper;
 	
+	/**
+	 * fetch the Authority data with the ID and password
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
 	public Admin selectAdminLoginById(Admin data) throws Exception
 	{
-		Admin info = adminMapper.selectAdminById(data);
+		Admin info = adminMapper.selectAdminLoginById(data);
 		
 		log.info("selectAdminById : {}", info);
 		return info;

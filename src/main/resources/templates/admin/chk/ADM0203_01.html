@@ -30,7 +30,7 @@
 								<li><a href="">탈퇴회원</a></li>
 							</ul>
 						</li>
-						<li><a href="">검진데이터</a>
+						<li><a href="" class="active">검진데이터</a>
 							<ul class="depth2">
 								<li><a href="">건강검진 요청</a></li>
 								<li><a href="">건강검진 현황</a></li>
@@ -65,7 +65,7 @@
 								<li><a href="">통계</a></li>
 							</ul>
 						</li>
-						<li><a href="" class="active">관리자관리</a>
+						<li><a href="">관리자관리</a>
 							<ul class="depth2">
 								<li><a href="">관리자 관리</a></li>
 								<li><a href="">권한 관리</a></li>
@@ -82,78 +82,111 @@
 	<div class="innerWrap">
 		<!-- SNB -->
 		<div class="wrapSnb">
-			<h2 class="tit">관리자 관리</h2>
+			<h2 class="tit">검진데이터</h2>
 			<ul class="snb">
-				<li><a href="" class="active">관리자 관리</a></li>
-				<li><a href="">권한 관리</a></li>
-				<li><a href="">문의 내역</a></li>
+				<li><a href="">건강검진 요청</a></li>
+				<li><a href="">건강검진 현황</a></li>
+				<li><a href="" class="active">건강병원 등록</a></li>				
 			</ul>
 		</div>
 		<!-- //SNB -->
 		<!-- contents -->
 		<div class="contents">
 			<div class="cntTitWrap">
-				<h2 class="cntTitXL fl">관리자 관리</h2>
+				<h2 class="cntTitXL fl">건강병원</h2>
 				<ol class="bcNav">
 					<li><a href="" class="home">Home</a></li>
-					<li><a href="">관리자 관리</a></li>
-					<li><a href="">관리자 관리</a></li>
+					<li><a href="">검진데이터</a></li>
+					<li><a href="">건강병원</a></li>
 				</ol>
 			</div>
-			<div class="bxSrchForm tar">
-				<select name="">
-					<option value="">ID</option>
-					<option value="">성명</option>
-					<option value="">연락처</option>
-				</select>
-				<input type="text" name="" class="mlXs w30">
-				<button type="button" class="btnPrimary sizeSm">검색</button>
+			<!-- 검색 영역 -->
+			<div class="bxCnt mtSm">
+				<table class="tblTypeB">
+					<colgroup>
+						<col width="100px">
+						<col>
+						<col width="100px">
+						<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>병원명</th>
+							<td><input type="text" name=""></td>
+							<th>담당자</th>
+							<td><input type="text" name=""></td>
+						</tr>
+						<tr>
+							<th>연락처</th>
+							<td><input type="text" name=""></td>
+							<td></td>
+							<td></td>
+						</tr>								
+					</tbody>
+				</table>
+				<div class="btnWrap mtSm tac">
+					<a href="" class="btnPrimary">검색하기</a>
+				</div>
 			</div>
-			<p class="txtBbs colorA mtSMd">총 5명</p>
-			<table class="tblTypeA mtXs">
+			<!-- //검색 영역 -->
+
+			<div class="txtBbs mtSMd">총 50건</div>
+			<table class="tblTypeA mtSm">
 				<thead>
 					<tr>
-						<th>ID</th>
-						<th>성명</th>
-						<th>권한</th>
+						<th>병원명</th>
+						<th>담당자</th>
 						<th>연락처</th>
-						<th>핸드폰</th>
-						<th>이메일</th>
-						<th>최종 접속일</th>
-						<th>상세정보</th>
+						<th>주소</th>
 					</tr>
-				</thead>				
+				</thead>
 				<tbody>
+					<!-- 검색결과가 없는경우
 					<tr>
-						<td>system</td>
-						<td>홍길동</td>
-						<td>시스템 관리자</td>
-						<td>02-1234-5678</td>
-						<td>010-5678-1234</td>
-						<td>neo123@nts.com</td>
-						<td>2019.12.31 15:30</td>
-						<td>
-							<p class="btnWrap"><a href="" class="btnColorE">보기</a></p>
+						<td colspan="9" class="noData">
+							<p class="ico"><img src="/resources/images/contents/ico_nodata01.gif" alt=""></p>
+							검색 결과가 없습니다.
 						</td>
 					</tr>
+					-->
 					<tr>
-						<td>gildong</td>
+						<td>서울대병원</td>
 						<td>홍길동</td>
-						<td>운영자</td>
-						<td>02-1234-5678</td>
-						<td>010-5678-1234</td>
-						<td>gildong1234@nts.com</td>
-						<td>2019.12.31 15:30</td>
-						<td>
-							<p class="btnWrap"><a href="" class="btnColorE">보기</a></p>
-						</td>
+						<td>010-1234-5678</td>
+						<td>검진병원 주소 검진병원 주소 검진병원 주소 </td>
+					</tr>
+					<tr>
+						<td>서울대병원</td>
+						<td>홍길동</td>
+						<td>010-1234-5678</td>
+						<td>검진병원 주소 검진병원 주소 검진병원 주소 </td>
+					</tr>
+					<tr>
+						<td>서울대병원</td>
+						<td>홍길동</td>
+						<td>010-1234-5678</td>
+						<td>검진병원 주소 검진병원 주소 검진병원 주소 </td>
 					</tr>
 				</tbody>
 			</table>
-			<!-- btn -->
-			<div class="btnWrap mtMmd">
-				<a href="" class="btnDefault">등록</a>
+			<!-- paging -->
+			<div class="paging">
+				<a class="btnFirst" href="">첫 페이지</a>
+				<a class="btnPrev" href="">이전 페이지</a>
+				<a href="" class="on">1</a>
+				<a href="">2</a>
+				<a href="">3</a>
+				<a href="">4</a>
+				<a href="">5</a>
+				<a href="">6</a>
+				<a href="">7</a>
+				<a href="">8</a>
+				<a href="">9</a>
+				<a href="">10</a>
+				<a class="btnNext" href="">다음 페이지</a>
+				<a class="btnLast" href="">마지막 페이지</a>
 			</div>
+			<div class="btnWrap mtMmd"><a href="" class="btnDefault">등록</a></div>
 		</div>
 		<!-- //contents -->
 	</div>

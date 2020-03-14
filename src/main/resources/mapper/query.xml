@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
 
-<mapper namespace="kr.co.neodreams.herit.mapper.AdminMapper">
+<mapper namespace="kr.co.neodreams.herit.mapper.LoginMapper">
 	<select id="selectAdminLoginById" parameterType="HashMap" resultType="admin">
 		SELECT id, name, auth_tp, use_yn, last_login_dt
 		  from herit_admin

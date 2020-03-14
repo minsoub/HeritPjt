@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<body th:fragment="mainBody">
+
+	<div class="wrap">
+		<!--  Top Menu define  -->
+		<th:block th:include="admin/layout/main_top_menu"></th:block>
+		
+		<!--  content define  -->
+		<th:block layout:fragment="content_body"></th:block>
+		
+		<!--  bottom Footer define  -->
+		<th:block th:include="admin/layout/main_footer"></th:block>
+		
+	</div>
+	
+</body>
+
+</html>

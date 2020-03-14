@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<div class="wrapSnb">
+			<h2 class="tit">관리자 관리</h2>
+			<ul class="snb">
+				<li><a th:href="@{list}" class="active">관리자 관리</a></li>
+				<li><a th:href="@{authlist}">권한 관리</a></li>
+				<li><a th:href="@{faqlist}">문의 내역</a></li>
+			</ul>
+		</div>
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">관리자 관리</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">관리자 관리</a></li>
+					<li><a href="">관리자 관리</a></li>
+				</ol>
+			</div>
+			<form id="frm" name="frm">
+			<div class="bxSrchForm tar">
+				<select name="searchId" id="searchId">
+					<option value="id"   th:selected="${paging.searchId == 'id'}">ID</option>
+					<option value="name" th:selected="${paging.searchId == 'name'}">성명</option>
+					<option value="htel" th:selected="${paging.searchId == 'htel'}">연락처</option>
+				</select>
+				<input type="text" name="searchString" id="searchString" class="mlXs w30" th:value="${paging.searchString}">
+				<button type="button" id="btnSearch" class="btnPrimary sizeSm">검색</button>
+			</div>
+			</form>
+			<p class="txtBbs colorA mtSMd">총 [[${total}]] 명</p>
+			<table class="tblTypeA mtXs">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>성명</th>
+						<th>권한</th>
+						<th>연락처</th>
+						<th>핸드폰</th>
+						<th>이메일</th>
+						<th>최종 접속일</th>
+						<th>상세정보</th>
+					</tr>
+				</thead>				
+				<tbody>
+					<tr th:each="info : ${list}">
+						<td th:text="${info.id}">
+						<td th:text="${info.name}">
+						<td th:text="${info.auth_tp}">
+						<td th:text="${info.phone}">
+						<td th:text="${info.htel}">
+						<td th:text="${info.email}">
+						<td th:text="${info.last_login_dt}">
+						<td>
+							<p class="btnWrap"><a th:href="@{detail(id=${info.id})}" class="btnColorE">보기</a></p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- btn -->
+			<div class="btnWrap mtMmd">
+				<a th:href="@{regform}" class="btnDefault">등록</a>
+			</div>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+	
+</th:block>
+</html>
+	
+<script>
+$(document).ready(function() {
+	load_fnc('7', '0', '0'); //menu script
+	$('#btnSearch').click(function(){
+		if ($("#searchString").val() == "")
+		{
+			alert("검색 단어를 입력하세요!!!");
+			$("#searchString").focus();
+			return;
+		}
+		$("#frm").attr("method", "post");
+		$("#frm").attr("action", "list");
+		$("#frm").submit();
+	});
+});
+
+</script>	

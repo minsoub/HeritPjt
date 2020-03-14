@@ -1,0 +1,505 @@
+2020-03-13 15:20:48.936 [main] INFO  k.c.n.herit.HeritPjtApplication - Starting HeritPjtApplication on LAPTOP-NFP1QT50 with PID 21140 (C:\DevProject\JavaWorkspace\HeritPjt\target\classes started by minso in C:\DevProject\JavaWorkspace\HeritPjt)
+2020-03-13 15:20:48.942 [main] INFO  k.c.n.herit.HeritPjtApplication - No active profile set, falling back to default profiles: default
+2020-03-13 15:20:50.063 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-03-13 15:20:50.072 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:20:50.074 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-03-13 15:20:50.074 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-13 15:20:50.269 [main] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-03-13 15:20:50.272 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-03-13 15:20:50.272 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1289 ms
+2020-03-13 15:20:50.388 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-03-13 15:20:50.552 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-03-13 15:20:50.553 [main] INFO  k.c.n.h.config.DatabaseConfiguration - datasource : HikariDataSource (HikariPool-1)
+2020-03-13 15:20:50.941 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/css/**'], []
+2020-03-13 15:20:50.941 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/images/**'], []
+2020-03-13 15:20:50.941 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/js/**'], []
+2020-03-13 15:20:50.942 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/fonts/**'], []
+2020-03-13 15:20:50.973 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5432c277, org.springframework.security.web.context.SecurityContextPersistenceFilter@c1fa7d4, org.springframework.security.web.header.HeaderWriterFilter@167279d1, org.springframework.security.web.csrf.CsrfFilter@4b869331, org.springframework.security.web.authentication.logout.LogoutFilter@4beeb0e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@28fd3dc1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@35178483, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@681e144, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@15e0fe05, org.springframework.security.web.session.SessionManagementFilter@4d96250, org.springframework.security.web.access.ExceptionTranslationFilter@3e6534e7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6a282fdd]
+2020-03-13 15:20:51.072 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-13 15:20:51.254 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:20:51.282 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-13 15:20:51.285 [main] INFO  k.c.n.herit.HeritPjtApplication - Started HeritPjtApplication in 2.706 seconds (JVM running for 5.027)
+2020-03-13 15:21:15.540 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-13 15:21:15.541 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-03-13 15:21:15.548 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2020-03-13 15:34:48.545 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2020-03-13 15:34:48.548 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-13 15:34:48.549 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-03-13 15:34:48.552 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-03-13 15:35:02.603 [main] INFO  k.c.n.herit.HeritPjtApplication - Starting HeritPjtApplication on LAPTOP-NFP1QT50 with PID 18172 (C:\DevProject\JavaWorkspace\HeritPjt\target\classes started by minso in C:\DevProject\JavaWorkspace\HeritPjt)
+2020-03-13 15:35:02.606 [main] INFO  k.c.n.herit.HeritPjtApplication - No active profile set, falling back to default profiles: default
+2020-03-13 15:35:03.629 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-03-13 15:35:03.638 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:35:03.638 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-03-13 15:35:03.639 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-13 15:35:03.827 [main] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-03-13 15:35:03.831 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-03-13 15:35:03.831 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1182 ms
+2020-03-13 15:35:03.908 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-03-13 15:35:04.428 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-03-13 15:35:04.429 [main] INFO  k.c.n.h.config.DatabaseConfiguration - datasource : HikariDataSource (HikariPool-1)
+2020-03-13 15:35:04.782 [main] INFO  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 7a095efc-44d2-409e-8926-d44ce4d719f0
+
+2020-03-13 15:35:04.940 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@18ac53e8, org.springframework.security.web.context.SecurityContextPersistenceFilter@6e8a9c30, org.springframework.security.web.header.HeaderWriterFilter@7f92b990, org.springframework.security.web.csrf.CsrfFilter@7a8136b3, org.springframework.security.web.authentication.logout.LogoutFilter@37864b77, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5d1b9c3d, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@3971f0fe, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@4ca8dbfa, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2babf189, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@70211e49, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7c84195, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7063686f, org.springframework.security.web.session.SessionManagementFilter@6c1832aa, org.springframework.security.web.access.ExceptionTranslationFilter@64b7225f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3b90a30a]
+2020-03-13 15:35:05.049 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-13 15:35:05.274 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:35:05.304 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-13 15:35:05.308 [main] INFO  k.c.n.herit.HeritPjtApplication - Started HeritPjtApplication in 3.04 seconds (JVM running for 4.794)
+2020-03-13 15:35:27.764 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-13 15:35:27.764 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-03-13 15:35:27.771 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2020-03-13 15:39:34.898 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2020-03-13 15:39:34.902 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-13 15:39:34.903 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-03-13 15:39:34.907 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-03-13 15:40:40.943 [main] INFO  k.c.n.herit.HeritPjtApplication - Starting HeritPjtApplication on LAPTOP-NFP1QT50 with PID 1156 (C:\DevProject\JavaWorkspace\HeritPjt\target\classes started by minso in C:\DevProject\JavaWorkspace\HeritPjt)
+2020-03-13 15:40:40.946 [main] INFO  k.c.n.herit.HeritPjtApplication - No active profile set, falling back to default profiles: default
+2020-03-13 15:40:42.033 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-03-13 15:40:42.041 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:40:42.042 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-03-13 15:40:42.042 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-13 15:40:42.230 [main] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-03-13 15:40:42.234 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-03-13 15:40:42.235 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1250 ms
+2020-03-13 15:40:42.315 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-03-13 15:40:42.451 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-03-13 15:40:42.451 [main] INFO  k.c.n.h.config.DatabaseConfiguration - datasource : HikariDataSource (HikariPool-1)
+2020-03-13 15:40:42.789 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-13 15:40:43.044 [main] INFO  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: f857d17d-0b3a-4227-88aa-15e6c5bc1cc7
+
+2020-03-13 15:40:43.134 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@692e028d, org.springframework.security.web.context.SecurityContextPersistenceFilter@a518813, org.springframework.security.web.header.HeaderWriterFilter@2dfe5525, org.springframework.security.web.csrf.CsrfFilter@6778aea6, org.springframework.security.web.authentication.logout.LogoutFilter@2418ba04, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@64f1fd08, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1dd7796b, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@6629ad09, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@242a209e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@75361cf6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@79d9214d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@43e1692f, org.springframework.security.web.session.SessionManagementFilter@6a9b9909, org.springframework.security.web.access.ExceptionTranslationFilter@bfc14b9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@42b28ff1]
+2020-03-13 15:40:43.178 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:40:43.209 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-13 15:40:43.212 [main] INFO  k.c.n.herit.HeritPjtApplication - Started HeritPjtApplication in 2.577 seconds (JVM running for 4.352)
+2020-03-13 15:43:11.517 [main] INFO  k.c.n.herit.HeritPjtApplication - Starting HeritPjtApplication on LAPTOP-NFP1QT50 with PID 13724 (C:\DevProject\JavaWorkspace\HeritPjt\target\classes started by minso in C:\DevProject\JavaWorkspace\HeritPjt)
+2020-03-13 15:43:11.520 [main] INFO  k.c.n.herit.HeritPjtApplication - No active profile set, falling back to default profiles: default
+2020-03-13 15:43:12.520 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-03-13 15:43:12.528 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:43:12.529 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-03-13 15:43:12.529 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-13 15:43:12.719 [main] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-03-13 15:43:12.724 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-03-13 15:43:12.724 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1160 ms
+2020-03-13 15:43:12.799 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-03-13 15:43:12.996 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-03-13 15:43:12.996 [main] INFO  k.c.n.h.config.DatabaseConfiguration - datasource : HikariDataSource (HikariPool-1)
+2020-03-13 15:43:13.326 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-13 15:43:13.550 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:43:13.563 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:43:13.563 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2020-03-13 15:43:13.567 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:43:13.567 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:43:13.569 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-03-13 15:43:13.574 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2020-03-13 15:43:13.576 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-13 15:43:13.577 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-03-13 15:43:13.602 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-03-13 15:43:27.574 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2020-03-13 15:43:27.577 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-13 15:43:27.578 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-03-13 15:43:27.581 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-03-13 15:43:34.571 [main] INFO  k.c.n.herit.HeritPjtApplication - Starting HeritPjtApplication on LAPTOP-NFP1QT50 with PID 8520 (C:\DevProject\JavaWorkspace\HeritPjt\target\classes started by minso in C:\DevProject\JavaWorkspace\HeritPjt)
+2020-03-13 15:43:34.574 [main] INFO  k.c.n.herit.HeritPjtApplication - No active profile set, falling back to default profiles: default
+2020-03-13 15:43:35.546 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-03-13 15:43:35.556 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:43:35.557 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-03-13 15:43:35.557 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-13 15:43:35.751 [main] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-03-13 15:43:35.754 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-03-13 15:43:35.755 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1144 ms
+2020-03-13 15:43:35.828 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-03-13 15:43:35.982 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-03-13 15:43:35.982 [main] INFO  k.c.n.h.config.DatabaseConfiguration - datasource : HikariDataSource (HikariPool-1)
+2020-03-13 15:43:36.313 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-13 15:43:36.541 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:43:36.571 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-13 15:43:36.574 [main] INFO  k.c.n.herit.HeritPjtApplication - Started HeritPjtApplication in 2.366 seconds (JVM running for 4.113)
+2020-03-13 15:43:43.914 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-13 15:43:43.915 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-03-13 15:43:43.923 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 8 ms
+2020-03-13 15:43:53.140 [http-nio-8080-exec-9] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported]
+2020-03-13 15:44:45.475 [http-nio-8080-exec-5] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported]
+2020-03-13 15:44:52.188 [http-nio-8080-exec-1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported]
+2020-03-13 15:45:11.346 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2020-03-13 15:45:11.348 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-13 15:45:11.349 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-03-13 15:45:11.352 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-03-13 15:45:17.467 [main] INFO  k.c.n.herit.HeritPjtApplication - Starting HeritPjtApplication on LAPTOP-NFP1QT50 with PID 20608 (C:\DevProject\JavaWorkspace\HeritPjt\target\classes started by minso in C:\DevProject\JavaWorkspace\HeritPjt)
+2020-03-13 15:45:17.470 [main] INFO  k.c.n.herit.HeritPjtApplication - No active profile set, falling back to default profiles: default
+2020-03-13 15:45:18.758 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-03-13 15:45:18.767 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:45:18.767 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-03-13 15:45:18.768 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-13 15:45:18.978 [main] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-03-13 15:45:18.982 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-03-13 15:45:18.983 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1476 ms
+2020-03-13 15:45:19.080 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-03-13 15:45:19.240 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-03-13 15:45:19.240 [main] INFO  k.c.n.h.config.DatabaseConfiguration - datasource : HikariDataSource (HikariPool-1)
+2020-03-13 15:45:19.556 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-13 15:45:19.857 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:45:19.888 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-13 15:45:19.891 [main] INFO  k.c.n.herit.HeritPjtApplication - Started HeritPjtApplication in 2.764 seconds (JVM running for 4.581)
+2020-03-13 15:45:22.641 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-13 15:45:22.641 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-03-13 15:45:22.650 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 8 ms
+2020-03-13 15:45:22.715 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): kr.co.neodreams.herit.mapper.AdminMapper.selectAdminById] with root cause
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): kr.co.neodreams.herit.mapper.AdminMapper.selectAdminById
+	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:227)
+	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:49)
+	at org.apache.ibatis.binding.MapperProxy.cachedMapperMethod(MapperProxy.java:65)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:58)
+	at com.sun.proxy.$Proxy66.selectAdminById(Unknown Source)
+	at kr.co.neodreams.herit.service.LoginService.selectAdminLoginById(LoginService.java:23)
+	at kr.co.neodreams.herit.controller.AdminController.loginProcess(AdminController.java:47)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+2020-03-13 15:46:51.418 [http-nio-8080-exec-3] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): kr.co.neodreams.herit.mapper.AdminMapper.selectAdminById] with root cause
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): kr.co.neodreams.herit.mapper.AdminMapper.selectAdminById
+	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:227)
+	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:49)
+	at org.apache.ibatis.binding.MapperProxy.cachedMapperMethod(MapperProxy.java:65)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:58)
+	at com.sun.proxy.$Proxy66.selectAdminById(Unknown Source)
+	at kr.co.neodreams.herit.service.LoginService.selectAdminLoginById(LoginService.java:23)
+	at kr.co.neodreams.herit.controller.AdminController.loginProcess(AdminController.java:47)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+2020-03-13 15:46:53.729 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2020-03-13 15:46:53.732 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-13 15:46:53.733 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-03-13 15:46:53.739 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-03-13 15:47:00.344 [main] INFO  k.c.n.herit.HeritPjtApplication - Starting HeritPjtApplication on LAPTOP-NFP1QT50 with PID 12736 (C:\DevProject\JavaWorkspace\HeritPjt\target\classes started by minso in C:\DevProject\JavaWorkspace\HeritPjt)
+2020-03-13 15:47:00.346 [main] INFO  k.c.n.herit.HeritPjtApplication - No active profile set, falling back to default profiles: default
+2020-03-13 15:47:01.335 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-03-13 15:47:01.344 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:47:01.344 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-03-13 15:47:01.345 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-13 15:47:01.551 [main] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-03-13 15:47:01.555 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-03-13 15:47:01.555 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1169 ms
+2020-03-13 15:47:01.632 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-03-13 15:47:01.799 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-03-13 15:47:01.799 [main] INFO  k.c.n.h.config.DatabaseConfiguration - datasource : HikariDataSource (HikariPool-1)
+2020-03-13 15:47:02.185 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-13 15:47:02.421 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-03-13 15:47:02.450 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-13 15:47:02.453 [main] INFO  k.c.n.herit.HeritPjtApplication - Started HeritPjtApplication in 2.438 seconds (JVM running for 4.19)
+2020-03-13 15:47:08.193 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-13 15:47:08.194 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-03-13 15:47:08.201 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2020-03-13 15:47:08.296 [http-nio-8080-exec-1] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==>  Preparing: SELECT id, name, auth_tp, use_yn, last_login_dt from herit_admin where id = ? and pass = ? 
+2020-03-13 15:47:08.311 [http-nio-8080-exec-1] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==> Parameters: dd(String), dd(String)
+2020-03-13 15:47:08.341 [http-nio-8080-exec-1] DEBUG k.c.n.h.m.A.selectAdminLoginById - <==      Total: 0
+2020-03-13 15:47:08.350 [http-nio-8080-exec-1] INFO  k.c.n.herit.service.LoginService - selectAdminById : null
+2020-03-13 15:47:08.351 [http-nio-8080-exec-1] INFO  k.c.n.h.controller.AdminController - /loginProcess [data] : null
+2020-03-13 15:47:23.907 [http-nio-8080-exec-8] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==>  Preparing: SELECT id, name, auth_tp, use_yn, last_login_dt from herit_admin where id = ? and pass = ? 
+2020-03-13 15:47:23.908 [http-nio-8080-exec-8] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==> Parameters: minsoub(String), wjdalstjq1(String)
+2020-03-13 15:47:23.920 [http-nio-8080-exec-8] DEBUG k.c.n.h.m.A.selectAdminLoginById - <==      Total: 0
+2020-03-13 15:47:23.920 [http-nio-8080-exec-8] INFO  k.c.n.herit.service.LoginService - selectAdminById : null
+2020-03-13 15:47:23.920 [http-nio-8080-exec-8] INFO  k.c.n.h.controller.AdminController - /loginProcess [data] : null
+2020-03-13 15:47:55.952 [http-nio-8080-exec-9] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==>  Preparing: SELECT id, name, auth_tp, use_yn, last_login_dt from herit_admin where id = ? and pass = ? 
+2020-03-13 15:47:55.953 [http-nio-8080-exec-9] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==> Parameters: minsoub(String), wjdalstjq123(String)
+2020-03-13 15:47:55.960 [http-nio-8080-exec-9] DEBUG k.c.n.h.m.A.selectAdminLoginById - <==      Total: 0
+2020-03-13 15:47:55.961 [http-nio-8080-exec-9] INFO  k.c.n.herit.service.LoginService - selectAdminById : null
+2020-03-13 15:47:55.961 [http-nio-8080-exec-9] INFO  k.c.n.h.controller.AdminController - /loginProcess [data] : null
+2020-03-13 15:50:32.544 [http-nio-8080-exec-10] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==>  Preparing: SELECT id, name, auth_tp, use_yn, last_login_dt from herit_admin where id = ? and pass = ? 
+2020-03-13 15:50:32.545 [http-nio-8080-exec-10] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==> Parameters: minsoub(String), alstjq123(String)
+2020-03-13 15:50:32.556 [http-nio-8080-exec-10] TRACE k.c.n.h.m.A.selectAdminLoginById - <==    Columns: id, name, auth_tp, use_yn, last_login_dt
+2020-03-13 15:50:32.557 [http-nio-8080-exec-10] TRACE k.c.n.h.m.A.selectAdminLoginById - <==        Row: minsoub, 정민섭, 1, Y, null
+2020-03-13 15:50:32.560 [http-nio-8080-exec-10] DEBUG k.c.n.h.m.A.selectAdminLoginById - <==      Total: 1
+2020-03-13 15:50:32.561 [http-nio-8080-exec-10] INFO  k.c.n.herit.service.LoginService - selectAdminById : Admin(id=minsoub, name=정민섭, pass=null, email=null, phone=null, htel=null, auth_tp=1, use_yn=Y, remark=null, reg_dt=null, last_login_dt=null)
+2020-03-13 15:50:32.561 [http-nio-8080-exec-10] INFO  k.c.n.h.controller.AdminController - /loginProcess [data] : Admin(id=minsoub, name=정민섭, pass=null, email=null, phone=null, htel=null, auth_tp=1, use_yn=Y, remark=null, reg_dt=null, last_login_dt=null)
+2020-03-13 15:50:42.140 [http-nio-8080-exec-2] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==>  Preparing: SELECT id, name, auth_tp, use_yn, last_login_dt from herit_admin where id = ? and pass = ? 
+2020-03-13 15:50:42.141 [http-nio-8080-exec-2] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==> Parameters: null, null
+2020-03-13 15:50:42.152 [http-nio-8080-exec-2] DEBUG k.c.n.h.m.A.selectAdminLoginById - <==      Total: 0
+2020-03-13 15:50:42.153 [http-nio-8080-exec-2] INFO  k.c.n.herit.service.LoginService - selectAdminById : null
+2020-03-13 15:50:42.153 [http-nio-8080-exec-2] INFO  k.c.n.h.controller.AdminController - /loginProcess [data] : null
+2020-03-13 15:50:48.160 [http-nio-8080-exec-9] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==>  Preparing: SELECT id, name, auth_tp, use_yn, last_login_dt from herit_admin where id = ? and pass = ? 
+2020-03-13 15:50:48.161 [http-nio-8080-exec-9] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==> Parameters: minsoub(String), alstjq123(String)
+2020-03-13 15:50:48.181 [http-nio-8080-exec-9] TRACE k.c.n.h.m.A.selectAdminLoginById - <==    Columns: id, name, auth_tp, use_yn, last_login_dt
+2020-03-13 15:50:48.181 [http-nio-8080-exec-9] TRACE k.c.n.h.m.A.selectAdminLoginById - <==        Row: minsoub, 정민섭, 1, Y, null
+2020-03-13 15:50:48.182 [http-nio-8080-exec-9] DEBUG k.c.n.h.m.A.selectAdminLoginById - <==      Total: 1
+2020-03-13 15:50:48.182 [http-nio-8080-exec-9] INFO  k.c.n.herit.service.LoginService - selectAdminById : Admin(id=minsoub, name=정민섭, pass=null, email=null, phone=null, htel=null, auth_tp=1, use_yn=Y, remark=null, reg_dt=null, last_login_dt=null)
+2020-03-13 15:50:48.182 [http-nio-8080-exec-9] INFO  k.c.n.h.controller.AdminController - /loginProcess [data] : Admin(id=minsoub, name=정민섭, pass=null, email=null, phone=null, htel=null, auth_tp=1, use_yn=Y, remark=null, reg_dt=null, last_login_dt=null)
+2020-03-13 16:21:21.150 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2020-03-13 16:21:21.153 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-13 16:21:21.154 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-03-13 16:21:21.161 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-03-13 16:29:18.539 [main] INFO  k.c.n.herit.HeritPjtApplication - Starting HeritPjtApplication on LAPTOP-NFP1QT50 with PID 16512 (C:\DevProject\JavaWorkspace\HeritPjt\target\classes started by minso in C:\DevProject\JavaWorkspace\HeritPjt)
+2020-03-13 16:29:18.541 [main] INFO  k.c.n.herit.HeritPjtApplication - No active profile set, falling back to default profiles: default
+2020-03-13 16:29:19.507 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-03-13 16:29:19.516 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-13 16:29:19.516 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-03-13 16:29:19.517 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-13 16:29:19.611 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-03-13 16:29:19.611 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1028 ms
+2020-03-13 16:29:19.687 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-03-13 16:29:19.846 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-03-13 16:29:19.847 [main] INFO  k.c.n.h.config.DatabaseConfiguration - datasource : HikariDataSource (HikariPool-1)
+2020-03-13 16:29:20.201 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-13 16:29:20.417 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-03-13 16:29:20.438 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-13 16:29:20.440 [main] INFO  k.c.n.herit.HeritPjtApplication - Started HeritPjtApplication in 2.215 seconds (JVM running for 4.005)
+2020-03-13 16:29:48.375 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-13 16:29:48.375 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-03-13 16:29:48.380 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2020-03-13 16:29:48.463 [http-nio-8080-exec-1] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==>  Preparing: SELECT id, name, auth_tp, use_yn, last_login_dt from herit_admin where id = ? and pass = ? 
+2020-03-13 16:29:48.474 [http-nio-8080-exec-1] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==> Parameters: minsoub(String), alstjq123(String)
+2020-03-13 16:29:48.505 [http-nio-8080-exec-1] TRACE k.c.n.h.m.A.selectAdminLoginById - <==    Columns: id, name, auth_tp, use_yn, last_login_dt
+2020-03-13 16:29:48.505 [http-nio-8080-exec-1] TRACE k.c.n.h.m.A.selectAdminLoginById - <==        Row: minsoub, 정민섭, 1, Y, null
+2020-03-13 16:29:48.508 [http-nio-8080-exec-1] DEBUG k.c.n.h.m.A.selectAdminLoginById - <==      Total: 1
+2020-03-13 16:29:48.514 [http-nio-8080-exec-1] INFO  k.c.n.herit.service.LoginService - selectAdminById : Admin(id=minsoub, name=정민섭, pass=null, email=null, phone=null, htel=null, auth_tp=1, use_yn=Y, remark=null, reg_dt=null, last_login_dt=null)
+2020-03-13 16:29:48.515 [http-nio-8080-exec-1] INFO  k.c.n.h.controller.AdminController - /loginProcess [data] : Admin(id=minsoub, name=정민섭, pass=null, email=null, phone=null, htel=null, auth_tp=1, use_yn=Y, remark=null, reg_dt=null, last_login_dt=null)
+2020-03-13 16:29:48.556 [http-nio-8080-exec-2] WARN  o.s.w.s.r.ResourceHttpRequestHandler - Path with "WEB-INF" or "META-INF": [WEB-INF/jsp/admin/member/member_list.jsp]
+2020-03-13 16:29:59.503 [http-nio-8080-exec-4] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==>  Preparing: SELECT id, name, auth_tp, use_yn, last_login_dt from herit_admin where id = ? and pass = ? 
+2020-03-13 16:29:59.504 [http-nio-8080-exec-4] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==> Parameters: minsoub(String), alstjq123(String)
+2020-03-13 16:29:59.511 [http-nio-8080-exec-4] TRACE k.c.n.h.m.A.selectAdminLoginById - <==    Columns: id, name, auth_tp, use_yn, last_login_dt
+2020-03-13 16:29:59.511 [http-nio-8080-exec-4] TRACE k.c.n.h.m.A.selectAdminLoginById - <==        Row: minsoub, 정민섭, 1, Y, null
+2020-03-13 16:29:59.512 [http-nio-8080-exec-4] DEBUG k.c.n.h.m.A.selectAdminLoginById - <==      Total: 1
+2020-03-13 16:29:59.512 [http-nio-8080-exec-4] INFO  k.c.n.herit.service.LoginService - selectAdminById : Admin(id=minsoub, name=정민섭, pass=null, email=null, phone=null, htel=null, auth_tp=1, use_yn=Y, remark=null, reg_dt=null, last_login_dt=null)
+2020-03-13 16:29:59.512 [http-nio-8080-exec-4] INFO  k.c.n.h.controller.AdminController - /loginProcess [data] : Admin(id=minsoub, name=정민섭, pass=null, email=null, phone=null, htel=null, auth_tp=1, use_yn=Y, remark=null, reg_dt=null, last_login_dt=null)
+2020-03-13 16:29:59.521 [http-nio-8080-exec-5] WARN  o.s.w.s.r.ResourceHttpRequestHandler - Path with "WEB-INF" or "META-INF": [WEB-INF/jsp/admin/member/member_list.jsp]
+2020-03-13 16:34:57.507 [http-nio-8080-exec-8] WARN  o.s.w.s.r.ResourceHttpRequestHandler - Path with "WEB-INF" or "META-INF": [WEB-INF/jsp/admin/member/member_list.jsp]
+2020-03-13 16:36:39.738 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2020-03-13 16:36:39.741 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-13 16:36:39.742 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-03-13 16:36:39.746 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-03-13 16:36:51.386 [main] INFO  k.c.n.herit.HeritPjtApplication - Starting HeritPjtApplication on LAPTOP-NFP1QT50 with PID 21184 (C:\DevProject\JavaWorkspace\HeritPjt\target\classes started by minso in C:\DevProject\JavaWorkspace\HeritPjt)
+2020-03-13 16:36:51.389 [main] INFO  k.c.n.herit.HeritPjtApplication - No active profile set, falling back to default profiles: default
+2020-03-13 16:36:52.357 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-03-13 16:36:52.366 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-13 16:36:52.367 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-03-13 16:36:52.368 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-13 16:36:52.552 [main] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-03-13 16:36:52.556 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-03-13 16:36:52.556 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1126 ms
+2020-03-13 16:36:52.626 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-03-13 16:36:52.786 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-03-13 16:36:52.787 [main] INFO  k.c.n.h.config.DatabaseConfiguration - datasource : HikariDataSource (HikariPool-1)
+2020-03-13 16:36:53.115 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-13 16:36:53.345 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-03-13 16:36:53.371 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-13 16:36:53.374 [main] INFO  k.c.n.herit.HeritPjtApplication - Started HeritPjtApplication in 2.319 seconds (JVM running for 4.004)
+2020-03-13 16:36:58.273 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-13 16:36:58.273 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-03-13 16:36:58.278 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2020-03-13 16:37:09.839 [http-nio-8080-exec-4] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==>  Preparing: SELECT id, name, auth_tp, use_yn, last_login_dt from herit_admin where id = ? and pass = ? 
+2020-03-13 16:37:09.850 [http-nio-8080-exec-4] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==> Parameters: minsoub(String), alstjq123(String)
+2020-03-13 16:37:09.874 [http-nio-8080-exec-4] TRACE k.c.n.h.m.A.selectAdminLoginById - <==    Columns: id, name, auth_tp, use_yn, last_login_dt
+2020-03-13 16:37:09.874 [http-nio-8080-exec-4] TRACE k.c.n.h.m.A.selectAdminLoginById - <==        Row: minsoub, 정민섭, 1, Y, null
+2020-03-13 16:37:09.875 [http-nio-8080-exec-4] DEBUG k.c.n.h.m.A.selectAdminLoginById - <==      Total: 1
+2020-03-13 16:37:09.882 [http-nio-8080-exec-4] INFO  k.c.n.herit.service.LoginService - selectAdminById : Admin(id=minsoub, name=정민섭, pass=null, email=null, phone=null, htel=null, auth_tp=1, use_yn=Y, remark=null, reg_dt=null, last_login_dt=null)
+2020-03-13 16:37:09.882 [http-nio-8080-exec-4] INFO  k.c.n.h.controller.AdminController - /loginProcess [data] : Admin(id=minsoub, name=정민섭, pass=null, email=null, phone=null, htel=null, auth_tp=1, use_yn=Y, remark=null, reg_dt=null, last_login_dt=null)
+2020-03-13 16:41:19.534 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2020-03-13 16:41:19.538 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-13 16:41:19.539 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-03-13 16:41:19.542 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-03-13 16:41:25.512 [main] INFO  k.c.n.herit.HeritPjtApplication - Starting HeritPjtApplication on LAPTOP-NFP1QT50 with PID 6740 (C:\DevProject\JavaWorkspace\HeritPjt\target\classes started by minso in C:\DevProject\JavaWorkspace\HeritPjt)
+2020-03-13 16:41:25.514 [main] INFO  k.c.n.herit.HeritPjtApplication - No active profile set, falling back to default profiles: default
+2020-03-13 16:41:26.499 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-03-13 16:41:26.508 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-13 16:41:26.509 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-03-13 16:41:26.510 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-13 16:41:26.707 [main] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-03-13 16:41:26.710 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-03-13 16:41:26.711 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1154 ms
+2020-03-13 16:41:26.788 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-03-13 16:41:26.953 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-03-13 16:41:26.953 [main] INFO  k.c.n.h.config.DatabaseConfiguration - datasource : HikariDataSource (HikariPool-1)
+2020-03-13 16:41:27.307 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-13 16:41:27.537 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-03-13 16:41:27.564 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-13 16:41:27.567 [main] INFO  k.c.n.herit.HeritPjtApplication - Started HeritPjtApplication in 2.377 seconds (JVM running for 4.078)
+2020-03-13 16:41:30.941 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-13 16:41:30.942 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-03-13 16:41:30.947 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2020-03-13 16:58:18.468 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2020-03-13 16:58:18.471 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-13 16:58:18.471 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-03-13 16:58:18.475 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-03-13 16:59:16.191 [main] INFO  k.c.n.herit.HeritPjtApplication - Starting HeritPjtApplication on LAPTOP-NFP1QT50 with PID 17920 (C:\DevProject\JavaWorkspace\HeritPjt\target\classes started by minso in C:\DevProject\JavaWorkspace\HeritPjt)
+2020-03-13 16:59:16.194 [main] INFO  k.c.n.herit.HeritPjtApplication - No active profile set, falling back to default profiles: default
+2020-03-13 16:59:17.171 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-03-13 16:59:17.180 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-13 16:59:17.181 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-03-13 16:59:17.182 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-13 16:59:17.413 [main] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-03-13 16:59:17.419 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-03-13 16:59:17.419 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1187 ms
+2020-03-13 16:59:17.492 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-03-13 16:59:17.645 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-03-13 16:59:17.646 [main] INFO  k.c.n.h.config.DatabaseConfiguration - datasource : HikariDataSource (HikariPool-1)
+2020-03-13 16:59:17.963 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-13 16:59:18.188 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-03-13 16:59:18.215 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-13 16:59:18.217 [main] INFO  k.c.n.herit.HeritPjtApplication - Started HeritPjtApplication in 2.355 seconds (JVM running for 4.062)
+2020-03-13 16:59:29.711 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-13 16:59:29.712 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-03-13 16:59:29.717 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2020-03-13 16:59:44.437 [http-nio-8080-exec-9] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==>  Preparing: SELECT id, name, auth_tp, use_yn, last_login_dt from herit_admin where id = ? and pass = ? 
+2020-03-13 16:59:44.448 [http-nio-8080-exec-9] DEBUG k.c.n.h.m.A.selectAdminLoginById - ==> Parameters: minsoub(String), alstjq123(String)
+2020-03-13 16:59:44.471 [http-nio-8080-exec-9] TRACE k.c.n.h.m.A.selectAdminLoginById - <==    Columns: id, name, auth_tp, use_yn, last_login_dt
+2020-03-13 16:59:44.471 [http-nio-8080-exec-9] TRACE k.c.n.h.m.A.selectAdminLoginById - <==        Row: minsoub, 정민섭, 1, Y, null
+2020-03-13 16:59:44.473 [http-nio-8080-exec-9] DEBUG k.c.n.h.m.A.selectAdminLoginById - <==      Total: 1
+2020-03-13 16:59:44.478 [http-nio-8080-exec-9] INFO  k.c.n.herit.service.LoginService - selectAdminById : Admin(id=minsoub, name=정민섭, pass=null, email=null, phone=null, htel=null, auth_tp=1, use_yn=Y, remark=null, reg_dt=null, last_login_dt=null)
+2020-03-13 16:59:44.479 [http-nio-8080-exec-9] INFO  k.c.n.h.controller.AdminController - /loginProcess [data] : Admin(id=minsoub, name=정민섭, pass=null, email=null, phone=null, htel=null, auth_tp=1, use_yn=Y, remark=null, reg_dt=null, last_login_dt=null)
+2020-03-13 17:04:34.723 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2020-03-13 17:04:34.727 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-13 17:04:34.728 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-03-13 17:04:34.732 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-03-13 17:04:38.734 [main] INFO  k.c.n.herit.HeritPjtApplication - Starting HeritPjtApplication on LAPTOP-NFP1QT50 with PID 15384 (C:\DevProject\JavaWorkspace\HeritPjt\target\classes started by minso in C:\DevProject\JavaWorkspace\HeritPjt)
+2020-03-13 17:04:38.738 [main] INFO  k.c.n.herit.HeritPjtApplication - No active profile set, falling back to default profiles: default
+2020-03-13 17:04:39.754 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-03-13 17:04:39.763 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-13 17:04:39.764 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-03-13 17:04:39.764 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-13 17:04:40.014 [main] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-03-13 17:04:40.021 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-03-13 17:04:40.022 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1241 ms
+2020-03-13 17:04:40.105 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-03-13 17:04:40.275 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-03-13 17:04:40.275 [main] INFO  k.c.n.h.config.DatabaseConfiguration - datasource : HikariDataSource (HikariPool-1)
+2020-03-13 17:04:40.596 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-13 17:04:40.814 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-03-13 17:04:40.843 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-13 17:04:40.847 [main] INFO  k.c.n.herit.HeritPjtApplication - Started HeritPjtApplication in 2.43 seconds (JVM running for 4.155)
+2020-03-13 17:06:21.784 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2020-03-13 17:06:21.786 [RMI TCP Connection(2)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-13 17:06:21.787 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2020-03-13 17:06:21.790 [RMI TCP Connection(2)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-03-13 17:06:29.558 [main] INFO  k.c.n.herit.HeritPjtApplication - Starting HeritPjtApplication on LAPTOP-NFP1QT50 with PID 1792 (C:\DevProject\JavaWorkspace\HeritPjt\target\classes started by minso in C:\DevProject\JavaWorkspace\HeritPjt)
+2020-03-13 17:06:29.561 [main] INFO  k.c.n.herit.HeritPjtApplication - No active profile set, falling back to default profiles: default
+2020-03-13 17:06:30.620 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-03-13 17:06:30.634 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-13 17:06:30.635 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-03-13 17:06:30.636 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-13 17:06:30.928 [main] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-03-13 17:06:30.935 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-03-13 17:06:30.936 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1335 ms
+2020-03-13 17:06:31.018 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2020-03-13 17:06:31.179 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2020-03-13 17:06:31.179 [main] INFO  k.c.n.h.config.DatabaseConfiguration - datasource : HikariDataSource (HikariPool-1)
+2020-03-13 17:06:31.562 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-13 17:06:31.839 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-03-13 17:06:31.875 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-13 17:06:31.879 [main] INFO  k.c.n.herit.HeritPjtApplication - Started HeritPjtApplication in 2.643 seconds (JVM running for 4.553)
+2020-03-13 17:13:01.300 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-13 17:13:01.301 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-03-13 17:13:01.309 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2020-03-13 23:58:46.844 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h33m14s905ms121µs700ns).

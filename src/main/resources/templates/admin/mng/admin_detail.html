@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<div class="wrapSnb">
+			<h2 class="tit">관리자 관리</h2>
+			<ul class="snb">
+				<li><a th:href="@{list}" class="active">관리자 관리</a></li>
+				<li><a href="">권한 관리</a></li>
+				<li><a href="">문의 내역</a></li>
+			</ul>
+		</div>
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">관리자 상세</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">관리자 관리</a></li>
+					<li><a href="">관리자 관리</a></li>
+				</ol>
+			</div>
+			<form name="frm" id="frm">
+			<input type="hidden" name="id" id="id" th:value="${info.id}">			
+			<table class="tblTypeC mtMmd">
+				<colgroup>
+					<col width="100">
+					<col>
+					<col width="100">
+					<col>
+				</colgroup>
+				<tr>
+					<th>ID</th>
+					<td colspan="3">
+						<input type="text" name="" id="" disabled th:value="${info.id}">
+					</td>
+				</tr>
+				<tr>
+					<th>비밀번호</th>
+					<td><input type="password" name="pass" id="pass"></td>
+					<th>비밀번호 확인</th>
+					<td><input type="password" name="pass1" id="pass1"></td>
+				</tr>
+				<tr>
+					<th>성명</th>
+					<td><input type="text" name="name" id="name" th:value="${info.name}"></td>
+					<th>권한</th>
+					<td>
+						<select name="auth_tp" id="auth_tp">
+							<option value="1" th:selected="${info.auth_tp == '1'}">시스템 관리자</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>연락처</th>
+					<td><input type="text" name="phone" id="phone" th:value="${info.phone}"></td>
+					<th>핸드폰</th>
+					<td><input type="text" name="htel"  id="htel" th:value="${info.htel}"></td>
+				</tr>
+				<tr>
+					<th>이메일</th>
+					<td colspan="3"><input type="text" name="email" id="email" th:value="${info.email}"></td>
+				</tr>
+			</table>
+			<!-- btn -->
+			<div class="btnWrap mtMmd">
+				<button type="button" id="btnModify" class="btnDefault">수정</button>
+				<button type="button" id="btnDelete" class="btnDefault">삭제</button>
+				<button type="button" id="btnList"   class="btnDefault">목록</button>
+			</div>
+			</form>
+		</div>		
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+</th:block>
+</html>
+	
+<script>
+$(document).ready(function() {
+	load_fnc('7', '0', '0'); //menu script
+	
+	$('#btnModify').click(function(){
+		if ($("#pass").val() == "" || $("#pass1").val() == "")
+		{
+			alert("패스워드를 입력하지 않았습니다!!!");
+			$("#pass").focus();
+			return;
+		}
+		if ($("#pass").val() != $("#pass1").val())
+		{
+			alert("패스워드가 일치하지 않습니다!!!");
+			$("#pass").focus();
+			return;
+		}	
+		if ($("#name").val() == "")
+		{
+			alert("성명을 입력하지 않았습니다!!!");
+			$("#name").focus();
+			return;
+		}
+		
+		var params = {
+				"id" : $("#id").val(),
+				"pass" : $('#pass').val(),
+				"name" : $('#name').val(),
+				"auth_tp" : $('#auth_tp').val(),
+				"phone" : $("#phone").val(),
+				"htel" : $("#htel").val(),
+				"email" : $("#email").val()
+		};
+		goJsonInput(params, "modify", "");			
+	});
+	$('#btnDelete').click(function(){
+		var params = {
+				"id" : $("#id").val(),
+				"pass" : $('#pass').val(),
+				"name" : $('#name').val(),
+				"auth_tp" : $('#auth_tp').val(),
+				"phone" : $("#phone").val(),
+				"htel" : $("#htel").val(),
+				"email" : $("#email").val()
+		};
+		goJsonInput(params, "delete", "list");			
+	});
+	$('#btnList').click(function(){
+		location.href="list";
+	});	
+});
+</script>

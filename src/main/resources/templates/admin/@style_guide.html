@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>@@@ Style Guide - Herit 관리자</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link rel="stylesheet" href="/resources/css/common.css" />
+	<link rel="stylesheet" href="/resources/css/contents.css" />
+	<script type="text/javascript" src="/resources/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="/resources/js/common.js"></script>
+	<!-- date picker -->
+	<script type="text/javascript" src="/resources/js/plugins.js"></script>
+	<link rel="stylesheet" href="/resources/css/jquery-ui-1.9.2.custom.min.css">
+	<style type="text/css">
+		body{padding:150px 30px 0;}
+		.wrap{}
+		.titCntXl{display:block;}
+		.wrap .header{position:fixed;top:0;left:0;right:0;padding:20px 30px;border:1px solid #ddd;background:#f0f6fc;z-index:999}
+		.wrap .header .tit{font-size:27px;color:#333;text-align:center;}
+		.wrap .header .tit img{width:200px;}
+		.nav,
+		.contents{width:100%;max-width:1280px;margin:0 auto;}
+		.contents > h1{margin:0 0 15px;font-size:23px;color:#000;}
+		.contents > .box{position:relative;padding:0 20px 25px;margin:0 0 25px;border:1px solid #ddd;border-radius:10px;}
+		.contents > .box > h2{margin:25px 0 15px 0;font-size:18px;color:#333;}
+		.nav ul{margin:18px auto 0;text-align:center;}
+		.nav li{display:inline-block;}
+		.nav li a{display:block;padding:10px 15px;font-size:14px;font-weight:bold;color:#fff;background:#0082d3;}
+	</style>
+	<script type="text/javascript">
+		$(function(){
+			// map 이동
+			function scrollToAnchor(aid) {
+				var aTag = $("[id='" + aid + "']");
+				$('html, body').animate({ scrollTop: aTag.offset().top - 165 }, '');
+			}
+			$('.nav li a').click(function() {
+				var href = $(this).attr('href').replace('#', '');
+				scrollToAnchor(href);
+				return false;
+			});
+		});
+	</script>
+</head>
+<body>
+<div class="wrap">
+	<div class="header" id="top">
+		<h1 class="tit">Herit 관리자 <span class="txt">퍼블리싱 가이드</span></h1>
+		<nav class="nav">
+			<ul>
+				<li><a href="#buttons">Buttons</a></li>
+				<li><a href="#colors">Colors</a></li>
+				<li><a href="#titles">Titles</a></li>
+				<li><a href="#tabs">Tabs</a></li>
+				<li><a href="#Forms">Forms</a></li>
+				<li><a href="#Tables">Tables</a></li>
+				<li><a href="#Paging">Paging</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<!-- contents : s -->
+	<div class="contents">
+		<!-- ##### Buttons -->
+		<h1 id="buttons">Buttons</h1>
+		<div class="box">
+			<h2># button - basic</h2>
+			<div class="btnWrap">
+				<a href="" class="btnDefault">btnDefault</a>
+				<a href="" class="btnPrimary">btnPrimary</a>
+			</div><br><br>
+			<div class="btnWrap">
+				<a href="" class="btnColorA">btnColorA</a>
+			</div><br><br>
+			<div class="btnWrap">
+				<a href="" class="btnColorB">btnColorB</a>
+			</div>
+			<br><br>
+			<div class="btnWrap">
+				<a href="" class="btnColorC">btnColorC</a>
+			</div>
+			<br><br>
+			<div class="btnWrap">
+				<a href="" class="btnColorD">btnColorD</a>
+			</div>			
+			<br><br>
+			<div class="btnWrap">
+				<a href="" class="btnColorE">btnColorE</a>
+			</div>
+
+			<div class="wrapBtn mtMmd">
+				<div class="btnWrap fl">
+					<a href="" class="btnDefault">btnDefault</a>
+					<a href="" class="btnDefault">btnDefault</a>
+				</div>
+				<div class="btnWrap fr">
+					<a href="" class="btnDefault">btnDefault</a>
+				</div>
+			</div>
+
+			<!-- <h2># button - 버튼 1개시</h2>
+			<div class="btnWrap typeB">
+				<a href="">버튼1</a>
+			</div>
+
+			<div class="btnWrap typeC">
+				<a href="">버튼1</a>
+			</div> -->
+		</div>
+		<!-- //Buttons -->
+
+		<!-- ##### Colors -->
+		<h1 id="colors">Colors</h1>
+		<div class="box">
+			<h2># text colors</h2>
+			<p class="colorPrimary">colorPrimary</p>
+			<p class="colorA">colorA</p>
+			<p class="colorB">colorB</p>
+		</div>
+		<!-- ##### //Colors -->
+
+		<!-- ##### Titles -->
+		<h1 id="titles">Titles</h1>
+		<div class="box">
+			<h2 class="cntTitXL">타이틀1 타이틀1 타이틀1 타이틀1</h2>
+			<h3 class="cntTitLg">타이틀2 타이틀2 타이틀2 타이틀2 <small>(총 13명)</small></h3>
+			<h3 class="cntTitMd">타이틀3 타이틀3 타이틀3 타이틀3</h3>
+		</div>
+		<!-- ##### //Titles -->
+
+		<!-- ##### Tabs -->
+		<h1 id="tabs">Tabs</h1>
+		<div class="box">
+			<h2># Tab - typeA</h2>
+			<div>
+				<ul class="tab typeA">
+					<li><a href="" class="active">tab1</a></li>
+					<li><a href="">tab2</a></li>
+					<li><a href="">tab3</a></li>
+					<li><a href="">tab4</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- //Tabs -->
+
+		<!-- ##### Forms -->
+		<h1 id="Forms">Forms</h1>
+		<div class="box">
+			<h2># Input [type="text"]</h2>
+			<div>
+				<p><input type="text" name="" placeholder="입력하세요."></p>
+			</div>
+			<h2># Selectbox</h2>
+			<p>
+				<select name="">
+					<option value="">최근 3개월</option>
+				</select>
+			</p>			
+			<h2># DatePicker</h2>
+			<p><input type="text" value="2020-12-31" class="datePic"></p>
+			<h2># Search Form</h2>
+			<div class="bxSrchForm tar">
+				<label for="">조회기간</label>
+				<input type="text" value="2020-12-31" class="datePic"> <span class="dash">~</span> <input type="text" value="2020-12-31" class="datePic">
+				<button type="button" class="btnPrimary sizeSm">검색</button>
+			</div>
+		</div>
+		<!-- //Forms -->
+
+		<!-- ##### Tables -->
+		<h1 id="Tables">Tables</h1>
+		<div class="box">
+			<h2># Tables - TypeA</h2>
+			<div>
+				<table class="tblTypeA">
+					<colgroup>
+						<col width="57%">
+						<col width="43%">
+						<col>
+					</colgroup>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>성명</th>
+							<th>상세정보</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th>합계</th>
+							<td colspan="2">715,55회</td>
+						</tr>
+					</tfoot>
+					<tbody>
+						<tr>
+							<td>aaa</td>
+							<td>홍길동</td>
+							<td><p class="btnWrap"><a href="" class="btnColorE">보기</a></p></td>
+						</tr>
+						<tr>
+							<td>bbb</td>
+							<td>홍길동</td>
+							<td><p class="btnWrap"><a href="" class="btnColorE">보기</a></p></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<h2># Tables - TypeB</h2>
+			<div>
+				<table class="tblTypeB">
+					<colgroup>
+						<col width="100px">
+						<col>
+						<col width="100px">
+						<col>
+					</colgroup>
+					<tr>
+						<th>아이디</th>
+						<td>naodkls@nts.com</td>
+						<th>비밀번호</th>
+						<td><p class="btnWrap"><a href="" class="btnColorC w50">임시 비밀번호 발송</a></p></td>
+					</tr>
+					<tr>
+						<th>성명</th>
+						<td>홍길동</td>
+						<th>핸드폰</th>
+						<td>010-1234-5678</td>
+					</tr>
+					<tr>
+						<th>성명</th>
+						<td class="disabled">홍길동</td>
+						<th>핸드폰</th>
+						<td class="disabled">010-1234-5678</td>
+					</tr>					
+				</table>
+				<!-- btn -->
+				<div class="btnWrap mtSm tac">
+					<a href="" class="btnColorA">회원탈퇴</a>
+					<a href="" class="btnDefault">목록</a>
+				</div>
+			</div>
+
+			<h2># Tables - TypeC</h2>
+			<div>
+				<table class="tblTypeC">
+					<colgroup>
+						<col width="100px">
+						<col>
+					</colgroup>
+					<tr class="tit">
+						<th>권한명</th>
+						<td><input type="text" name=""></td>
+					</tr>
+					<tr>
+						<th>권한명</th>
+						<td><input type="text" name=""></td>
+					</tr>
+					<tr>
+						<th>설명</th>
+						<td>
+							<div class="chckGroup">
+								<input type="radio" name="radio01" id="radio0101">
+								<label for="radio0101">구매가능</label>
+								<input type="radio" name="radio01" id="radio0102">
+								<label for="radio0102">준비중</label>
+							</div>
+						</td>
+					</tr>					
+				</table>				
+			</div>			
+		</div>
+		<!-- // Tables -->
+		
+		<!-- ##### Paging -->
+		<h1 id="Paging">Paging</h1>
+		<div class="box">
+			<h2># paging - basic</h2>
+			<!-- paging -->
+			<div class="paging">
+				<a class="btnFirst" href="">첫 페이지</a>
+				<a class="btnPrev" href="">이전 페이지</a>
+				<a href="" class="on">1</a>
+				<a href="">2</a>
+				<a href="">3</a>
+				<a href="">4</a>
+				<a href="">5</a>
+				<a href="">6</a>
+				<a href="">7</a>
+				<a href="">8</a>
+				<a href="">9</a>
+				<a href="">10</a>
+				<a class="btnNext" href="">다음 페이지</a>
+				<a class="btnLast" href="">마지막 페이지</a>
+			</div>
+			<!-- // Paging -->
+
+			<h2># paging - paging + button</h2>
+			<!-- paging -->
+			<div class="wrapPaging">
+				<div class="btnWrap fl">
+					<a href="" class="btnPrimary">목록으로</a>
+				</div>
+				<div class="paging">
+					<a class="btnFirst" href="">첫 페이지</a>
+					<a class="btnPrev" href="">이전 페이지</a>
+					<a href="" class="on">1</a>
+					<a href="">2</a>
+					<a href="">3</a>
+					<a href="">4</a>
+					<a href="">5</a>
+					<a href="">6</a>
+					<a href="">7</a>
+					<a href="">8</a>
+					<a href="">9</a>
+					<a href="">10</a>
+					<a class="btnNext" href="">다음 페이지</a>
+					<a class="btnLast" href="">마지막 페이지</a>
+				</div>
+				<div class="btnWrap fr">
+					<a href="" class="btnDefault">button1</a>
+					<a href="" class="btnDefault">button2</a>
+				</div>
+			</div>
+		</div>
+		<!-- // Paging -->
+
+		<!-- #### popup -->
+		<h1 id="Popup">Popup - Layer</h1>
+		<div class="box">
+			<div class="btnWrap mtMmd"><a href="javascript:openLayer('.popSendPw')" class="btnPrimary mt">popup1</a></div>
+			<!-- laeyr poup - 임시비밀번호 발송 -->
+			<div class="wrapPop popSendPw">
+				<div class="popCnt sizeMd">
+					<h1 class="titPop">임시 비밀번호 발송</h1>
+					<p class="btnClose">
+						<a href=""><img src="/resources/images/common/btn_close_pop.png" alt="레이어 닫기"></a>
+					</p>
+					<div class="cnt">
+						<div class="bxCnt">
+							<h2 class="tit">임시 비밀번호 발송</h2>
+							<ul class="listTxt">
+								<li>- SMS를 통해 회원에게 비밀번호를 발송합니다.</li>
+								<li>- 전송 성공여부와 관계없이 임시 비밀번호로 설정됩니다.</li>
+							</ul>
+						</div>
+						<!-- btn -->
+						<p class="btnWrap">
+							<a href="" class="btnColorB">발송</a>
+							<a href="" class="btnDefault btnClose">취소</a>
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- //laeyr poup - 임시비밀번호 발송 -->
+		</div>
+		<!-- // popup -->
+	</div>
+</div>
+</body>
+</html>

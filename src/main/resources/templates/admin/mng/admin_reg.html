@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">	
+		<!-- SNB -->
+		<div class="wrapSnb">
+			<h2 class="tit">관리자 관리</h2>
+			<ul class="snb">
+				<li><a th:href="@{list}" class="active">관리자 관리</a></li>
+				<li><a th:href="@{authlist}">권한 관리</a></li>
+				<li><a th:href="@{faqlist}">문의 내역</a></li>
+			</ul>
+		</div>		
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">관리자 등록</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">관리자 관리</a></li>
+					<li><a href="">관리자 관리</a></li>
+				</ol>
+			</div>
+			
+			<form name="frm" id="frm">
+			<input type="hidden" name="id_check" id="id_check" value="N">
+			<table class="tblTypeC mtMmd">
+				<colgroup>
+					<col width="100">
+					<col>
+					<col width="100">
+					<col>
+				</colgroup>
+				<tr>
+					<th>ID</th>
+					<td colspan="3">
+						<div class="wrapInput">
+							<input type="text" name="id" id="id" maxlength="80">
+							<button type="button" id="btnCheck" class="btnPrimary">중복 검사</button>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>비밀번호</th>
+					<td><input type="password" name="pass" id="pass"></td>
+					<th>비밀번호 확인</th>
+					<td><input type="password" name="pass1" id="pass1"></td>
+				</tr>
+				<tr>
+					<th>성명</th>
+					<td><input type="text" name="name" id="name" maxlength="10"></td>
+					<th>권한</th>
+					<td>
+						<select name="auth_tp" id="auth_tp">
+							<option value="1">시스템 관리자</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>연락처</th>
+					<td><input type="text" name="phone" id="phone" maxlength="14"></td>
+					<th>핸드폰</th>
+					<td><input type="text" name="htel"  id="htel" maxlength="14"></td>
+				</tr>
+				<tr>
+					<th>이메일</th>
+					<td colspan="3"><input type="text" name="email" id="email" maxlength="80"></td>
+				</tr>
+			</table>
+			<!-- btn -->
+			<div class="btnWrap mtMmd">
+				<a href="" id="btnReg" class="btnDefault">등록</a>
+				<a href="" id="btnCancel" class="btnDefault">취소</a>
+			</div>
+			</form>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('7', '0', '0'); //menu script
+	
+	$('#btnCheck').click(function(){
+		if ($("#id").val() == "")
+		{
+			alert("아이디를 입력하지 않았습니다!!!");
+			$("#id").focus();
+			return;
+		}else {
+			var params = {
+					"id" : $("#id").val()
+			};
+			
+			$.ajax({
+				type : 'get',
+				url :  "/admin/authority/idcheck/"+$("#id").val(),
+				dataType : 'json',
+				data : params,
+				success : function(result){		
+					if (result == "0")
+					{
+						alert("사용가능한 아이디입니다!!!");
+						$("#id_check").val("Y");
+					}else {
+						alert("이미지 존재하는 아이디입니다!!!");
+						$("#id").val("");
+						$("#id").focus();
+						$("#id_check").val("N");
+					}
+				},
+				error : function(e){
+					alert(e);
+				}
+			})			
+		}	
+	});
+	
+	$('#btnReg').click(function(){
+		if ($("#id").val() == "")
+		{
+			alert("아이디를 입력하지 않았습니다!!!");
+			$("#id").focus();
+			return;
+		}		
+		if ($("#id_check").val() == "N")
+		{
+			alert("아이디 중복검사를 하지 않았습니다!!!");
+			$("#btnCheck").focus();
+			return;
+		}
+		if ($("#pass").val() == "" || $("#pass1").val() == "")
+		{
+			alert("패스워드를 입력하지 않았습니다!!!");
+			$("#pass").focus();
+			return;
+		}
+		if ($("#pass").val() != $("#pass1").val())
+		{
+			alert("패스워드가 일치하지 않습니다!!!");
+			$("#pass").focus();
+			return;
+		}	
+		if ($("#name").val() == "")
+		{
+			alert("성명을 입력하지 않았습니다!!!");
+			$("#name").focus();
+			return;
+		}
+		
+		var params = {
+				"id" : $("#id").val(),
+				"pass" : $('#pass').val(),
+				"name" : $('#name').val(),
+				"auth_tp" : $('#auth_tp').val(),
+				"phone" : $("#phone").val(),
+				"htel" : $("#htel").val(),
+				"email" : $("#email").val()
+		};
+		goJsonInput(params, "insert", "list");	
+	});
+	$('#btnCancel').click(function(){
+		frm.reset();
+	});	
+});
+
+</script>	

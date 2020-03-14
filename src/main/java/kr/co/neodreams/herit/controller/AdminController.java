@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,7 +27,8 @@ public class AdminController {
 	 */
 	@RequestMapping("/")
 	public String adminLogin() {
-		return "/admin/login";
+		log.debug("administrator login page called...");
+		return "admin/login";
 	}
 	
 	/**
@@ -40,21 +40,22 @@ public class AdminController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/loginProcess")
-	public ModelAndView loginProcess(@RequestBody Admin param, HttpServletRequest request) throws Exception
+	public ModelAndView loginProcess(Admin param, HttpServletRequest request) throws Exception
 	{	
 		HttpSession session = request.getSession();
 		
 		Admin data = service.selectAdminLoginById(param);
+		log.info("/loginProcess [data] : {}", data);
 		ModelAndView mv = new ModelAndView();
 		
 		if (data != null)
 		{
 			// 세션 등록
 			session.setAttribute("auth_chk", "0");
-			mv.setViewName("/admin/member/member_list");
+			mv.setViewName("redirect:/admin/member/list");
 		}else {
-			mv.addObject("error", "관리자 정보가 없습니다!!!");
-			mv.setViewName("/admin/login");
+			mv.addObject("returnCode", "9999");
+			mv.setViewName("admin/login");
 		}
 		
 		return mv;

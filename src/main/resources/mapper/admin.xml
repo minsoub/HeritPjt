@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.neodreams.herit.mapper.AdminMapper">
+	<select id="selectAdminLoginById" parameterType="HashMap" resultType="admin">
+		SELECT id, name, auth_tp, use_yn, phone, htel, remark, last_login_dt
+		  from herit_admin
+		 where
+		       id = #{id}
+		   and pass = #{pass}
+	</select>
+	
+	<!-- administrator list count search -->
+	<select id="selectAdminAllCount" parameterType="HashMap" resultType="int">
+        <![CDATA[
+            SELECT 
+                  count(a.id) as cnt
+             FROM herit_admin a
+            WHERE  1=1
+        ]]>
+        <if test='searchString != null'>
+        	<if test="searchId == 'id'">
+        		and a.id like '%'||#{searchString}||'%'
+        	</if>
+        	<if test="searchId == 'name'">
+        		and a.name like '%'||#{searchString}||'%'
+        	</if>
+        	<if test="searchId == 'htel'">
+        		and ( a.htel like '%'||#{searchString}||'%' or a.phone like '%'||#{searchString}||'%')
+        	</if>        	        	
+        </if>
+	</select>
+		
+	<!-- administrator list search  -->
+	<select id="selectAdminAll" parameterType="HashMap" resultType="admin">
+        <![CDATA[
+            SELECT 
+                  a.id, a.name, a.auth_tp, a.phone, a.htel, a.email, a.last_login_dt
+             FROM herit_admin a
+            WHERE  1=1
+        ]]>
+        <if test='searchString != null'>
+        	<if test="searchId == 'id'">
+        		and a.id like '%'||#{searchString}||'%'
+        	</if>
+        	<if test="searchId == 'name'">
+        		and a.name like '%'||#{searchString}||'%'
+        	</if>
+        	<if test="searchId == 'htel'">
+        		and ( a.htel like '%'||#{searchString}||'%' or a.phone like '%'||#{searchString}||'%')
+        	</if>          	        	
+        </if>
+        order by reg_dt desc	
+	</select>
+	
+	<!--  administrator exists check -->
+	<select id="selectAdminById" parameterType="HashMap" resultType="admin">
+		SELECT id, name, auth_tp, use_yn, phone, htel, remark, email, last_login_dt
+		  from herit_admin
+		 where
+		       id = #{id}
+	</select>	
+	
+	<!--  administrator register  -->
+    <insert id="insertAdmin" parameterType="HashMap">
+		INSERT INTO herit_admin (
+			id,        name,        pass,        email,      phone,     
+			htel,      auth_tp,     use_yn,      remark,     reg_dt
+		) VALUES (
+			#{id},     #{name},     #{pass},     #{email},   #{phone},     
+			#{htel},   #{auth_tp},  #{use_yn},   #{remark},  current_timestamp
+		)
+	</insert>	
+	
+	<!--  administrator update  -->
+    <update id="updateAdmin" parameterType="HashMap">
+		UPDATE herit_admin 
+		   SET 
+		       name = #{name},
+		       pass = #{pass},
+		       email = #{email},      
+		       phone = #{phone},     
+			   htel  = #{htel},      
+			   auth_tp = #{auth_tp}
+	     WHERE
+	           id = #{id}
+	</update>	
+	
+	<!--  administrator delete  -->
+    <delete id="deleteAdmin" parameterType="HashMap">
+		delete from herit_admin 
+		 where id = #{id}
+	</delete>	
+	
+	
+	<!--  select the all administrator authority data  -->	
+	<select id="selectAuthorityAll" parameterType="HashMap" resultType="authchk">
+		SELECT 
+		       seq,       auth_name,   auth_desc,           
+		       a01,       b01,         b02,       b03,         b04, 
+		       c01,       c02,         d01,       d02,         d03,
+		       d04,       d05,         d06,       e01,         e02,
+		       e03,       f01,         f02,       f03,         g01,
+		       g02,       g03,         g04,       use_yn,      reg_dt
+		  from herit_auth_chk
+		ORDER BY seq desc 
+	</select>	
+	
+	<!--  select the administrator authority detail data   -->	
+	<select id="selectAuthorityById" parameterType="HashMap" resultType="authchk">
+		SELECT 
+		       seq,       auth_name,   auth_desc,           
+		       a01,       b01,         b02,       b03,         b04, 
+		       c01,       c02,         d01,       d02,         d03,
+		       d04,       d05,         d06,       e01,         e02,
+		       e03,       f01,         f02,       f03,         g01,
+		       g02,       g03,         g04,       use_yn,      reg_dt
+		  from herit_auth_chk
+	     WHERE
+	           seq = #{seq}
+	</select>		
+	
+	<!--  register the administrator authority data  -->
+    <insert id="insertAuthority" parameterType="authchk">
+		<selectKey keyProperty="new_seq" resultType="int" order="BEFORE">
+			SELECT COALESCE(max(seq), 0)+1 FROM herit_auth_chk
+		</selectKey>     
+		INSERT INTO herit_auth_chk (
+		       seq,       auth_name,   auth_desc,           
+		       a01,       b01,         b02,       b03,         b04, 
+		       c01,       c02,         d01,       d02,         d03,
+		       d04,       d05,         d06,       e01,         e02,
+		       e03,       f01,         f02,       f03,         g01,
+		       g02,       g03,         g04,       use_yn,      reg_dt
+		) VALUES (
+		       #{new_seq},    #{auth_name}, #{auth_desc},           
+		       #{a01},    #{b01},       #{b02},       #{b03},      #{b04}, 
+		       #{c01},    #{c02},       #{d01},       #{d02},      #{d03},
+		       #{d04},    #{d05},       #{d06},       #{e01},      #{e02},
+		       #{e03},    #{f01},       #{f02},       #{f03},      #{g01},
+		       #{g02},    #{g03},       #{g04},       #{use_yn},   current_timestamp   
+		)
+	</insert>	
+	
+	<!--  update the administrator  authority data  -->
+    <update id="updateAuthority" parameterType="HashMap">
+		UPDATE herit_auth_chk 
+		   SET 
+		       auth_name = #{auth_name},      
+		       auth_desc = #{auth_desc},           
+		       a01       = #{a01},       
+		       b01       = #{b01},         
+		       b02       = #{b02},       
+		       b03       = #{b03},         
+		       b04       = #{b04}, 
+		       c01       = #{c01},       
+		       c02       = #{c02},         
+		       d01       = #{d01},       
+		       d02       = #{d02},         
+		       d03       = #{d03},
+		       d04       = #{d04},       
+		       d05       = #{d05},         
+		       d06       = #{d06},       
+		       e01       = #{e01},         
+		       e02       = #{e02},
+		       e03       = #{e03},       
+		       f01       = #{f01},         
+		       f02       = #{f02},       
+		       f03       = #{f03},         
+		       g01       = #{g01},
+		       g02       = #{g02},       
+		       g03       = #{g03},         
+		       g04       = #{g04},
+		       use_yn   = #{use_yn}
+	     WHERE
+	           seq = #{seq}
+	</update>	
+	
+	<!--  delete the administrator  authority data  -->
+    <delete id="deleteAuthority" parameterType="HashMap">
+		delete from herit_auth_chk 
+		 where seq = #{seq}
+	</delete>	
+	
+		
+</mapper>

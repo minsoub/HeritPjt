@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<div class="wrapSnb">
+			<h2 class="tit">관리자 관리</h2>
+			<ul class="snb">
+				<li><a th:href="@{list}">관리자 관리</a></li>
+				<li><a th:href="@{authlist}" class="active">권한 관리</a></li>
+				<li><a th:href="@{faqlist}">문의 내역</a></li>
+			</ul>
+		</div>
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">권한 관리</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">관리자 관리</a></li>
+					<li><a href="">권한 관리</a></li>
+				</ol>
+			</div>
+			
+			<table class="tblTypeA mtMmd">
+				<thead>
+					<tr>
+						<th>권한명</th>
+						<th>등록일</th>
+						<th>설명</th>
+					</tr>
+				</thead>				
+				<tbody>
+					<tr th:each="info : ${list}">
+						<td><a th:text="${info.auth_name}" th:href="@{authdetail(seq=${info.seq})}"></a></td>
+						<td th:text="${info.reg_dt}">
+						<td th:text="${info.auth_desc}" class="tal">
+					</tr>
+				</tbody>
+			</table>
+			<!-- btn -->
+			<div class="btnWrap mtMmd">
+				<a th:href="@{authRegform}" class="btnDefault">등록</a>
+			</div>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+
+</th:block>
+</html>
+	
+<script>
+$(document).ready(function() {
+	load_fnc('7', '0', '0'); //menu script
+});
+</script>	

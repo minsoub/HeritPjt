@@ -5,9 +5,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import kr.co.neodreams.herit.model.Admin;
+import kr.co.neodreams.herit.model.AuthCheck;
 
 /**
- * 관리자 정보 관리 Mapper Interface
+ * the mapper interface class for the administrator management.
  * 
  * @author hist
  *
@@ -35,10 +36,20 @@ public interface AdminMapper {
 	/**
 	 * 전체 관리자 리스트 조회
 	 * 
+	 * @param data
 	 * @return
 	 * @throws Exception
 	 */
-	List<Admin> selectAdminAll() throws Exception;
+	List<Admin> selectAdminAll(Admin data) throws Exception;
+	
+	/**
+	 * return All administrator list
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	int selectAdminAllCount(Admin data) throws Exception;
 	
 	/**
 	 * 관리자 신규 등록
@@ -46,7 +57,7 @@ public interface AdminMapper {
 	 * @param data
 	 * @throws Exception
 	 */
-	void insertAdmin(Admin data) throws Exception;
+	int insertAdmin(Admin data) throws Exception;
 	
 	/**
 	 * 관리자 정보 삭제
@@ -54,7 +65,7 @@ public interface AdminMapper {
 	 * @param data
 	 * @throws Exception
 	 */
-	void deleteAdmin(Admin data) throws Exception;
+	int deleteAdmin(Admin data) throws Exception;
 	
 	/**
 	 * 관리자 정보 수정
@@ -62,5 +73,51 @@ public interface AdminMapper {
 	 * @param data
 	 * @throws Exception
 	 */
-	void updateAdmin(Admin data) throws Exception;
+	int updateAdmin(Admin data) throws Exception;
+	
+	
+	/**
+	 * search the administrator authority list
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	List<AuthCheck> selectAuthorityAll(AuthCheck data) throws Exception;
+	
+	/**
+	 * search the administrator authority detail data.
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	AuthCheck selectAuthorityById(AuthCheck data) throws Exception;
+	
+	/**
+	 * register the administrator authority data.
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	int insertAuthority(AuthCheck data) throws Exception;
+	
+	/**
+	 * modify the administrator authority data.
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	int updateAuthority(AuthCheck data) throws Exception;
+	
+	/**
+	 * delete the administrator authority data.
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	int deleteAuthority(AuthCheck data) throws Exception;
 }

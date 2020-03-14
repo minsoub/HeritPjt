@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
 
-<%@include file="/WEB-INF/jsp/admin/inc/header.jsp"%>
+<th:block layout:fragment="content_body">
 
 	<!-- contaier -->
 	<div class="innerWrap">
@@ -140,9 +142,12 @@
 		<!-- //contents -->
 	</div>
 	<!-- //contaier -->
+	
+</th:block>
+</html>
+
 <script>
 $(document).ready(function() {
 	load_fnc('1', '0', '0'); //menu script
 });
 </script>	
-<%@include file="/WEB-INF/jsp/admin/inc/footer.jsp"%>

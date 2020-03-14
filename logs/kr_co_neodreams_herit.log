@@ -1,0 +1,345 @@
+2020-03-15 00:02:19.180 [http-nio-8080-exec-1] ERROR org.thymeleaf.TemplateEngine - [THYMELEAF][http-nio-8080-exec-1] Exception processing template "/admin/mng/auth_reg": An error happened during template parsing (template: "class path resource [templates//admin/mng/auth_reg.html]")
+org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates//admin/mng/auth_reg.html]")
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:241)
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1373)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1118)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.attoparser.ParseException: Exception evaluating SpringEL expression: "info.a01 == 'Y'" (template: "/admin/mng/auth_reg" - line 61, col 60)
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:393)
+	at org.attoparser.MarkupParser.parse(MarkupParser.java:257)
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230)
+	... 48 common frames omitted
+Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "info.a01 == 'Y'" (template: "/admin/mng/auth_reg" - line 61, col 60)
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:290)
+	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166)
+	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138)
+	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144)
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74)
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95)
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleStandaloneElement(ProcessorTemplateHandler.java:918)
+	at org.thymeleaf.engine.StandaloneElementTag.beHandled(StandaloneElementTag.java:228)
+	at org.thymeleaf.engine.Model.process(Model.java:282)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1587)
+	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205)
+	at org.thymeleaf.engine.Model.process(Model.java:282)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1587)
+	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205)
+	at org.thymeleaf.engine.Model.process(Model.java:282)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1587)
+	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205)
+	at org.thymeleaf.engine.Model.process(Model.java:282)
+	at org.thymeleaf.engine.Model.process(Model.java:290)
+	at org.thymeleaf.engine.GatheringModelProcessable.process(GatheringModelProcessable.java:78)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640)
+	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleCloseElementEnd(TemplateHandlerAdapterMarkupHandler.java:388)
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleCloseElementEnd(InlinedOutputExpressionMarkupHandler.java:322)
+	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleCloseElementEnd(OutputExpressionInlinePreProcessorHandler.java:220)
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleCloseElementEnd(InlinedOutputExpressionMarkupHandler.java:164)
+	at org.attoparser.HtmlElement.handleCloseElementEnd(HtmlElement.java:169)
+	at org.attoparser.HtmlMarkupHandler.handleCloseElementEnd(HtmlMarkupHandler.java:412)
+	at org.attoparser.MarkupEventProcessorHandler.handleCloseElementEnd(MarkupEventProcessorHandler.java:473)
+	at org.attoparser.ParsingElementMarkupUtil.parseCloseElement(ParsingElementMarkupUtil.java:201)
+	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:725)
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301)
+	... 50 common frames omitted
+Caused by: org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'a01' cannot be found on null
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406)
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92)
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:42)
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:32)
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112)
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337)
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263)
+	... 83 common frames omitted
+2020-03-15 00:02:19.191 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates//admin/mng/auth_reg.html]")] with root cause
+org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'a01' cannot be found on null
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.readProperty(PropertyOrFieldReference.java:213)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.getValueInternal(PropertyOrFieldReference.java:104)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference.access$000(PropertyOrFieldReference.java:51)
+	at org.springframework.expression.spel.ast.PropertyOrFieldReference$AccessorLValue.getValue(PropertyOrFieldReference.java:406)
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92)
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:42)
+	at org.springframework.expression.spel.ast.OpEQ.getValueInternal(OpEQ.java:32)
+	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112)
+	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337)
+	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:263)
+	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166)
+	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109)
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138)
+	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144)
+	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74)
+	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95)
+	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleStandaloneElement(ProcessorTemplateHandler.java:918)
+	at org.thymeleaf.engine.StandaloneElementTag.beHandled(StandaloneElementTag.java:228)
+	at org.thymeleaf.engine.Model.process(Model.java:282)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1587)
+	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205)
+	at org.thymeleaf.engine.Model.process(Model.java:282)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1587)
+	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205)
+	at org.thymeleaf.engine.Model.process(Model.java:282)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1587)
+	at org.thymeleaf.engine.OpenElementTag.beHandled(OpenElementTag.java:205)
+	at org.thymeleaf.engine.Model.process(Model.java:282)
+	at org.thymeleaf.engine.Model.process(Model.java:290)
+	at org.thymeleaf.engine.GatheringModelProcessable.process(GatheringModelProcessable.java:78)
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640)
+	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleCloseElementEnd(TemplateHandlerAdapterMarkupHandler.java:388)
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleCloseElementEnd(InlinedOutputExpressionMarkupHandler.java:322)
+	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleCloseElementEnd(OutputExpressionInlinePreProcessorHandler.java:220)
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleCloseElementEnd(InlinedOutputExpressionMarkupHandler.java:164)
+	at org.attoparser.HtmlElement.handleCloseElementEnd(HtmlElement.java:169)
+	at org.attoparser.HtmlMarkupHandler.handleCloseElementEnd(HtmlMarkupHandler.java:412)
+	at org.attoparser.MarkupEventProcessorHandler.handleCloseElementEnd(MarkupEventProcessorHandler.java:473)
+	at org.attoparser.ParsingElementMarkupUtil.parseCloseElement(ParsingElementMarkupUtil.java:201)
+	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:725)
+	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301)
+	at org.attoparser.MarkupParser.parse(MarkupParser.java:257)
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230)
+	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:362)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:189)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1373)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1118)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+2020-03-15 00:03:35.421 [Thread-443] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-15 00:03:35.421 [Thread-443] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-75 - Shutdown initiated...
+2020-03-15 00:03:35.427 [Thread-443] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-75 - Shutdown completed.
+2020-03-15 00:03:36.586 [restartedMain] INFO  k.c.n.herit.HeritPjtApplication - Starting HeritPjtApplication on LAPTOP-NFP1QT50 with PID 22892 (C:\DevProject\JavaWorkspace\HeritPjt\target\classes started by minso in C:\DevProject\JavaWorkspace\HeritPjt)
+2020-03-15 00:03:36.586 [restartedMain] INFO  k.c.n.herit.HeritPjtApplication - No active profile set, falling back to default profiles: default
+2020-03-15 00:03:36.935 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-03-15 00:03:36.935 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-15 00:03:36.935 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-03-15 00:03:36.935 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-15 00:03:37.003 [restartedMain] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-03-15 00:03:37.005 [restartedMain] INFO  o.a.c.c.C.[Tomcat-3].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-03-15 00:03:37.005 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 418 ms
+2020-03-15 00:03:37.021 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-76 - Starting...
+2020-03-15 00:03:37.067 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-76 - Start completed.
+2020-03-15 00:03:37.067 [restartedMain] INFO  k.c.n.h.config.DatabaseConfiguration - datasource : HikariDataSource (HikariPool-76)
+2020-03-15 00:03:37.133 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-15 00:03:37.235 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-03-15 00:03:37.244 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-03-15 00:03:37.249 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-15 00:03:37.249 [restartedMain] INFO  k.c.n.herit.HeritPjtApplication - Started HeritPjtApplication in 0.696 seconds (JVM running for 24987.048)
+2020-03-15 00:03:37.250 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2020-03-15 00:03:41.689 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat-3].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-15 00:03:41.691 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-03-15 00:03:41.695 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2020-03-15 00:11:03.945 [http-nio-8080-exec-1] INFO  k.c.n.h.c.AdminAuthController - paramter : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=0, new_seq=0, auth_name=null, auth_desc=null, a01=null, b01=null, b02=null, b03=null, b04=null, c01=null, c02=null, d01=null, d02=null, d03=null, d04=null, d05=null, d06=null, e01=null, e02=null, e03=null, f01=null, f02=null, f03=null, g01=null, g02=null, g03=null, g04=null, use_yn=null, reg_dt=null, mode=null)
+2020-03-15 00:11:03.956 [http-nio-8080-exec-1] DEBUG k.c.n.h.m.A.selectAuthorityAll - ==>  Preparing: SELECT seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt from herit_auth_chk ORDER BY seq desc 
+2020-03-15 00:11:03.956 [http-nio-8080-exec-1] DEBUG k.c.n.h.m.A.selectAuthorityAll - ==> Parameters: 
+2020-03-15 00:11:03.966 [http-nio-8080-exec-1] TRACE k.c.n.h.m.A.selectAuthorityAll - <==    Columns: seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt
+2020-03-15 00:11:03.967 [http-nio-8080-exec-1] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 4, asdfasf, adfasfas, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:43:43.313351
+2020-03-15 00:11:03.967 [http-nio-8080-exec-1] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 3, asdfasf, asdfasfas, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:43:14.631577
+2020-03-15 00:11:03.967 [http-nio-8080-exec-1] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 2, asdfasf, adfasfasfas, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:42:07.10094
+2020-03-15 00:11:03.968 [http-nio-8080-exec-1] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 1, adfasf, adfasf, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:41:55.132666
+2020-03-15 00:11:03.968 [http-nio-8080-exec-1] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 0, adfas, asdfasf, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:33:17.482146
+2020-03-15 00:11:03.968 [http-nio-8080-exec-1] DEBUG k.c.n.h.m.A.selectAuthorityAll - <==      Total: 5
+2020-03-15 00:11:03.968 [http-nio-8080-exec-1] INFO  k.c.n.h.s.AdminAuthorityService - selectAuthorityAll : [AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=4, new_seq=0, auth_name=asdfasf, auth_desc=adfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:43:43.313351, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=3, new_seq=0, auth_name=asdfasf, auth_desc=asdfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:43:14.631577, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:42:07.10094, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=1, new_seq=0, auth_name=adfasf, auth_desc=adfasf, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:41:55.132666, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=0, new_seq=0, auth_name=adfas, auth_desc=asdfasf, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:33:17.482146, mode=null)]
+2020-03-15 00:11:03.968 [http-nio-8080-exec-1] INFO  k.c.n.h.c.AdminAuthController - search Authority list : [AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=4, new_seq=0, auth_name=asdfasf, auth_desc=adfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:43:43.313351, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=3, new_seq=0, auth_name=asdfasf, auth_desc=asdfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:43:14.631577, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:42:07.10094, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=1, new_seq=0, auth_name=adfasf, auth_desc=adfasf, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:41:55.132666, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=0, new_seq=0, auth_name=adfas, auth_desc=asdfasf, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:33:17.482146, mode=null)]
+2020-03-15 00:11:05.425 [http-nio-8080-exec-10] INFO  k.c.n.h.c.AdminAuthController - paramter : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=4, new_seq=0, auth_name=null, auth_desc=null, a01=null, b01=null, b02=null, b03=null, b04=null, c01=null, c02=null, d01=null, d02=null, d03=null, d04=null, d05=null, d06=null, e01=null, e02=null, e03=null, f01=null, f02=null, f03=null, g01=null, g02=null, g03=null, g04=null, use_yn=null, reg_dt=null, mode=null)
+2020-03-15 00:11:05.432 [http-nio-8080-exec-10] DEBUG k.c.n.h.m.A.selectAuthorityById - ==>  Preparing: SELECT seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt from herit_auth_chk WHERE seq = ? 
+2020-03-15 00:11:05.433 [http-nio-8080-exec-10] DEBUG k.c.n.h.m.A.selectAuthorityById - ==> Parameters: 4(Integer)
+2020-03-15 00:11:05.446 [http-nio-8080-exec-10] TRACE k.c.n.h.m.A.selectAuthorityById - <==    Columns: seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt
+2020-03-15 00:11:05.446 [http-nio-8080-exec-10] TRACE k.c.n.h.m.A.selectAuthorityById - <==        Row: 4, asdfasf, adfasfas, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:43:43.313351
+2020-03-15 00:11:05.446 [http-nio-8080-exec-10] DEBUG k.c.n.h.m.A.selectAuthorityById - <==      Total: 1
+2020-03-15 00:11:05.446 [http-nio-8080-exec-10] INFO  k.c.n.h.s.AdminAuthorityService - selectAuthorityById : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=4, new_seq=0, auth_name=asdfasf, auth_desc=adfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:43:43.313351, mode=null)
+2020-03-15 00:11:05.447 [http-nio-8080-exec-10] INFO  k.c.n.h.c.AdminAuthController - search authdetail info : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=4, new_seq=0, auth_name=asdfasf, auth_desc=adfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:43:43.313351, mode=null)
+2020-03-15 00:11:15.429 [http-nio-8080-exec-6] INFO  k.c.n.h.c.AdminAuthController - paramter : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=4, new_seq=0, auth_name=null, auth_desc=null, a01=null, b01=null, b02=null, b03=null, b04=null, c01=null, c02=null, d01=null, d02=null, d03=null, d04=null, d05=null, d06=null, e01=null, e02=null, e03=null, f01=null, f02=null, f03=null, g01=null, g02=null, g03=null, g04=null, use_yn=null, reg_dt=null, mode=null)
+2020-03-15 00:11:15.433 [http-nio-8080-exec-4] DEBUG k.c.n.h.c.AdminAuthController - authProccess param AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=4, new_seq=0, auth_name=, auth_desc=, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=null, mode=D)
+2020-03-15 00:11:15.433 [http-nio-8080-exec-4] DEBUG k.c.n.h.m.A.deleteAuthority - ==>  Preparing: delete from herit_auth_chk where seq = ? 
+2020-03-15 00:11:15.433 [http-nio-8080-exec-4] DEBUG k.c.n.h.m.A.deleteAuthority - ==> Parameters: 4(Integer)
+2020-03-15 00:11:15.437 [http-nio-8080-exec-6] DEBUG k.c.n.h.m.A.selectAuthorityById - ==>  Preparing: SELECT seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt from herit_auth_chk WHERE seq = ? 
+2020-03-15 00:11:15.437 [http-nio-8080-exec-6] DEBUG k.c.n.h.m.A.selectAuthorityById - ==> Parameters: 4(Integer)
+2020-03-15 00:11:15.441 [http-nio-8080-exec-4] DEBUG k.c.n.h.m.A.deleteAuthority - <==    Updates: 1
+2020-03-15 00:11:15.442 [http-nio-8080-exec-4] DEBUG k.c.n.h.c.AdminAuthController - retVal : 1
+2020-03-15 00:11:15.452 [http-nio-8080-exec-6] DEBUG k.c.n.h.m.A.selectAuthorityById - <==      Total: 0
+2020-03-15 00:11:15.453 [http-nio-8080-exec-6] INFO  k.c.n.h.s.AdminAuthorityService - selectAuthorityById : null
+2020-03-15 00:11:16.724 [http-nio-8080-exec-2] INFO  k.c.n.h.c.AdminAuthController - paramter : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=4, new_seq=0, auth_name=, auth_desc=, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=null, reg_dt=null, mode=D)
+2020-03-15 00:11:16.729 [http-nio-8080-exec-2] DEBUG k.c.n.h.m.A.selectAuthorityAll - ==>  Preparing: SELECT seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt from herit_auth_chk ORDER BY seq desc 
+2020-03-15 00:11:16.729 [http-nio-8080-exec-2] DEBUG k.c.n.h.m.A.selectAuthorityAll - ==> Parameters: 
+2020-03-15 00:11:16.739 [http-nio-8080-exec-2] TRACE k.c.n.h.m.A.selectAuthorityAll - <==    Columns: seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt
+2020-03-15 00:11:16.739 [http-nio-8080-exec-2] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 3, asdfasf, asdfasfas, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:43:14.631577
+2020-03-15 00:11:16.739 [http-nio-8080-exec-2] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 2, asdfasf, adfasfasfas, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:42:07.10094
+2020-03-15 00:11:16.739 [http-nio-8080-exec-2] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 1, adfasf, adfasf, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:41:55.132666
+2020-03-15 00:11:16.739 [http-nio-8080-exec-2] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 0, adfas, asdfasf, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:33:17.482146
+2020-03-15 00:11:16.740 [http-nio-8080-exec-2] DEBUG k.c.n.h.m.A.selectAuthorityAll - <==      Total: 4
+2020-03-15 00:11:16.740 [http-nio-8080-exec-2] INFO  k.c.n.h.s.AdminAuthorityService - selectAuthorityAll : [AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=3, new_seq=0, auth_name=asdfasf, auth_desc=asdfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:43:14.631577, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:42:07.10094, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=1, new_seq=0, auth_name=adfasf, auth_desc=adfasf, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:41:55.132666, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=0, new_seq=0, auth_name=adfas, auth_desc=asdfasf, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:33:17.482146, mode=null)]
+2020-03-15 00:11:16.740 [http-nio-8080-exec-2] INFO  k.c.n.h.c.AdminAuthController - search Authority list : [AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=3, new_seq=0, auth_name=asdfasf, auth_desc=asdfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:43:14.631577, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:42:07.10094, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=1, new_seq=0, auth_name=adfasf, auth_desc=adfasf, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:41:55.132666, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=0, new_seq=0, auth_name=adfas, auth_desc=asdfasf, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:33:17.482146, mode=null)]
+2020-03-15 00:11:18.447 [http-nio-8080-exec-7] INFO  k.c.n.h.c.AdminAuthController - paramter : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=3, new_seq=0, auth_name=null, auth_desc=null, a01=null, b01=null, b02=null, b03=null, b04=null, c01=null, c02=null, d01=null, d02=null, d03=null, d04=null, d05=null, d06=null, e01=null, e02=null, e03=null, f01=null, f02=null, f03=null, g01=null, g02=null, g03=null, g04=null, use_yn=null, reg_dt=null, mode=null)
+2020-03-15 00:11:18.453 [http-nio-8080-exec-7] DEBUG k.c.n.h.m.A.selectAuthorityById - ==>  Preparing: SELECT seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt from herit_auth_chk WHERE seq = ? 
+2020-03-15 00:11:18.454 [http-nio-8080-exec-7] DEBUG k.c.n.h.m.A.selectAuthorityById - ==> Parameters: 3(Integer)
+2020-03-15 00:11:18.466 [http-nio-8080-exec-7] TRACE k.c.n.h.m.A.selectAuthorityById - <==    Columns: seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt
+2020-03-15 00:11:18.466 [http-nio-8080-exec-7] TRACE k.c.n.h.m.A.selectAuthorityById - <==        Row: 3, asdfasf, asdfasfas, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:43:14.631577
+2020-03-15 00:11:18.466 [http-nio-8080-exec-7] DEBUG k.c.n.h.m.A.selectAuthorityById - <==      Total: 1
+2020-03-15 00:11:18.466 [http-nio-8080-exec-7] INFO  k.c.n.h.s.AdminAuthorityService - selectAuthorityById : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=3, new_seq=0, auth_name=asdfasf, auth_desc=asdfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:43:14.631577, mode=null)
+2020-03-15 00:11:18.466 [http-nio-8080-exec-7] INFO  k.c.n.h.c.AdminAuthController - search authdetail info : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=3, new_seq=0, auth_name=asdfasf, auth_desc=asdfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:43:14.631577, mode=null)
+2020-03-15 00:11:21.564 [http-nio-8080-exec-5] DEBUG k.c.n.h.c.AdminAuthController - authProccess param AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=3, new_seq=0, auth_name=, auth_desc=, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=null, mode=D)
+2020-03-15 00:11:21.565 [http-nio-8080-exec-5] DEBUG k.c.n.h.m.A.deleteAuthority - ==>  Preparing: delete from herit_auth_chk where seq = ? 
+2020-03-15 00:11:21.565 [http-nio-8080-exec-5] DEBUG k.c.n.h.m.A.deleteAuthority - ==> Parameters: 3(Integer)
+2020-03-15 00:11:21.565 [http-nio-8080-exec-8] INFO  k.c.n.h.c.AdminAuthController - paramter : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=3, new_seq=0, auth_name=null, auth_desc=null, a01=null, b01=null, b02=null, b03=null, b04=null, c01=null, c02=null, d01=null, d02=null, d03=null, d04=null, d05=null, d06=null, e01=null, e02=null, e03=null, f01=null, f02=null, f03=null, g01=null, g02=null, g03=null, g04=null, use_yn=null, reg_dt=null, mode=null)
+2020-03-15 00:11:21.570 [http-nio-8080-exec-5] DEBUG k.c.n.h.m.A.deleteAuthority - <==    Updates: 1
+2020-03-15 00:11:21.571 [http-nio-8080-exec-5] DEBUG k.c.n.h.c.AdminAuthController - retVal : 1
+2020-03-15 00:11:21.572 [http-nio-8080-exec-8] DEBUG k.c.n.h.m.A.selectAuthorityById - ==>  Preparing: SELECT seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt from herit_auth_chk WHERE seq = ? 
+2020-03-15 00:11:21.572 [http-nio-8080-exec-8] DEBUG k.c.n.h.m.A.selectAuthorityById - ==> Parameters: 3(Integer)
+2020-03-15 00:11:21.577 [http-nio-8080-exec-8] DEBUG k.c.n.h.m.A.selectAuthorityById - <==      Total: 0
+2020-03-15 00:11:21.577 [http-nio-8080-exec-8] INFO  k.c.n.h.s.AdminAuthorityService - selectAuthorityById : null
+2020-03-15 00:11:23.148 [http-nio-8080-exec-10] INFO  k.c.n.h.c.AdminAuthController - paramter : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=3, new_seq=0, auth_name=, auth_desc=, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=null, reg_dt=null, mode=D)
+2020-03-15 00:11:23.153 [http-nio-8080-exec-10] DEBUG k.c.n.h.m.A.selectAuthorityAll - ==>  Preparing: SELECT seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt from herit_auth_chk ORDER BY seq desc 
+2020-03-15 00:11:23.153 [http-nio-8080-exec-10] DEBUG k.c.n.h.m.A.selectAuthorityAll - ==> Parameters: 
+2020-03-15 00:11:23.159 [http-nio-8080-exec-10] TRACE k.c.n.h.m.A.selectAuthorityAll - <==    Columns: seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt
+2020-03-15 00:11:23.159 [http-nio-8080-exec-10] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 2, asdfasf, adfasfasfas, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:42:07.10094
+2020-03-15 00:11:23.159 [http-nio-8080-exec-10] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 1, adfasf, adfasf, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:41:55.132666
+2020-03-15 00:11:23.159 [http-nio-8080-exec-10] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 0, adfas, asdfasf, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:33:17.482146
+2020-03-15 00:11:23.160 [http-nio-8080-exec-10] DEBUG k.c.n.h.m.A.selectAuthorityAll - <==      Total: 3
+2020-03-15 00:11:23.160 [http-nio-8080-exec-10] INFO  k.c.n.h.s.AdminAuthorityService - selectAuthorityAll : [AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:42:07.10094, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=1, new_seq=0, auth_name=adfasf, auth_desc=adfasf, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:41:55.132666, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=0, new_seq=0, auth_name=adfas, auth_desc=asdfasf, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:33:17.482146, mode=null)]
+2020-03-15 00:11:23.160 [http-nio-8080-exec-10] INFO  k.c.n.h.c.AdminAuthController - search Authority list : [AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:42:07.10094, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=1, new_seq=0, auth_name=adfasf, auth_desc=adfasf, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:41:55.132666, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=0, new_seq=0, auth_name=adfas, auth_desc=asdfasf, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:33:17.482146, mode=null)]
+2020-03-15 00:11:24.514 [http-nio-8080-exec-5] INFO  k.c.n.h.c.AdminAuthController - paramter : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=null, auth_desc=null, a01=null, b01=null, b02=null, b03=null, b04=null, c01=null, c02=null, d01=null, d02=null, d03=null, d04=null, d05=null, d06=null, e01=null, e02=null, e03=null, f01=null, f02=null, f03=null, g01=null, g02=null, g03=null, g04=null, use_yn=null, reg_dt=null, mode=null)
+2020-03-15 00:11:24.521 [http-nio-8080-exec-5] DEBUG k.c.n.h.m.A.selectAuthorityById - ==>  Preparing: SELECT seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt from herit_auth_chk WHERE seq = ? 
+2020-03-15 00:11:24.522 [http-nio-8080-exec-5] DEBUG k.c.n.h.m.A.selectAuthorityById - ==> Parameters: 2(Integer)
+2020-03-15 00:11:24.530 [http-nio-8080-exec-5] TRACE k.c.n.h.m.A.selectAuthorityById - <==    Columns: seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt
+2020-03-15 00:11:24.530 [http-nio-8080-exec-5] TRACE k.c.n.h.m.A.selectAuthorityById - <==        Row: 2, asdfasf, adfasfasfas, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:42:07.10094
+2020-03-15 00:11:24.530 [http-nio-8080-exec-5] DEBUG k.c.n.h.m.A.selectAuthorityById - <==      Total: 1
+2020-03-15 00:11:24.530 [http-nio-8080-exec-5] INFO  k.c.n.h.s.AdminAuthorityService - selectAuthorityById : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:42:07.10094, mode=null)
+2020-03-15 00:11:24.531 [http-nio-8080-exec-5] INFO  k.c.n.h.c.AdminAuthController - search authdetail info : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:42:07.10094, mode=null)
+2020-03-15 00:12:14.182 [http-nio-8080-exec-9] INFO  k.c.n.h.c.AdminAuthController - paramter : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=null, auth_desc=null, a01=null, b01=null, b02=null, b03=null, b04=null, c01=null, c02=null, d01=null, d02=null, d03=null, d04=null, d05=null, d06=null, e01=null, e02=null, e03=null, f01=null, f02=null, f03=null, g01=null, g02=null, g03=null, g04=null, use_yn=null, reg_dt=null, mode=null)
+2020-03-15 00:12:14.187 [http-nio-8080-exec-9] DEBUG k.c.n.h.m.A.selectAuthorityById - ==>  Preparing: SELECT seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt from herit_auth_chk WHERE seq = ? 
+2020-03-15 00:12:14.187 [http-nio-8080-exec-9] DEBUG k.c.n.h.m.A.selectAuthorityById - ==> Parameters: 2(Integer)
+2020-03-15 00:12:14.192 [http-nio-8080-exec-9] TRACE k.c.n.h.m.A.selectAuthorityById - <==    Columns: seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt
+2020-03-15 00:12:14.192 [http-nio-8080-exec-9] TRACE k.c.n.h.m.A.selectAuthorityById - <==        Row: 2, asdfasf, adfasfasfas, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:42:07.10094
+2020-03-15 00:12:14.196 [http-nio-8080-exec-9] DEBUG k.c.n.h.m.A.selectAuthorityById - <==      Total: 1
+2020-03-15 00:12:14.197 [http-nio-8080-exec-9] INFO  k.c.n.h.s.AdminAuthorityService - selectAuthorityById : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:42:07.10094, mode=null)
+2020-03-15 00:12:14.197 [http-nio-8080-exec-9] INFO  k.c.n.h.c.AdminAuthController - search authdetail info : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:42:07.10094, mode=null)
+2020-03-15 00:12:23.930 [http-nio-8080-exec-6] INFO  k.c.n.h.c.AdminAuthController - paramter : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=null, auth_desc=null, a01=null, b01=null, b02=null, b03=null, b04=null, c01=null, c02=null, d01=null, d02=null, d03=null, d04=null, d05=null, d06=null, e01=null, e02=null, e03=null, f01=null, f02=null, f03=null, g01=null, g02=null, g03=null, g04=null, use_yn=null, reg_dt=null, mode=null)
+2020-03-15 00:12:23.939 [http-nio-8080-exec-6] DEBUG k.c.n.h.m.A.selectAuthorityById - ==>  Preparing: SELECT seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt from herit_auth_chk WHERE seq = ? 
+2020-03-15 00:12:23.940 [http-nio-8080-exec-6] DEBUG k.c.n.h.m.A.selectAuthorityById - ==> Parameters: 2(Integer)
+2020-03-15 00:12:23.942 [http-nio-8080-exec-2] DEBUG k.c.n.h.c.AdminAuthController - authProccess param AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=Y, b01=Y, b02=Y, b03=N, b04=Y, c01=Y, c02=Y, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=null, mode=U)
+2020-03-15 00:12:23.943 [http-nio-8080-exec-2] DEBUG k.c.n.h.m.A.updateAuthority - ==>  Preparing: UPDATE herit_auth_chk SET auth_name = ?, auth_desc = ?, a01 = ?, b01 = ?, b02 = ?, b03 = ?, b04 = ?, c01 = ?, c02 = ?, d01 = ?, d02 = ?, d03 = ?, d04 = ?, d05 = ?, d06 = ?, e01 = ?, e02 = ?, e03 = ?, f01 = ?, f02 = ?, f03 = ?, g01 = ?, g02 = ?, g03 = ?, g04 = ?, use_yn = ? WHERE seq = ? 
+2020-03-15 00:12:23.943 [http-nio-8080-exec-2] DEBUG k.c.n.h.m.A.updateAuthority - ==> Parameters: asdfasf(String), adfasfasfas(String), Y(String), Y(String), Y(String), N(String), Y(String), Y(String), Y(String), N(String), N(String), N(String), N(String), N(String), N(String), N(String), N(String), N(String), N(String), N(String), N(String), N(String), N(String), N(String), N(String), Y(String), 2(Integer)
+2020-03-15 00:12:23.951 [http-nio-8080-exec-6] TRACE k.c.n.h.m.A.selectAuthorityById - <==    Columns: seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt
+2020-03-15 00:12:23.951 [http-nio-8080-exec-6] TRACE k.c.n.h.m.A.selectAuthorityById - <==        Row: 2, asdfasf, adfasfasfas, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:42:07.10094
+2020-03-15 00:12:23.953 [http-nio-8080-exec-6] DEBUG k.c.n.h.m.A.selectAuthorityById - <==      Total: 1
+2020-03-15 00:12:23.953 [http-nio-8080-exec-6] INFO  k.c.n.h.s.AdminAuthorityService - selectAuthorityById : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:42:07.10094, mode=null)
+2020-03-15 00:12:23.953 [http-nio-8080-exec-6] INFO  k.c.n.h.c.AdminAuthController - search authdetail info : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:42:07.10094, mode=null)
+2020-03-15 00:12:23.955 [http-nio-8080-exec-2] DEBUG k.c.n.h.m.A.updateAuthority - <==    Updates: 1
+2020-03-15 00:12:23.955 [http-nio-8080-exec-2] DEBUG k.c.n.h.c.AdminAuthController - retVal : 1
+2020-03-15 00:12:24.931 [http-nio-8080-exec-7] INFO  k.c.n.h.c.AdminAuthController - paramter : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=Y, b01=Y, b02=Y, b03=N, b04=Y, c01=Y, c02=Y, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=null, reg_dt=null, mode=U)
+2020-03-15 00:12:24.941 [http-nio-8080-exec-7] DEBUG k.c.n.h.m.A.selectAuthorityAll - ==>  Preparing: SELECT seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt from herit_auth_chk ORDER BY seq desc 
+2020-03-15 00:12:24.941 [http-nio-8080-exec-7] DEBUG k.c.n.h.m.A.selectAuthorityAll - ==> Parameters: 
+2020-03-15 00:12:24.951 [http-nio-8080-exec-7] TRACE k.c.n.h.m.A.selectAuthorityAll - <==    Columns: seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt
+2020-03-15 00:12:24.952 [http-nio-8080-exec-7] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 2, asdfasf, adfasfasfas, Y, Y, Y, N, Y, Y, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:42:07.10094
+2020-03-15 00:12:24.952 [http-nio-8080-exec-7] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 1, adfasf, adfasf, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:41:55.132666
+2020-03-15 00:12:24.952 [http-nio-8080-exec-7] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 0, adfas, asdfasf, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:33:17.482146
+2020-03-15 00:12:24.952 [http-nio-8080-exec-7] DEBUG k.c.n.h.m.A.selectAuthorityAll - <==      Total: 3
+2020-03-15 00:12:24.952 [http-nio-8080-exec-7] INFO  k.c.n.h.s.AdminAuthorityService - selectAuthorityAll : [AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=Y, b01=Y, b02=Y, b03=N, b04=Y, c01=Y, c02=Y, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:42:07.10094, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=1, new_seq=0, auth_name=adfasf, auth_desc=adfasf, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:41:55.132666, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=0, new_seq=0, auth_name=adfas, auth_desc=asdfasf, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:33:17.482146, mode=null)]
+2020-03-15 00:12:24.953 [http-nio-8080-exec-7] INFO  k.c.n.h.c.AdminAuthController - search Authority list : [AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=Y, b01=Y, b02=Y, b03=N, b04=Y, c01=Y, c02=Y, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:42:07.10094, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=1, new_seq=0, auth_name=adfasf, auth_desc=adfasf, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:41:55.132666, mode=null), AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=0, new_seq=0, auth_name=adfas, auth_desc=asdfasf, a01=N, b01=N, b02=N, b03=N, b04=N, c01=N, c02=N, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:33:17.482146, mode=null)]
+2020-03-15 00:12:26.529 [http-nio-8080-exec-3] INFO  k.c.n.h.c.AdminAuthController - paramter : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=null, auth_desc=null, a01=null, b01=null, b02=null, b03=null, b04=null, c01=null, c02=null, d01=null, d02=null, d03=null, d04=null, d05=null, d06=null, e01=null, e02=null, e03=null, f01=null, f02=null, f03=null, g01=null, g02=null, g03=null, g04=null, use_yn=null, reg_dt=null, mode=null)
+2020-03-15 00:12:26.536 [http-nio-8080-exec-3] DEBUG k.c.n.h.m.A.selectAuthorityById - ==>  Preparing: SELECT seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt from herit_auth_chk WHERE seq = ? 
+2020-03-15 00:12:26.536 [http-nio-8080-exec-3] DEBUG k.c.n.h.m.A.selectAuthorityById - ==> Parameters: 2(Integer)
+2020-03-15 00:12:26.548 [http-nio-8080-exec-3] TRACE k.c.n.h.m.A.selectAuthorityById - <==    Columns: seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt
+2020-03-15 00:12:26.548 [http-nio-8080-exec-3] TRACE k.c.n.h.m.A.selectAuthorityById - <==        Row: 2, asdfasf, adfasfasfas, Y, Y, Y, N, Y, Y, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:42:07.10094
+2020-03-15 00:12:26.549 [http-nio-8080-exec-3] DEBUG k.c.n.h.m.A.selectAuthorityById - <==      Total: 1
+2020-03-15 00:12:26.549 [http-nio-8080-exec-3] INFO  k.c.n.h.s.AdminAuthorityService - selectAuthorityById : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=Y, b01=Y, b02=Y, b03=N, b04=Y, c01=Y, c02=Y, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:42:07.10094, mode=null)
+2020-03-15 00:12:26.549 [http-nio-8080-exec-3] INFO  k.c.n.h.c.AdminAuthController - search authdetail info : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=2, new_seq=0, auth_name=asdfasf, auth_desc=adfasfasfas, a01=Y, b01=Y, b02=Y, b03=N, b04=Y, c01=Y, c02=Y, d01=N, d02=N, d03=N, d04=N, d05=N, d06=N, e01=N, e02=N, e03=N, f01=N, f02=N, f03=N, g01=N, g02=N, g03=N, g04=N, use_yn=Y, reg_dt=2020-03-14 23:42:07.10094, mode=null)
+2020-03-15 00:12:31.049 [http-nio-8080-exec-1] INFO  k.c.n.h.c.AdminAuthController - paramter : AuthCheck(super=CommonModel(searchString=null, searchId=null, pageNo=1, perPageCnt=10, pageRange=10, totalCnt=0, pageStartNo=0, pageEndNo=0), seq=0, new_seq=0, auth_name=null, auth_desc=null, a01=null, b01=null, b02=null, b03=null, b04=null, c01=null, c02=null, d01=null, d02=null, d03=null, d04=null, d05=null, d06=null, e01=null, e02=null, e03=null, f01=null, f02=null, f03=null, g01=null, g02=null, g03=null, g04=null, use_yn=null, reg_dt=null, mode=null)
+2020-03-15 00:12:31.055 [http-nio-8080-exec-1] DEBUG k.c.n.h.m.A.selectAuthorityAll - ==>  Preparing: SELECT seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt from herit_auth_chk ORDER BY seq desc 
+2020-03-15 00:12:31.055 [http-nio-8080-exec-1] DEBUG k.c.n.h.m.A.selectAuthorityAll - ==> Parameters: 
+2020-03-15 00:12:31.068 [http-nio-8080-exec-1] TRACE k.c.n.h.m.A.selectAuthorityAll - <==    Columns: seq, auth_name, auth_desc, a01, b01, b02, b03, b04, c01, c02, d01, d02, d03, d04, d05, d06, e01, e02, e03, f01, f02, f03, g01, g02, g03, g04, use_yn, reg_dt
+2020-03-15 00:12:31.068 [http-nio-8080-exec-1] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 2, asdfasf, adfasfasfas, Y, Y, Y, N, Y, Y, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:42:07.10094
+2020-03-15 00:12:31.068 [http-nio-8080-exec-1] TRACE k.c.n.h.m.A.selectAuthorityAll - <==        Row: 1, adfasf, adfasf, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, Y, 2020-03-14 23:41:55.132666
