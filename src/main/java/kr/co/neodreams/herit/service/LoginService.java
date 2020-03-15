@@ -32,4 +32,17 @@ public class LoginService {
 		log.info("selectAdminById : {}", info);
 		return info;
 	}
+	
+	/**
+	 * update the administrator last login date 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public int updateAdminLoginDt(Admin data) throws Exception
+	{
+		int result = adminMapper.updateAdminLoginDt(data);
+		
+		return result;
+	}
 }

@@ -10,6 +10,13 @@
 		   and pass = #{pass}
 	</select>
 	
+	<!--  last login date update  -->
+	<update id="updateAdminLoginDt"  parameterType="HashMap">
+		UPDATE herit_admin
+		   set last_login_dt = current_timestamp
+		 WHERE id = #{id}
+	</update>
+	
 	<!-- administrator list count search -->
 	<select id="selectAdminAllCount" parameterType="HashMap" resultType="int">
         <![CDATA[
@@ -183,4 +190,117 @@
 	</delete>	
 	
 		
+	
+	<!-- FAQ list count search -->
+	<select id="selectFaqAllCount" parameterType="HashMap" resultType="int">
+        <![CDATA[
+            SELECT 
+                  count(a.id) as cnt
+             FROM herit_faq a
+            WHERE  1=1
+        ]]>
+        <if test='category != 0'>
+        	  and a.category = #{category}       	        	
+        </if>
+        <if test='searchMode != null'>
+        	<if test='searchMode == "Y"'>
+        		and a.re_reg_id is not null	
+        	</if>
+        	<if test='searchMode == "N"'>
+        		and a.re_reg_id is null
+        	</if>
+        </if>         
+	</select>
+		
+	<!-- FAQ list search  -->
+	<select id="selectFaqAll" parameterType="HashMap" resultType="faq">
+        <![CDATA[
+            SELECT 
+                  a.seq, a.category, a.id, a.name, a.content, a.use_yn, a.reg_dt, a.re_content, a.re_reg_id, a.re_reg_dt
+             FROM herit_faq a
+            WHERE  1=1
+        ]]>
+        <if test='category != 0'>
+        	  and a.category = #{category}       	        	
+        </if>     
+        <if test='searchMode != null'>
+        	<if test='searchMode == "Y"'>
+        		and a.re_reg_id is not null	
+        	</if>
+        	<if test='searchMode == "N"'>
+        		and a.re_reg_id is null
+        	</if>
+        </if>  
+        order by a.reg_dt desc
+        LIMIT #{perPageCnt} OFFSET (#{pageNo} - 1) * #{perPageCnt}                 	
+	</select>	
+	
+	<!--  FAQ detail search -->
+	<select id="selectFaqById" parameterType="HashMap" resultType="faq">
+		SELECT a.seq, a.category, a.id, a.name, a.content, a.use_yn, a.reg_dt, a.re_content, a.re_reg_id, a.re_reg_dt, 
+		       b.category_name
+		  from herit_faq a, herit_faq_category b
+		 where
+		       a.seq = #{seq}
+		   and a.category = b.seq
+	</select>	
+		
+	
+	<!-- FAQ category list search  -->
+	<select id="selectFaqCategory" resultType="faqcategory">
+        <![CDATA[
+            SELECT 
+                  seq, category_name, reg_dt
+             FROM herit_faq_category 
+            ORDER BY seq desc
+        ]]>             	
+	</select>		
+	
+	<!--  FAQ replay insert  -->
+    <update id="updateFaqReply" parameterType="HashMap">
+		UPDATE herit_faq 
+		   SET 
+		       re_content = #{re_content}, 
+		       re_reg_id  = #{re_reg_id},
+		       re_reg_dt = current_timestamp
+	     WHERE
+	           seq = #{seq}
+	</update>	
+		
+	<!--  delete the FAQ data  -->
+    <delete id="deleteFaq" parameterType="HashMap">
+		delete from herit_faq 
+		 where seq = #{seq}
+	</delete>	
+	
+	<!--  insert the FAQ Category data  -->
+	<!--  LAST_INSERT_ID()  -->
+	<insert id="insertFaqCategory" parameterType="HashMap">
+		<selectKey keyProperty="seq" resultType="int" order="BEFORE">
+			SELECT COALESCE(max(seq), 0)+1 FROM herit_faq_category
+		</selectKey>	
+		INSERT INTO herit_faq_category (seq, category_name, reg_dt) VALUES (#{seq}, #{category_name}, current_timestamp)    		
+	</insert>
+		
+	<!--  return the FAQ max seq number  -->
+	<select id="selectFaqCategorySeq" resultType="int">
+        <![CDATA[
+            SELECT 
+                  COALESCE(max(seq), 0)
+             FROM herit_faq_category 
+        ]]>             	
+	</select>	
+			
+	<!--  update the FAQ Category data  -->
+	<update id="updateFaqCategory" parameterType="HashMap">
+		UPDATE herit_faq_category
+		   SET category_name = #{category_name}
+		 WHERE seq = #{seq}
+	</update>
+	
+	<!--  delete the FAQ Category data  -->
+	<delete id="deleteFaqCategory" parameterType="HashMap">
+		DELETE FROM herit_faq_category
+		 WHERE seq = #{seq}
+	</delete>
 </mapper>

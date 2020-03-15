@@ -1,0 +1,55 @@
+<!-- paging -->
+
+<div class="paging" th:with="pageNo=${paging.pageNo}, 
+							 perPageCnt=${paging.perPageCnt}, 
+							 pageCnt=${paging.pageRange},
+					  		 totCount=${totalCnt/perPageCnt}, 
+					  		 totPageCnt=${T(Math).floor((totalCnt*1.0)/(perPageCnt *1.0))+1},
+					  		 firstCount=${(pageNo-1)/pageCnt - ((pageNo-1)/pageCnt%1)},
+					  		 firstPage=${(firstCount * pageCnt) + 1}">		  
+	<th:block th:if="${firstPage > pageCnt}">	
+	<!--  Prev Page -->	
+	<a class="btnFirst" href="javascript:goPage('1');">첫 페이지</a>
+	<a class="btnPrev" href="javascript:goPage(${firstPage-1})">이전 페이지</a>
+	<!--  Prev Page End -->
+	</th:block>
+
+	<th:block th:each="counter : ${#numbers.sequence(firstPage, firstPage+pageCnt-1)}">
+		<th:block th:if="${counter <= totPageCnt }">
+			<th:block th:if="${counter == pageNo}">
+				<th:block th:if="${counter != totPageCnt}">
+					<th:block th:if="${counter == pageCnt}">
+						<a href="" class="on" th:text="${counter}"></a>
+					</th:block>
+					<th:block th:if="${counter != pageCnt}">
+						<a href="" class="on" th:text="${counter}"></a>
+					</th:block>
+				</th:block>
+				<th:block th:if="${counter == totPageCnt}">
+					<a href="" class="on" th:text="${counter}"></a>
+				</th:block>
+			</th:block>
+			<th:block th:if="${counter != pageNo}">
+				<th:block th:if="${counter != totPageCnt}">
+					<th:block th:if="${counter == pageCnt}">
+						<a th:href="'javascript:goPage(\'' + ${counter} + '\');'" th:text="${counter}"></a>
+					</th:block>
+					<th:block th:if="${counter != pageCnt}">
+						<a th:href="'javascript:goPage(\'' + ${counter} + '\');'" th:text="${counter}"></a>
+					</th:block>				
+				</th:block>
+				<th:block th:if="${counter == totPageCnt}">
+					<a th:href="'javascript:goPage(\'' + ${counter} + '\');'" th:text="${counter}"></a>
+				</th:block>
+			</th:block>
+		</th:block>	
+	</th:block>
+	
+	<th:block th:if="${firstPage+pageCnt-1 < totPageCnt}">
+	<!--  Next Page -->
+	<a class="btnNext" th:href="'javascript:goPage(\'' + ${firstPage+pageCnt} + '\');'">다음 페이지</a>
+	<a class="btnLast" th:href="'javascript:goPage(\'' + ${totPageCnt} + '\');'">마지막 페이지</a>
+	<!--  Next Page End  -->
+	</th:block>
+</div>
+<!-- // Paging -->

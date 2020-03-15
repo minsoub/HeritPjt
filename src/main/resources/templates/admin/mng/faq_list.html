@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<div class="wrapSnb">
+			<h2 class="tit">관리자 관리</h2>
+			<ul class="snb">
+				<li><a th:href="@{list}">관리자 관리</a></li>
+				<li><a th:href="@{authlist}">권한 관리</a></li>
+				<li><a th:href="@{faqlist}" class="active">문의 내역</a></li>
+			</ul>
+		</div>
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">문의 내역</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">관리자 관리</a></li>
+					<li><a href="">문의 내역</a></li>
+				</ol>
+			</div>
+			<form name="frm" id="frm" method="post">
+			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />
+			<input type="hidden" name="searchMode" id="searchMode"  th:value="${searchMode}" />
+			<div class="bxSrchForm">
+				<div class="fl">
+					<p class="txt">총  [[${totalCnt}]] 건</p>
+				</div>
+				<div class="fr">
+					<select name="category" id="category" onChange="javascript:goCategoryChange();">
+						<option value="0">전체 </option>
+						<option th:each="itemData: ${categoryList}" th:value="${itemData.seq}" th:text="${itemData.category_name}" th:selected="${itemData.seq == category}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="btnWrap mtSm">
+				<a href="javascript:setMode('ALL');" class="sizeSm" th:class="${searchMode == 'ALL'} ?btnPrimary:btnColorH">전체</a>
+				<a href="javascript:setMode('N');"   class="sizeSm" th:class="${searchMode == 'N'} ? btnPrimary:btnColorH">미답변</a>
+				<a href="javascript:setMode('Y');"   class="sizeSm" th:class="${searchMode == 'Y'} ? btnPrimary:btnColorH">답변완료</a>
+			</div>
+			<table class="tblTypeA listQna mtSm">
+				<colgroup>
+					<col>
+					<col width="10%">
+					<col width="16%">
+					<col width="14%">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>문의 내용</th>
+						<th>작성자</th>
+						<th>문의일자</th>
+						<th>답변여부</th>
+					</tr>
+				</thead>				
+				<tbody>
+				    <tr th:each="info : ${list}">
+				        <td class="tal"><a th:text="${info.content != null and #strings.length(info.content) > 100} ? ${#strings.abbreviate(info.content, 100)} : ${info.content}" 
+				        		th:href="@{faqdetail(seq=${info.seq})}"></a></td>
+				        <td th:text="${info.name}">
+				        <td th:text="${info.reg_dt}">
+						<td>
+							<p class="btnWrap">
+								<span th:if="${info.re_reg_dt} == null" th:text="미답변" class="btnColorH w70"></span>
+								<span th:if="${info.re_reg_dt} != null" th:text="답변완료" class="btnColorI w70"></span>								
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+						
+			<th:block th:include="admin/layout/common_paging"></th:block>
+						
+			<!-- btn -->
+			<div class="btnWrap mtMmd">
+				<a href="javascript:openLayer('.popCate')" class="btnDefault">카테고리 수정</a>
+			</div>
+			
+			</form>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+
+<!-- laeyr poup - 카테고리 등록/수정 -->
+<div class="wrapPop popCate">
+	<div class="popCnt sizeMd">
+		<h1 class="titPop">카테고리 등록/수정</h1>
+		<p class="btnClose">
+			<a href=""><img src="/resources/images/common/btn_close_pop.png" alt="레이어 닫기"></a>
+		</p>
+		<div class="cnt">
+			<div class="bxCnt">
+				<p class="txt">카테고리를 등록/수정해주세요</p>
+				<table class="tblTypeA mtSm">
+					<thead>
+						<tr>
+							<th>카테고리명</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<td><a href="" class="btnAdd"><img src="/resources/images/contents/btn_edit04.png" alt="항목 추가"></a></td>
+						</tr>
+					</tfoot>
+					<tbody>
+					    <tr th:each="info : ${categoryList}">
+							<td>
+								<div class="wrapper">
+									<p class="name" th:text="${info.category_name}"></p>
+									<div class="btn fr" th:tag="${info.seq}">
+										<a href="" class="btnEdit"><img src="/resources/images/contents/btn_edit02.png" alt="수정"></a>
+										<a href="" class="btnDel"><img src="/resources/images/contents/btn_edit03.png" alt="삭제"></a>
+									</div>
+								</div>
+							</td>
+						</tr>						
+					</tbody>
+				</table>
+			</div>
+			<!-- btn -->
+			<p class="btnWrap">
+				<a href="" class="btnDefault btnClose">닫기</a>
+			</p>
+		</div>
+	</div>
+</div>
+<!-- //laeyr poup - 카테고리 등록/수정 -->
+
+</th:block>
+</html>
+	
+<script>
+$(document).ready(function() {
+	load_fnc('7', '0', '0'); //menu script
+});
+
+function setMode(mode)
+{
+	$("#searchMode").val(mode);
+	frm.action = "faqlist";
+	frm.submit();
+}
+function goCategoryChange()
+{
+	frm.action = "faqlist";
+	frm.submit();	
+}
+$(function(){
+	// 카테고리 등록/수정 - 팝업
+	var btnEdit = $('.popCate .btnEdit');
+	var btnDel =  $('.popCate .btnDel');
+	var btnSave = $('.popCate .btnDel');
+	var btnAdd =  $('.popCate .btnAdd');
+	
+	$(document).on('click', '.btnEdit', function(){ // 수정
+		var cateName =  $(this).parent().siblings('.name').text();
+		var tag = $(this).parent("div").attr('tag');
+		$(this).parents('.wrapper').after('<div class="wrapInput"><input type="text" name="" value="' + cateName + '"><div tag="'+tag+'" class="btn"><a href="" class="btnSave"><img src="/resources/images/contents/btn_edit01.png" alt="저장"></a><a href="" class="btnDel"><img src="/resources/images/contents/btn_edit03.png" alt="삭제"></a></div></div>');
+		$(this).parents('.wrapper').remove();
+		return false
+	});
+	
+	$(document).on('click', '.btnSave', function(){ // 완료
+		var val = $(this).parent().siblings('input').val();
+		if (val == "")
+		{
+			alert("카테고리명을 입력하세요!!!");
+			return false;
+		}
+		var tag = $(this).parent("div").attr('tag');
+		if (tag == "0")
+		{
+			var result = goSaveCategory("I", val, tag, "faqCategoryProcess");
+			// seq를 받아와서 태그정보를 등록해야 한다.
+			$(this).parent("div").attr('tag', result);
+			console.log($(this).parent("div").attr('tag'));
+		}else {
+			goSaveCategory("U", val, tag, "faqCategoryProcess");
+		}
+		$(this).parents('.wrapInput').after('<div class="wrapper"><p class="name">' + val + '</p><div class="btn fr"><a href="" class="btnEdit"><img src="/resources/images/contents/btn_edit02.png" alt="수정"></a><a href="" class="btnDel"><img src="/resources/images/contents/btn_edit03.png" alt="삭제"></a></div></div>');
+		$(this).parents('.wrapInput').remove();
+		return false
+	});
+	
+	$(document).on('click', '.btnDel', function(){ // 삭제
+		console.log("delete tag: " + $(this).parent("div").attr('tag'));
+		var q = confirm('정말 삭제하시겠습니까? 삭제후에는 복구가 불가능합니다');
+		if(q == true){
+			var tag = $(this).parent("div").attr('tag');
+			if (tag == '0')
+				$(this).parents('tr').remove();
+			else {
+				// ajax 데이터 처리
+				goSaveCategory("D", "", tag, "faqCategoryProcess");
+				$(this).parents('tr').remove();
+			}
+		} else {
+			
+		};
+		return false
+	});
+	
+	btnAdd.on('click', function(){ //항목 추가
+		// default tag 0 추가
+		$(this).parents('table').find('tbody').append('<tr><td><div class="wrapInput"><input type="text" name="" value=""><div tag="0" class="btn"><a href="" class="btnSave"><img src="/resources/images/contents/btn_edit01.png" alt="저장"></a><a href="" class="btnDel"><img src="/resources/images/contents/btn_edit03.png" alt="삭제"></a></div></div></td></tr>');
+		return false
+	});
+});
+</script>

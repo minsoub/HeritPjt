@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import kr.co.neodreams.herit.mapper.AdminMapper;
 import kr.co.neodreams.herit.model.Admin;
 import kr.co.neodreams.herit.model.AuthCheck;
+import kr.co.neodreams.herit.model.Faq;
+import kr.co.neodreams.herit.model.FaqCategory;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -180,5 +182,141 @@ public class AdminAuthorityService {
 		int retVal = mapper.deleteAuthority(data);
 		
 		return retVal;
-	}		
+	}	
+	
+	/**
+	 * search the all FAQ list.
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Faq> selectFaqAll(Faq data) throws Exception
+	{
+		List<Faq> lst = mapper.selectFaqAll(data);
+		
+		log.info("selectFaqAll : {}", lst);
+		return lst;
+	}
+	/**
+	 * search the all FAQ list count
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public int selectFaqAllCount(Faq data) throws Exception
+	{
+		int count = mapper.selectFaqAllCount(data);
+		
+		return count;
+	}
+	
+	/**
+	 * search the FAQ detail data.
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public Faq selectFaqById(Faq data) throws Exception
+	{
+		Faq info = mapper.selectFaqById(data);
+		log.info("selectFaqById : {}", info);
+		return info;
+	}	
+	
+	/**
+	 * search the FAQ Category List
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<FaqCategory> selectFaqCategory() throws Exception
+	{
+		List<FaqCategory> lst = mapper.selectFaqCategory();
+		
+		log.info("selectFaqCategory : {}", lst);
+		return lst;
+	}
+	
+	/**
+	 * replay the FAQ data.
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertFaq(Faq data) throws Exception
+	{
+		int retVal = mapper.updateFaqReply(data);
+		
+		return retVal;
+	}
+	
+	
+	/**
+	 * delete the FAQ data
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public int deleteFaq(Faq data) throws Exception
+	{
+		int retVal = mapper.deleteFaq(data);
+		
+		return retVal;
+	}	
+	
+	/**
+	 * return the FAQ category max seq number
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public int selectFaqCategorySeq() throws Exception
+	{
+		int retVal = mapper.selectFaqCategorySeq();
+		return retVal;
+	}
+	
+	/**
+	 * insert the FAQ Category data
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertFaqCategory(FaqCategory data) throws Exception
+	{
+		int retVal = mapper.insertFaqCategory(data);
+		return retVal;
+	}
+	/**
+	 * update the FAQ Category data
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public int updateFaqCategory(FaqCategory data) throws Exception
+	{
+		int retVal = mapper.updateFaqCategory(data);
+		
+		return retVal;
+	}
+	/**
+	 * delete the FAQ Category data
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public int deleteFaqCategory(FaqCategory data) throws Exception
+	{
+		int retVal = mapper.deleteFaqCategory(data);
+		
+		return retVal;
+	}
 }

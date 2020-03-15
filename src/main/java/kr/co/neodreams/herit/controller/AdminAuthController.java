@@ -19,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.neodreams.herit.model.Admin;
 import kr.co.neodreams.herit.model.AuthCheck;
+import kr.co.neodreams.herit.model.Faq;
+import kr.co.neodreams.herit.model.FaqCategory;
 import kr.co.neodreams.herit.service.AdminAuthorityService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -83,6 +85,9 @@ public class AdminAuthController {
 			log.info("search administrator info : {}", info);
 			mv.addObject("info", info);
 			mv.addObject("paging", param);
+			// authority list search
+			List<AuthCheck> list = service.selectAuthorityAll(new AuthCheck()); 			
+			mv.addObject("list", list);
 			mv.setViewName("/admin/mng/admin_detail");
 		}
 		return mv;
@@ -100,6 +105,10 @@ public class AdminAuthController {
 	public ModelAndView regForm(Admin param, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		// authority list search
+		List<AuthCheck> list = service.selectAuthorityAll(new AuthCheck()); 
+		
+		mv.addObject("list", list);
 		mv.setViewName("/admin/mng/admin_reg");
 		return mv;
 	}
@@ -336,4 +345,141 @@ public class AdminAuthController {
 			res.getWriter().write(retVal);
 		}
 	}
+	
+	/**
+	 * FAQ list
+	 * 
+	 * @return
+	 * @throws Exception 
+	 */
+	@RequestMapping("/faqlist")
+	public ModelAndView adminFaqList(Faq param, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		log.info("paramter : {}", param);
+		
+		// faq list search
+		int totalCnt = service.selectFaqAllCount(param);		
+		List<Faq> lst = service.selectFaqAll(param);
+		log.info("search faqlist list : {}", lst);
+		
+		// category code search
+		List<FaqCategory> categoryList = service.selectFaqCategory();
+
+		mv.addObject("totalCnt", totalCnt);
+		mv.addObject("list", lst);
+		mv.addObject("categoryList", categoryList);
+		mv.addObject("paging", param);
+		mv.addObject("category", param.getCategory());
+		mv.addObject("searchMode", param.getSearchMode() == null ? "ALL" :param.getSearchMode());		// 전체, 미답변, 답변완료 검색 조건
+		mv.setViewName("/admin/mng/faq_list");
+		return mv;
+	}	
+	
+	/**
+	 * insert/delete/modify the faq category data
+	 * 
+	 * @param req
+	 * @param res
+	 * @param param
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@PostMapping("/faqCategoryProcess")
+	public void faqCategoryProcess(HttpServletRequest req, HttpServletResponse res, FaqCategory param) throws Exception {
+		
+		String retVal = "0";
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		TransactionStatus status = dataSourceTransactionManager.getTransaction(def);
+		
+		try{
+			log.debug("delete param {}", param);	
+			if (param.getMode().equals("I")) {
+				retVal = Integer.toString(service.insertFaqCategory(param));
+			
+				int seq = service.selectFaqCategorySeq();
+				retVal = String.valueOf(seq);		// max seq number
+			}
+			else if(param.getMode().equals("U"))
+				retVal = Integer.toString(service.updateFaqCategory(param));
+			else if(param.getMode().equals("D"))
+				retVal = Integer.toString(service.deleteFaqCategory(param));
+			
+			log.debug("retVal : {}", retVal);
+			dataSourceTransactionManager.commit(status);
+		}catch (Exception e) {
+			retVal = "-1";
+			log.debug("delete error : {}", e);
+			dataSourceTransactionManager.rollback(status);
+		}finally {
+			res.getWriter().write(retVal);
+		}
+	}
+	
+	/**
+	 * view the detail administrator authority data.
+	 * 
+	 * @param param
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/faqdetail")
+	public ModelAndView faqDetail(Faq param, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		log.info("paramter : {}", param);
+
+		Faq info = service.selectFaqById(param);
+		
+		if (info == null)
+		{
+			mv.setViewName("redirect:faq_list");
+		}else {
+			log.info("search faqDetail info : {}", info);
+			mv.addObject("info", info);
+			mv.addObject("paging", param);
+			mv.addObject("mode", "U");				// modify mode
+			mv.addObject("seq",   info.getSeq());
+			mv.setViewName("/admin/mng/faq_reg");
+		}
+		return mv;
+	}	
+	
+	/**
+	 * register/update/delete the administrator authority data.
+	 * 
+	 * @param req
+	 * @param res
+	 * @param param
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@PostMapping("/faqProccess")
+	public void faqProccess(HttpServletRequest req, HttpServletResponse res, Faq param) throws Exception {
+		
+		String retVal = "0";
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		TransactionStatus status = dataSourceTransactionManager.getTransaction(def);
+		
+		try{
+			param.setUse_yn("Y");
+			log.debug("authProccess param {}", param);
+			if (param.getMode().equals("I"))
+			{
+				param.setRe_reg_id(req.getSession().getAttribute("id").toString());		// 관리자 세션
+				retVal = Integer.toString(service.insertFaq(param));
+			}
+			log.debug("retVal : {}", retVal);
+			dataSourceTransactionManager.commit(status);
+		}catch (Exception e) {
+			retVal = "-1";
+			log.debug("authProccess error : {}", e);
+			dataSourceTransactionManager.rollback(status);
+		}finally {
+			res.getWriter().write(retVal);
+		}
+	}	
 }

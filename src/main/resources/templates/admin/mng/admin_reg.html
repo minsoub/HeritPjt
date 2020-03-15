@@ -57,7 +57,7 @@
 					<th>권한</th>
 					<td>
 						<select name="auth_tp" id="auth_tp">
-							<option value="1">시스템 관리자</option>
+							<option th:each="itemData: ${list}" th:value="${itemData.seq}" th:text="${itemData.auth_name}"></option>
 						</select>
 					</td>
 				</tr>

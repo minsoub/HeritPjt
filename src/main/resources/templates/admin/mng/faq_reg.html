@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<div class="wrapSnb">
+			<h2 class="tit">관리자 관리</h2>
+			<ul class="snb">
+				<li><a th:href="@{list}">관리자 관리</a></li>
+				<li><a th:href="@{authlist}">권한 관리</a></li>
+				<li><a th:href="@{faqlist}" class="active">문의 내역</a></li>
+			</ul>
+		</div>
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">문의 내역 상세</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">관리자 관리</a></li>
+					<li><a href="">문의 내역</a></li>
+				</ol>
+			</div>
+
+			<table class="tblTypeC listQna mtSm">
+				<colgroup>
+					<col width="100">
+					<col>
+					<col width="100">
+					<col>
+				</colgroup>
+				<tr>
+					<th>카테고리</th>
+					<td colspan="3" th:text="${info.category_name}"></td>
+				</tr>
+				<tr>
+					<th>작성일</th>
+					<td th:text="${info.reg_dt}"></td>
+					<th>작성자</th>
+					<td th:text="${info.name}"></td>
+				</tr>
+				<tr>
+					<th>문의 내용</th>
+					<td colspan="3">
+						<div class="wrapCnt" th:text="${info.content}"></div>
+					</td>
+				</tr>
+			</table>
+			<h3 class="cntTitLg">답변 하기</h3>
+			<table class="tblTypeC listQna mtSm">
+				<colgroup>
+					<col width="100">
+					<col>
+				</colgroup>
+				<tr>
+					<th>답변 내용</th>
+					<td><textarea name="re_content" id="re_content"></textarea></td>
+				</tr>
+			</table>
+			<!-- btn -->
+			<div class="btnWrap mtMmd">
+				<a href="" id="btnReg" class="btnDefault">답변등록</a>
+				<a th:href="@{faqlist}" class="btnDefault">목록</a>
+			</div>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+</th:block>
+</html>
+<script>
+$(document).ready(function() {
+	load_fnc('7', '0', '0'); //menu script
+	
+	$('#btnReg').click(function(){
+		var params = {
+			"re_content" : $("#re_content").val(),
+			"mode" : "I"
+		};
+		goJsonInput(params, "faqProcess", "faq_list");	
+	});
+});
+
+</script>

@@ -52,11 +52,37 @@ public class AdminController {
 		{
 			// 세션 등록
 			session.setAttribute("auth_chk", "0");
+			session.setAttribute("id", data.getId());
+			// 메뉴 권한에 대해서 처리해야 한다.
+			
+			// 관리자 last_login_dt 업데이트
+			int result = service.updateAdminLoginDt(data);
+			
 			mv.setViewName("redirect:/admin/member/list");
 		}else {
 			mv.addObject("returnCode", "9999");
 			mv.setViewName("admin/login");
 		}
+		
+		return mv;
+	}
+	
+	/**
+	 * administrator logout
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/logout")
+	public ModelAndView logoutProcess(HttpServletRequest request) throws Exception
+	{
+		HttpSession session = request.getSession();
+		session.invalidate();
+		log.info("session invalidate called...");
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("returnCode", "");
+		mv.setViewName("admin/login");
 		
 		return mv;
 	}
