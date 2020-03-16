@@ -1,0 +1,10 @@
+		<!-- SNB -->
+		<div class="wrapSnb">
+			<h2 class="tit">회원관리</h2>
+			<ul class="snb">
+				<li><a th:href="@{list}"     th:class="${menu == 1}?active:no">정회원</a></li>
+				<li><a th:href="@{freelist}" th:class="${menu == 2}?active:no">휴면회원</a></li>
+				<li><a th:href="@{dellist}"  th:class="${menu == 3}?active:no">탈퇴회원</a></li>
+			</ul>
+		</div>
+		<!-- //SNB -->

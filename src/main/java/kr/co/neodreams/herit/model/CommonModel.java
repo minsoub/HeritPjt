@@ -14,6 +14,9 @@ public class CommonModel {
 	private int pageStartNo;			// page start number 
 	private int pageEndNo;				// page end number
 	
+	private String searchMode;
+	private String mode;
+	
 	public CommonModel()
 	{
 		this.pageNo = 1;

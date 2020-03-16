@@ -7,15 +7,9 @@
 	<!-- contaier -->
 	<div class="innerWrap">
 		<!-- SNB -->
-		<div class="wrapSnb">
-			<h2 class="tit">관리자 관리</h2>
-			<ul class="snb">
-				<li><a th:href="@{list}">관리자 관리</a></li>
-				<li><a th:href="@{authlist}">권한 관리</a></li>
-				<li><a th:href="@{faqlist}" class="active">문의 내역</a></li>
-			</ul>
-		</div>
+		<th:block th:with="menu=3" th:include="admin/mng/mng_menu"></th:block>
 		<!-- //SNB -->
+		
 		<!-- contents -->
 		<div class="contents">
 			<div class="cntTitWrap">

@@ -24,6 +24,4 @@ public class Faq extends CommonModel  {
 	private String re_content;
 	private String re_reg_id;
 	private String re_reg_dt;
-	private String searchMode;
-	private String mode;
 }

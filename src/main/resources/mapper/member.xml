@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.neodreams.herit.mapper.MemberMapper">
+
+	<!-- Member login retry  -->
+	<select id="selectLoginById" parameterType="HashMap" resultType="admin">
+		SELECT seq, id, name, last_login_dt
+		  from herit_member
+		 where
+		       id   = #{id}
+		   and pass = #{pass}
+	</select>
+
+	<!--  last login date update  -->
+	<update id="updateLoginDt"  parameterType="HashMap">
+		UPDATE herit_member
+		   set last_login_dt = current_timestamp
+		 WHERE seq = #{seq}
+	</update>
+	
+	<!-- member list count search -->
+	<select id="selectMemberListCount" parameterType="HashMap" resultType="int">
+        <![CDATA[
+            SELECT 
+                  count(a.seq) as cnt
+             FROM herit_member
+            WHERE  1=1
+        ]]>
+        <if test='searchString != null'>
+        	<if test="searchId == 'id'">
+        		and a.id like '%'||#{searchString}||'%'
+        	</if>
+        	<if test="searchId == 'name'">
+        		and a.name like '%'||#{searchString}||'%'
+        	</if>
+        	<if test="searchId == 'htel'">
+        		and ( a.phone like '%'||#{searchString}||'%')
+        	</if>        	        	
+        </if>
+	</select>	
+	
+	<!-- member list search  -->
+	<select id="selectMemberList" parameterType="HashMap" resultType="member">
+        <![CDATA[
+            SELECT 
+                  a.seq, a.id, a.name, a.phone, a.birtyday, a.sex, a.agree_dt, a.mark_chk, a.mark_dt, a.mem_sts, a.use_yn,  a.last_login_dt
+             FROM herit_member a
+            WHERE  1=1
+        ]]>
+        <if test='searchString != null'>
+        	<if test="searchId == 'id'">
+        		and a.id like '%'||#{searchString}||'%'
+        	</if>
+        	<if test="searchId == 'name'">
+        		and a.name like '%'||#{searchString}||'%'
+        	</if>
+        	<if test="searchId == 'htel'">
+        		and ( a.phone like '%'||#{searchString}||'%')
+        	</if>          	        	
+        </if>
+        order by reg_dt desc	
+	</select>	
+	
+	
+	<!--  search member detatil information  -->
+	<select id="selectMemberById" parameterType="HashMap" resultType="member">
+		SELECT seq, id, name, pass, phone, birtyday, sex, agree_dt, mark_chk, mark_dt, mem_sts, use_yn, reg_dt, last_login_dt
+		  from herit_member
+		 where
+		       seq = #{seq}
+	</select>	
+	
+	<!--  member register  -->
+    <insert id="insertMember" parameterType="HashMap">
+		INSERT INTO herit_member (
+			seq,           id,          name,             pass,           phone, 
+			birtyday,      sex,         agree_dt,         mark_chk,       mark_dt, 
+			mem_sts,       use_yn,      reg_dt
+		) VALUES (
+			#{seq},        #{id},       #{name},          #{pass},        #{phone},     
+			#{birtyday},   #{sex},      #{agree_dt},      #{mark_chk},    #{mark_dt},
+			#{mem_sts},    #{use_yn},   current_timestamp
+		)
+	</insert>	
+	
+	<!--  administrator update  -->
+    <update id="updateMember" parameterType="HashMap">
+		UPDATE herit_member 
+		   SET 
+		       name     = #{name},
+		       pass     = #{pass},    
+		       phone    = #{phone},     
+			   mem_sts  = #{mem_sts},
+			   use_yn   = #{use_yn},
+			   mark_chk = #{marK_chk},
+			   agree_dt = #{agree_dt},
+			   mark_dt  = #{mark_dt}
+	     WHERE
+	           seq = #{seq}
+	</update>	
+	
+	<!--  administrator delete  -->
+    <delete id="deleteMember" parameterType="HashMap">
+		delete from herit_member 
+		 where seq = #{seq}
+	</delete>	
+		
+</mapper>

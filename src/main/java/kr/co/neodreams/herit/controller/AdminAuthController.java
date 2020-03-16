@@ -437,6 +437,8 @@ public class AdminAuthController {
 			mv.setViewName("redirect:faq_list");
 		}else {
 			log.info("search faqDetail info : {}", info);
+			if (info.getRe_content() != null)
+				info.setRe_content(info.getRe_content().replace("\\r\\n", "\n"));
 			mv.addObject("info", info);
 			mv.addObject("paging", param);
 			mv.addObject("mode", "U");				// modify mode
@@ -455,8 +457,8 @@ public class AdminAuthController {
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@PostMapping("/faqProccess")
-	public void faqProccess(HttpServletRequest req, HttpServletResponse res, Faq param) throws Exception {
+	@PostMapping("/faqProcess")
+	public void faqProcess(HttpServletRequest req, HttpServletResponse res, Faq param) throws Exception {
 		
 		String retVal = "0";
 		

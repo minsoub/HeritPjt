@@ -1,0 +1,10 @@
+<!-- SNB -->
+<div class="wrapSnb">
+	<h2 class="tit">관리자 관리</h2>
+	<ul class="snb">
+		<li><a th:href="@{list}"     th:class="${menu == 1}?active:no">관리자 관리</a></li>
+		<li><a th:href="@{authlist}" th:class="${menu == 2}?active:no">권한 관리</a></li>
+		<li><a th:href="@{faqlist}"  th:class="${menu == 3}?active:no">문의 내역</a></li>
+	</ul>
+</div>
+<!-- //SNB -->
