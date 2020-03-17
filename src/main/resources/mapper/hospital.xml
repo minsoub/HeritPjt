@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.neodreams.herit.mapper.HospitalMapper">
+
+	<!-- Hospital list count search -->
+	<select id="selectHospitalListCount" parameterType="HashMap" resultType="int">
+        <![CDATA[
+            SELECT 
+                  count(seq) as cnt
+             FROM herit_hospital
+            WHERE  1=1
+        ]]>
+        <if test='h_name != null'>
+        	and h_name like '%'||#{h_name}||'%'       	        	
+        </if>
+        <if test='name != null'>
+        	and name like '%'||#{name}||'%'       	        	
+        </if> 
+        <if test='phone != null'>
+        	and phone like '%'||#{phone}||'%'       	        	
+        </if>  
+	</select>	
+	
+	<!-- member list search  -->
+	<select id="selectHospitalList" parameterType="HashMap" resultType="hospital">
+        <![CDATA[
+            SELECT 
+                  a.seq, a.h_name, a.name, a.phone, a.addr, a.use_yn, a.reg_dt
+             FROM herit_hospital a
+            WHERE  1=1
+        ]]>
+        <if test='h_name != null'>
+        	and h_name like '%'||#{h_name}||'%'       	        	
+        </if>
+        <if test='name != null'>
+        	and name like '%'||#{name}||'%'       	        	
+        </if> 
+        <if test='phone != null'>
+        	and phone like '%'||#{phone}||'%'       	        	
+        </if>  
+        order by reg_dt desc	
+        LIMIT #{perPageCnt} OFFSET #{pageStartNo}
+	</select>	
+	
+	
+	<!--  search Hospital detatil information  -->
+	<select id="selectHospitalById" parameterType="HashMap" resultType="hospital">
+		SELECT seq, h_name, name, phone, addr, use_yn, 
+               date_format(reg_dt, '%Y-%m-%d %H:%i') as reg_dt
+		  from herit_hospital
+		 where
+		       seq = #{seq}
+	</select>	
+	
+	<!--  Hospital register  -->
+    <insert id="insertHospital" parameterType="HashMap">
+		INSERT INTO herit_hospital (
+			seq,     h_name,    name,     phone,     addr,      use_yn,      reg_dt
+		) VALUES (
+			#{seq},  #{h_name}, #{name},  #{phone},  #{addr},   #{use_yn},   current_timestamp
+		)
+	</insert>	
+	
+	<!--  Hospital update  -->
+    <update id="updateHospital" parameterType="HashMap">
+		UPDATE herit_hospital 
+		   SET 
+		       h_name = #{h_name},
+		       name   = #{name},    
+		       phone  = #{phone},     
+			   addr   = #{addr},
+	     WHERE
+	           seq = #{seq}
+	</update>	
+	
+	<!--  Hospital delete  -->
+    <delete id="deleteHospital" parameterType="HashMap">
+		delete from herit_hospital 
+		 where seq = #{seq}
+	</delete>	
+		
+</mapper>

@@ -76,7 +76,7 @@
 				<tbody>				
 					<tr th:each="info : ${list}">
 						<td><input type="checkbox" name="groupid" id="groupid" class="groupid" th:value="${info.seq}"></td>
-						<td class="tal" th:text="${info.id}">
+						<td class="tal"><a th:href="@{detail(seq=${info.seq})}" th:text="${info.id}"></a></td>
 						<td th:text="${info.phone}">
 						<td th:text="${info.name}">
 						<td th:text="${info.birthday}">

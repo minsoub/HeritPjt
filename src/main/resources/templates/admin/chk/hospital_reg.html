@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=3" th:include="admin/chk/chk_menu"></th:block>
+		<!-- //SNB -->
+		
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">건강병원</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">검진데이터</a></li>
+					<li><a href="">건강병원</a></li>
+				</ol>
+			</div>
+			<table class="tblTypeC mtMmd">
+				<colgroup>
+					<col width="100px">
+					<col>
+					<col width="100px">
+					<col>
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>병원명</th>
+						<td><input type="text" name=""></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th>담당자</th>
+						<td><input type="text" name=""></td>
+						<th>연락처</th>
+						<td><input type="text" name=""></td>
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td colspan="3"><input type="text" name=""></td>
+					</tr>								
+				</tbody>
+			</table>
+			<div class="btnWrap mtMmd">
+				<a href="" class="btnDefault">등록</a>
+				<a href="" class="btnDefault">취소</a>
+			</div>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('2', '0', '0'); //menu script	
+});
+</script>

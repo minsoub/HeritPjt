@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=3" th:include="admin/chk/chk_menu"></th:block>
+		<!-- //SNB -->
+		
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">건강병원</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">검진데이터</a></li>
+					<li><a href="">건강병원</a></li>
+				</ol>
+			</div>
+			<!-- 검색 영역 -->
+			<form name="frm" id="frm" method="post">
+			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />				
+			<div class="bxCnt mtSm">
+				<table class="tblTypeB">
+					<colgroup>
+						<col width="100px">
+						<col>
+						<col width="100px">
+						<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>병원명</th>
+							<td><input type="text" name=""></td>
+							<th>담당자</th>
+							<td><input type="text" name=""></td>
+						</tr>
+						<tr>
+							<th>연락처</th>
+							<td><input type="text" name=""></td>
+							<td></td>
+							<td></td>
+						</tr>								
+					</tbody>
+				</table>
+				<div class="btnWrap mtSm tac">
+					<a href="" class="btnPrimary">검색하기</a>
+				</div>
+			</div>
+			<!-- //검색 영역 -->
+
+			<div class="txtBbs mtSMd">총 50건</div>
+			<table class="tblTypeA mtSm">
+				<thead>
+					<tr>
+						<th>병원명</th>
+						<th>담당자</th>
+						<th>연락처</th>
+						<th>주소</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:if="${totalCnt == 0}">
+						<tr>
+							<td colspan="9" class="noData">
+								<p class="ico"><img src="/resources/images/contents/ico_nodata01.gif" alt=""></p>
+								검색 결과가 없습니다.
+							</td>
+						</tr>
+					</th:block>
+					<th:block th:if="${totalCnt > 0}">
+						<tr th:each="info : ${list}">
+							<td><a th:href="@{hdetail(seq=${info.seq})}" th:text="${info.h_name}"></a></td>
+							<td th:text="${info.name}">
+							<td th:text="${info.phone}">
+							<td th:text="${info.addr}">
+						</tr>
+					</th:block>
+				</tbody>
+			</table>
+			<th:block th:if="${totalCnt > 0}">
+			<!-- paging -->
+			<th:block th:include="admin/layout/common_paging"></th:block>
+			</th:block>
+			<div class="btnWrap mtMmd"><a th:href="@{hregform}" class="btnDefault">등록</a></div>
+			
+			</form>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('2', '0', '0'); //menu script	
+});
+</script>

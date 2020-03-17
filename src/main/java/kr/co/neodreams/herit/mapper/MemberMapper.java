@@ -30,7 +30,7 @@ public interface MemberMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	Member selectDetailById(Member data) throws Exception;
+	Member selectMemberById(Member data) throws Exception;
 	
 	/**
 	 * search the User list

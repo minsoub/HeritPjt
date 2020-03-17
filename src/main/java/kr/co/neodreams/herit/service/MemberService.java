@@ -45,9 +45,9 @@ public class MemberService {
 	 */
 	public Member selectDetailById(Member data) throws Exception
 	{
-		Member info = mapper.selectDetailById(data);
+		Member info = mapper.selectMemberById(data);
 		
-		log.info("selectDetailById : {}", info);
+		log.info("selectMemberById : {}", info);
 		return info;
 	}
 	

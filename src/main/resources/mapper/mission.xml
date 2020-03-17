@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.neodreams.herit.mapper.MissionMapper">
+	
+	<!-- Mission history list count search -->
+	<select id="selectMissionListCount" parameterType="HashMap" resultType="int">
+        <![CDATA[
+            SELECT 
+                  count(seq) as cnt
+             FROM herit_mission_info
+            WHERE  mem_seq = #{mem_seq}
+        ]]>
+        <if test='searchFromDt != null and searchToDt != null'>
+        	and date_format(reg_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}      	        	
+        </if>
+	</select>	
+	
+	<!-- Mission history list search  -->
+	<select id="selectMissionList" parameterType="HashMap" resultType="mission">
+        <![CDATA[
+            SELECT 
+                  a.seq, a.mem_seq, a.mission_key, a.result, a.succ_yn, 
+			      case 
+  					when a.succ_yn = 'Y' then '성공'
+  					when a.succ_yn = 'N' then '실패'
+  					else  ''
+  			      end as succ_yn_name,                   
+                  date_format(a.reg_dt, '%Y-%m-%d %H:%i') as reg_dt,
+                  date_format(a.upt_dt, '%Y-%m-%d %H:%i') as upt_dt
+             FROM herit_mission_info a
+            WHERE  a.mem_seq = #{mem_seq}
+        ]]>
+        <if test='searchFromDt != null and searchToDt != null'>
+        	and date_format(a.reg_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}      	        	
+        </if>
+        order by reg_dt desc	
+        LIMIT #{perPageCnt} OFFSET #{pageStartNo}
+	</select>	
+	
+</mapper>

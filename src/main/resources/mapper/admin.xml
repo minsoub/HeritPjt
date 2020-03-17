@@ -232,7 +232,7 @@
         	</if>
         </if>  
         order by a.reg_dt desc
-        LIMIT #{perPageCnt} OFFSET (#{pageNo} - 1) * #{perPageCnt}                 	
+        LIMIT #{perPageCnt} OFFSET #{pageStartNo}                 	
 	</select>	
 	
 	<!--  FAQ detail search -->

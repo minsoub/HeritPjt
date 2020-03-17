@@ -37,4 +37,10 @@ public class Member extends CommonModel {
 	private String last_login_dt;
 	
 	private String menu;		// bottom menu (1 결제내역, 2 포인트내역, 3 미션현황, 4 검진데이터)
+	
+	// 결제내역 검색 조건
+	// search variable type
+	private String searchFromDt;
+	private String searchToDt;	
+	private String searchSts;
 }

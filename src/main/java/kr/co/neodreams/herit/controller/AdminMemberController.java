@@ -11,8 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.neodreams.herit.model.Admin;
 import kr.co.neodreams.herit.model.AuthCheck;
+import kr.co.neodreams.herit.model.MemPoint;
 import kr.co.neodreams.herit.model.Member;
+import kr.co.neodreams.herit.model.PayInfo;
+import kr.co.neodreams.herit.model.Mission;
+import kr.co.neodreams.herit.service.MemPointService;
 import kr.co.neodreams.herit.service.MemberService;
+import kr.co.neodreams.herit.service.MissionService;
+import kr.co.neodreams.herit.service.PayInfoService;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -28,6 +34,12 @@ public class AdminMemberController {
 	
 	@Autowired
 	private MemberService service;
+	@Autowired
+	private PayInfoService payService;
+	@Autowired
+	private MemPointService memService;
+	@Autowired
+	private MissionService missService;
 	
 	/**
 	 * Member list page 
@@ -40,12 +52,13 @@ public class AdminMemberController {
 		ModelAndView mv = new ModelAndView();
 		log.info("paramter : {}", param);
 		
+		param.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
 		int cnt = service.selectMemberListCount(param);
 		int total = service.selectMemberTotal();
 		
 		List<Member> lst = service.selectMemberList(param);
 		log.info("search memberList list : {}", lst);
-		mv.addObject("totalCnt", String.valueOf(cnt));
+		mv.addObject("totalCnt", cnt);		// need to Integer type
 		mv.addObject("total", String.valueOf(total));
 		
 		mv.addObject("list", lst);
@@ -80,10 +93,46 @@ public class AdminMemberController {
 				param.setMenu("1");
 			}
 			mv.addObject("paging", param);
-			// authority list search
-			//List<Member> list = service.selectAuthorityAll(new AuthCheck()); 			
-			//mv.addObject("list", list);
-			
+			log.info("paging data : {}", param);
+
+			if (param.getMenu().equals("1"))		// 결제내역
+			{
+				PayInfo p = new PayInfo();
+				p.setMem_seq(param.getSeq());
+				p.setPageNo(param.getPageNo());
+				p.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
+				int cnt = payService.selectPayInfoListCount(p);				
+				List<PayInfo> lst = payService.selectPayInfoList(p);
+				
+				mv.addObject("totalCnt", cnt);	
+				mv.addObject("list", lst);
+			}else if(param.getMenu().equals("2"))	// 포인트 내역
+			{
+				MemPoint p = new MemPoint();
+				p.setMem_seq(param.getSeq());
+				p.setPageNo(param.getPageNo());
+				p.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
+				int cnt = memService.selectMemPointListCount(p);				
+				List<MemPoint> lst = memService.selectMemPointList(p);
+				
+				mv.addObject("totalCnt", cnt);	
+				mv.addObject("list", lst);
+			}else if(param.getMenu().equals("3"))	// 미션현황
+			{
+				Mission p = new Mission();
+				p.setMem_seq(param.getSeq());
+				p.setPageNo(param.getPageNo());
+				p.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
+				int cnt = missService.selectMissionListCount(p);				
+				List<Mission> lst = missService.selectMissionList(p);
+				
+				mv.addObject("totalCnt", cnt);	
+				mv.addObject("list", lst);
+			}else if(param.getMenu().equals("4"))	// 검진데이터
+			{
+				
+			}
+				
 			
 			mv.setViewName("/admin/member/member_detail");
 		}

@@ -28,19 +28,19 @@
 	<select id="selectMemberListCount" parameterType="HashMap" resultType="int">
         <![CDATA[
             SELECT 
-                  count(a.seq) as cnt
+                  count(seq) as cnt
              FROM herit_member
             WHERE  1=1
         ]]>
         <if test='searchString != null'>
         	<if test="searchId == 'id'">
-        		and a.id like '%'||#{searchString}||'%'
+        		and id like '%'||#{searchString}||'%'
         	</if>
         	<if test="searchId == 'name'">
-        		and a.name like '%'||#{searchString}||'%'
+        		and name like '%'||#{searchString}||'%'
         	</if>
         	<if test="searchId == 'htel'">
-        		and ( a.phone like '%'||#{searchString}||'%')
+        		and ( phone like '%'||#{searchString}||'%')
         	</if>        	        	
         </if>
 	</select>	
@@ -49,7 +49,7 @@
 	<select id="selectMemberList" parameterType="HashMap" resultType="member">
         <![CDATA[
             SELECT 
-                  a.seq, a.id, a.name, a.phone, a.birtyday, a.sex, a.agree_dt, a.mark_chk, a.mark_dt, a.mem_sts, a.use_yn,  a.last_login_dt
+                  a.seq, a.id, a.name, a.phone, a.birthday, a.sex, a.agree_dt, a.mark_chk, a.mark_dt, a.mem_sts, a.use_yn,  a.last_login_dt
              FROM herit_member a
             WHERE  1=1
         ]]>
@@ -65,12 +65,13 @@
         	</if>          	        	
         </if>
         order by reg_dt desc	
+        LIMIT #{perPageCnt} OFFSET #{pageStartNo}
 	</select>	
 	
 	
 	<!--  search member detatil information  -->
 	<select id="selectMemberById" parameterType="HashMap" resultType="member">
-		SELECT seq, id, name, pass, phone, birtyday, sex, 
+		SELECT seq, id, name, pass, phone, birthday, sex, 
 			   case 
   					when sex = 'M' then '남자'
   					when sex = 'F' then '여자'

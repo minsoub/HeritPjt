@@ -358,6 +358,7 @@ public class AdminAuthController {
 		log.info("paramter : {}", param);
 		
 		// faq list search
+		param.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
 		int totalCnt = service.selectFaqAllCount(param);		
 		List<Faq> lst = service.selectFaqAll(param);
 		log.info("search faqlist list : {}", lst);

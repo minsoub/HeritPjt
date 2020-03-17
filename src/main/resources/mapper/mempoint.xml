@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.neodreams.herit.mapper.MemPointMapper">
+	
+	<!-- point history list count search -->
+	<select id="selectMemPointListCount" parameterType="HashMap" resultType="int">
+        <![CDATA[
+            SELECT 
+                  count(seq) as cnt
+             FROM herit_mem_point
+            WHERE  mem_seq = #{mem_seq}            
+        ]]>
+        <if test='searchFromDt != null and searchToDt != null'>
+        	<if test="use_yn == null">
+        		and date_format(reg_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
+        	</if>
+        	<if test="use_yn != null">
+        		and use_yn = #{pay_sts} and date_format(reg_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
+        	</if>       	        	
+        </if>
+	</select>	
+	
+	<!-- point history list search  -->
+	<select id="selectMemPointList" parameterType="HashMap" resultType="mempoint">
+        <![CDATA[
+            SELECT 
+                  a.seq, a.mem_seq, a.content, a.point_ref, a.point_type, a.point, a.rest_point, a.use_yn, 
+			      case 
+  					when a.use_yn = 'Y' then '적립'
+  					when a.use_yn = 'P' then '사용'
+  					when a.use_yn = 'N' then '삭제건'
+  					else  ''
+  			      end as use_yn_name,                   
+                  date_format(a.reg_dt, '%Y-%m-%d %H:%i') as reg_dt
+             FROM herit_mem_point a
+            WHERE  a.mem_seq = #{mem_seq}
+        ]]>
+        <if test='searchFromDt != null and searchToDt != null'>
+        	<if test="use_yn == null">
+        		and date_format(reg_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
+        	</if>
+        	<if test="use_yn != null">
+        		and use_yn = #{use_yn} and date_format(reg_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
+        	</if>       	        	
+        </if>
+        order by a.reg_dt desc	
+        LIMIT #{perPageCnt} OFFSET #{pageStartNo}
+	</select>	
+	
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.neodreams.herit.mapper.PayInfoMapper">
+	
+	<!-- pay history list count search -->
+	<select id="selectPayInfoListCount" parameterType="HashMap" resultType="int">
+        <![CDATA[
+            SELECT 
+                  count(seq) as cnt
+             FROM herit_pay_info
+            WHERE  mem_seq = #{mem_seq}
+        ]]>
+        <if test='searchFromDt != null and searchToDt != null'>
+        	<if test="pay_sts == null">
+        		and date_format(pay_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
+        	</if>
+        	<if test="pay_sts != null">
+        		and pay_sts = #{pay_sts} and date_format(pay_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
+        	</if>       	        	
+        </if>
+	</select>	
+	
+	<!-- Pya history list search  -->
+	<select id="selectPayInfoList" parameterType="HashMap" resultType="payinfo">
+        <![CDATA[
+            SELECT 
+                  a.seq, a.mem_seq, a.product_key, a.pay_amt, a.pay_cnt, a.pay_total, a.pay_sts, 
+			      case 
+  					when a.pay_sts = 'Y' then '결제완료'
+  					when a.pay_sts = 'C' then '결제취소'
+  					when a.pay_sts = 'N' then '미승인'
+  					else  ''
+  			      end as pay_sts_name,                   
+                  date_format(a.pay_dt, '%Y-%m-%d %H:%i') as pay_dt
+             FROM herit_pay_info a
+            WHERE  a.mem_seq = #{mem_seq}
+        ]]>
+        <if test='searchFromDt != null and searchToDt != null'>
+        	<if test="pay_sts == null">
+        		and date_format(a.pay_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
+        	</if>
+        	<if test="pay_sts != null">
+        		and a.pay_sts = #{pay_sts} and date_format(a.pay_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
+        	</if>       	        	
+        </if>
+        order by pay_dt desc	
+        LIMIT #{perPageCnt} OFFSET #{pageStartNo}
+	</select>	
+	
+</mapper>
