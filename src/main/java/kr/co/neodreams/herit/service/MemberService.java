@@ -82,6 +82,19 @@ public class MemberService {
 	}
 	
 	/**
+	 * return total member count
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public int selectMemberTotal() throws Exception
+	{
+		int result = mapper.selectMemberTotal();
+		
+		return result;
+	}
+	
+	/**
 	 * register the User information.
 	 * 
 	 * @param data

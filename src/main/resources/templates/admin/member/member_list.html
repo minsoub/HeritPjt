@@ -21,6 +21,8 @@
 				</ol>
 			</div>
 			<!-- 검색 영역 -->
+			<form name="frm" id="frm" method="post">
+			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />			
 			<div class="bxCnt mtMmd">
 				<table class="tblTypeB">
 					<colgroup>
@@ -56,13 +58,13 @@
 			</div>
 			<!-- //검색 영역 -->
 			<div class="clearfix mtSm">
-				<div class="txtBbs fl mtSMd">검색 <span class="colorA">0</span> 명 / 전체 <span class="colorA">1,284</span> 명</div>
+				<div class="txtBbs fl mtSMd">검색 <span class="colorA">[[${totalCnt}]]</span> 명 / 전체 <span class="colorA">[[${total}]]</span> 명</div>
 				<div class="btnWrap fr"><a href="" class="btnDefault">회원등록</a></div>
 			</div>
 			<table class="tblTypeA mtSm">
 				<thead>
 					<tr>
-						<th><input type="checkbox" name="" class="chckAll"></th>
+						<th><input type="checkbox" name="all" class="chckAll"></th>
 						<th>ID</th>
 						<th>연락처</th>
 						<th>성명</th>
@@ -71,67 +73,21 @@
 						<th>최종 접속일</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td><input type="checkbox" name=""></td>
-						<td class="tal">aaabbb@herit.com</td>
-						<td>010-1234-5678</td>
-						<td>관리자</td>
-						<td>1982.12.11</td>
-						<td>2019.1.22 13:55</td>
-						<td>2020.01.01 08:55</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name=""></td>
-						<td class="tal">bbbccccdd@herit.com</td>
-						<td>010-1234-5678</td>
-						<td>관리자</td>
-						<td>1982.12.11</td>
-						<td>2019.1.22 13:55</td>
-						<td>2020.01.01 08:55</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name=""></td>
-						<td class="tal">aaabbb@herit.com</td>
-						<td>010-1234-5678</td>
-						<td>관리자</td>
-						<td>1982.12.11</td>
-						<td>2019.1.22 13:55</td>
-						<td>2020.01.01 08:55</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name=""></td>
-						<td class="tal">bbbccccdd@herit.com</td>
-						<td>010-1234-5678</td>
-						<td>관리자</td>
-						<td>1982.12.11</td>
-						<td>2019.1.22 13:55</td>
-						<td>2020.01.01 08:55</td>
+				<tbody>				
+					<tr th:each="info : ${list}">
+						<td><input type="checkbox" name="groupid" id="groupid" class="groupid" th:value="${info.seq}"></td>
+						<td class="tal" th:text="${info.id}">
+						<td th:text="${info.phone}">
+						<td th:text="${info.name}">
+						<td th:text="${info.birthday}">
+						<td th:text="${info.reg_dt}">
+						<td th:text="${info.last_login_dt}">
 					</tr>
 				</tbody>
 			</table>
 			<!-- paging -->
-			<div class="wrapPaging">
-				<div class="btnWrap fl">
-					<a href="" class="btnDefault">회원등록</a>
-				</div>
-				<div class="paging">
-					<a class="btnFirst" href="">첫 페이지</a>
-					<a class="btnPrev" href="">이전 페이지</a>
-					<a href="" class="on">1</a>
-					<a href="">2</a>
-					<a href="">3</a>
-					<a href="">4</a>
-					<a href="">5</a>
-					<a href="">6</a>
-					<a href="">7</a>
-					<a href="">8</a>
-					<a href="">9</a>
-					<a href="">10</a>
-					<a class="btnNext" href="">다음 페이지</a>
-					<a class="btnLast" href="">마지막 페이지</a>
-				</div>
-			</div>
+			<th:block th:include="admin/layout/common_paging"></th:block>
+			</form>
 		</div>
 		<!-- //contents -->
 	</div>
@@ -143,5 +99,33 @@
 <script>
 $(document).ready(function() {
 	load_fnc('1', '0', '0'); //menu script
+	
+    $('.chckAll' ).click( function() {
+        $('.groupid' ).prop( 'checked', this.checked );
+    } );
+	
+    $('#groupdelete').click(function() {
+        var chklen = $("input[id=groupid]:checkbox:checked").length;
+        var _text = "";
+        var _idtext = "";
+        if(chklen == 0){
+            alert("삭제할 그룹을 선택해주세요");
+            return;
+        }else{
+            var i = 1;
+            $('#groupid:checked').each(function() {
+                _idtext = _idtext+$(this).val().split(",")[0];
+                _text= _text+$(this).val().split(",")[1];
+                if(i<chklen){
+                    _idtext =_idtext+",";
+                    _text= _text+"</br>";
+                }
+                i++;
+            });
+            $("#grpmemberdel").modal("show");
+            $("#delgrp").html(_text);
+            $("#selgrpuserId").val(_idtext);
+        }
+    }); 	
 });
 </script>	

@@ -1,0 +1,59 @@
+			<ul class="tab typeA mtXl">
+				<li><a href="ADM0101_02.html" th:class="${menu == 1}?active:no">결제내역</a></li>
+				<li><a href="ADM0101_03.html" th:class="${menu == 2}?active:no">포인트 내역</a></li>
+				<li><a href="ADM0101_04.html" th:class="${menu == 3}?active:no">미션현황</a></li>
+				<li><a href="ADM0101_05.html" th:class="${menu == 4}?active:no">검진데이터</a></li>
+			</ul>
+			
+			
+			<div class="bxSrchForm mtSm">
+				<select name="">
+					<option value="">전체</option>
+					<option value="">결제완료</option>
+					<option value="">결제 취소</option>
+				</select>
+				<label for="" class="mlSMd">조회기간</label>
+				<input type="text" value="" class="datePic"> <span class="dash">~</span> <input type="text" value="" class="datePic">
+				<button type="button" class="btnPrimary sizeSm">검색</button>
+			</div>
+			<table class="tblTypeA mtSm">
+				<thead>
+					<tr>
+						<th>날짜</th>
+						<th>상태</th>
+						<th>결제 상품</th>
+						<th>결제액</th>
+						<th>합계</th>
+						<th>결제 취소</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>2019.12.31 15:00</td>
+						<td class="colorB">결제 취소</td>
+						<td class="colorB">Blue</td>
+						<td class="colorB">-50,000원</td>
+						<td class="colorB">180,000원</td>
+						<td class="colorB">결제 취소 완료</td>
+					</tr>
+					<tr>
+						<td>2019.12.31 15:00</td>
+						<td>결제 완료</td>
+						<td>Blue</td>
+						<td>50,000원</td>
+						<td>230,000원</td>
+						<td><p class="btnWrap"><a href="" class="btnColorC">결제 취소</a></p></td>
+					</tr>
+					<tr>
+						<td>2019.12.31 15:00</td>
+						<td>결제 완료</td>
+						<td>유전자</td>
+						<td>50,000원</td>
+						<td>180,000원</td>
+						<td><p class="btnWrap"><a href="" class="btnColorC">결제 취소</a></p></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<!-- paging -->
+			<th:block th:include="admin/layout/common_paging"></th:block>

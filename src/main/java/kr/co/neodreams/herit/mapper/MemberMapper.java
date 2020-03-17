@@ -51,6 +51,14 @@ public interface MemberMapper {
 	int selectMemberListCount(Member data) throws Exception;
 	
 	/**
+	 * return total member count
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	int selectMemberTotal() throws Exception;
+	
+	/**
 	 * register the User information.
 	 * 
 	 * @param data

@@ -14824,3 +14824,28 @@ Caused by: org.xml.sax.SAXParseException: 예기치 않은 파일의 끝입니�
 2020-03-16 12:47:27.737 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
 2020-03-16 12:47:27.738 [restartedMain] INFO  k.c.n.herit.HeritPjtApplication - Started HeritPjtApplication in 0.514 seconds (JVM running for 6321.712)
 2020-03-16 12:47:27.738 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2020-03-16 17:32:41.850 [Thread-113] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-16 17:32:41.856 [Thread-113] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-19 - Shutdown initiated...
+2020-03-16 17:32:41.863 [Thread-113] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-19 - Shutdown completed.
+2020-03-16 17:32:42.428 [restartedMain] INFO  k.c.n.herit.HeritPjtApplication - Starting HeritPjtApplication on DESKTOP-9ICD4G8 with PID 5900 (C:\DevPJT\HeritPJT\target\classes started by hist in C:\DevPJT\HeritPJT)
+2020-03-16 17:32:42.428 [restartedMain] INFO  k.c.n.herit.HeritPjtApplication - No active profile set, falling back to default profiles: default
+2020-03-16 17:32:42.709 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2020-03-16 17:32:42.710 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2020-03-16 17:32:42.710 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-03-16 17:32:42.710 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-16 17:32:42.766 [restartedMain] INFO  org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-03-16 17:32:42.768 [restartedMain] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-03-16 17:32:42.768 [restartedMain] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 331 ms
+2020-03-16 17:32:42.786 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-20 - Starting...
+2020-03-16 17:32:43.025 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-20 - Start completed.
+2020-03-16 17:32:43.026 [restartedMain] INFO  k.c.n.h.config.DatabaseConfiguration - datasource : HikariDataSource (HikariPool-20)
+2020-03-16 17:32:43.136 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-16 17:32:43.221 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-03-16 17:32:43.234 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2020-03-16 17:32:43.238 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2020-03-16 17:32:43.238 [restartedMain] INFO  k.c.n.herit.HeritPjtApplication - Started HeritPjtApplication in 0.843 seconds (JVM running for 23437.212)
+2020-03-16 17:32:43.240 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2020-03-16 17:33:27.916 [RMI TCP Connection(6)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+2020-03-16 17:33:27.918 [RMI TCP Connection(6)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-16 17:33:27.919 [RMI TCP Connection(6)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-20 - Shutdown initiated...
+2020-03-16 17:33:27.921 [RMI TCP Connection(6)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-20 - Shutdown completed.

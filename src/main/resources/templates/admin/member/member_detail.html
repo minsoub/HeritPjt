@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=1" th:include="admin/member/member_menu"></th:block>
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">정회원 상세</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">회원관리</a></li>
+					<li><a href="">정회원</a></li>
+				</ol>
+			</div>
+			<div class="bxCnt mtMmd">
+				<table class="tblTypeB">
+					<colgroup>
+						<col width="100px">
+						<col>
+						<col width="115px">
+						<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>아이디</th>
+							<td th:text="${info.id}">
+							<th>비밀번호</th>
+							<td><p class="btnWrap"><a href="javascript:openLayer('.popSendPw');" class="btnColorC w50">임시 비밀번호 발송</a></p></td>
+						</tr>
+						<tr>
+							<th>성명</th>
+							<td th:text="${info.name}">
+							<th>핸드폰</th>
+							<td th:text="${info.phone}">
+						</tr>
+						<tr>
+							<th>생년월일</th>
+							<td th:text="${info.birthday}">
+							<th>성별</th>
+							<td th:text="${sex_name}">
+						</tr>
+						<tr>
+							<th>요금제</th>
+							<td>BLUE</td>
+							<th>요금종료일</th>
+							<td>2020.12.31. 17:15</td>
+						</tr>
+						<tr>
+							<th>가입일</th>
+							<td th:text="${reg_dt}">
+							<th>최종접속일</th>
+							<td th:text="${last_login_dt}">
+						</tr>
+						<tr>
+							<th>약관 동의일</th>
+							<td th:text="${agree_dt}">
+							<th>마케팅동의</th>
+							<td th:text="${mark_chk}">
+						</tr>
+						<tr>
+							<th>회원상태</th>
+							<td th:text="${mem_sts_name}">
+							<th>최종마케팅 동의일</th>
+							<td th:text="${mark_dt}">
+						</tr>
+						<tr>
+							<th>검진데이터<br>연동 병원</th>
+							<td colspan="3">
+								<ul>
+									<li>서울대병원(2018.12.31. 15:00)</li>
+									<li>인하대병원(2019.05.13. 17:24)</li>
+									<li>아산현대병원(2019. 05.13. 17:24)</li>
+								</ul>
+							</td>
+						</tr>				
+					</tbody>
+				</table>
+				<div class="btnWrap mtSm tac">
+					<a href="" class="btnColorA">회원탈퇴</a>
+					<a href="" class="btnDefault">목록</a>
+				</div>
+			</div>
+			<!--  결제 내역/포인트 내역/미션현황/검진데이터  -->
+			<th:block th:with="menu=${paging.menu}" th:include="admin/member/member_bottom_menu"></th:block>
+
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+
+
+<!-- laeyr poup - 임시비밀번호 발송 -->
+<div class="wrapPop popSendPw">
+	<div class="popCnt sizeMd">
+		<h1 class="titPop">임시 비밀번호 발송</h1>
+		<p class="btnClose">
+			<a href=""><img src="/resources/images/common/btn_close_pop.png" alt="레이어 닫기"></a>
+		</p>
+		<div class="cnt">
+			<div class="bxCnt">
+				<h2 class="tit">임시 비밀번호 발송</h2>
+				<ul class="listTxt">
+					<li>- SMS를 통해 회원에게 비밀번호를 발송합니다.</li>
+					<li>- 전송 성공여부와 관계없이 임시 비밀번호로 설정됩니다.</li>
+				</ul>
+			</div>
+			<!-- btn -->
+			<p class="btnWrap">
+				<a href="" class="btnColorB">발송</a>
+				<a href="" class="btnDefault btnClose">취소</a>
+			</p>
+		</div>
+	</div>
+</div>
+<!-- //laeyr poup - 임시비밀번호 발송 -->
+	
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('1', '0', '0'); //menu script
+});
+</script>

@@ -4,13 +4,18 @@
 <mapper namespace="kr.co.neodreams.herit.mapper.MemberMapper">
 
 	<!-- Member login retry  -->
-	<select id="selectLoginById" parameterType="HashMap" resultType="admin">
+	<select id="selectLoginById" parameterType="HashMap" resultType="member">
 		SELECT seq, id, name, last_login_dt
 		  from herit_member
 		 where
 		       id   = #{id}
 		   and pass = #{pass}
 	</select>
+	
+	<select id="selectMemberTotal"  resultType="int">
+		SELECT count(*)
+		  from herit_member
+	</select>	
 
 	<!--  last login date update  -->
 	<update id="updateLoginDt"  parameterType="HashMap">
@@ -65,7 +70,25 @@
 	
 	<!--  search member detatil information  -->
 	<select id="selectMemberById" parameterType="HashMap" resultType="member">
-		SELECT seq, id, name, pass, phone, birtyday, sex, agree_dt, mark_chk, mark_dt, mem_sts, use_yn, reg_dt, last_login_dt
+		SELECT seq, id, name, pass, phone, birtyday, sex, 
+			   case 
+  					when sex = 'M' then '남자'
+  					when sex = 'F' then '여자'
+  					else  ''
+  			   end as sex_name, 
+			   date_format(agree_dt, '%Y-%m-%d %H:%i') as agree_dt, 
+			   mark_chk, 
+			   date_format(mark_dt, '%Y-%m-%d %H:%i') as mark_dt,
+			   mem_sts, 
+			   case
+			        when mem_sts = '1' then '일반회원'
+			        when mem_sts = '2' then '정회원'
+			        when mem_sts = '3' then '휴면회원'
+			        when mem_sts = '4' then '탈퇴회원'
+			   end as mem_sts_name, 
+			   use_yn, 
+			   date_format(reg_dt, '%Y-%m-%d %H:%i') as reg_dt, 
+			   date_format(last_login_dt, '%Y-%m-%d %H:%i') as last_login_dt
 		  from herit_member
 		 where
 		       seq = #{seq}

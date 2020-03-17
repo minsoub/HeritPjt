@@ -26,11 +26,15 @@ public class Member extends CommonModel {
 	private String phone;
 	private String birthday;
 	private String sex;
+	private String sex_name;
 	private String agree_dt;
 	private String mark_chk;
 	private String mark_dt;
 	private String mem_sts;
+	private String mem_sts_name;
 	private String use_yn;
 	private String reg_dt;
 	private String last_login_dt;
+	
+	private String menu;		// bottom menu (1 결제내역, 2 포인트내역, 3 미션현황, 4 검진데이터)
 }
