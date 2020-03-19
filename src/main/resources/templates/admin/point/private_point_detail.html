@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=2" th:include="admin/point/point_menu"></th:block>
+		<!-- //SNB -->	
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">개인별 포인트 현황 상세</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">포인트 관리</a></li>
+					<li><a href="">개인별 포인트 현황</a></li>
+				</ol>
+			</div>
+			<h3 class="cntTitLg">개인 포인트</h3>
+			<table class="tblTypeA mtSm">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>연락처</th>
+						<th>성명</th>
+						<th>적립 포인트</th>
+						<th>사용 포인트</th>
+						<th>소멸 포인트</th>
+						<th>보유 포인트</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td th:text="${info.id}">
+						<td th:text="${info.phone}">
+						<td th:text="${info.name}">
+						<td th:text="${info.plus_point}">
+						<td th:text="${info.minus_point}">
+						<td th:text="${info.del_point}">
+						<td th:text="${info.total_point}">
+					</tr>
+				</tbody>
+			</table>
+
+			<h3 class="cntTitLg">현황 리스트</h3>
+			<form name="frm" id="frm" method="post">
+			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />				
+			<table class="tblTypeA mtSm">
+				<thead>
+					<tr>
+						<th>날짜</th>
+						<th>항목</th>
+						<th>적립 포인트</th>
+						<th>사용 포인트</th>
+						<th>소멸 포인트</th>
+						<th>보유 포인트</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="detail : ${list}">
+						<td th:text="${detail.reg_dt}">2019.12.11 15:35</td>
+						<td class="tal colorB"  th:text="${detail.content}">10,000 걷기 미션 달성</td>
+						<td th:text="${detail.plus_point}">4,000</td>
+						<td th:text="${detail.minus_point}">0</td>
+						<td th:text="${detail.del_point}">0</td>
+						<td th:text="${detail.total_point}">15,300</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- paging -->
+			<th:block th:include="admin/layout/common_paging"></th:block>
+			<!-- // Paging -->
+			</form>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+<script>
+$(document).ready(function() {
+	load_fnc('4', '0', '0'); //menu script	
+});
+</script>	

@@ -21,7 +21,7 @@
 				</ol>
 			</div>
 			<!-- 검색 영역 -->
-			<form name="frm" id="frm" method="post">
+			<form id="frm" name="frm">
 			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />				
 			<div class="bxCnt mtSm">
 				<table class="tblTypeB">
@@ -34,22 +34,23 @@
 					<tbody>
 						<tr>
 							<th>병원명</th>
-							<td><input type="text" name=""></td>
+							<td><input type="text" name="h_name" id="h_name" th:value="${paging.h_name}"></td>
 							<th>담당자</th>
-							<td><input type="text" name=""></td>
+							<td><input type="text" name="name" id="name" th:value="${paging.name}"></td>
 						</tr>
 						<tr>
 							<th>연락처</th>
-							<td><input type="text" name=""></td>
+							<td><input type="text" name="phone" id="phone" th:value="${paging.phone}"></td>
 							<td></td>
 							<td></td>
 						</tr>								
 					</tbody>
 				</table>
 				<div class="btnWrap mtSm tac">
-					<a href="" class="btnPrimary">검색하기</a>
+					<button id="btnSearch" class="btnPrimary">검색하기</button>
 				</div>
 			</div>
+			</form>
 			<!-- //검색 영역 -->
 
 			<div class="txtBbs mtSMd">총 [[${totalCnt}]]건</div>
@@ -82,12 +83,11 @@
 				</tbody>
 			</table>
 			<th:block th:if="${totalCnt > 0}">
-			<!-- paging -->
-			<th:block th:include="admin/layout/common_paging"></th:block>
+				<!-- paging -->
+				<th:block th:include="admin/layout/common_paging"></th:block>
 			</th:block>
 			<div class="btnWrap mtMmd"><a th:href="@{hregform}" class="btnDefault">등록</a></div>
-			
-			</form>
+
 		</div>
 		<!-- //contents -->
 	</div>
@@ -98,5 +98,16 @@
 <script>
 $(document).ready(function() {
 	load_fnc('2', '0', '0'); //menu script	
+	
+	$('#btnSearch').click(function(){
+		if ($("#hname").val() == "" && $("#name").val() == "" && $("#phone").val() == "")
+		{
+			alert("검색조건을 입력하세요!!!");
+			return;
+		}
+		$("#frm").attr("method", "post");
+		$("#frm").attr("action", "hlist");
+		$("#frm").submit();
+	});
 });
 </script>

@@ -27,13 +27,13 @@
         ]]>
         <if test='searchString != null'>
         	<if test="searchId == 'id'">
-        		and a.id like '%'||#{searchString}||'%'
+        		and a.id like CONCAT('%',#{searchString},'%')	    
         	</if>
         	<if test="searchId == 'name'">
-        		and a.name like '%'||#{searchString}||'%'
+        		and a.name like CONCAT('%',#{searchString},'%')
         	</if>
         	<if test="searchId == 'htel'">
-        		and ( a.htel like '%'||#{searchString}||'%' or a.phone like '%'||#{searchString}||'%')
+        		and ( a.htel like CONCAT('%',#{searchString},'%') or a.phone like CONCAT('%',#{searchString},'%'))
         	</if>        	        	
         </if>
 	</select>
@@ -48,14 +48,14 @@
         ]]>
         <if test='searchString != null'>
         	<if test="searchId == 'id'">
-        		and a.id like '%'||#{searchString}||'%'
+        		and a.id like CONCAT('%',#{searchString},'%')	    
         	</if>
         	<if test="searchId == 'name'">
-        		and a.name like '%'||#{searchString}||'%'
+        		and a.name like CONCAT('%',#{searchString},'%')
         	</if>
         	<if test="searchId == 'htel'">
-        		and ( a.htel like '%'||#{searchString}||'%' or a.phone like '%'||#{searchString}||'%')
-        	</if>          	        	
+        		and ( a.htel like CONCAT('%',#{searchString},'%') or a.phone like CONCAT('%',#{searchString},'%'))
+        	</if>         	        	
         </if>
         order by reg_dt desc	
 	</select>

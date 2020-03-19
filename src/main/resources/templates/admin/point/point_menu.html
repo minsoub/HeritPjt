@@ -1,0 +1,12 @@
+		<!-- SNB -->
+		<div class="wrapSnb">
+			<h2 class="tit">포인트 관리</h2>
+			<ul class="snb">
+				<li><a th:href="@{pointlist}"    th:class="${menu == 1}?active:no">포인트 현황</a></li>
+				<li><a th:href="@{privatelist}"  th:class="${menu == 2}?active:no">개인별 포인트 현황</a></li>
+				<li><a th:href="@{productlist}"  th:class="${menu == 3}?active:no">상품관리</a></li>
+				<li><a th:href="@{malllist}"     th:class="${menu == 4}?active:no">포인트 몰</a></li>
+				<li><a th:href="@{buylist}"      th:class="${menu == 5}?active:no">구매내역</a></li>
+			</ul>
+		</div>
+		<!-- //SNB -->

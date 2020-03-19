@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=5" th:include="admin/point/point_menu"></th:block>
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">구매내역</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">포인트 관리</a></li>
+					<li><a href="">구매내역</a></li>
+				</ol>
+			</div>
+			<div class="bxSrchForm tar">
+				<label for="">구매일</label>
+				<input type="text" value="" class="datePic"> <span class="dash">~</span> <input type="text" value="" class="datePic">
+				<button type="button" class="btnPrimary sizeSm">검색</button>
+			</div>
+			<h3 class="cntTitLg">구매 리스트</h3>
+			<form name="frm" id="frm" method="post">
+			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />				
+			<table class="tblTypeA mtXs">
+				<colgroup>
+					<col>
+					<col>
+					<col>
+					<col width="140">
+					<col width="150">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>날짜</th>
+						<th>구분</th>
+						<th>구매자 수</th>
+						<th>출력</th>
+						<th>발송상태</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>2019.08.02</td>
+						<td>포인트 몰</td>
+						<td>6명</td>
+						<td>
+							<div class="btnWrap">
+								<a href="" class="btnColorD">엑셀로 저장</a>
+							</div>
+						</td>
+						<td>
+							<div class="btnWrap">
+								<a href="" class="btnColorE">발송 완료</a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>2019.08.02</td>
+						<td>포인트 몰</td>
+						<td>6명</td>
+						<td>
+							<div class="btnWrap">
+								<a href="" class="btnColorD">엑셀로 저장</a>
+							</div>
+						</td>
+						<td>
+							<div class="btnWrap">
+								<a href="" class="btnColorE">발송 완료</a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>2019.08.02</td>
+						<td>포인트 몰</td>
+						<td>6명</td>
+						<td>
+							<div class="btnWrap">
+								<a href="" class="btnColorD">엑셀로 저장</a>
+							</div>
+						</td>
+						<td>
+							<div class="btnWrap">
+								<a href="" class="btnColorE">발송 완료</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- paging -->
+			<th:block th:include="admin/layout/common_paging"></th:block>
+			<!-- // Paging -->
+			</form>		
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+<script>
+$(document).ready(function() {
+	load_fnc('4', '0', '0'); //menu script
+	
+    $('#btnSearch' ).click( function() {
+        frm.action = "privatelist";
+        frm.submit();
+    });	 
+});
+</script>

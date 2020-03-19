@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=2" th:include="admin/point/point_menu"></th:block>
+		<!-- //SNB -->	
+		
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">개인별 포인트 현황</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">포인트 관리</a></li>
+					<li><a href="">개인별 포인트 현황</a></li>
+				</ol>
+			</div>
+			<form name="frm" id="frm" method="post">
+			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />				
+			<div class="bxSrchForm">
+				<div class="fl w50">
+					<span class="txt">총 [[${totalCnt}]]명</span>
+					<label for="" class="mlMmd">보유 포인트 범위</label>
+					<input type="number" name="searchFromPoint" class="w20"><span class="dash">~</span><input type="number" name="searchToPoint" class="w20">
+				</div>
+				<div class="fr tar w50">
+					<select name="searchId" class="mlSm">
+						<option value="id">ID</option>
+						<option value="phone">연락처</option>
+						<option value="name">성명</option>
+					</select>
+					<input type="text" name="searchString" class="mlXs w50">
+					<button type="button" id="btnSearch" class="btnPrimary">검색</button>
+				</div>
+			</div>
+			<table class="tblTypeA mtSm">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>연락처</th>
+						<th>성명</th>
+						<th>적립 포인트</th>
+						<th>사용 포인트</th>
+						<th>소멸 포인트</th>
+						<th>보유 포인트</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="info : ${list}">
+						<td><a th:href="@{privatedetail(seq=${info.seq})}" th:text="${info.id}"></a></td>
+						<td th:text="${info.phone}">
+						<td th:text="${info.name}">
+						<td th:text="${info.plus_point}">
+						<td th:text="${info.minus_point}">
+						<td th:text="${info.del_point}">
+						<td th:text="${info.total_point}">
+					</tr>
+				</tbody>
+			</table>
+			<!-- paging -->
+			<th:block th:include="admin/layout/common_paging"></th:block>
+			<!-- // Paging -->
+			</form>
+			
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('4', '0', '0'); //menu script
+	
+    $('#btnSearch' ).click( function() {
+        frm.action = "privatelist";
+        frm.submit();
+    });	 
+});
+</script>	

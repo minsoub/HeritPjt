@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.neodreams.herit.model.Admin;
-import kr.co.neodreams.herit.model.AuthCheck;
 import kr.co.neodreams.herit.model.Hospital;
 import kr.co.neodreams.herit.service.HospitalService;
 import lombok.extern.slf4j.Slf4j;
@@ -88,7 +86,7 @@ public class AdminChkController {
 	}
 	
 	/**
-	 * Hospital Register Form
+	 * Hospital Register/Update Form
 	 * 
 	 * @param param
 	 * @param request
@@ -99,10 +97,18 @@ public class AdminChkController {
 	public ModelAndView hospitalRegForm(Hospital param, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		if (param.getSeq() > 0)
+		{
+			Hospital info = hService.selectHospitalById(param);
+			log.info("hospitalModifyForm info : {}", info);
+			mv.addObject("info", info);
+		}else {
+			mv.addObject("info", new Hospital());
+		}
 		mv.setViewName("admin/chk/hospital_reg");
 		return mv;
 	}
-	
+
 	
 	/**
 	 * register new Hospital

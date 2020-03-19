@@ -12,13 +12,13 @@
             WHERE  1=1
         ]]>
         <if test='h_name != null'>
-        	and h_name like '%'||#{h_name}||'%'       	        	
+        	and h_name like CONCAT('%',#{h_name},'%')	        	
         </if>
         <if test='name != null'>
-        	and name like '%'||#{name}||'%'       	        	
+        	and name like CONCAT('%',#{name},'%')  	        	
         </if> 
         <if test='phone != null'>
-        	and phone like '%'||#{phone}||'%'       	        	
+        	and phone like CONCAT('%',#{phone},'%')  	         	
         </if>  
 	</select>	
 	
@@ -31,13 +31,13 @@
             WHERE  1=1
         ]]>
         <if test='h_name != null'>
-        	and h_name like '%'||#{h_name}||'%'       	        	
+        	and h_name like CONCAT('%',#{h_name},'%')	        	
         </if>
         <if test='name != null'>
-        	and name like '%'||#{name}||'%'       	        	
+        	and name like CONCAT('%',#{name},'%')  	        	
         </if> 
         <if test='phone != null'>
-        	and phone like '%'||#{phone}||'%'       	        	
+        	and phone like CONCAT('%',#{phone},'%')  	         	
         </if>  
         order by reg_dt desc	
         LIMIT #{perPageCnt} OFFSET #{pageStartNo}
@@ -56,9 +56,9 @@
 	<!--  Hospital register  -->
     <insert id="insertHospital" parameterType="HashMap">
 		INSERT INTO herit_hospital (
-			seq,     h_name,    name,     phone,     addr,      use_yn,      reg_dt
+			h_name,    name,     phone,     addr,      use_yn,      reg_dt
 		) VALUES (
-			#{seq},  #{h_name}, #{name},  #{phone},  #{addr},   #{use_yn},   current_timestamp
+			#{h_name}, #{name},  #{phone},  #{addr},   #{use_yn},   current_timestamp
 		)
 	</insert>	
 	
@@ -69,7 +69,7 @@
 		       h_name = #{h_name},
 		       name   = #{name},    
 		       phone  = #{phone},     
-			   addr   = #{addr},
+			   addr   = #{addr}
 	     WHERE
 	           seq = #{seq}
 	</update>	

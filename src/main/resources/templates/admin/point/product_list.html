@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=3" th:include="admin/point/point_menu"></th:block>
+		<!-- //SNB -->	
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">상품관리</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">포인트 관리</a></li>
+					<li><a href="">상품관리</a></li>
+				</ol>
+			</div>
+			<div class="clearfix mtXs">
+				<h3 class="cntTitLg fl">상품 리스트</h3>
+				<div class="btnWrap fr"><a href="" class="btnDefault">상품등록</a></div>
+			</div>
+			<form name="frm" id="frm" method="post">
+			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />				
+			<table class="tblTypeA mtXs">
+				<colgroup>
+					<col width="21%">
+					<col>
+					<col width="10%">
+					<col width="17%">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>상품 미리보기</th>
+						<th>상품명</th>
+						<th>구매수</th>
+						<th>등록일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- 데이터 없을 시
+					<tr>
+ 						<td colspan="4" class="noData">
+							<p class="ico"><img src="/resources/images/contents/ico_nodata03.gif" alt=""></p>
+							등록된 정보가 없습니다.
+						</td>
+					</tr>
+					//데이터 없을 시 -->
+					<tr onclick="">
+						<td><div class="thumbProd"><img src="/resources/images/_temp/@prod01.jpg" alt=""></div></td>
+						<td class="tal">[CU] 2천원 상품권</td>
+						<td>105개</td>
+						<td>2019.08.02</td>
+					</tr>
+					<tr onclick="">
+						<td><div class="thumbProd"><img src="/resources/images/_temp/@prod02.jpg" alt=""></div></td>
+						<td class="tal">신세계 상품권(1만원)</td>
+						<td>105개</td>
+						<td>2019.08.02</td>
+					</tr>
+					<tr onclick="">
+						<td><div class="thumbProd"><img src="/resources/images/_temp/@prod03.jpg" alt=""></div></td>
+						<td class="tal">[GS25] 2천원 상품권</td>
+						<td>105개</td>
+						<td>2019.08.02</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- paging -->
+			<th:block th:include="admin/layout/common_paging"></th:block>
+			<!-- // Paging -->
+			</form>
+			<div class="btnWrap mtSm"><a href="" class="btnDefault">상품등록</a></div>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('4', '0', '0'); //menu script
+	
+    $('#btnSearch' ).click( function() {
+        frm.action = "privatelist";
+        frm.submit();
+    });	 
+});
+</script>	

@@ -20,6 +20,8 @@
 					<li><a href="">건강병원</a></li>
 				</ol>
 			</div>
+			<form name="frm" id="frm">
+			<input type="hidden" name="seq" id="seq" th:value="${info.seq}">
 			<table class="tblTypeC mtMmd">
 				<colgroup>
 					<col width="100px">
@@ -30,25 +32,26 @@
 				<tbody>
 					<tr>
 						<th>병원명</th>
-						<td><input type="text" name=""></td>
+						<td><input type="text" name="h_name" id="h_name" maxlength="100" th:value="${info.h_name}"></td>
 						<td></td>
 						<td></td>
 					</tr>
 					<tr>
 						<th>담당자</th>
-						<td><input type="text" name=""></td>
+						<td><input type="text" name="name" id="name" maxlength="10" th:value="${info.name}"></td>
 						<th>연락처</th>
-						<td><input type="text" name=""></td>
+						<td><input type="text" name="phone" id="phone" maxlength="14" th:value="${info.phone}"></td>
 					</tr>
 					<tr>
 						<th>주소</th>
-						<td colspan="3"><input type="text" name=""></td>
+						<td colspan="3"><input type="text" name="addr" id="addr" maxlength="200" th:value="${info.addr}"></td>
 					</tr>								
 				</tbody>
 			</table>
+			</form>
 			<div class="btnWrap mtMmd">
-				<a href="" class="btnDefault">등록</a>
-				<a href="" class="btnDefault">취소</a>
+				<button id="btnReg" class="btnDefault">저장</button>
+				<button id="btnCancel" class="btnDefault">취소</button>
 			</div>
 		</div>
 		<!-- //contents -->
@@ -60,5 +63,39 @@
 <script>
 $(document).ready(function() {
 	load_fnc('2', '0', '0'); //menu script	
+	
+	$('#btnReg').click(function(){
+		if ($("#h_name").val() == "")
+		{
+			alert("병원명을 입력하지 않았습니다!!!");
+			$("#h_name").focus();
+			return;
+		}			
+		if ($("#name").val() == "")
+		{
+			alert("성명을 입력하지 않았습니다!!!");
+			$("#name").focus();
+			return;
+		}
+		
+		var params = {
+				"seq"   : $("#seq").val(),
+				"h_name" : $("#h_name").val(),
+				"name" : $('#name').val(),
+				"phone" : $("#phone").val(),
+				"addr" : $("#addr").val()
+		};
+		var url = "hinsert";
+		var url2 = "hlist";
+		if ($("#seq").val() != "0")
+		{
+			url = "hmodify";
+			url2 = "hregform";
+		}
+		goJsonInput(params, url, url2);	
+	});
+	$('#btnCancel').click(function(){
+		location.href="hlist";
+	});	
 });
 </script>

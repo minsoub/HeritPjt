@@ -19,6 +19,8 @@
 					<li><a href="">건강병원</a></li>
 				</ol>
 			</div>
+			<form name="frm" id="frm" mehtod="post">
+			<input type="hidden" name="seq" id="seq" th:value="${info.seq}">	
 			<table class="tblTypeC mtMmd">
 				<colgroup>
 					<col width="100px">
@@ -43,10 +45,11 @@
 					</tr>								
 				</tbody>
 			</table>
+			</form>
 			<div class="btnWrap mtMmd">
-				<a href="" class="btnDefault">수정</a>
-				<a href="" class="btnDefault">삭제</a>
-				<a th:href="@{hlist}" class="btnDefault">목록</a>
+				<button type="button" id="btnUpdate" class="btnDefault">수정</button>
+				<button type="button" id="btnDelete" class="btnDefault">삭제</button>
+				<button type="button" id="btnList"   class="btnDefault">목록</button>
 			</div>
 		</div>
 		<!-- //contents -->
@@ -55,5 +58,20 @@
 <script>
 $(document).ready(function() {
 	load_fnc('2', '0', '0'); //menu script	
+	
+	$('#btnDelete').click(function(){
+		var params = {
+				"seq" : $("#seq").val()
+		};
+		goJsonInput(params, "hdelete", "hlist");			
+	});	
+	$('#btnUpdate').click(function(){
+		frm.action = "hregform";
+		frm.submit();		
+	});	
+	
+	$('#btnList').click(function(){
+		location.href="hlist";
+	})	
 });
 </script>

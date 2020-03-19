@@ -15,6 +15,15 @@ import lombok.ToString;
 public class MemPoint extends CommonModel  {
 	private int seq;
 	private int mem_seq;
+	private String id;
+	private String phone;
+	private String name;
+	private String plus_point;
+	private String minus_point;
+	private String del_point;
+	private String total_point;
+	
+	
 	private String content;
 	private String point_ref;
 	private String point_type;
@@ -27,4 +36,6 @@ public class MemPoint extends CommonModel  {
 	// search
 	private String searchFromDt;
 	private String searchToDt;
+	private String searchFromPoint;
+	private String searchToPoint;
 }

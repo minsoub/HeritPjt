@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=4" th:include="admin/point/point_menu"></th:block>
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">포인트 몰</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">포인트 관리</a></li>
+					<li><a href="">포인트 몰</a></li>
+				</ol>
+			</div>
+			<div class="clearfix mtXs">
+				<h3 class="cntTitLg fl">상품 리스트</h3>
+				<div class="btnWrap fr"><a href="" class="btnDefault">상품등록</a></div>
+			</div>
+			<form name="frm" id="frm" method="post">
+			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />					
+			<table class="tblTypeA mtXs">
+				<thead>
+					<tr>
+						<th>상품명</th>
+						<th>상태</th>
+						<th>구매 포인트</th>
+						<th>구매수</th>
+						<th>등록일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>[GS25] 2천원 상품권</td>
+						<td>구매가능</td>
+						<td>1,000 point</td>
+						<td>105개</td>
+						<td>2019.08.02</td>
+					</tr>
+					<tr>
+						<td>[CU] 2천원 상품권</td>
+						<td>구매가능</td>
+						<td>1,000 point</td>
+						<td>320개</td>
+						<td>2019.08.02</td>
+					</tr>
+					<tr>
+						<td>스타벅스 아메리카노 쿠폰</td>
+						<td>구매가능</td>
+						<td>1,000 point</td>
+						<td>320개</td>
+						<td>2019.08.02</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- paging -->
+			<th:block th:include="admin/layout/common_paging"></th:block>
+			<!-- // Paging -->
+			</form>	
+			<div class="btnWrap mtSm">
+				<a href="" class="btnDefault">상품등록</a>
+			</div>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('4', '0', '0'); //menu script
+	
+    $('#btnSearch' ).click( function() {
+        frm.action = "privatelist";
+        frm.submit();
+    });	 
+});
+</script>	

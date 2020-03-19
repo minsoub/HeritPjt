@@ -3,49 +3,148 @@
 
 <mapper namespace="kr.co.neodreams.herit.mapper.MemPointMapper">
 	
-	<!-- point history list count search -->
+
+	<!-- Private Point list count search -->
 	<select id="selectMemPointListCount" parameterType="HashMap" resultType="int">
         <![CDATA[
-            SELECT 
-                  count(seq) as cnt
-             FROM herit_mem_point
-            WHERE  mem_seq = #{mem_seq}            
+           SELECT
+                  count(*) 
+            FROM (
+         		SELECT 
+           				a.seq, a.id, a.phone, a.name, 
+           				sum(case when b.use_yn = 'Y' then b.point else 0 end) as plus_point, 
+           				sum(case when b.use_yn = 'P' then b.point else 0 end) as minus_point, 
+           				sum(case when b.use_yn = 'N' then b.point else 0 end) as del_point,
+           				sum(case when b.use_yn = 'Y' then b.point else 0 end) -
+           				sum(case when b.use_yn = 'P' then b.point else 0 end) -
+           				sum(case when b.use_yn = 'N' then b.point else 0 end) as total_point                   			
+         	 	 FROM herit_member a left outer join herit_mem_point b on a.seq = b.mem_seq
+          		WHERE  1=1
         ]]>
+        <if test='searchString != null'>
+        	<if test="searchId == 'id'">
+        	  		 and a.id like CONCAT('%',#{searchString},'%')	    
+        	</if>
+        	<if test="searchId == 'name'">
+        			 and a.name like CONCAT('%',#{searchString},'%')
+        	</if>
+        	<if test="searchId == 'htel'">
+        			 and a.phone like CONCAT('%',#{searchString},'%')
+        	</if>        	        	
+        </if> 
         <if test='searchFromDt != null and searchToDt != null'>
         	<if test="use_yn == null">
-        		and date_format(reg_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
+        		and date_format(a.reg_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
         	</if>
         	<if test="use_yn != null">
-        		and use_yn = #{pay_sts} and date_format(reg_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
+        		and a.use_yn = #{pay_sts} and date_format(a.reg_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
         	</if>       	        	
-        </if>
+        </if>                                		                      
+              group by a.seq, a.id, a.phone, a.name
+              order by a.seq desc 
+         ) AS T
+         WHERE 1 = 1
+         <if test='searchFromPoint != null and searchToPoint != null and !searchFromPoint.equals("") and !searchToPoint.equals("")'>
+              and total_point between #{searchFromPoint} and #{searchToPoint}
+         </if>  
 	</select>	
 	
-	<!-- point history list search  -->
+	<!-- Private Point list search  -->
 	<select id="selectMemPointList" parameterType="HashMap" resultType="mempoint">
         <![CDATA[
-            SELECT 
-                  a.seq, a.mem_seq, a.content, a.point_ref, a.point_type, a.point, a.rest_point, a.use_yn, 
-			      case 
-  					when a.use_yn = 'Y' then '적립'
-  					when a.use_yn = 'P' then '사용'
-  					when a.use_yn = 'N' then '삭제건'
-  					else  ''
-  			      end as use_yn_name,                   
-                  date_format(a.reg_dt, '%Y-%m-%d %H:%i') as reg_dt
-             FROM herit_mem_point a
-            WHERE  a.mem_seq = #{mem_seq}
+           SELECT
+                  seq, id, phone, name, 
+                  format(plus_point,  0) as plus_point, 
+                  format(minus_point, 0) as minus_point, 
+                  format(del_point,   0) as del_point, 
+                  format(total_point, 0) as total_point
+            FROM (
+         		SELECT 
+           				a.seq, a.id, a.phone, a.name, 
+           				sum(case when b.use_yn = 'Y' then b.point else 0 end) as plus_point, 
+           				sum(case when b.use_yn = 'P' then b.point else 0 end) as minus_point, 
+           				sum(case when b.use_yn = 'N' then b.point else 0 end) as del_point,
+           				sum(case when b.use_yn = 'Y' then b.point else 0 end) -
+           				sum(case when b.use_yn = 'P' then b.point else 0 end) -
+           				sum(case when b.use_yn = 'N' then b.point else 0 end) as total_point                   			
+         	 	 FROM herit_member a left outer join herit_mem_point b on a.seq = b.mem_seq
+          		WHERE  1=1
         ]]>
+        <if test='searchString != null'>
+        	<if test="searchId == 'id'">
+        	  		 and a.id like CONCAT('%',#{searchString},'%')	    
+        	</if>
+        	<if test="searchId == 'name'">
+        			 and a.name like CONCAT('%',#{searchString},'%')
+        	</if>
+        	<if test="searchId == 'htel'">
+        			 and a.phone like CONCAT('%',#{searchString},'%')
+        	</if>        	        	
+        </if> 
         <if test='searchFromDt != null and searchToDt != null'>
         	<if test="use_yn == null">
-        		and date_format(reg_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
+        		and date_format(a.reg_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
         	</if>
         	<if test="use_yn != null">
-        		and use_yn = #{use_yn} and date_format(reg_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
+        		and a.use_yn = #{pay_sts} and date_format(a.reg_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
         	</if>       	        	
-        </if>
-        order by a.reg_dt desc	
-        LIMIT #{perPageCnt} OFFSET #{pageStartNo}
+        </if>                        		                      
+              group by a.seq, a.id, a.phone, a.name 
+              order by a.seq desc
+         ) AS T
+         WHERE 1 = 1
+         <if test='searchFromPoint != null and searchToPoint != null and !searchFromPoint.equals("") and !searchToPoint.equals("")'>
+              and total_point between #{searchFromPoint} and #{searchToPoint}
+         </if>         
+         LIMIT #{perPageCnt} OFFSET #{pageStartNo}
 	</select>	
 	
+	
+	<!-- Private Point detail information search  -->
+	<select id="selectMemPointById" parameterType="HashMap" resultType="mempoint">
+        <![CDATA[
+         		SELECT 
+           				a.seq, a.id, a.phone, a.name, 
+           				format(sum(case when b.use_yn = 'Y' then b.point else 0 end), 0) as plus_point, 
+           				format(sum(case when b.use_yn = 'P' then b.point else 0 end), 0) as minus_point, 
+           				format(sum(case when b.use_yn = 'N' then b.point else 0 end), 0) as del_point,
+           				format(sum(case when b.use_yn = 'Y' then b.point else 0 end) -
+           				sum(case when b.use_yn = 'P' then b.point else 0 end) -
+           				sum(case when b.use_yn = 'N' then b.point else 0 end), 0) as total_point                   			
+         	 	 FROM herit_member a left outer join herit_mem_point b on a.seq = b.mem_seq
+          		WHERE  a.seq = #{seq}
+        ]]>                       		                      
+              group by a.seq, a.id, a.phone, a.name 
+
+	</select>	
+			
+	
+	
+	<!-- Private Point list count search -->
+	<select id="selectMemPointByIdListCount" parameterType="HashMap" resultType="int">
+        <![CDATA[
+         	SELECT 
+         			count(*)                   			
+          	 FROM herit_member a left outer join herit_mem_point b on a.seq = b.mem_seq
+         	WHERE  a.seq = #{seq}
+        ]]>                             		                      
+	</select>	
+	
+	<!-- Private Point list search  -->
+	<select id="selectMemPointByIdList" parameterType="HashMap" resultType="mempoint">
+        <![CDATA[
+         		SELECT 
+           				a.seq, a.id, a.phone, a.name, 
+           				case when b.use_yn = 'Y' then format(b.point, 0) else 0 end as plus_point, 
+           				case when b.use_yn = 'P' then format(b.point, 0) else 0 end as minus_point, 
+           				case when b.use_yn = 'N' then format(b.point, 0) else 0 end as del_point,
+           				format(b.rest_point, 0) as total_point, 
+           				b.content, 
+           				date_format(b.reg_dt, '%Y-%m-%d %H:%i') as reg_dt        			
+         	 	 FROM herit_member a left outer join herit_mem_point b on a.seq = b.mem_seq
+          		WHERE  a.seq = #{seq}
+        ]]>                       		                      
+              order by a.seq desc      
+         LIMIT #{perPageCnt} OFFSET #{pageStartNo}
+	</select>	
 </mapper>

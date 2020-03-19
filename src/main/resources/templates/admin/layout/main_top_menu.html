@@ -12,7 +12,7 @@
 					<ul>
 						<li id="topmenu1"><a href="/admin/member/list">회원관리</a>
 							<ul class="depth2">
-								<li><a href="/admin/member/list">정회원</a></li>
+								<li><a th:href="@{/admin/member/list}">정회원</a></li>
 								<li><a href="">휴면회원</a></li>
 								<li><a href="">탈퇴회원</a></li>
 							</ul>
@@ -34,11 +34,11 @@
 						</li>
 						<li id="topmenu4"><a href="">포인트관리</a>
 							<ul class="depth2">
-								<li><a href="">포인트 현황</a></li>
-								<li><a href="">개인별 포인트 현황</a></li>
-								<li><a href="">상품관리</a></li>
-								<li><a href="">포인트 몰</a></li>
-								<li><a href="">구매내역</a></li>
+								<li><a th:href="@{/admin/point/pointlist}">포인트 현황</a></li>
+								<li><a th:href="@{/admin/point/privatelist}">개인별 포인트 현황</a></li>
+								<li><a th:href="@{/admin/point/productlist}">상품관리</a></li>
+								<li><a th:href="@{/admin/point/malllist}">포인트 몰</a></li>
+								<li><a th:href="@{/admin/point/buylist}">구매내역</a></li>
 							</ul>
 						</li>
 						<li id="topmenu5"><a href="">결제관리</a>
@@ -52,11 +52,11 @@
 								<li><a href="">통계</a></li>
 							</ul>
 						</li>
-						<li id="topmenu7"><a href="">관리자관리</a>
+						<li id="topmenu7"><a th:href="@{/admin/authority/list}">관리자관리</a>
 							<ul class="depth2">
-								<li><a href="/admin/authority/list">관리자 관리</a></li>
-								<li><a href="">권한 관리</a></li>
-								<li><a href="">문의 내역</a></li>
+								<li><a th:href="@{/admin/authority/list}">관리자 관리</a></li>
+								<li><a th:href="@{/admin/authority/authlist}">권한 관리</a></li>
+								<li><a th:href="@{/admin/authority/faqlist}">문의 내역</a></li>
 							</ul>
 						</li>
 					</ul>

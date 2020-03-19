@@ -20,4 +20,9 @@ public class Hospital extends CommonModel  {
 	private String addr;
 	private String use_yn;
 	private String reg_dt;
+	
+	public Hospital()
+	{
+		super();
+	}
 }
