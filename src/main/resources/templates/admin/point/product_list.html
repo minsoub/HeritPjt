@@ -24,7 +24,8 @@
 				<div class="btnWrap fr"><a href="" class="btnDefault">상품등록</a></div>
 			</div>
 			<form name="frm" id="frm" method="post">
-			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />				
+			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />	
+			<input type="hidden" name="seq" id="seq"  th:value="${info.seq}" />			
 			<table class="tblTypeA mtXs">
 				<colgroup>
 					<col width="21%">
@@ -41,39 +42,29 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!-- 데이터 없을 시
+				    <th:block th:if="${totalCnt == 0}">
 					<tr>
  						<td colspan="4" class="noData">
 							<p class="ico"><img src="/resources/images/contents/ico_nodata03.gif" alt=""></p>
 							등록된 정보가 없습니다.
 						</td>
 					</tr>
-					//데이터 없을 시 -->
-					<tr onclick="">
-						<td><div class="thumbProd"><img src="/resources/images/_temp/@prod01.jpg" alt=""></div></td>
-						<td class="tal">[CU] 2천원 상품권</td>
-						<td>105개</td>
-						<td>2019.08.02</td>
-					</tr>
-					<tr onclick="">
-						<td><div class="thumbProd"><img src="/resources/images/_temp/@prod02.jpg" alt=""></div></td>
-						<td class="tal">신세계 상품권(1만원)</td>
-						<td>105개</td>
-						<td>2019.08.02</td>
-					</tr>
-					<tr onclick="">
-						<td><div class="thumbProd"><img src="/resources/images/_temp/@prod03.jpg" alt=""></div></td>
-						<td class="tal">[GS25] 2천원 상품권</td>
-						<td>105개</td>
-						<td>2019.08.02</td>
-					</tr>
+					</th:block>
+					<th:block th:if="${totalCnt > 0}">
+						<tr th:onclick="|goDetail( ${info.seq} )|" th:each="info : ${list}">
+							<td><div class="thumbProd"><img th:src="|/img/${info.product_img}|" alt=""></div></td>
+							<td class="tal" th:text="${info.name}">
+							<td th:text="${info.buy_total}개">
+							<td th:text="${info.reg_dt}">
+						</tr>
+					</th:block>
 				</tbody>
 			</table>
 			<!-- paging -->
 			<th:block th:include="admin/layout/common_paging"></th:block>
 			<!-- // Paging -->
 			</form>
-			<div class="btnWrap mtSm"><a href="" class="btnDefault">상품등록</a></div>
+			<div class="btnWrap mtSm"><button id="btnReg" class="btnDefault">상품등록</button></div>
 		</div>
 		<!-- //contents -->
 	</div>
@@ -85,9 +76,14 @@
 $(document).ready(function() {
 	load_fnc('4', '0', '0'); //menu script
 	
-    $('#btnSearch' ).click( function() {
-        frm.action = "privatelist";
-        frm.submit();
+    $('#btnReg' ).click( function() {
+        location.href="productregform";
     });	 
 });
+
+function goDetail()
+{
+	frm.action = "productdetail";
+	frm.submit();
+}
 </script>	

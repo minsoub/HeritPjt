@@ -1,8 +1,10 @@
 package kr.co.neodreams.herit.config;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -18,12 +20,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 @EnableTransactionManagement
+@PropertySource("classpath:application.properties")
 public class WebConfig implements WebMvcConfigurer{
+	@Value("${file.uploadpath}")
+	String uploadPath;
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry)
 	{
+		registry.addResourceHandler("/img/**").addResourceLocations(uploadPath+"**");		// upload directory setup
+		
 		registry.addResourceHandler("/**")
-				.addResourceLocations("classpath:/static/", "classpath:/META-INF/resources/");
+				.addResourceLocations("classpath:/static/", "classpath:/META-INF/resources/");		
+		//  <resources mapping="/img/**" location="지정한 업로드 폴더 절대경로" />
 	}
 	
 	@Bean

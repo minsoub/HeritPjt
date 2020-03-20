@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=3" th:include="admin/point/point_menu"></th:block>
+		<!-- //SNB -->	
+		
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">상품관리 상세</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">포인트 관리</a></li>
+					<li><a href="">상품관리</a></li>
+				</ol>
+			</div>
+			<form name="frm" id="frm" method="post">
+			<input type="hidden" name="seq"  id="seq"  th:value="${info.seq}">				
+			<table class="tblTypeC mtMmd">
+				<colgroup>
+					<col width="100">
+					<col>
+				</colgroup>
+				<tr>
+					<th th:text="${info.product_name}">
+					<td th:text="${info.content}">
+				</tr>
+				<tr>
+					<th>상품 이미지<br>업로드<br><small>(450x450 pixel)</small></th>
+					<td>
+						<div class="listThumbProd">
+							<img th:src="|/img/${info.product_img}|" alt="">
+						</div>
+					</td>
+				</tr>
+			</table>			
+			<div class="btnWrap mtMmd">
+				<button id="btnModify" class="btnDefault">수정</button>
+				<button id="btnDelete" class="btnDefault">삭제</button>
+				<button id="btnList"   class="btnDefault">목록</button>
+			</div>
+			</form>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+</th:block>
+</html>
+<script>
+$(document).ready(function() {
+	load_fnc('4', '0', '0'); //menu script
+	
+    $('#btnModify' ).click( function() {
+        frm.action = "productreg";
+        frm.submit();
+    });	 
+	
+    $('#btnDelete' ).click( function() {
+    	var params = {
+    		"seq" : $("#seq").val()
+    	};
+    	goJsonInput(params, "productdelete", "productlist");			 
+    });	
+    
+    $('#btnList' ).click( function() {
+        location.href="productlist";
+    });	
+});
+</script>

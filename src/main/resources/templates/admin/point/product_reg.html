@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=3" th:include="admin/point/point_menu"></th:block>
+		<!-- //SNB -->	
+		
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">상품관리 등록</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">포인트 관리</a></li>
+					<li><a href="">상품관리</a></li>
+				</ol>
+			</div>
+			<form name="frm" id="frm" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="seq"  id="seq"  th:value="${info.seq}">	
+			<input type="hidden" name="product_img"  id="product_img"  th:value="${info.product_img}">			
+			<table class="tblTypeC mtMmd">
+				<colgroup>
+					<col width="100">
+					<col>
+				</colgroup>
+				<tr>
+					<th>상품명</th>
+					<td><input type="text" name="product_name" id="product_name" th:value="${info.product_name}"></td>
+				</tr>
+				<tr>
+					<th>상품 이미지<br>업로드<br><small>(450x450 pixel)</small></th>
+					<td>
+						<div class="wrapInput typeFile">
+							<input type="text" readonly="" class="input">
+							<input type="file" class="inputFile" name="files" id="files"> <!-- label for값과 input type="file"의 id값 동일하게 부여해줘야 정상 작동됩니다 -->
+							<label for="files">파일첨부</label>
+						</div>
+					</td>
+				</tr>
+			</table>	
+			</form>		
+			<div class="btnWrap mtMmd">
+				<button id="btnSave" class="btnDefault">등록</button>
+				<button id="btnCancel" class="btnDefault">취소</button>
+			</div>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('4', '0', '0'); //menu script
+	
+    $('#btnSave' ).click( function() {
+        if ($("#product_name").val() == "")
+        {
+        	alert("상품명을 입력하세요!!!");
+        	$("#product_name").focus();
+        	return;
+        }
+        if ($("#seq").val() == "0" && $("#product_image").val() == "")
+        {
+        	alert("이미지를 업로드 하셔야 됩니다!!!");
+        	return;
+        }
+        frm.action = "productsave";
+        frm.submit();
+    });	 
+    $('#btnCancel' ).click( function() {
+        location.href="productlist";
+    });	
+});
+</script>

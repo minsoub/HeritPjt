@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.neodreams.herit.mapper.ProductMapper">
+
+	<!-- Product list count search -->
+	<select id="selectProductListCount" parameterType="HashMap" resultType="int">
+        <![CDATA[
+            SELECT 
+                  count(seq) as cnt
+             FROM herit_product_info
+            WHERE  1=1
+        ]]>
+        <if test='h_name != null'>
+        	and h_name like CONCAT('%',#{h_name},'%')	        	
+        </if>
+        <if test='name != null'>
+        	and name like CONCAT('%',#{name},'%')  	        	
+        </if> 
+        <if test='phone != null'>
+        	and phone like CONCAT('%',#{phone},'%')  	         	
+        </if>  
+	</select>	
+	
+	<!-- Product list search  -->
+	<select id="selectProductList" parameterType="HashMap" resultType="product">
+        <![CDATA[
+            SELECT 
+                  a.seq, a.product_name,    a.product_img,     a.product_sts,     a.product_amt,      a.content,        a.use_yn,     
+                  date_format(a.reg_dt, '%Y.%m.%d') as reg_dt, 
+                  (seelct count(*) from herit_pay_info where product_key = a.seq) as buy_total
+             FROM herit_product_info a 
+            WHERE  1=1
+        ]]>
+        <if test='h_name != null'>
+        	and h_name like CONCAT('%',#{h_name},'%')	        	
+        </if>
+        <if test='name != null'>
+        	and name like CONCAT('%',#{name},'%')  	        	
+        </if> 
+        <if test='phone != null'>
+        	and phone like CONCAT('%',#{phone},'%')  	         	
+        </if>  
+        order by reg_dt desc	
+        LIMIT #{perPageCnt} OFFSET #{pageStartNo}
+	</select>	
+	
+	
+	<!--  search Product detatil information  -->
+	<select id="selectProductById" parameterType="HashMap" resultType="product">
+		SELECT a.seq, a.product_name,    a.product_img,     a.product_sts,     a.product_amt,      a.content,        a.use_yn,
+               date_format(a.reg_dt, '%Y-%m-%d %H:%i') as reg_dt
+		  from herit_product_info a
+		 where
+		       a.seq = #{seq}
+	</select>	
+	
+	<!--  Product register  -->
+    <insert id="insertProduct" parameterType="HashMap">
+		INSERT INTO herit_product_info (
+			product_name,    product_img,     product_sts,     product_amt,      content,        use_yn,      reg_dt
+		) VALUES ( 
+			#{product_name}, #{product_img},  #{product_sts},  #{product_amt},   #{content},     #{use_yn},   current_timestamp
+		)
+	</insert>	
+	
+	<!--  Product update  -->
+    <update id="updateProduct" parameterType="HashMap">
+		UPDATE herit_product_info 
+		   SET 
+		       product_name = #{product_name},
+		       product_img   = #{product_img},    
+		       product_sts  = #{product_sts},     
+			   product_amt   = #{product_amt},
+			   content   = #{content},
+			   use_yn   = #{use_yn}
+	     WHERE
+	           seq = #{seq}
+	</update>	
+	
+	<!--  Product delete  -->
+    <delete id="deleteProduct" parameterType="HashMap">
+		delete from herit_product_info 
+		 where seq = #{seq}
+	</delete>	
+		
+</mapper>
