@@ -51,6 +51,22 @@ public class ProductService {
 		return result;
 	}
 
+	
+	/**
+	 * search the Product All list
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Product> selectProductAllList() throws Exception
+	{
+		List<Product> result = mapper.selectProductAllList();
+		log.info("selectProductAllList : {}", result);
+		
+		return result;
+	}
+	
 	/**
 	 * search the Product List count.
 	 * 

@@ -19,7 +19,6 @@ public class Product extends CommonModel  {
 	private String	product_img;
 	private String	product_sts;
 	private String	product_amt;
-	private String	context;
 	private String	use_yn;
 	private String	reg_dt;
 	private int     buy_total;

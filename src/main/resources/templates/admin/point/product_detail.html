@@ -28,8 +28,8 @@
 					<col>
 				</colgroup>
 				<tr>
-					<th th:text="${info.product_name}">
-					<td th:text="${info.content}">
+					<th>상품명</th>
+					<td th:text="${info.product_name}">
 				</tr>
 				<tr>
 					<th>상품 이미지<br>업로드<br><small>(450x450 pixel)</small></th>
@@ -57,7 +57,7 @@ $(document).ready(function() {
 	load_fnc('4', '0', '0'); //menu script
 	
     $('#btnModify' ).click( function() {
-        frm.action = "productreg";
+        frm.action = "productregform";
         frm.submit();
     });	 
 	
@@ -69,7 +69,9 @@ $(document).ready(function() {
     });	
     
     $('#btnList' ).click( function() {
-        location.href="productlist";
+    	frm.seq.value = "0";
+    	frm.action = "productlist";
+    	frm.submit();
     });	
 });
 </script>

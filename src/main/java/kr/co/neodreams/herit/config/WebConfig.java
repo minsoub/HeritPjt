@@ -27,10 +27,11 @@ public class WebConfig implements WebMvcConfigurer{
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry)
 	{
-		registry.addResourceHandler("/img/**").addResourceLocations(uploadPath+"**");		// upload directory setup
+		System.out.println(uploadPath);
 		
-		registry.addResourceHandler("/**")
-				.addResourceLocations("classpath:/static/", "classpath:/META-INF/resources/");		
+		registry.addResourceHandler("/resources/**")
+				.addResourceLocations("classpath:/static/resources/", "classpath:/META-INF/resources/");		
+		registry.addResourceHandler("/img/**").addResourceLocations("file:/"+uploadPath+"/").setCachePeriod(0);		// upload directory setup
 		//  <resources mapping="/img/**" location="지정한 업로드 폴더 절대경로" />
 	}
 	

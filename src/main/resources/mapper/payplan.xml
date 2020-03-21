@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.neodreams.herit.mapper.PayInfoMapper">
+
+	<!-- Pay Plan information list count search -->
+	<select id="selectPayPlanListCount" parameterType="HashMap" resultType="int">
+        <![CDATA[
+            SELECT 
+                  count(seq) as cnt
+             FROM herit_payplan_info
+            WHERE  1=1
+        ]]>
+ 
+	</select>	
+	
+	<!-- Pay Plan information list search  -->
+	<select id="selectPayPlanList" parameterType="HashMap" resultType="product">
+        <![CDATA[
+            SELECT 
+                  a.seq, a.subject,    a.sts,   a.category, a.period, a.price, a.file_name, a.use_yn,      
+                  date_format(a.reg_dt, '%Y.%m.%d') as reg_dt
+             FROM herit_payplan_info a 
+            WHERE  1=1
+        ]]>
+        order by a.reg_dt desc	
+        LIMIT #{perPageCnt} OFFSET #{pageStartNo}
+	</select>	
+	
+	
+	<!--  search Pay Plan information detatil information  -->
+	<select id="selectPayPlanById" parameterType="HashMap" resultType="product">
+		SELECT                  
+			   a.seq, a.subject,    a.sts,   a.category, a.period, a.price, a.file_name, a.use_yn,      
+               date_format(a.reg_dt, '%Y.%m.%d') as reg_dt
+		  from herit_payplan_info a
+		 where
+		       a.seq = #{seq}
+	</select>
+	
+	<!-- Pay Plan information All list search  -->
+	<select id="selectPayPlanAllList" resultType="product">
+        <![CDATA[
+            SELECT 
+                  a.seq, a.product_name, a.product_img
+             FROM herit_payplan_info a 
+            WHERE  a.use_yn = 'Y'
+        ]]>
+        order by reg_dt desc	
+	</select>		
+	
+	<!--  Pay Plan information register  -->
+    <insert id="insertPayPlan" parameterType="HashMap">
+		INSERT INTO herit_payplan_info (
+			subject,     sts,     category,   period,       price,     file_name,      use_yn,      reg_dt
+		) VALUES ( 
+			#{subject}, #{sts},  #{category},  #{period},    #{price}, #{file_name},   #{use_yn},   current_timestamp
+		)
+	</insert>	
+	
+	<!--  Pay Plan information update  -->
+    <update id="updatePayPlan" parameterType="HashMap">
+		UPDATE herit_payplan_info 
+		   SET 
+		       subject = #{subject},
+		       sts   = #{sts},    
+		       category  = #{category},     
+			   period   = #{period},
+			   price   = #{price},
+			   file_name   = #{file_name},
+			   use_yn   = #{use_yn}
+	     WHERE
+	           seq = #{seq}
+	</update>	
+	
+	<!--  Pay Plan information delete  -->
+    <delete id="deletePayPlan" parameterType="HashMap">
+		delete from herit_payplan_info 
+		 where seq = #{seq}
+	</delete>	
+		
+</mapper>

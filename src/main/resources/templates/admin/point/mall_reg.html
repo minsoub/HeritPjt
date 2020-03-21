@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=4" th:include="admin/point/point_menu"></th:block>
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">포인트 몰 등록</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">포인트 관리</a></li>
+					<li><a href="">포인트 몰</a></li>
+				</ol>
+			</div>
+			<form name="frm" id="frm" method="post">
+			<input type="hidden" name="seq"  id="seq"  th:value="${info.seq}">	
+			<input type="hidden" name="use_yn"  id="use_yn"  th:value="${info.use_yn}">		
+			<input type="hidden" name="product_key"  id="product_key"  th:value="${info.product_key}">	
+			<table class="tblTypeC mtMmd">
+				<colgroup>
+					<col width="100">
+					<col>
+				</colgroup>
+				<tr>
+					<th>상품명</th>
+					<td>
+						<select id="product_key2" class="w100" onchange="javascript:ImageLoad(this.value);">
+							<option value="">상품을 선택해 주세요.</option>
+							<option th:each="itemData: ${productList}" th:value="|${itemData.seq}::${itemData.product_img}|" th:text="${itemData.product_name}" th:selected="${itemData.seq == info.product_key}"></option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>상품 이미지</th>
+					<td>
+						<div class="thumbProd">
+							<img id="loadImg" th:src="|/img/${info.product_img}|" alt="">
+							<p class="txt">등록 이미지</p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>상태</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="mall_sts" id="mall_sts" value="Y" th:checked="${info.mall_sts == 'Y' or info.mall_sts == null}">
+							<label for="chck0101">구매가능</label>
+							<input type="radio" name="mall_sts" id="mall_sts" value="R" th:checked="${info.mall_sts == 'R'}">
+							<label for="chck0102">준비중</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>구매 포인트</th>
+					<td><input type="number" name="amt" id="amt"  class="w15" th:value="${info.amt}"> Point</td>
+				</tr>
+				<tr>
+					<th>상품 상세 설명</th>
+					<td>
+						<textarea name="content" id="content" th:text="${info.content}"></textarea>
+					</td>
+				</tr>
+			</table>
+			</form>			
+			<div class="btnWrap mtMmd">
+				<button id="btnSave" class="btnDefault">저장</button>
+				<button id="btnCancel" class="btnDefault">취소</button>
+			</div>
+			
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('4', '0', '0'); //menu script
+	
+    $('#btnSave').click( function() {
+        if ($("#product_key2").val() == "")
+        {
+        	alert("상품명을 선택하세요!!!");
+        	$("#product_key2").focus();
+        	return;
+        }
+		if ($("#amt").val() == "")
+		{
+			alert("구매 포인트를 입력하세요!!!");
+			$("#amt").focus();
+			return;
+		}
+		if ($("#content").val() == "")
+		{
+			alert("내용을 입력하세요!!!");
+			$("#content").focus();
+			return;
+		}
+		var data = $("#product_key2").val();
+		var dd = data.split('::');
+		frm.product_key.value = dd[0];
+        frm.action = "mallsave";
+        frm.submit();
+    });	 
+	
+    $('#btnCancel' ).click( function() {
+        location.href="malllist";
+    });	 
+});
+
+function ImageLoad(data)
+{
+	var sd = data.split('::');
+	// 이미지 load
+	var imageName = "/img/"+sd[1];
+	//alert(imageName);
+	
+	$("#loadImg").attr("src", imageName);
+}
+</script>

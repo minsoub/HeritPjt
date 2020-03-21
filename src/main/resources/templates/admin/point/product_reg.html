@@ -22,6 +22,7 @@
 			</div>
 			<form name="frm" id="frm" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="seq"  id="seq"  th:value="${info.seq}">	
+			<input type="hidden" name="use_yn"  id="use_yn"  th:value="${info.use_yn}">
 			<input type="hidden" name="product_img"  id="product_img"  th:value="${info.product_img}">			
 			<table class="tblTypeC mtMmd">
 				<colgroup>
@@ -45,7 +46,7 @@
 			</table>	
 			</form>		
 			<div class="btnWrap mtMmd">
-				<button id="btnSave" class="btnDefault">등록</button>
+				<button id="btnSave" class="btnDefault">저장</button>
 				<button id="btnCancel" class="btnDefault">취소</button>
 			</div>
 		</div>

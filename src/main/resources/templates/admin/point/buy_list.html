@@ -19,14 +19,15 @@
 					<li><a href="">구매내역</a></li>
 				</ol>
 			</div>
+			<form name="frm" id="frm" method="post">
+			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />	
 			<div class="bxSrchForm tar">
 				<label for="">구매일</label>
-				<input type="text" value="" class="datePic"> <span class="dash">~</span> <input type="text" value="" class="datePic">
-				<button type="button" class="btnPrimary sizeSm">검색</button>
+				<input type="text" id="searchFromDt" name="searchFromDt" value="" class="datePic"> <span class="dash">~</span> <input type="text" id="searchToDt" name="searchToDt" value="" class="datePic">
+				<button type="button" id="btnSearch" class="btnPrimary sizeSm">검색</button>
 			</div>
 			<h3 class="cntTitLg">구매 리스트</h3>
-			<form name="frm" id="frm" method="post">
-			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />				
+						
 			<table class="tblTypeA mtXs">
 				<colgroup>
 					<col>
@@ -45,51 +46,31 @@
 					</tr>
 				</thead>
 				<tbody>
+				    <th:block th:if="${totalCnt == 0}">
 					<tr>
-						<td>2019.08.02</td>
-						<td>포인트 몰</td>
-						<td>6명</td>
+ 						<td colspan="5" class="noData">
+							<p class="ico"><img src="/resources/images/contents/ico_nodata03.gif" alt=""></p>
+							등록된 정보가 없습니다.
+						</td>
+					</tr>
+					</th:block>
+					<th:block th:if="${totalCnt > 0}">				
+					<tr th:each="info : ${list}">
+						<td th:text="${info.pay_dt}">
+						<td th:text="${info.pay_type_name}">
+						<td th:text="|${info.pay_count} 명|">
 						<td>
 							<div class="btnWrap">
-								<a href="" class="btnColorD">엑셀로 저장</a>
+								<a th:href="|javascript:goExcelDownload( '${info.pay_dt}' )|" class="btnColorD">엑셀로 저장</a>
 							</div>
 						</td>
 						<td>
 							<div class="btnWrap">
-								<a href="" class="btnColorE">발송 완료</a>
+								<a th:href="|javascript:goSendSts( '${info.pay_dt}', '${info.send_sts}' )|" class="btnColorE" th:text="${info.send_sts_name}"></a>
 							</div>
 						</td>
 					</tr>
-					<tr>
-						<td>2019.08.02</td>
-						<td>포인트 몰</td>
-						<td>6명</td>
-						<td>
-							<div class="btnWrap">
-								<a href="" class="btnColorD">엑셀로 저장</a>
-							</div>
-						</td>
-						<td>
-							<div class="btnWrap">
-								<a href="" class="btnColorE">발송 완료</a>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>2019.08.02</td>
-						<td>포인트 몰</td>
-						<td>6명</td>
-						<td>
-							<div class="btnWrap">
-								<a href="" class="btnColorD">엑셀로 저장</a>
-							</div>
-						</td>
-						<td>
-							<div class="btnWrap">
-								<a href="" class="btnColorE">발송 완료</a>
-							</div>
-						</td>
-					</tr>
+					</th:block>					
 				</tbody>
 			</table>
 			<!-- paging -->
@@ -99,14 +80,65 @@
 		</div>
 		<!-- //contents -->
 	</div>
+	<form name="excelForm" id="excelForm">
+	
+	</form>
 	<!-- //contaier -->
+<script type="text/javascript" src="/resources/js/jquery.fileDownload.js"></script>	
 <script>
 $(document).ready(function() {
 	load_fnc('4', '0', '0'); //menu script
 	
-    $('#btnSearch' ).click( function() {
-        frm.action = "privatelist";
+    $('#btnSearch').click( function() {
+        frm.action = "buylist";
         frm.submit();
     });	 
 });
+
+function goExcelDownload(pay_dt)
+{
+	console.log(pay_dt);
+	var jsonData = {"pay_dt" : pay_dt};
+	console.log(jsonData);
+	
+	var xlsDown = true;
+	if(xlsDown){
+		xlsDown = false;
+		
+		$('#excelForm').attr('action','buyExcelDownload').attr('method', 'post').attr('target', 'ifrm').submit();
+		
+		$.fileDownload($("#excelForm").prop('action'),{
+			httpMethod: "POST",  
+			data: jsonData,   
+			successCallback: function (url) {
+				xlsDown = true;
+			},
+			failCallback: function(responesHtml, url){
+				alert('다운로드 오류 발생. 관리자에게 문의 하시기 바랍니다.');
+				xlsDown = true;
+			}
+		}); 
+	}else{ 
+		alert('다운로드 진행 중 입니다.\n데이터 양이 많을수록 엑셀 처리 속도가 지연됩니다.(약 50건/초)\n화면 이동시 진행중인 다운로드는 취소됩니다.');
+	}	
+}
+/**
+ * 상태 변경
+ */
+function goSendSts(pay_dt, send_sts)
+{
+	console.log(pay_dt);
+	console.log(send_sts);
+	
+	if (send_sts == 'N') {
+		send_sts = 'Y';		// 미발송 -> 발송상태
+	}else {
+		send_sts = 'N';		// 발송 -> 미발송 상태
+	}
+	var params = {
+		"pay_dt" : pay_dt, 
+		"send_sts" : send_sts
+	};
+	goJsonInput(params, "buyupdate", "buylist");			
+}
 </script>

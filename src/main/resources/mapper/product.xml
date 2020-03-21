@@ -11,36 +11,20 @@
              FROM herit_product_info
             WHERE  1=1
         ]]>
-        <if test='h_name != null'>
-        	and h_name like CONCAT('%',#{h_name},'%')	        	
-        </if>
-        <if test='name != null'>
-        	and name like CONCAT('%',#{name},'%')  	        	
-        </if> 
-        <if test='phone != null'>
-        	and phone like CONCAT('%',#{phone},'%')  	         	
-        </if>  
+ 
 	</select>	
 	
 	<!-- Product list search  -->
 	<select id="selectProductList" parameterType="HashMap" resultType="product">
         <![CDATA[
             SELECT 
-                  a.seq, a.product_name,    a.product_img,     a.product_sts,     a.product_amt,      a.content,        a.use_yn,     
+                  a.seq, a.product_name,    a.product_img,     a.product_sts,     a.product_amt,         a.use_yn,     
                   date_format(a.reg_dt, '%Y.%m.%d') as reg_dt, 
-                  (seelct count(*) from herit_pay_info where product_key = a.seq) as buy_total
+                  (select count(seq) from herit_pay_info where p_key in (select seq from herit_mall_info where product_key=a.seq)) as buy_total
              FROM herit_product_info a 
             WHERE  1=1
         ]]>
-        <if test='h_name != null'>
-        	and h_name like CONCAT('%',#{h_name},'%')	        	
-        </if>
-        <if test='name != null'>
-        	and name like CONCAT('%',#{name},'%')  	        	
-        </if> 
-        <if test='phone != null'>
-        	and phone like CONCAT('%',#{phone},'%')  	         	
-        </if>  
+  
         order by reg_dt desc	
         LIMIT #{perPageCnt} OFFSET #{pageStartNo}
 	</select>	
@@ -48,19 +32,30 @@
 	
 	<!--  search Product detatil information  -->
 	<select id="selectProductById" parameterType="HashMap" resultType="product">
-		SELECT a.seq, a.product_name,    a.product_img,     a.product_sts,     a.product_amt,      a.content,        a.use_yn,
+		SELECT a.seq, a.product_name,    a.product_img,     a.product_sts,     a.product_amt,       a.use_yn,
                date_format(a.reg_dt, '%Y-%m-%d %H:%i') as reg_dt
 		  from herit_product_info a
 		 where
 		       a.seq = #{seq}
-	</select>	
+	</select>
+	
+	<!-- Product All list search  -->
+	<select id="selectProductAllList" resultType="product">
+        <![CDATA[
+            SELECT 
+                  a.seq, a.product_name, a.product_img
+             FROM herit_product_info a 
+            WHERE  a.use_yn = 'Y'
+        ]]>
+        order by reg_dt desc	
+	</select>		
 	
 	<!--  Product register  -->
     <insert id="insertProduct" parameterType="HashMap">
 		INSERT INTO herit_product_info (
-			product_name,    product_img,     product_sts,     product_amt,      content,        use_yn,      reg_dt
+			product_name,    product_img,     product_sts,     product_amt,          use_yn,      reg_dt
 		) VALUES ( 
-			#{product_name}, #{product_img},  #{product_sts},  #{product_amt},   #{content},     #{use_yn},   current_timestamp
+			#{product_name}, #{product_img},  #{product_sts},  #{product_amt},      #{use_yn},   current_timestamp
 		)
 	</insert>	
 	
@@ -72,7 +67,6 @@
 		       product_img   = #{product_img},    
 		       product_sts  = #{product_sts},     
 			   product_amt   = #{product_amt},
-			   content   = #{content},
 			   use_yn   = #{use_yn}
 	     WHERE
 	           seq = #{seq}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=2" th:include="admin/pay/pay_menu"></th:block>
+		<!-- //SNB -->
+		
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">요금제 정보</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">결제관리</a></li>
+					<li><a href="">요금제 정보</a></li>
+				</ol>
+			</div>
+			<form name="frm" id="frm" method="post">
+			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />	
+			<h3 class="cntTitLg">요금 리스트</h3>
+			<table class="tblTypeA mtSm">				
+				<thead>					
+					<tr>
+						<th>요금제 명</th>
+						<th>상태</th>
+						<th>가격</th>
+						<th>서비스 기간</th>
+						<th>구매건수</th>
+						<th>최종 등록일</th>
+					</tr>
+				</thead>
+				<tbody>					
+					<tr th:each="info : ${list}">
+						<td>Green</td>
+						<td>운영중</td>
+						<td class="tar">15,000원</td>
+						<td>3년</td>
+						<td>50</td>
+						<td>2019.08.02</td>
+					</tr>
+					<tr>
+						<td>Blue</td>
+						<td>운영중</td>
+						<td class="tar">15,000원</td>
+						<td>3년</td>
+						<td>50</td>
+						<td>2019.08.02</td>
+					</tr>
+					<tr>
+						<td>Red</td>
+						<td>준비중</td>
+						<td class="tar">15,000원</td>
+						<td>3년</td>
+						<td>50</td>
+						<td>2019.08.02</td>
+					</tr>
+				</tbody>
+			</table>
+			</form>
+			<!-- btn -->
+			<div class="btnWrap mtMmd">
+				<a href="" class="btnDefault">등록</a>
+			</div>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+	
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('5', '0', '0'); //menu script
+});
+</script>
+
+<!-- laeyr poup - 결제내역 -->
+<div class="wrapPop popListPay">
+	<div class="popCnt sizeLg">
+		<h1 class="titPop">홍길동님 결제내역</h1>
+		<p class="btnClose">
+			<a href=""><img src="/resources/images/common/btn_close_pop.png" alt="레이어 닫기"></a>
+		</p>
+		<div class="cnt">	
+					
+			<table class="tblTypeA">
+				<colgroup>
+					<col>
+					<col>
+					<col>
+					<col width="16%">
+					<col width="16%">
+					<col width="16%">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>날짜</th>
+						<th>상태</th>
+						<th>결제상품</th>
+						<th>결제액</th>
+						<th>합계</th>
+						<th>결제 취소</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>2019.12.24 15:35</td>
+						<td class="colorB">결제 취소</td>
+						<td class="colorB">Blue</td>
+						<td class="colorB tar">-50,000원</td>
+						<td class="colorB tar">180,000원</td>
+						<td class="colorB">결제 취소 완료</td>
+					</tr>
+					<tr>
+						<td>2019.12.24 15:35</td>
+						<td>결제 완료</td>
+						<td>Blue</td>
+						<td class="tar">50,000원</td>
+						<td class="tar">230,000원</td>
+						<td><span class="btnWrap"><a href="" class="btnColorC">결제 취소</a></span></td>
+					</tr>
+					<tr>
+						<td>2019.12.24 15:35</td>
+						<td>결제 완료</td>
+						<td>Blue</td>
+						<td class="tar">50,000원</td>
+						<td class="tar">230,000원</td>
+						<td><span class="btnWrap"><a href="" class="btnColorC">결제 취소</a></span></td>
+					</tr>					
+				</tbody>
+			</table>
+			<!-- paging -->
+			<th:block th:include="admin/layout/common_paging"></th:block>
+			<!-- // Paging -->
+			
+
+			<!-- btn -->
+			<p class="btnWrap">
+				<a href="" class="btnDefault btnClose">확인</a>
+			</p>
+		</div>
+	</div>
+</div>
+<!-- //laeyr poup - 결제내역 -->

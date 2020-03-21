@@ -8,70 +8,68 @@
         <![CDATA[
             SELECT 
                   count(seq) as cnt
-             FROM herit_product_info
+             FROM herit_mall_info
             WHERE  1=1
         ]]>
-        <if test='h_name != null'>
-        	and h_name like CONCAT('%',#{h_name},'%')	        	
-        </if>
-        <if test='name != null'>
-        	and name like CONCAT('%',#{name},'%')  	        	
-        </if> 
-        <if test='phone != null'>
-        	and phone like CONCAT('%',#{phone},'%')  	         	
-        </if>  
 	</select>	
 	
 	<!-- Point mall list search  -->
 	<select id="selectMallList" parameterType="HashMap" resultType="mallinfo">
         <![CDATA[
             SELECT 
-                  a.seq, a.product_name,    a.product_img,     a.product_sts,     a.product_amt,      a.content,        a.use_yn,     
-                  date_format(a.reg_dt, '%Y.%m.%d') as reg_dt, 
-                  (seelct count(*) from herit_pay_info where product_key = a.seq) as buy_total
-             FROM herit_product_info a 
-            WHERE  1=1
-        ]]>
-        <if test='h_name != null'>
-        	and h_name like CONCAT('%',#{h_name},'%')	        	
-        </if>
-        <if test='name != null'>
-        	and name like CONCAT('%',#{name},'%')  	        	
-        </if> 
-        <if test='phone != null'>
-        	and phone like CONCAT('%',#{phone},'%')  	         	
-        </if>  
-        order by reg_dt desc	
+                  b.seq, a.product_name,    
+                  b.mall_sts,  
+                  case when b.mall_sts = 'Y' then '구매가능' 
+                       when b.mall_sts = 'N' then '미사용'
+                       else '준비중' 
+                  end as mall_sts_name, 
+                  format(b.amt, 0) f_amt,    
+                  date_format(b.reg_dt, '%Y.%m.%d') as reg_dt, 
+                  (select count(*) from herit_pay_info where product_key = b.seq) as buy_qty
+             FROM herit_product_info a, herit_mall_info b 
+            WHERE  a.seq = b.product_key
+        ]]> 
+        order by b.reg_dt desc	
         LIMIT #{perPageCnt} OFFSET #{pageStartNo}
 	</select>	
 	
 	
 	<!--  search Point mall detatil information  -->
 	<select id="selectMallById" parameterType="HashMap" resultType="mallinfo">
-		SELECT a.seq, a.product_name,    a.product_img,     a.product_sts,     a.product_amt,      a.content,        a.use_yn,
-               date_format(a.reg_dt, '%Y-%m-%d %H:%i') as reg_dt
-		  from herit_product_info a
-		 where
-		       a.seq = #{seq}
+            SELECT 
+                  b.seq, a.product_name, a.product_img,  b.product_key,  
+                  b.mall_sts,  
+                  case when b.mall_sts = 'Y' then '구매가능' 
+                       when b.mall_sts = 'N' then '미사용'
+                       else '준비중' 
+                  end as mall_sts_name, 
+                  b.amt, 
+                  format(b.amt, 0) f_amt,    
+                  date_format(b.reg_dt, '%Y.%m.%d') as reg_dt, 
+                  (select count(*) from herit_pay_info where product_key = b.seq) as buy_total, 
+                  b.use_yn, 
+                  b.content
+             FROM herit_product_info a, herit_mall_info b 
+            WHERE  a.seq = b.product_key
+		      and  b.seq = #{seq}
 	</select>	
 	
 	<!--  Point mall register  -->
     <insert id="insertMall" parameterType="HashMap">
-		INSERT INTO herit_product_info (
-			product_name,    product_img,     product_sts,     product_amt,      content,        use_yn,      reg_dt
+		INSERT INTO herit_mall_info (
+			product_key,    mall_sts,     amt,     content,        use_yn,      reg_dt
 		) VALUES ( 
-			#{product_name}, #{product_img},  #{product_sts},  #{product_amt},   #{content},     #{use_yn},   current_timestamp
+			#{product_key}, #{mall_sts},  #{amt},   #{content},    #{use_yn},   current_timestamp
 		)
 	</insert>	
 	
 	<!--  Point mall update  -->
     <update id="updateMall" parameterType="HashMap">
-		UPDATE herit_product_info 
+		UPDATE herit_mall_info 
 		   SET 
-		       product_name = #{product_name},
-		       product_img   = #{product_img},    
-		       product_sts  = #{product_sts},     
-			   product_amt   = #{product_amt},
+		       product_key = #{product_key},
+		       mall_sts   = #{mall_sts},    
+		       amt        = #{amt},     
 			   content   = #{content},
 			   use_yn   = #{use_yn}
 	     WHERE
@@ -80,7 +78,7 @@
 	
 	<!--  Point mall delete  -->
     <delete id="deleteMall" parameterType="HashMap">
-		delete from herit_product_info 
+		delete from herit_mall_info 
 		 where seq = #{seq}
 	</delete>	
 		

@@ -16,14 +16,16 @@ public class MallInfo extends CommonModel  {
 	private int     seq;
 	private int		product_key;
 	private String	mall_sts;
+	private String  mall_sts_name;
 	private int		amt;
+	private String  f_amt;
 	private int		qty;
 	private int		rest_qty;
+	private int	 	buy_qty;
 	private String	use_yn;
 	private String	reg_dt;	
+	private String content;
 	
 	private String	product_name;
 	private String	product_img;
-	private String	product_sts;
-	private String	product_amt;
 }

@@ -36,6 +36,15 @@ public interface ProductMapper {
 	int selectProductListCount(Product data) throws Exception;
 	
 	/**
+	 * search the Product All list
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	List<Product> selectProductAllList() throws Exception;
+	
+	/**
 	 * return total Product count
 	 * 
 	 * @return

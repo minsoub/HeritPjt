@@ -25,7 +25,7 @@
 			</div>
 			<form name="frm" id="frm" method="post">
 			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />	
-			<input type="hidden" name="seq" id="seq"  th:value="${info.seq}" />			
+			<input type="hidden" name="seq" id="seq">		
 			<table class="tblTypeA mtXs">
 				<colgroup>
 					<col width="21%">
@@ -53,8 +53,8 @@
 					<th:block th:if="${totalCnt > 0}">
 						<tr th:onclick="|goDetail( ${info.seq} )|" th:each="info : ${list}">
 							<td><div class="thumbProd"><img th:src="|/img/${info.product_img}|" alt=""></div></td>
-							<td class="tal" th:text="${info.name}">
-							<td th:text="${info.buy_total}개">
+							<td class="tal" th:text="${info.product_name}">
+							<td th:text="|${info.buy_total}개|">
 							<td th:text="${info.reg_dt}">
 						</tr>
 					</th:block>
@@ -81,8 +81,9 @@ $(document).ready(function() {
     });	 
 });
 
-function goDetail()
+function goDetail(seq)
 {
+	frm.seq.value = seq;
 	frm.action = "productdetail";
 	frm.submit();
 }

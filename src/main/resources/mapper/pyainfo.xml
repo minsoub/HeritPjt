@@ -5,47 +5,100 @@
 	
 	<!-- pay history list count search -->
 	<select id="selectPayInfoListCount" parameterType="HashMap" resultType="int">
+	    select count(*) as cnt
+	      from (
         <![CDATA[
-            SELECT 
-                  count(seq) as cnt
-             FROM herit_pay_info
-            WHERE  mem_seq = #{mem_seq}
+            SELECT                  
+                  date_format(a.pay_dt, '%Y-%m-%d') as pay_dt, 
+                  '포인트 몰' as pay_type_name, 
+                  a.send_sts, 
+                  case when a.send_sts = 'Y' then '발송완료'
+                       when a.send_sts = 'N' then '미발송'
+                       else ''
+                       end as send_sts_name, 
+                  count(a.seq) as pay_count
+             FROM herit_pay_info a
+            WHERE  1 = 1
         ]]>
         <if test='searchFromDt != null and searchToDt != null'>
         	<if test="pay_sts == null">
-        		and date_format(pay_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
+        		and date_format(pay_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
         	</if>
         	<if test="pay_sts != null">
-        		and pay_sts = #{pay_sts} and date_format(pay_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
+        		and pay_sts = #{pay_sts} and date_format(pay_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
         	</if>       	        	
         </if>
+        group by  date_format(a.pay_dt, '%Y-%m-%d')
+        ) as T
 	</select>	
 	
-	<!-- Pya history list search  -->
+	<!-- Pay history list search  -->
 	<select id="selectPayInfoList" parameterType="HashMap" resultType="payinfo">
         <![CDATA[
-            SELECT 
-                  a.seq, a.mem_seq, a.product_key, a.pay_amt, a.pay_cnt, a.pay_total, a.pay_sts, 
-			      case 
-  					when a.pay_sts = 'Y' then '결제완료'
-  					when a.pay_sts = 'C' then '결제취소'
-  					when a.pay_sts = 'N' then '미승인'
-  					else  ''
-  			      end as pay_sts_name,                   
-                  date_format(a.pay_dt, '%Y-%m-%d %H:%i') as pay_dt
+            SELECT                  
+                  date_format(a.pay_dt, '%Y-%m-%d') as pay_dt, 
+                  '포인트 몰' as pay_type_name, 
+                  a.send_sts, 
+                  case when a.send_sts = 'Y' then '발송완료'
+                       when a.send_sts = 'N' then '미발송'
+                       else ''
+                       end as send_sts_name, 
+                  count(a.seq) as pay_count
              FROM herit_pay_info a
-            WHERE  a.mem_seq = #{mem_seq}
+            WHERE  1 = 1
         ]]>
         <if test='searchFromDt != null and searchToDt != null'>
         	<if test="pay_sts == null">
-        		and date_format(a.pay_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
+        		and date_format(pay_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
         	</if>
         	<if test="pay_sts != null">
-        		and a.pay_sts = #{pay_sts} and date_format(a.pay_dt, '%Y-%m-%d') between #{searchFromDt} and #{searchToDt}
+        		and pay_sts = #{pay_sts} and date_format(pay_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
         	</if>       	        	
         </if>
+        group by  date_format(a.pay_dt, '%Y-%m-%d')
         order by pay_dt desc	
         LIMIT #{perPageCnt} OFFSET #{pageStartNo}
 	</select>	
+	
+	<!-- Pay history list search  -->
+	<!--  {"번호", "결제일시", "사용자명", "결제상품", "결제금액", "수량", "총결제금액", "결제상태", "발송상태"}  -->
+	<select id="selectPayExcelList" parameterType="HashMap" resultType="payinfo">
+        <![CDATA[
+            SELECT          
+            	  a.seq ,
+            	  date_format(a.pay_dt, '%Y-%m-%d') as pay_dt,    
+            	  b.name, 
+            	  d.product_name, 
+            	  a.pay_amt, 
+            	  a.pay_cnt,
+            	  a.pay_total, 
+				  case when a.pay_sts = 'Y' then '결제완료'
+				       when a.pay_sts = 'N' then '미승인'
+				       when a.pay_sts = 'C' then '결제취소'
+				       else '' end as pay_sts_name,  
+                  case when a.send_sts = 'Y' then '발송완료'
+                       when a.send_sts = 'N' then '미발송'
+                       else ''
+                       end as send_sts_name
+             FROM herit_pay_info a, herit_member b, herit_mall_info c, herit_product_info d           
+        ]]>
+        WHERE 
+              date_format(a.pay_dt, '%Y-%m-%d') = #{pay_dt}
+          and a.mem_seq = b.seq 
+          and a.p_key = c.seq
+          and c.product_key = d.seq
+        order by a.pay_dt desc	
+
+	</select>	
+		
+	
+	<!--  Pay history status update  -->
+    <update id="updatePayInfo" parameterType="HashMap">
+		UPDATE herit_pay_info 
+		   SET 
+		       send_sts = #{send_sts}
+	     WHERE
+	           date_format(pay_dt, '%Y-%m-%d') = #{pay_dt}
+	</update>
 	
 </mapper>

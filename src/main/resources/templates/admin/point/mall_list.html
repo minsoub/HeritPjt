@@ -21,7 +21,7 @@
 			</div>
 			<div class="clearfix mtXs">
 				<h3 class="cntTitLg fl">상품 리스트</h3>
-				<div class="btnWrap fr"><a href="" class="btnDefault">상품등록</a></div>
+				<div class="btnWrap fr"><a th:href="@{mallregform}" th:text="@{상품등록}" class="btnDefault"></a></div>
 			</div>
 			<form name="frm" id="frm" method="post">
 			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />					
@@ -36,27 +36,23 @@
 					</tr>
 				</thead>
 				<tbody>
+				    <th:block th:if="${totalCnt == 0}">
 					<tr>
-						<td>[GS25] 2천원 상품권</td>
-						<td>구매가능</td>
-						<td>1,000 point</td>
-						<td>105개</td>
-						<td>2019.08.02</td>
+ 						<td colspan="4" class="noData">
+							<p class="ico"><img src="/resources/images/contents/ico_nodata03.gif" alt=""></p>
+							등록된 정보가 없습니다.
+						</td>
 					</tr>
-					<tr>
-						<td>[CU] 2천원 상품권</td>
-						<td>구매가능</td>
-						<td>1,000 point</td>
-						<td>320개</td>
-						<td>2019.08.02</td>
-					</tr>
-					<tr>
-						<td>스타벅스 아메리카노 쿠폰</td>
-						<td>구매가능</td>
-						<td>1,000 point</td>
-						<td>320개</td>
-						<td>2019.08.02</td>
-					</tr>
+					</th:block>
+					<th:block th:if="${totalCnt > 0}">
+					<tr th:each="info : ${list}">
+						<td><a th:href="@{malldetail(seq=${info.seq})}" th:text="${info.product_name}"></a></td>
+						<td th:text="${info.mall_sts_name}">
+						<td th:text="|${info.f_amt} point|">
+						<td th:text="|${info.buy_qty} 개|">
+						<td th:text="${info.reg_dt}">
+					</tr>					
+					</th:block>
 				</tbody>
 			</table>
 			<!-- paging -->
@@ -64,7 +60,7 @@
 			<!-- // Paging -->
 			</form>	
 			<div class="btnWrap mtSm">
-				<a href="" class="btnDefault">상품등록</a>
+				<a th:href="@{mallregform}" th:text="@{상품등록}" id="btnReg" class="btnDefault"></a>
 			</div>
 		</div>
 		<!-- //contents -->
@@ -75,11 +71,6 @@
 
 <script>
 $(document).ready(function() {
-	load_fnc('4', '0', '0'); //menu script
-	
-    $('#btnSearch' ).click( function() {
-        frm.action = "privatelist";
-        frm.submit();
-    });	 
+	load_fnc('4', '0', '0'); //menu script 
 });
 </script>	

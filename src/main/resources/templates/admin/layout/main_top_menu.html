@@ -32,7 +32,7 @@
 								<li><a href="">공유 미션 현황</a></li>
 							</ul>
 						</li>
-						<li id="topmenu4"><a href="">포인트관리</a>
+						<li id="topmenu4"><a th:href="@{/admin/point/pointlist}">포인트관리</a>
 							<ul class="depth2">
 								<li><a th:href="@{/admin/point/pointlist}">포인트 현황</a></li>
 								<li><a th:href="@{/admin/point/privatelist}">개인별 포인트 현황</a></li>
@@ -41,10 +41,10 @@
 								<li><a th:href="@{/admin/point/buylist}">구매내역</a></li>
 							</ul>
 						</li>
-						<li id="topmenu5"><a href="">결제관리</a>
+						<li id="topmenu5"><a th:href="@{/admin/pay/paylist}">결제관리</a>
 							<ul class="depth2">
-								<li><a href="">결제 내역</a></li>
-								<li><a href="">요금제 정보</a></li>
+								<li><a th:href="@{/admin/pay/paylist}">결제 내역</a></li>
+								<li><a th:href="@{/admin/pay/payplanlist}">요금제 정보</a></li>
 							</ul>
 						</li>
 						<li id="topmenu6"><a href="">통계</a>
