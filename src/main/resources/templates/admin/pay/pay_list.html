@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=1" th:include="admin/pay/pay_menu"></th:block>
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">결제 현황 상세</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">결제관리</a></li>
+					<li><a href="">결제내역</a></li>
+				</ol>
+			</div>
+			<form name="frm" id="frm" method="post">
+			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />	
+			<input type="hidden" name="searchDt" id="searchDt"  th:value="${paging.searchDt}" />			
+			<div class="bxSrchForm">
+				<div class="fl w40">
+					<label for="">날짜</label>
+					<input type="text" name="searchFromDt" id="searchFormDt" th:value="${paging.searchFromDt}" class="datePic w30"><span class="dash">~</span>
+					<input type="text" name="searchToDt" id="searchToDt" th:value="${paging.searchToDt}" class="datePic w30">
+				</div>
+				<div class="fr tar w50">
+					<select name="searchId" id="searchId" class="mlSm">
+						<option value="id" th:selected="${paging.searchId == 'id'}">ID</option>
+						<option value="htel" th:selected="${paging.searchId == 'htel'}">연락처</option>
+						<option value="name" th:selected="${paging.searchId == 'name'}">성명</option>
+					</select>
+					<input type="text" name="searchString" id="searchString" th:value="${paging.searchString}" class="mlXs w50">
+					<button type="button" class="btnPrimary">검색</button>
+				</div>
+			</div>
+			<div class="clearfix">
+				<h3 class="cntTitLg fl">결제 리스트<small>(총 [[${totalCnt}]]명)</small></h3>
+				<div class="fr mtSMd">
+					<select name="">
+						<option value="">전체</option>
+						<option value="">결제 완료</option>
+						<option value="">결제 취소</option>
+					</select>
+				</div>
+			</div>
+			<table class="tblTypeA mtSm">				
+				<thead>					
+					<tr>
+						<th>날짜</th>
+						<th>상태</th>
+						<th>결제 상품</th>
+						<th>결제액</th>
+						<th>ID</th>
+						<th>성명</th>
+						<th>연락처</th>
+						<th>결제이력</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:if="${totalCnt == 0}">
+					<tr>
+						<td colspan="8" class="noData">
+							<p class="ico"><img src="/resources/images/contents/ico_nodata03.gif" alt=""></p>
+							결제 내역이 없습니다.
+						</td>
+					</tr>
+					</th:block>
+					<th:block th:if="${totalCnt > 0}">
+					<tr th:each="info : ${list}">
+						<td th:text="${info.pay_dt}">
+						<td th:class="${info.pay_sts == 'C'}?colorB:empty" th:text="${info.pay_sts_name}">
+						<td th:class="${info.pay_sts == 'C'}?colorB:empty" th:text="${info.product_name}">
+						<td th:class="${info.pay_sts == 'C'}?colorB:empty" class="tar" th:text="|${info.pay_total_str} 원|">
+						<td th:class="${info.pay_sts == 'C'}?colorB:empty" th:text="${info.id}">
+						<td th:class="${info.pay_sts == 'C'}?colorB:empty" th:text="${info.name}">
+						<td th:class="${info.pay_sts == 'C'}?colorB:empty" th:text="${info.phone}">
+						<td><span class="btnWrap"><a th:href="|javascript:openLayer('.popListPay');javascript:setData('${info.id}', '${info.name}');|" class="btnColorC">보기</a></span></td>
+					</tr>
+					</th:block>
+				</tbody>
+			</table>
+			<!-- paging -->
+			<th:block th:include="admin/layout/common_paging"></th:block>
+			<!-- // Paging -->
+			</form>	
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+	
+	<!-- laeyr poup - 결제내역 -->
+	<th:block th:include="admin/pay/pay_list_popup"></th:block>
+	<!-- //laeyr poup - 결제내역 -->
+	
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('5', '0', '0'); //menu script		
+});
+</script>

@@ -32,15 +32,16 @@
              FROM herit_member
             WHERE  1=1
         ]]>
-        <if test='searchString != null'>
+        <if test="searchString != null and !searchString.equals('') ">
         	<if test="searchId == 'id'">
-        		and id like '%'||#{searchString}||'%'
+        	  
+        		and id like CONCAT('%',#{searchString},'%')	  
         	</if>
         	<if test="searchId == 'name'">
-        		and name like '%'||#{searchString}||'%'
+        		and name like CONCAT('%',#{searchString},'%')	
         	</if>
         	<if test="searchId == 'htel'">
-        		and ( phone like '%'||#{searchString}||'%')
+        		and ( phone like CONCAT('%',#{searchString},'%')	)
         	</if>        	        	
         </if>
 	</select>	
@@ -53,16 +54,17 @@
              FROM herit_member a
             WHERE  1=1
         ]]>
-        <if test='searchString != null'>
+        <if test="searchString != null and !searchString.equals('') ">
         	<if test="searchId == 'id'">
-        		and a.id like '%'||#{searchString}||'%'
+        	  
+        		and id like CONCAT('%',#{searchString},'%')	  
         	</if>
         	<if test="searchId == 'name'">
-        		and a.name like '%'||#{searchString}||'%'
+        		and name like CONCAT('%',#{searchString},'%')	
         	</if>
         	<if test="searchId == 'htel'">
-        		and ( a.phone like '%'||#{searchString}||'%')
-        	</if>          	        	
+        		and ( phone like CONCAT('%',#{searchString},'%')	)
+        	</if>        	        	
         </if>
         order by reg_dt desc	
         LIMIT #{perPageCnt} OFFSET #{pageStartNo}

@@ -1,0 +1,59 @@
+<!-- laeyr poup - 구매자 명단 -->
+<div class="wrapPop popListBuyer">
+	<div class="popCnt sizeLg">
+		<h1 class="titPop">요금제명</h1>
+		<p class="btnClose">
+			<a href=""><img src="/resources/images/common/btn_close_pop.png" alt="레이어 닫기"></a>
+		</p>
+		<form name="frm" id="frm" method="post">
+		<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />	
+		<input type="hidden" name="seq"  id="seq"  th:value="${info.seq}">	
+		<input type="hidden" name="mode" value="Y">
+		<div class="cnt">
+			<div class="bxSrchForm mt0">
+				<div class="fl w50">
+					<label for="">구매일</label>
+					<input type="text" name="searchFromDt" id="searchFromDt" th:value="${paging.searchFromDt}" class="datePic"> <span class="dash">~</span> 
+					<input type="text" name="searchToDt" id="searchToDt" th:value="${paging.searchToDt}" class="datePic">
+				</div>
+				<div class="fr tar w50">
+					<select name="searchId" id="searchId" class="mlSm">
+						<option value="id"   th:selected="${paging.searchId == 'id'}">ID</option>
+						<option value="htel" th:selected="${paging.searchId == 'htel'}">연락처</option>
+						<option value="name" th:selected="${paging.searchId == 'name'}">성명</option>
+					</select>
+					<input type="text" name="searchString" id="searchString" th:value="${paging.searchString}" class="mlXs w40">
+					<button type="button" id="btnSearch" class="btnPrimary">검색</button>
+				</div>
+			</div>
+			<h2 class="cntTitLg">구매자 리스트 <small>(총 [[${totalCnt}]]명)</small></h2>
+			<table class="tblTypeA mtSm">
+				<thead>
+					<tr>
+						<th>날짜</th>
+						<th>ID</th>
+						<th>성명</th>
+						<th>연락처</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="info : ${list}">
+						<td th:text="${info.pay_dt}">
+						<td th:text="${info.id}">
+						<td th:text="${info.name}">
+						<td th:text="${info.phone}">
+					</tr>					
+				</tbody>
+			</table>
+			<!-- paging -->
+			<th:block th:include="admin/layout/common_paging"></th:block>
+			<!-- // Paging -->
+			<!-- btn -->
+			<p class="btnWrap">
+				<a href="" class="btnDefault btnClose">확인</a>
+			</p>
+		</div>
+		</form>
+	</div>
+</div>
+<!-- //laeyr poup - 구매자 명단 -->

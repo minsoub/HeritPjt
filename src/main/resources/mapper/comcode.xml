@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.neodreams.herit.mapper.ComcodeMapper">
+
+	<!-- Pay Plan information list search  -->
+	<select id="selectCodeByGroup" parameterType="String" resultType="comcode">
+        <![CDATA[
+            SELECT 
+                  a.seq, a.code, a.codename, a.codegrp, a.use_yn, a.reg_dt
+             FROM herit_comcode a 
+            WHERE  a.use_yn = 'Y'
+              and  a.codegrp= #{codegrp}
+        ]]>
+        order by a.code asc	
+	</select>	
+	
+</mapper>	

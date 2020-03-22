@@ -428,7 +428,7 @@ public class AdminMngPointController {
 		
 		ModelAndView mv = new ModelAndView();
 		log.info("paramter : {}", param);
-		
+		param.setPay_type("1"); 	// 1:포인트몰, 2: 요금제 결제
 		param.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
 		int cnt = yService.selectPayInfoListCount(param);
 		List<PayInfo> lst = yService.selectPayInfoList(param);
@@ -486,7 +486,7 @@ public class AdminMngPointController {
 	@RequestMapping("/buyExcelDownload")
 	public @ResponseBody byte[] getBuyExcelDownload(PayInfo param, BindingResult result, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setHeader("Set-Cookie", "fileDownload=true); path=/");
-		
+		param.setPay_type("1"); 	// 1:포인트몰, 2: 요금제 결제
 		log.debug("parameter : {}", param);
 		List<PayInfo> exList = yService.selectPayExcelList(param);
 		// Excel 세팅

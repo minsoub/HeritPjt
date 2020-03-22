@@ -1,0 +1,133 @@
+<script language="javascript">
+function setData(id, name)
+{	
+	//alert(id);
+	$("#mName").text(name);
+	
+	var params = {"id" : id }
+	// ajax data call
+	$.ajax({
+		type : 'post',
+		url : "paylistByMemberId",
+		dataType : 'json',
+		data : params,
+		success : function(result){					
+			console.log(result);
+			
+			$('#memberTable tbody').empty();	
+
+			$(result).each(function(index, dd){
+				var cls = "empty";
+				if (dd.pay_sts == 'C') cls = "colorB";
+				
+				var html = "<tr>";
+					html += "<td>"+dd.pay_dt+"</td>";
+					html += "<td class='"+cls+"'>"+dd.pay_sts_name+"</td>";
+					html += "<td class='"+cls+"'>"+dd.product_name+"</td>";
+					html += "<td class='"+cls+" tar'>"+dd.pay_total_str+"원</td>";
+					html += "<td class='"+cls+" tar'>"+dd.pay_total_str+"원</td>";
+					if (dd.pay_sts == "Y")
+					{
+						html += "<td><span class='btnWrap'><a href=\"javascript:PayCancel('"+dd.id+"', '"+name+"', '"+dd.seq+"');\" class='btnColorC'>결제 취소</a></span></td>";
+					}else {
+						html += "<td class='colorB'>결제 취소 완료</td>";
+					}
+					html += "</tr>";
+					
+				$('#memberTable > tbody:last-child').append(html);	
+			});				
+		},
+		error : function(e){
+			alert(e);
+		}
+	});			
+}
+/**
+ * 결제를 취소한다.
+ */
+function PayCancel(id, name, payNo)
+{
+	var params = {"id" : id, 
+			      "seq": payNo};
+	// ajax data call
+	$.ajax({
+		type : 'post',
+		url : "deletePayByIdandSeq",
+		dataType : 'json',
+		data : params,
+		success : function(result){					
+			console.log(result);
+			if (result == "1")
+			{
+				setData(id, name);
+			}
+		},
+		error : function(e){
+			alert(e);
+		}
+	});		
+}
+</script>
+<!-- laeyr poup - 결제내역 -->
+<div class="wrapPop popListPay">
+	<div class="popCnt sizeLg">
+		<h1 class="titPop"><span id="mName"></span>님 결제내역</h1>
+		<p class="btnClose">
+			<a href=""><img src="/resources/images/common/btn_close_pop.png" alt="레이어 닫기"></a>
+		</p>
+		<div class="cnt">			
+			<table class="tblTypeA" id="memberTable">
+				<colgroup>
+					<col>
+					<col>
+					<col>
+					<col width="16%">
+					<col width="16%">
+					<col width="16%">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>날짜</th>
+						<th>상태</th>
+						<th>결제상품</th>
+						<th>결제액</th>
+						<th>합계</th>
+						<th>결제 취소</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr id="data">
+						<td>2019.12.24 15:35</td>
+						<td class="colorB">결제 취소</td>
+						<td class="colorB">Blue</td>
+						<td class="colorB tar">-50,000원</td>
+						<td class="colorB tar">180,000원</td>
+						<td class="colorB">결제 취소 완료</td>
+					</tr>
+					<tr>
+						<td>2019.12.24 15:35</td>
+						<td>결제 완료</td>
+						<td>Blue</td>
+						<td class="tar">50,000원</td>
+						<td class="tar">230,000원</td>
+						<td><span class="btnWrap"><a href="" class="btnColorC">결제 취소</a></span></td>
+					</tr>
+					<tr>
+						<td>2019.12.24 15:35</td>
+						<td>결제 완료</td>
+						<td>Blue</td>
+						<td class="tar">50,000원</td>
+						<td class="tar">230,000원</td>
+						<td><span class="btnWrap"><a href="" class="btnColorC">결제 취소</a></span></td>
+					</tr>					
+				</tbody>
+			</table>
+			<!-- btn -->
+			<p class="btnWrap">
+				<a href="" class="btnDefault btnClose">확인</a>
+			</p>
+		</div>
+	</div>
+</div>
+<!-- //laeyr poup - 결제내역 -->
+

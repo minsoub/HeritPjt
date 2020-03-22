@@ -18,7 +18,7 @@
                        end as send_sts_name, 
                   count(a.seq) as pay_count
              FROM herit_pay_info a
-            WHERE  1 = 1
+            WHERE  pay_type = #{pay_type}
         ]]>
         <if test='searchFromDt != null and searchToDt != null'>
         	<if test="pay_sts == null">
@@ -45,7 +45,7 @@
                        end as send_sts_name, 
                   count(a.seq) as pay_count
              FROM herit_pay_info a
-            WHERE  1 = 1
+            WHERE  a.pay_type = #{pay_type}
         ]]>
         <if test='searchFromDt != null and searchToDt != null'>
         	<if test="pay_sts == null">
@@ -84,6 +84,7 @@
         ]]>
         WHERE 
               date_format(a.pay_dt, '%Y-%m-%d') = #{pay_dt}
+          and a.pay_type = #{pay_type}
           and a.mem_seq = b.seq 
           and a.p_key = c.seq
           and c.product_key = d.seq
@@ -101,4 +102,128 @@
 	           date_format(pay_dt, '%Y-%m-%d') = #{pay_dt}
 	</update>
 	
+	<!-- 요금제를 결제한 결제 내역 리스트 총 개수  -->
+	<select id="selectPayListCountByPayPlan" parameterType="HashMap" resultType="int">
+        <![CDATA[
+            SELECT                  
+                  count(*)
+             FROM herit_pay_info a, herit_member b, herit_payplan_info c
+            WHERE  a.pay_type = #{pay_type}
+              and  a.mem_seq = b.seq
+              and  a.p_key   = c.seq
+        ]]>
+        <if test="seq > 0">
+        	  and c.seq = #{seq}
+        </if>
+        <if test="searchDt != null and !searchDt.equals('')">
+        	  and date_format(a.pay_dt, '%Y.%m.%d') = #{searchDt}
+        </if>
+        <if test="searchFromDt != null and searchToDt != null and !searchFromDt.equals('')">
+        	<if test="pay_sts == null">
+        		and date_format(a.pay_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
+        	</if>
+        	<if test="pay_sts != null">
+        		and a.pay_sts = #{pay_sts} and date_format(a.pay_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
+        	</if>       	        	
+        </if>
+        <if test="searchString != null and !searchString.equals('') ">
+        	<if test="searchId == 'id'">
+        	  
+        		and b.id like CONCAT('%',#{searchString},'%')	  
+        	</if>
+        	<if test="searchId == 'name'">
+        		and b.name like CONCAT('%',#{searchString},'%')	
+        	</if>
+        	<if test="searchId == 'htel'">
+        		and ( b.phone like CONCAT('%',#{searchString},'%')	)
+        	</if>        	        	
+        </if>        
+	</select>	
+	
+	<!-- 요금제를 결제한 결제 내역 리스트  -->
+	<select id="selectPayListByPayPlan" parameterType="HashMap" resultType="payinfo">
+        <![CDATA[
+            SELECT                  
+                   date_format(a.pay_dt, '%Y.%m.%d %H:%i') as pay_dt, 
+                   case when a.pay_sts = 'Y' then '결제 완료'
+                        when a.pay_sts = 'C' then '결제 취소'
+                        when a.pay_sts = 'N' then '미승인'
+                        else '' end pay_sts_name, 
+                   a.pay_sts, 
+                   c.subject as product_name, 
+                   format(a.pay_total, 0) as pay_total_str,
+                   b.id, b.name, b.phone 
+             FROM herit_pay_info a, herit_member b, herit_payplan_info c
+            WHERE  a.pay_type = #{pay_type}
+              and  a.mem_seq = b.seq
+              and  a.p_key   = c.seq
+        ]]>
+        <if test="seq > 0">
+        	  and c.seq = #{seq}
+        </if>
+        <if test="searchDt != null and !searchDt.equals('')">
+        	  and date_format(a.pay_dt, '%Y.%m.%d') = #{searchDt}
+        </if>        
+        <if test="searchFromDt != null and searchToDt != null and !searchFromDt.equals('')">
+        	<if test="pay_sts == null">
+        		and date_format(a.pay_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
+        	</if>
+        	<if test="pay_sts != null">
+        		and a.pay_sts = #{pay_sts} and date_format(a.pay_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
+        	</if>       	        	
+        </if>
+        <if test="searchString != null and !searchString.equals('') ">
+        	<if test="searchId == 'id'">
+        	  
+        		and b.id like CONCAT('%',#{searchString},'%')	  
+        	</if>
+        	<if test="searchId == 'name'">
+        		and b.name like CONCAT('%',#{searchString},'%')	
+        	</if>
+        	<if test="searchId == 'htel'">
+        		and ( b.phone like CONCAT('%',#{searchString},'%')	)
+        	</if>        	        	
+        </if> 
+        order by a.pay_dt desc	
+        LIMIT #{perPageCnt} OFFSET #{pageStartNo}
+	</select>	
+	
+	
+	<!-- 요금제를 결제한 결제 내역 리스트  -->
+	<select id="selectPayListById" parameterType="HashMap" resultType="HashMap">
+        <![CDATA[
+            SELECT                  
+                   date_format(a.pay_dt, '%Y.%m.%d %H:%i') as pay_dt, 
+                   case when a.pay_sts = 'Y' then '결제 완료'
+                        when a.pay_sts = 'C' then '결제 취소'
+                        when a.pay_sts = 'N' then '미승인'
+                        else '' end pay_sts_name, 
+                   a.pay_sts, 
+                   c.subject as product_name, 
+                   format(a.pay_total, 0) as pay_total_str,
+                   b.id, b.name, b.phone,
+                   a.seq
+             FROM herit_pay_info a, herit_member b, herit_payplan_info c
+            WHERE  a.pay_type = #{pay_type}
+              and  b.id = #{id}
+              and  a.mem_seq = b.seq
+              and  a.p_key   = c.seq
+        ]]>
+        <if test="searchDt != null and !searchDt.equals('')">
+        	  and date_format(a.pay_dt, '%Y.%m.%d') = #{searchDt}
+        </if>              	        	
+        order by a.pay_dt desc	
+	</select>
+	
+	<!-- 요금제를 결제한 결제 취소 등록   -->
+	<insert id="deletePayByIdandSeq" parameterType="HashMap">
+		insert into herit_pay_info (mem_seq, p_key, pay_amt, pay_cnt, pay_total, pay_sts, pay_dt, send_sts, pay_type) 
+		select
+		       a.mem_seq, a.p_key, a.pay_amt, a.pay_cnt, a.pay_total, 'C', current_timestamp, 'Y', '2'
+		  from herit_pay_info a, herit_member b
+		 where 
+		       a.mem_seq = b.seq
+		   and b.id = #{id}
+		   and a.seq = #{seq}		
+	</insert>		
 </mapper>

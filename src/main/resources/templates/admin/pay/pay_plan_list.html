@@ -36,35 +36,19 @@
 				</thead>
 				<tbody>					
 					<tr th:each="info : ${list}">
-						<td>Green</td>
-						<td>운영중</td>
-						<td class="tar">15,000원</td>
-						<td>3년</td>
-						<td>50</td>
-						<td>2019.08.02</td>
-					</tr>
-					<tr>
-						<td>Blue</td>
-						<td>운영중</td>
-						<td class="tar">15,000원</td>
-						<td>3년</td>
-						<td>50</td>
-						<td>2019.08.02</td>
-					</tr>
-					<tr>
-						<td>Red</td>
-						<td>준비중</td>
-						<td class="tar">15,000원</td>
-						<td>3년</td>
-						<td>50</td>
-						<td>2019.08.02</td>
+						<td><a th:href="@{payplandetail(seq=${info.seq})}" th:text="${info.subject}"></a></td>
+						<td th:text="${info.sts_name}">
+						<td class="tar" th:text="|${info.price} 원|">
+						<td th:text="|${info.period} 년|">
+						<td th:text="${info.buy_count}">
+						<td th:text="${info.reg_dt}">
 					</tr>
 				</tbody>
 			</table>
 			</form>
 			<!-- btn -->
 			<div class="btnWrap mtMmd">
-				<a href="" class="btnDefault">등록</a>
+			    <a th:href="@{payplanregform}" th:text="@{등록}" id="btnReg" class="btnDefault"></a>
 			</div>
 		</div>
 		<!-- //contents -->
@@ -76,75 +60,7 @@
 
 <script>
 $(document).ready(function() {
-	load_fnc('5', '0', '0'); //menu script
+	load_fnc('5', '0', '0'); //menu script		
 });
 </script>
 
-<!-- laeyr poup - 결제내역 -->
-<div class="wrapPop popListPay">
-	<div class="popCnt sizeLg">
-		<h1 class="titPop">홍길동님 결제내역</h1>
-		<p class="btnClose">
-			<a href=""><img src="/resources/images/common/btn_close_pop.png" alt="레이어 닫기"></a>
-		</p>
-		<div class="cnt">	
-					
-			<table class="tblTypeA">
-				<colgroup>
-					<col>
-					<col>
-					<col>
-					<col width="16%">
-					<col width="16%">
-					<col width="16%">
-				</colgroup>
-				<thead>
-					<tr>
-						<th>날짜</th>
-						<th>상태</th>
-						<th>결제상품</th>
-						<th>결제액</th>
-						<th>합계</th>
-						<th>결제 취소</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>2019.12.24 15:35</td>
-						<td class="colorB">결제 취소</td>
-						<td class="colorB">Blue</td>
-						<td class="colorB tar">-50,000원</td>
-						<td class="colorB tar">180,000원</td>
-						<td class="colorB">결제 취소 완료</td>
-					</tr>
-					<tr>
-						<td>2019.12.24 15:35</td>
-						<td>결제 완료</td>
-						<td>Blue</td>
-						<td class="tar">50,000원</td>
-						<td class="tar">230,000원</td>
-						<td><span class="btnWrap"><a href="" class="btnColorC">결제 취소</a></span></td>
-					</tr>
-					<tr>
-						<td>2019.12.24 15:35</td>
-						<td>결제 완료</td>
-						<td>Blue</td>
-						<td class="tar">50,000원</td>
-						<td class="tar">230,000원</td>
-						<td><span class="btnWrap"><a href="" class="btnColorC">결제 취소</a></span></td>
-					</tr>					
-				</tbody>
-			</table>
-			<!-- paging -->
-			<th:block th:include="admin/layout/common_paging"></th:block>
-			<!-- // Paging -->
-			
-
-			<!-- btn -->
-			<p class="btnWrap">
-				<a href="" class="btnDefault btnClose">확인</a>
-			</p>
-		</div>
-	</div>
-</div>
-<!-- //laeyr poup - 결제내역 -->

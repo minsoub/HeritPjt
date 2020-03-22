@@ -18,10 +18,14 @@ public class PayPlanInfo extends CommonModel  {
 	private int seq;
 	private String subject;
 	private String sts;
+	private String sts_name;
 	private String category;
+	private String category_name;
 	private int period;
 	private int price;
 	private String file_name;
+	private int buy_count;
 	private String use_yn;
-	private String reg_dt;
+	private String reg_dt;	
+	private String searchDt;
 }

@@ -1,6 +1,7 @@
 package kr.co.neodreams.herit.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -54,7 +55,28 @@ public interface PayInfoMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	Product selectPayPlanById(PayPlanInfo data) throws Exception;
+	PayPlanInfo selectPayPlanById(PayPlanInfo data) throws Exception;
+	
+	/**
+	 * 결제현황 리스트 출력 
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("rawtypes")
+	List<Map> selectPayStsList(PayPlanInfo data) throws Exception;
+	
+	/**
+	 * 결제현황 리스트 합계를 출력한다. 
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("rawtypes")
+	Map selectPayStsSum(PayPlanInfo data) throws Exception;
+		
 	
 	/**
 	 * search the Pay Plan list
@@ -117,4 +139,40 @@ public interface PayInfoMapper {
 	 * @throws Exception
 	 */
 	int deletePayPlan(PayPlanInfo data) throws Exception;	
+	
+	/**
+	 * 선택한 요금제를 결제한 회원 리스트 총 인원 조회
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	int selectPayListCountByPayPlan(PayInfo data) throws Exception;
+	
+	/**
+	 * 선택한 요금제 결제한 회원 리스트 조회
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	List<PayInfo> selectPayListByPayPlan(PayInfo data) throws Exception;
+	
+	/**
+	 * 요금제 결제한 개별 회원에 대한 상세 현황 출력 
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	List<Map<String, Object>> selectPayListById(PayInfo data) throws Exception;
+	
+	/**
+	 * 선택한 개별 회원 결제 내역을 취소 등록한다. 
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	int deletePayByIdandSeq(PayInfo data) throws Exception;
 }

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=1" th:include="admin/pay/pay_menu"></th:block>
+		<!-- //SNB -->
+		
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">결제 현황</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">결제관리</a></li>
+					<li><a href="">결제내역</a></li>
+				</ol>
+			</div>
+			<form name="frm" id="frm" method="post">
+			<input type="hidden" name="mode" id="mode">
+			<div class="slctDate">
+				<a href="javascript:Prev();"><img src="/resources/images/contents/btn_date_prev.gif" alt="이전"></a>
+				<span><input type="text" name="searchDt" id="searchDt" readonly class="monthPic" th:value="${paging.searchDt}"></span>
+				<a href="javascript:Next();"><img src="/resources/images/contents/btn_date_next.gif" alt="다음"></a>
+			</div>			
+			<table class="tblTypeA mtSm">
+				<colgroup>
+					<col>
+					<col width="12%">
+					<col width="15%">
+					<col width="12%">
+					<col width="15%">
+					<col width="12%">
+					<col width="15%">
+				</colgroup>
+				<thead>
+					<tr>
+						<th rowspan="2">날짜</th>
+						<th colspan="2">결제완료</th>
+						<th colspan="2">결제취소</th>
+						<th colspan="2">매출액</th>
+					</tr>
+					<tr>
+						<th>건수</th>
+						<th>금액</th>
+						<th>건수</th>
+						<th>금액</th>
+						<th>건수</th>
+						<th>금액</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<th:block th:if="${sum == null}">
+					<tr>
+						<td>합계</td>
+						<td>0</td>
+						<td class="tar">0 원 </td>
+						<td>0</td>
+						<td class="tar">0 원</td>
+						<td>0</td>
+						<td class="tar">0 원</td>
+					</tr>
+					</th:block>
+					<th:block th:if="${sum != null}">
+					<tr>
+						<td>합계</td>
+						<td th:text="${sum.completed_count}">
+						<td class="tar" th:text="|${sum.completed_pay} 원|">
+						<td th:text="${sum.cancel_count}">
+						<td class="tar" th:text="|${sum.cancel_pay} 원|">
+						<td th:text="${sum.total_count}">
+						<td class="tar" th:text="|${sum.total_pay} 원|">
+					</tr>
+					</th:block>
+				</tfoot>
+				<tbody>					
+					<th:block th:if="${sum == null}">
+						<tr>
+							<td colspan="7" class="noData">
+								<p class="ico"><img src="/resources/images/contents/ico_nodata03.gif" alt=""></p>
+								결제 내역이 없습니다.
+							</td>
+						</tr>
+					</th:block>
+					<th:block th:if="${sum != null}">
+						<tr th:each="info : ${list}">
+							<td><a th:href="@{paydetail(pay_dt=${info.pay_dt})}" th:text="${info.pay_dt}"></a></td>
+							<td th:text="${info.completed_count}">
+							<td class="tar" th:text="|${info.completed_pay} 원|">
+							<td th:class="${info.cancel_count == 0}?empty:colorB" th:text="${info.cancel_count}">
+							<td th:class="${info.cancel_count == 0}?empty:colorB " class ="tar" th:text="|${info.cancel_pay} 원|">
+							<td th:text="${info.total_count}">
+							<td class="tar" th:text="|${info.total_pay} 원|">
+						</tr>
+					</th:block>
+				</tbody>
+			</table>
+			</form>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+	
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('5', '0', '0'); //menu script		
+});
+
+function Prev()
+{
+	frm.mode.value = "prev";
+	frm.action = "paylist";
+	frm.submit();
+}
+function Next()
+{
+	frm.mode.value = "next";
+	frm.action = "paylist";
+	frm.submit();
+}
+</script>

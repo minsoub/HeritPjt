@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=2" th:include="admin/pay/pay_menu"></th:block>
+		<!-- //SNB -->
+		
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">요금제 정보 등록</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">결제관리</a></li>
+					<li><a href="">요금제 정보</a></li>
+				</ol>
+			</div>
+			<form name="frm" id="frm" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="seq"  id="seq"  th:value="${info.seq}">	
+			<input type="hidden" name="use_yn"  id="use_yn"  th:value="${info.use_yn}">
+			<input type="hidden" name="period"  id="period"  th:value="${info.period}">	
+			<input type="hidden" name="file_name" id="file_name" th:value="${info.file_name}">
+			<table class="tblTypeC mtMmd">
+				<colgroup>
+					<col width="100px">
+					<col>
+					<col width="100px">
+					<col>
+				</colgroup>
+				<tr>
+					<th>요금제 명</th>
+					<td colspan="3"><input type="text" name="subject" id="subject" maxlength="50" th:value="${info.subject}"></td>
+				</tr>
+				<tr>
+					<th>상태</th>
+					<td>
+						<div class="chckGroup">
+							<input type="radio" name="sts" id="sts" value="Y"  th:checked="${info.sts == 'Y' or info.sts == null}">
+							<label for="radio0101">구매가능</label>
+							<input type="radio" name="sts" id="sts" value="R"  th:checked="${info.sts == 'R'}">
+							<label for="radio0102">준비중</label>
+						</div>
+					</td>
+					<th>카테고리</th>
+					<td>
+						<select name="category" id="category">
+							<option value="">카테고리 선택</option>
+							<option th:each="itemData: ${codelist}" th:value="${itemData.code}" th:text="${itemData.codename}" th:selected="${itemData.code == info.category}"></option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>요금제 기간</th>
+					<td><input type="number" id="period_t" class="w30" th:value="${info.period}"> 년 
+						( <input type="checkbox" id="chch01" value="Y"> <label for="chch01">기간제한 없음</label> )</td>
+					<th>가격</th>
+					<td><input type="number" name="price" id="price" class="w80" th:value="${info.price}"> 원</td>
+				</tr>
+				<tr>
+					<th>썸네일</th>
+					<td colspan="3">
+						<div class="wrapInput typeFile">
+							<input type="text" readonly="" class="input">
+							<input type="file" class="inputFile" name="files" id="files"> <!-- label for값과 input type="file"의 id값 동일하게 부여해줘야 정상 작동됩니다 -->
+							<label for="files">파일첨부</label>
+							<span class="txt mlSm">(150 x 50 pixel)</span>
+						</div>
+					</td>
+				</tr>					
+			</table>
+			</form>
+			<!-- btn -->
+			<div class="btnWrap mtMmd">
+				<button id="btnSave" class="btnDefault">저장</button>
+				<button id="btnCancel" class="btnDefault">취소</button>
+			</div>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+	
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('5', '0', '0'); //menu script		
+	
+    $('#btnSave').click( function() {
+        if ($("#subject").val() == "")
+        {
+        	alert("요금제명을 선택하세요!!!");
+        	$("#subject").focus();
+        	return;
+        }
+        if ($("#category").val() == "")
+        {
+        	alert("카테고리를 선택하세요!!!");
+        	$("category").focus();
+        	return;
+        }
+		if ($("#price").val() == "")
+		{
+			alert("가격을 입력하세요!!!");
+			$("#price").focus();
+			return;
+		}
+		if ($("#seq") == "0")
+		{
+			if ($("#files").val() == "")
+			{
+				alert("썸네일을 입력하세요!!!");
+				$("#files").focus();
+				return;
+			}
+		}
+		if ($('input:checkbox[id="chch01"]').is(":checked") == true)  // 평생회원
+		{
+			$("#period").val("999");
+		}else {
+			if ($("#period_t").val() == "")
+			{
+				alert("기간을 입력하세요!!!");
+				$("#period_t").focus();
+				return;
+			}else {
+				$("#period").val($("#period_t").val());
+			}
+		}
+        frm.action = "payplansave";
+        frm.submit();
+    });	 
+	
+    $('#btnCancel' ).click( function() {
+        location.href="payplanlist";
+    });	
+    
+    $("#chch01").click(function(){
+    	if ($('input:checkbox[id="chch01"]').is(":checked") == true)	// 기간없음
+    	{
+    		$("#period").val("999");
+    		$("#period_t").val("999");
+    	}else {
+    		$("#period").val("");
+    		$("#period_t").val("");
+    	}
+    });
+});
+</script>

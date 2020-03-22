@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=2" th:include="admin/pay/pay_menu"></th:block>
+		<!-- //SNB -->
+		
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">요금제 정보 상세</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">결제관리</a></li>
+					<li><a href="">요금제 정보</a></li>
+				</ol>
+			</div>
+			<form name="dfrm" id="dfrm" method="post">
+			<input type="hidden" name="seq"  id="seq"  th:value="${info.seq}">				
+			<table class="tblTypeC mtMmd">
+				<colgroup>
+					<col width="100px">
+					<col>
+					<col width="100px">
+					<col>
+				</colgroup>
+				<tr>
+					<th>요금제 명</th>
+					<td colspan="3" th:text="${info.subject}">
+				</tr>
+				<tr>
+					<th>상태</th>
+					<td colspan="3">
+						<div class="chckGroup">
+							<input type="radio" name="sts" id="sts" value="Y"  th:checked="${info.sts == 'Y' or info.sts == null}">
+							<label for="radio0101">구매가능</label>
+							<input type="radio" name="sts" id="sts" value="R"  th:checked="${info.sts == 'R'}">
+							<label for="radio0102">준비중</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>요금제 기간</th>
+					<td th:text="|${info.period} 년|">
+					<th>가격</th>
+					<td th:text="|${info.price} 원|">
+				</tr>
+				<tr>
+					<th>썸네일</th>
+					<td colspan="3">
+						<div class="imgThumb"><img th:src="|/img/${info.file_name}|" alt=""></div>
+					</td>
+				</tr>					
+			</table>
+			</form>
+			<!-- btn -->
+			<div class="wrapBtn mtMmd">
+				<div class="btnWrap fl">
+					<button id="btnModify" class="btnDefault">수정</button>
+					<button id="btnDelete" class="btnDefault">삭제</button>
+					<button id="btnList"   class="btnDefault">목록</button>
+				</div>
+				<div class="btnWrap fr">
+					<a href="javascript:openLayer('.popListBuyer');" class="btnDefault">구매자 명단</a>
+				</div>
+			</div>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+	
+<script>
+$(document).ready(function() {
+	load_fnc('5', '0', '0'); //menu script		
+	
+	var mode = '[[${mode}]]';
+	if (mode == "Y")
+	{
+		openLayer('.popListBuyer');
+	}
+	
+    $('#btnModify' ).click( function() {
+    	dfrm.action = "payplanregform";
+    	dfrm.submit();
+    });	 
+	
+    $('#btnDelete' ).click( function() {
+    	var params = {
+    		"seq" : $("#seq").val()
+    	};
+    	goJsonInput(params, "payplandelete", "payplanlist");			 
+    });	
+    
+    $('#btnList' ).click( function() {
+    	dfrm.seq.value = "0";
+    	dfrm.action = "payplanlist";
+    	dfrm.submit();
+    });	
+    
+    $("#btnSearch").click(function(){
+    	frm.action = "payplandetail";
+    	frm.submit();    	
+    });
+});
+</script>
+
+<th:block th:include="admin/pay/pay_popup"></th:block>
+
+</th:block>
+</html>
