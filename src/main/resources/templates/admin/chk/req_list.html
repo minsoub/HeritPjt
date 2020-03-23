@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=1" th:include="admin/chk/chk_menu"></th:block>
+		<!-- //SNB -->
+		
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">건강검진 요청</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">검진데이터</a></li>
+					<li><a href="">건강검진 요청</a></li>
+				</ol>
+			</div>
+			<!-- 검색 영역 -->
+			<div class="bxCnt mtSm">
+				<table class="tblTypeB">
+					<colgroup>
+						<col width="100px">
+						<col>
+						<col width="100px">
+						<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>아이디</th>
+							<td><input type="text" name=""></td>
+							<th>연락처</th>
+							<td><input type="text" name=""></td>
+						</tr>
+						<tr>
+							<th>성명</th>
+							<td><input type="text" name=""></td>
+							<th>생년월일</th>
+							<td><input type="text" name=""></td>
+						</tr>
+						<tr>
+							<th>요청일</th>
+							<td><input type="text" value="" class="datePic"> <span class="dash">~</span> <input type="text" value="" class="datePic"></td>
+							<th>최종접속일</th>
+							<td><input type="text" value="" class="datePic"> <span class="dash">~</span> <input type="text" value="" class="datePic"></td>
+						</tr>				
+					</tbody>
+				</table>
+				<div class="btnWrap mtSm tac">
+					<a href="" class="btnPrimary">검색하기</a>
+				</div>
+			</div>
+			<!-- //검색 영역 -->
+
+			<div class="clearfix mtSMd">
+				<div class="txtBbs fl">총 50건</div>
+				<div class="btnWrap fr">
+					<select name="">
+						<option value="">전체</option>
+						<option value="">미처리 (자료받은경우)</option>
+						<option value="">자료요청</option>
+					</select>
+				</div>
+			</div>
+			<table class="tblTypeA mtSm">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>연락처</th>
+						<th>성명</th>
+						<th>생년월일</th>
+						<th>병원</th>
+						<th>검진일</th>
+						<th>요청일</th>
+						<th>처리단계</th>
+						<th>검진결과 등록</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:if="${totalCnt == 0}">
+					<tr>
+						<td colspan="9" class="noData">
+							<p class="ico"><img src="/resources/images/contents/ico_nodata01.gif" alt=""></p>
+							검색 결과가 없습니다.
+						</td>
+					</tr>
+					</th:block>
+					<th:block th:if="${totalCnt > 0}">
+					<tr>
+						<td>naodkls@nts.com</td>
+						<td>010-1234-5678</td>
+						<td>홍길동</td>
+						<td>1982.12.11</td>
+						<td>서울대병원</td>
+						<td>2019.12.31</td>
+						<td>2020.01.15</td>
+						<td class="colorB">미처리</td>
+						<td><span class="btnWrap"><a href="" class="btnColorE">등록</a></span></td>
+					</tr>
+					</th:block>
+					
+					
+					<tr>
+						<td>naodkls@nts.com</td>
+						<td>010-1234-5678</td>
+						<td>홍길동</td>
+						<td>1982.12.11</td>
+						<td>서울대병원</td>
+						<td>2019.12.31</td>
+						<td>2020.01.15</td>
+						<td class="colorB">자료요청</td>
+						<td><span class="btnWrap"><a href="" class="btnColorE">등록</a></span></td>
+					</tr>
+					<tr>
+						<td>naodkls@nts.com</td>
+						<td>010-1234-5678</td>
+						<td>홍길동</td>
+						<td>1982.12.11</td>
+						<td>서울대병원</td>
+						<td>2019.12.31</td>
+						<td>2020.01.15</td>
+						<td></td>
+						<td><span class="btnWrap"><a href="" class="btnColorE">등록</a></span></td>
+					</tr>
+					<tr>
+						<td>naodkls@nts.com</td>
+						<td>010-1234-5678</td>
+						<td>홍길동</td>
+						<td>1982.12.11</td>
+						<td>서울대병원</td>
+						<td>2019.12.31</td>
+						<td>2020.01.15</td>
+						<td>자료요청</td>
+						<td><span class="btnWrap"><a href="" class="btnColorE">등록</a></span></td>
+					</tr>
+				</tbody>
+			</table>
+			<!--  Paging  -->
+			<th:block th:if="${totalCnt > 0}">
+				<!-- paging -->
+				<th:block th:include="admin/layout/common_paging"></th:block>
+			</th:block>
+			<!--  Paging  -->
+			<div class="btnWrap mtMmd">
+				<a href="" class="btnDefault">등록</a>
+			</div>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('2', '0', '0'); //menu script	
+	
+	$('#btnSearch').click(function(){
+		if ($("#hname").val() == "" && $("#name").val() == "" && $("#phone").val() == "")
+		{
+			alert("검색조건을 입력하세요!!!");
+			return;
+		}
+		$("#frm").attr("method", "post");
+		$("#frm").attr("action", "hlist");
+		$("#frm").submit();
+	});
+});
+</script>

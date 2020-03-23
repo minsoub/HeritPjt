@@ -28,29 +28,20 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr >
-						<td>2019.12.31 15:00</td>
-						<td class="colorB">결제 취소</td>
-						<td class="colorB">Blue</td>
-						<td class="colorB">-50,000원</td>
-						<td class="colorB">180,000원</td>
-						<td class="colorB">결제 취소 완료</td>
-					</tr>
-					<tr>
-						<td>2019.12.31 15:00</td>
-						<td>결제 완료</td>
-						<td>Blue</td>
-						<td>50,000원</td>
-						<td>230,000원</td>
-						<td><p class="btnWrap"><a href="" class="btnColorC">결제 취소</a></p></td>
-					</tr>
-					<tr>
-						<td>2019.12.31 15:00</td>
-						<td>결제 완료</td>
-						<td>유전자</td>
-						<td>50,000원</td>
-						<td>180,000원</td>
-						<td><p class="btnWrap"><a href="" class="btnColorC">결제 취소</a></p></td>
+					<tr th:each="info : ${mlist}">
+						<td th:text="${info.pay_dt}">
+						<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="${info.pay_sts_name}">
+						<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="${info.product_name}">
+						<th:block th:if="${info.pay_sts == 'Y'}">
+							<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="|${info.pay_total_str} 원|">
+							<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="|${info.pay_total_str} 원|">
+							<td><p class="btnWrap"><a href="" class="btnColorC">결제 취소</a></p></td>
+						</th:block>
+						<th:block th:if="${info.pay_sts == 'C'}">
+							<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="|-${info.pay_total_str} 원|">
+							<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="|-${info.pay_total_str} 원|">	
+							<td class="colorB" >결제 취소 완료</td>					
+						</th:block>
 					</tr>
 				</tbody>
 			</table>
@@ -77,11 +68,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>2019.12.31 15:00</td>
-						<td class="tal">7000 걷기</td>
-						<td>300</td>
-						<td>7,700원</td>
+					<tr th:each="info : ${plist}">
+						<td th:text="${info.reg_dt}">
+						<td class="tal" th:text="${info.content}">
+						<td th:text="${info.str_point}">
+						<td th:text="|${info.total_point} 원|">
 					</tr>
 					<tr>
 						<td>2019.12.31 15:00</td>

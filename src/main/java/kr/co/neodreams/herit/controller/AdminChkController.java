@@ -36,6 +36,56 @@ public class AdminChkController {
 	DataSourceTransactionManager dataSourceTransactionManager;
 	
 	/**
+	 * 건강검진 요청 list page 
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/reqlist")
+	public ModelAndView reqList(Hospital param, HttpServletRequest request) throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		log.info("paramter : {}", param);
+		
+		param.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
+		int cnt = hService.selectHospitalListCount(param);
+		List<Hospital> lst = hService.selectHospitalList(param);
+		log.info("search reqlist list : {}", lst);
+		mv.addObject("totalCnt", cnt);		// need to Integer type
+
+		mv.addObject("list", lst);
+		mv.addObject("paging", param);
+		mv.setViewName("admin/chk/req_list");
+		return mv;		
+	}
+	
+	/**
+	 * 건강검진 요청 수기 등록
+	 * 
+	 * @param param
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/reqdetail")
+	public ModelAndView reqlDetail(Hospital param, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		log.info("paramter : {}", param);
+
+		Hospital info = hService.selectHospitalById(param);
+		
+		if (info == null)
+		{
+			mv.setViewName("redirect:list");
+		}else {
+			log.info("search reqlDetail info : {}", info);
+			mv.addObject("info", info);
+			mv.addObject("paging", param);
+			mv.setViewName("/admin/chk/req_detail");
+		}
+		return mv;
+	}	
+	
+	/**
 	 * Hospital list page 
 	 * 
 	 * @return

@@ -20,6 +20,9 @@
              FROM herit_pay_info a
             WHERE  pay_type = #{pay_type}
         ]]>
+        <if test='mem_seq != 0'>
+        	  and a.mem_seq = #{mem_seq}        
+        </if>
         <if test='searchFromDt != null and searchToDt != null'>
         	<if test="pay_sts == null">
         		and date_format(pay_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
@@ -47,6 +50,9 @@
              FROM herit_pay_info a
             WHERE  a.pay_type = #{pay_type}
         ]]>
+        <if test='mem_seq != 0'>
+        	  and a.mem_seq = #{mem_seq}        
+        </if>
         <if test='searchFromDt != null and searchToDt != null'>
         	<if test="pay_sts == null">
         		and date_format(pay_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
@@ -115,6 +121,9 @@
         <if test="seq > 0">
         	  and c.seq = #{seq}
         </if>
+        <if test='mem_seq != 0'>
+        	  and a.mem_seq = #{mem_seq}        
+        </if>        
         <if test="searchDt != null and !searchDt.equals('')">
         	  and date_format(a.pay_dt, '%Y.%m.%d') = #{searchDt}
         </if>
@@ -161,6 +170,9 @@
         <if test="seq > 0">
         	  and c.seq = #{seq}
         </if>
+        <if test='mem_seq != 0'>
+        	  and a.mem_seq = #{mem_seq}        
+        </if>        
         <if test="searchDt != null and !searchDt.equals('')">
         	  and date_format(a.pay_dt, '%Y.%m.%d') = #{searchDt}
         </if>        

@@ -22,6 +22,7 @@ public class MemPoint extends CommonModel  {
 	private String minus_point;
 	private String del_point;
 	private String total_point;
+	private String str_point;
 	
 	
 	private String content;

@@ -95,28 +95,29 @@ public class AdminMemberController {
 			mv.addObject("paging", param);
 			log.info("paging data : {}", param);
 
-			if (param.getMenu().equals("1"))		// 결제내역
+			if (param.getMenu().equals("1"))		// 결제내역 - 포인트 몰 결제 제외 (포인트몰은 아래 포인트 내역에 다룬다)
 			{
 				PayInfo p = new PayInfo();
+				p.setPay_type("2");            // 1: Point Mall,  2 : Pay plan 
 				p.setMem_seq(param.getSeq());
 				p.setPageNo(param.getPageNo());
 				p.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
-				int cnt = payService.selectPayInfoListCount(p);				
-				List<PayInfo> lst = payService.selectPayInfoList(p);
+				int cnt = payService.selectPayListCountByPayPlan(p);				
+				List<PayInfo> lst = payService.selectPayListByPayPlan(p);
 				
 				mv.addObject("totalCnt", cnt);	
-				mv.addObject("list", lst);
+				mv.addObject("mlist", lst);
 			}else if(param.getMenu().equals("2"))	// 포인트 내역
 			{
 				MemPoint p = new MemPoint();
 				p.setMem_seq(param.getSeq());
 				p.setPageNo(param.getPageNo());
 				p.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
-				int cnt = memService.selectMemPointListCount(p);				
-				List<MemPoint> lst = memService.selectMemPointList(p);
+				int cnt = memService.selectMemPointByIdListCount(p);				
+				List<MemPoint> lst = memService.selectMemPointByIdList(p);
 				
 				mv.addObject("totalCnt", cnt);	
-				mv.addObject("list", lst);
+				mv.addObject("plist", lst);
 			}else if(param.getMenu().equals("3"))	// 미션현황
 			{
 				Mission p = new Mission();
@@ -127,7 +128,7 @@ public class AdminMemberController {
 				List<Mission> lst = missService.selectMissionList(p);
 				
 				mv.addObject("totalCnt", cnt);	
-				mv.addObject("list", lst);
+				mv.addObject("slist", lst);
 			}else if(param.getMenu().equals("4"))	// 검진데이터
 			{
 				

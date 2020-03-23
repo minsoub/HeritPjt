@@ -112,8 +112,14 @@
            				sum(case when b.use_yn = 'P' then b.point else 0 end) -
            				sum(case when b.use_yn = 'N' then b.point else 0 end), 0) as total_point                   			
          	 	 FROM herit_member a left outer join herit_mem_point b on a.seq = b.mem_seq
-          		WHERE  a.seq = #{seq}
-        ]]>                       		                      
+          		WHERE  1 = 1 
+        ]]>            
+        <if test='seq != 0 '>
+        		  and a.seq = #{seq}
+        </if>  
+        <if test='mem_seq != 0 '>
+        		  and a.seq = #{mem_seq}
+        </if>                 		                      
               group by a.seq, a.id, a.phone, a.name 
 
 	</select>	
@@ -126,8 +132,14 @@
          	SELECT 
          			count(*)                   			
           	 FROM herit_member a left outer join herit_mem_point b on a.seq = b.mem_seq
-         	WHERE  a.seq = #{seq}
-        ]]>                             		                      
+          		WHERE  1 = 1 
+        ]]>            
+        <if test='seq != 0 '>
+        		  and a.seq = #{seq}
+        </if>  
+        <if test='mem_seq != 0 '>
+        		  and a.seq = #{mem_seq}
+        </if>                            		                      
 	</select>	
 	
 	<!-- Private Point list search  -->
@@ -140,10 +152,18 @@
            				case when b.use_yn = 'N' then format(b.point, 0) else 0 end as del_point,
            				format(b.rest_point, 0) as total_point, 
            				b.content, 
+           				date_format(b.point, 0) as str_point,
+           				b.use_yn, 
            				date_format(b.reg_dt, '%Y-%m-%d %H:%i') as reg_dt        			
          	 	 FROM herit_member a left outer join herit_mem_point b on a.seq = b.mem_seq
-          		WHERE  a.seq = #{seq}
-        ]]>                       		                      
+          		WHERE  1 = 1 
+        ]]>            
+        <if test='seq != 0 '>
+        		  and a.seq = #{seq}
+        </if>  
+        <if test='mem_seq != 0 '>
+        		  and a.seq = #{mem_seq}
+        </if>                       		                      
               order by a.seq desc      
          LIMIT #{perPageCnt} OFFSET #{pageStartNo}
 	</select>	

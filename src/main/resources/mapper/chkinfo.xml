@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.neodreams.herit.mapper.ChkInfoMapper">
+	
+	<!--  검진결과 상세현황을 조회  -->
+	<select id="selectChkInfoById" parameterType="HashMap" resultType="chkinfo">
+		SELECT a.seq,   a.mem_seq,  date_format(req_dt, '%Y-%m-%d %H:%i') as req_dt, 
+		       a.chk_dt, a.hospital_no,  a.subject,
+		       a.item01, a.item02, a.item03, a.item04, a.item05, a.item06, a.item07, a.item08, a.item09, a.item10, 
+		       a.item11, a.item12, a.item13, a.item14, a.item15, a.item16, a.item17, a.item18, a.item19, a.item20, 
+		       a.result, a.result_subject, a.result_content, a.reg_id, a.sts, a.reg_dt, 
+		       b.name, b.phone, b.birthday, c.hospital_name 
+		  from herit_chk_info a, herit_member b left outer join herit_hospital_info c on a.hospital_no = c.seq
+		 where
+		       a.seq = #{seq}
+		   and a.mem_seq = b.seq
+	</select>	
+		
+	<!-- 검진결과 list count search -->
+	<select id="selectChkInfoCount" parameterType="HashMap" resultType="int">
+        <![CDATA[
+            SELECT 
+                  count(a.seq) as cnt
+             FROM herit_chk_info a, herit_member b 
+            WHERE  a.mem_seq = b.seq
+        ]]>
+        <if test='searchString != null'>
+        	<if test="searchId == 'id'">
+        		and b.id like CONCAT('%',#{searchString},'%')	    
+        	</if>
+        	<if test="searchId == 'name'">
+        		and b.name like CONCAT('%',#{searchString},'%')
+        	</if>
+        	<if test="searchId == 'htel'">
+        		and ( b.phone like CONCAT('%',#{searchString},'%'))
+        	</if>        	        	
+        </if>
+	</select>
+		
+	<!-- 검진결과 list search  -->
+	<select id="selectChkInfoList" parameterType="HashMap" resultType="chkinfo">
+        <![CDATA[
+		SELECT a.seq,   a.mem_seq,  date_format(req_dt, '%Y-%m-%d %H:%i') as req_dt, 
+		       a.chk_dt, a.hospital_no,  a.subject,
+		       a.item01, a.item02, a.item03, a.item04, a.item05, a.item06, a.item07, a.item08, a.item09, a.item10, 
+		       a.item11, a.item12, a.item13, a.item14, a.item15, a.item16, a.item17, a.item18, a.item19, a.item20, 
+		       a.result, a.result_subject, a.result_content, a.reg_id, a.sts, a.reg_dt, 
+		       b.name, b.phone, b.birthday, c.hospital_name 
+		  from herit_chk_info a, herit_member b left outer join herit_hospital_info c on a.hospital_no = c.seq
+		 where a.mem_seq = b.seq
+        ]]>
+        <if test='searchString != null'>
+        	<if test="searchId == 'id'">
+        		and b.id like CONCAT('%',#{searchString},'%')	    
+        	</if>
+        	<if test="searchId == 'name'">
+        		and b.name like CONCAT('%',#{searchString},'%')
+        	</if>
+        	<if test="searchId == 'htel'">
+        		and ( b.phone like CONCAT('%',#{searchString},'%'))
+        	</if>        	        	
+        </if>
+        order by a.reg_dt desc	
+        LIMIT #{perPageCnt} OFFSET #{pageStartNo}
+	</select>
+	
+
+	
+	<!--  administrator register  -->
+    <insert id="insertChkInfo" parameterType="HashMap">
+		INSERT INTO herit_chk_info (
+			mem_seq,       req_dt,           chk_dt,          hospital_no,     subject, 
+			item01,        item02,           item03,          item04,          item05, 
+			item06,        item07,           item08,          item09,          item10,
+			item11,        item12,           item13,          item14,          item15, 
+			item16,        item17,           item18,          item19,          item20, 
+			result,        result_subject,   result_content,  req_id,        sts,
+			reg_dt
+		) VALUES (
+			#{mem_seq},    current_timestamp,     #{chk_dt},     #{hospital_no},   #{subject},   
+			#{item01},     #{item02},             #{item03},     #{item04},        #{item05},  
+			#{item06},     #{item07},             #{item08},     #{item09},        #{item10},
+			#{item11},     #{item12},             #{item13},     #{item14},        #{item15},
+			#{item16},     #{item17},             #{item18},     #{item19},        #{item20},
+			#{result},     #{result_subject},     #{result_content},   #{req_id},    #{sts},
+			current_timestamp
+		)
+	</insert>	
+	
+	<!--  administrator update  -->
+    <update id="updateChkInfo" parameterType="HashMap">
+		UPDATE herit_chk_info 
+		   SET 
+		       chk_dt         = #{chk_dt},          
+		       hospital_no    = #{hospital_no},     
+		       subject        = #{subject}, 
+			   item01         = #{item01},        
+			   item02         = #{item02},           
+			   item03         = #{item03},          
+			   item04         = #{item04},          
+			   item05         = #{item05}, 
+			   item06         = #{item06},        
+			   item07         = #{item07},           
+			   item08         = #{item08},          
+			   item09         = #{item09},          
+			   item10         = #{item10},
+			   item11         = #{item11},        
+			   item12         = #{item12},           
+			   item13         = #{item13},          
+			   item14         = #{item14},          
+			   item15         = #{item15}, 
+			   item16         = #{item16},        
+			   item17         = #{item17},           
+			   item18         = #{item18},          
+			   item19         = #{item19},          
+			   item20         = #{item20}, 
+			   result         = #{result},        
+			   result_subject = #{result_subject},   
+			   result_content = #{result_content},  
+			   req_id         = #{req_id},        
+			   sts            = #{sts}
+	     WHERE
+	           seq = #{seq}
+	</update>	
+	
+	<!--  administrator delete  -->
+    <delete id="deleteChkInfo" parameterType="HashMap">
+		delete from herit_chk_info 
+		 where seq = #{seq}
+	</delete>		
+</mapper>
