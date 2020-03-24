@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.neodreams.herit.model.ChkInfo;
 import kr.co.neodreams.herit.model.Hospital;
+import kr.co.neodreams.herit.service.ChkService;
 import kr.co.neodreams.herit.service.HospitalService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,6 +34,10 @@ import lombok.extern.slf4j.Slf4j;
 public class AdminChkController {
 	@Autowired
 	private HospitalService hService;
+	
+	@Autowired
+	private ChkService cService;
+	
 	@Autowired
 	DataSourceTransactionManager dataSourceTransactionManager;
 	
@@ -41,14 +47,14 @@ public class AdminChkController {
 	 * @return
 	 */
 	@RequestMapping("/reqlist")
-	public ModelAndView reqList(Hospital param, HttpServletRequest request) throws Exception {
+	public ModelAndView reqList(ChkInfo param, HttpServletRequest request) throws Exception {
 		
 		ModelAndView mv = new ModelAndView();
 		log.info("paramter : {}", param);
 		
 		param.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
-		int cnt = hService.selectHospitalListCount(param);
-		List<Hospital> lst = hService.selectHospitalList(param);
+		int cnt = cService.selectChkInfoCount(param);
+		List<ChkInfo> lst = cService.selectChkInfoList(param);
 		log.info("search reqlist list : {}", lst);
 		mv.addObject("totalCnt", cnt);		// need to Integer type
 
@@ -59,6 +65,30 @@ public class AdminChkController {
 	}
 	
 	/**
+	 * 건강검진 정보 등록 및 수정 폼 출력
+	 * 
+	 * @param param
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/reqregform")
+	public ModelAndView reqRegForm(ChkInfo param, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		if (param.getSeq() > 0)
+		{
+			ChkInfo info = cService.selectChkInfoById(param);
+			log.info("reqRegForm info : {}", info);
+			mv.addObject("info", info);
+		}else {
+			mv.addObject("info", new Hospital());
+		}
+		mv.setViewName("admin/chk/chk_reg");
+		return mv;
+	}	
+	
+	/**
 	 * 건강검진 요청 수기 등록
 	 * 
 	 * @param param
@@ -67,15 +97,15 @@ public class AdminChkController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/reqdetail")
-	public ModelAndView reqlDetail(Hospital param, HttpServletRequest request) throws Exception {
+	public ModelAndView reqlDetail(ChkInfo param, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		log.info("paramter : {}", param);
 
-		Hospital info = hService.selectHospitalById(param);
+		ChkInfo info = cService.selectChkInfoById(param);
 		
 		if (info == null)
 		{
-			mv.setViewName("redirect:list");
+			mv.setViewName("redirect:reqlist");
 		}else {
 			log.info("search reqlDetail info : {}", info);
 			mv.addObject("info", info);
@@ -83,6 +113,106 @@ public class AdminChkController {
 			mv.setViewName("/admin/chk/req_detail");
 		}
 		return mv;
+	}	
+	
+	/**
+	 * 건강검진 정보를 등록한다.
+	 * 
+	 * @param req
+	 * @param res
+	 * @param param
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@PostMapping("/reqinsert")
+	public void reqInsert(HttpServletRequest req, HttpServletResponse res, ChkInfo param) throws Exception {
+		
+		String retVal = "0";
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		TransactionStatus status = dataSourceTransactionManager.getTransaction(def);
+		
+		try{
+			log.debug("reqinsert param {}", param);			
+			retVal = Integer.toString(cService.insertChkInfo(param));
+			
+			log.debug("retVal : {}", retVal);
+			dataSourceTransactionManager.commit(status);
+		}catch (Exception e) {
+			retVal = "-1";
+			log.debug("reqinsert error : {}", e);
+			dataSourceTransactionManager.rollback(status);
+		}finally {
+			res.getWriter().write(retVal);
+		}
+	}
+	
+	/**
+	 * 건강검진 정보를 수정한다.
+	 * 
+	 * @param req
+	 * @param res
+	 * @param param
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@PostMapping("/reqmodify")
+	public void modifyChkInfo(HttpServletRequest req, HttpServletResponse res, ChkInfo param) throws Exception {
+		
+		String retVal = "0";
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		TransactionStatus status = dataSourceTransactionManager.getTransaction(def);
+		
+		try{
+			log.debug("modifyChkInfo param {}", param);			
+			retVal = Integer.toString(cService.updateChkInfo(param));
+			
+			log.debug("retVal : {}", retVal);
+			dataSourceTransactionManager.commit(status);
+		}catch (Exception e) {
+			retVal = "-1";
+			log.debug("modifyChkInfo error : {}", e);
+			dataSourceTransactionManager.rollback(status);
+		}finally {
+			res.getWriter().write(retVal);
+		}
+	}	
+	
+	
+	/**
+	 * 건강검진 정보를 삭제한다.
+	 * 
+	 * @param req
+	 * @param res
+	 * @param param
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@PostMapping("/reqdelete")
+	public void deleteReq(HttpServletRequest req, HttpServletResponse res, ChkInfo param) throws Exception {
+		
+		String retVal = "0";
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		TransactionStatus status = dataSourceTransactionManager.getTransaction(def);
+		
+		try{
+			log.debug("reqdelete param {}", param);			
+			retVal = Integer.toString(cService.deleteChkInfo(param));
+			
+			log.debug("retVal : {}", retVal);
+			dataSourceTransactionManager.commit(status);
+		}catch (Exception e) {
+			retVal = "-1";
+			log.debug("reqdelete error : {}", e);
+			dataSourceTransactionManager.rollback(status);
+		}finally {
+			res.getWriter().write(retVal);
+		}
 	}	
 	
 	/**
@@ -204,7 +334,7 @@ public class AdminChkController {
 	 */
 	@ResponseBody
 	@PostMapping("/hmodify")
-	public void modifyAdmin(HttpServletRequest req, HttpServletResponse res, Hospital param) throws Exception {
+	public void modifyHospital(HttpServletRequest req, HttpServletResponse res, Hospital param) throws Exception {
 		
 		String retVal = "0";
 		
@@ -238,7 +368,7 @@ public class AdminChkController {
 	 */
 	@ResponseBody
 	@PostMapping("/hdelete")
-	public void deleteAdmin(HttpServletRequest req, HttpServletResponse res, Hospital param) throws Exception {
+	public void deleteHospital(HttpServletRequest req, HttpServletResponse res, Hospital param) throws Exception {
 		
 		String retVal = "0";
 		
