@@ -1,9 +1,11 @@
 package kr.co.neodreams.herit.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,8 +21,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.neodreams.herit.model.ChkInfo;
 import kr.co.neodreams.herit.model.Hospital;
+import kr.co.neodreams.herit.model.Member;
+import kr.co.neodreams.herit.model.PayInfo;
 import kr.co.neodreams.herit.service.ChkService;
 import kr.co.neodreams.herit.service.HospitalService;
+import kr.co.neodreams.herit.service.MemberService;
+import kr.co.neodreams.herit.util.CommonUtil;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -36,6 +43,9 @@ public class AdminChkController {
 	private HospitalService hService;
 	
 	@Autowired
+	private MemberService  mService;
+	
+	@Autowired
 	private ChkService cService;
 	
 	@Autowired
@@ -48,10 +58,10 @@ public class AdminChkController {
 	 */
 	@RequestMapping("/reqlist")
 	public ModelAndView reqList(ChkInfo param, HttpServletRequest request) throws Exception {
-		
+		HttpSession session = request.getSession();
 		ModelAndView mv = new ModelAndView();
 		log.info("paramter : {}", param);
-		
+		log.debug("session id : " + session.getAttribute("id"));
 		param.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
 		int cnt = cService.selectChkInfoCount(param);
 		List<ChkInfo> lst = cService.selectChkInfoList(param);
@@ -65,6 +75,37 @@ public class AdminChkController {
 	}
 	
 	/**
+	 * 건강검진 정보 신규 등록 폼 출력
+	 * 
+	 * @param param
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/reqnewform")
+	public ModelAndView reqNewRegForm(ChkInfo param, HttpServletRequest request, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		String reg_id = (String) session.getAttribute("id");
+		log.debug("admin id : " + reg_id);
+		
+		if (param.getSeq() > 0)
+		{
+			ChkInfo info = cService.selectChkInfoById(param);
+			log.info("reqRegForm info : {}", info);
+			mv.addObject("info", info);
+		}else {
+			mv.addObject("info", new ChkInfo());
+		}
+		// 병원 정보 조회
+		List<Hospital> codeList = hService.selectHospitalAll();
+		mv.addObject("codeList", codeList);
+		
+		mv.setViewName("admin/chk/req_newreg");
+		return mv;
+	}
+	
+	/**
 	 * 건강검진 정보 등록 및 수정 폼 출력
 	 * 
 	 * @param param
@@ -73,8 +114,11 @@ public class AdminChkController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/reqregform")
-	public ModelAndView reqRegForm(ChkInfo param, HttpServletRequest request) throws Exception {
+	public ModelAndView reqRegForm(ChkInfo param, HttpServletRequest request,  HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
+		String reg_id = (String) session.getAttribute("id");
+		log.debug("admin id : " + reg_id);
 		
 		if (param.getSeq() > 0)
 		{
@@ -82,13 +126,13 @@ public class AdminChkController {
 			log.info("reqRegForm info : {}", info);
 			mv.addObject("info", info);
 		}else {
-			mv.addObject("info", new Hospital());
+			mv.addObject("info", new ChkInfo());
 		}
 		// 병원 정보 조회
 		List<Hospital> codeList = hService.selectHospitalAll();
 		mv.addObject("codeList", codeList);
 		
-		mv.setViewName("admin/chk/chk_reg");
+		mv.setViewName("admin/chk/req_reg");
 		return mv;
 	}	
 	
@@ -121,15 +165,17 @@ public class AdminChkController {
 	
 	/**
 	 * 건강검진 정보를 등록한다.
+	 * 관리자가 등록할 때 사용한다. 
 	 * 
 	 * @param req
 	 * @param res
 	 * @param param
 	 * @throws Exception
 	 */
+	@CrossOrigin
 	@ResponseBody
 	@PostMapping("/reqinsert")
-	public void reqInsert(HttpServletRequest req, HttpServletResponse res, ChkInfo param) throws Exception {
+	public void reqInsert(HttpSession session, HttpServletRequest req, HttpServletResponse res, ChkInfo param) throws Exception {
 		
 		String retVal = "0";
 		
@@ -138,8 +184,14 @@ public class AdminChkController {
 		TransactionStatus status = dataSourceTransactionManager.getTransaction(def);
 		
 		try{
+			
+			param.setSts("Y"); 		// 작성완료 상태
+			session = req.getSession(true);
 			log.debug("reqinsert param {}", param);			
 			retVal = Integer.toString(cService.insertChkInfo(param));
+			String reg_id = (String) session.getAttribute("id");
+			log.debug("admin id : " + reg_id);
+			param.setReg_id(reg_id);
 			
 			log.debug("retVal : {}", retVal);
 			dataSourceTransactionManager.commit(status);
@@ -154,16 +206,17 @@ public class AdminChkController {
 	
 	/**
 	 * 건강검진 정보를 수정한다.
+	 * 고객 요청 이후 관리자가 정보 등록 시 호출된다. 
 	 * 
 	 * @param req
 	 * @param res
 	 * @param param
 	 * @throws Exception
 	 */
+	@CrossOrigin
 	@ResponseBody
 	@PostMapping("/reqmodify")
-	public void modifyChkInfo(HttpServletRequest req, HttpServletResponse res, ChkInfo param) throws Exception {
-		
+	public void modifyChkInfo(HttpServletRequest req, HttpServletResponse res, HttpSession session, ChkInfo param) throws Exception {
 		String retVal = "0";
 		
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
@@ -171,6 +224,11 @@ public class AdminChkController {
 		TransactionStatus status = dataSourceTransactionManager.getTransaction(def);
 		
 		try{
+			// 관리자 아이디 등록
+			String reg_id = (String) session.getAttribute("id");
+			log.debug("admin id : " + reg_id);
+			param.setReg_id(reg_id);
+			
 			log.debug("modifyChkInfo param {}", param);			
 			retVal = Integer.toString(cService.updateChkInfo(param));
 			
@@ -219,6 +277,28 @@ public class AdminChkController {
 		}
 	}	
 	
+	
+	/**
+	 * 개별 결제내역에 대한 리스트를 출력한다. 
+	 * 
+	 * @param req
+	 * @param res
+	 * @param param
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping("/reqSearchlistByMemberName")	
+	public void reqSearchlistByMemberName(HttpServletRequest req, HttpServletResponse res, Member param) throws Exception {
+		res.setContentType("text/html;charset=UTF-8");
+
+		List<Map<String, Object>> list = mService.selectMemberSearchList(param);
+		
+		// JSON 데이터 생성
+		String jsonData = CommonUtil.getJsonStringFromList(list);
+		
+		log.debug("Json data : {}", jsonData);
+		res.getWriter().write(jsonData);
+	}	
 	
 	/**
 	 * 건강검진 현황 list page 

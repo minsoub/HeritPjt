@@ -40,9 +40,9 @@ public class AdminController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/loginProcess")
-	public ModelAndView loginProcess(Admin param, HttpServletRequest request) throws Exception
+	public ModelAndView loginProcess(Admin param, HttpServletRequest request, HttpSession session) throws Exception
 	{	
-		HttpSession session = request.getSession();
+		session = request.getSession(true);
 		
 		Admin data = service.selectAdminLoginById(param);
 		log.info("/loginProcess [data] : {}", data);
@@ -54,7 +54,9 @@ public class AdminController {
 			session.setAttribute("auth_chk", "0");
 			session.setAttribute("id", data.getId());
 			// 메뉴 권한에 대해서 처리해야 한다.
+			session.setAttribute("adminCheck", true);
 			
+			log.debug("session id : {}", session.getAttribute("id"));
 			// 관리자 last_login_dt 업데이트
 			int result = service.updateAdminLoginDt(data);
 			

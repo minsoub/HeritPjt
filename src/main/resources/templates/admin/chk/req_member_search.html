@@ -1,0 +1,101 @@
+<script language="javascript">
+
+function memberSearch(name)
+{		
+	var params = {"searchId" : "name", "searchString" : name }
+	// ajax data call
+	$.ajax({
+		type : 'post',
+		url : "reqSearchlistByMemberName",
+		dataType : 'json',
+		data : params,
+		success : function(result){					
+			console.log(result);
+			
+			$('#memberTable tbody').empty();	
+
+			$(result).each(function(index, dd){				
+				var html = "<tr>";
+					html += "<td>"+dd.name+"</td>";
+					html += "<td>"+dd.birthday+"</td>";
+					html += "<td>"+dd.phone+"</td>";
+					html += "<td>[<a href=\"javascript:memberSelect('"+dd.seq+"', '"+dd.id+"', '"+dd.name+"', '"+dd.phone+"', '"+dd.birthday+"');\" class='colorB'>선택하기</a>]</td>";
+					html += "</tr>";
+				//alert(html);	
+				$('#memberTable > tbody:last-child').append(html);	
+			});				
+		},
+		error : function(e){
+			alert(e);
+		}
+	});			
+}
+function memberSelect(seq, id, name, phone, birthday)
+{
+	$("#mem_seq").val(seq);
+	$("#id").text(id);
+	$("#name").text(name);
+	$("#phone").text(phone);
+	$("#birthday").text(birthday);
+	
+	// 레이더 close
+	var el = $(".wrapPop");
+	closeLayer(el);
+}
+
+function searchMember()
+{
+	if ($("#sname").val() == "")
+	{
+		alert("검색단어를 입력하세요!!!");
+		$("#sname").focus();
+		return;
+	}
+	memberSearch($("#sname").val());
+}
+function KeyCheck(evt)
+{
+	if (evt.keyCode == 13) searchMember();
+}
+function goFocus()
+{
+	$("#sname").focus();	
+}
+</script>
+<!-- laeyr poup - 사용자 정보 검색 -->
+<div class="wrapPop popSrchUser">
+	<div class="popCnt sizeMd">
+		<h1 class="titPop">사용자 정보 검색</h1>
+		<p class="btnClose">
+			<a href=""><img src="/resources/images/common/btn_close_pop.png" alt="레이어 닫기"></a>
+		</p>
+		<div class="cnt">
+			<div class="bxCnt">
+				<p class="txt">이름을 입력 후 검색해주세요. 검색 결과에서 선택하면 정보를 불러옵니다.</p>
+				
+				<div class="wrapInput mtSm w80">
+					<input type="text" name="sname" id="sname" onkeydown="javascript:KeyCheck(event);">
+					<button type="button" id="btnMemberSearch" class="btnColorC sizeSm" onclick="javascript:searchMember();">검색</button>
+				</div>
+				<table class="tblTypeA mtSm" id="memberTable">
+					<thead>
+						<tr>
+							<th>성명</th>
+							<th>생년월일</th>
+							<th>연락처</th>
+							<th>비고</th>
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+			</div>
+			<!-- btn -->
+			<p class="btnWrap">
+				<a href="" class="btnDefault btnClose">닫기</a>
+			</p>
+		</div>
+	</div>
+</div>
+<!-- //laeyr poup - 사용자 정보 검색 -->

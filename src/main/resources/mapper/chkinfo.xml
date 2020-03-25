@@ -10,8 +10,8 @@
 		       a.item01, a.item02, a.item03, a.item04, a.item05, a.item06, a.item07, a.item08, a.item09, a.item10, 
 		       a.item11, a.item12, a.item13, a.item14, a.item15, a.item16, a.item17, a.item18, a.item19, a.item20, 
 		       a.result, a.result_subject, a.result_content, a.reg_id, a.sts, a.reg_dt, 
-		       b.name, b.phone, b.birthday, c.hospital_name 
-		  from herit_chk_info a, herit_member b left outer join herit_hospital_info c on a.hospital_no = c.seq
+		       b.name, b.phone, b.birthday, c.h_name 
+		  from herit_chk_info a left outer join herit_hospital c on (a.hospital_no = c.seq) , herit_member b
 		 where
 		       a.seq = #{seq}
 		   and a.mem_seq = b.seq
@@ -45,16 +45,16 @@
 	<!-- 검진결과 list search  -->
 	<select id="selectChkInfoList" parameterType="HashMap" resultType="chkinfo">
         <![CDATA[
-		SELECT a.seq,   b.id, a.mem_seq,  date_format(req_dt, '%Y-%m-%d %H:%i') as req_dt, 
+		SELECT a.seq,   b.id, a.mem_seq,  date_format(a.req_dt, '%Y-%m-%d %H:%i') as req_dt, 
 		       a.chk_dt, a.hospital_no,  a.subject,
 		       a.item01, a.item02, a.item03, a.item04, a.item05, a.item06, a.item07, a.item08, a.item09, a.item10, 
 		       a.item11, a.item12, a.item13, a.item14, a.item15, a.item16, a.item17, a.item18, a.item19, a.item20, 
-		       a.result, a.result_subject, a.result_content, a.reg_id, a.sts, a.reg_dt, 
+		       a.result, a.result_subject, a.result_content, a.reg_id, a.sts, date_format(a.reg_dt, '%Y-%m-%d %H:%i') as reg_dt, 
 		       case when a.sts = 'R' then '요청'
 		            when a.sts = 'Y' then '처리완료'
 		            else '' end as sts_name, 
-		       b.name, b.phone, b.birthday, c.hospital_name 
-		  from herit_chk_info a, herit_member b left outer join herit_hospital_info c on a.hospital_no = c.seq
+		       b.name, b.phone, b.birthday, c.h_name 
+		  from herit_chk_info a left outer join herit_hospital c on (a.hospital_no = c.seq) ,  herit_member b 
 		 where a.mem_seq = b.seq
         ]]>
         <if test="id != null and !id.equals('')">
@@ -86,7 +86,7 @@
 			item06,        item07,           item08,          item09,          item10,
 			item11,        item12,           item13,          item14,          item15, 
 			item16,        item17,           item18,          item19,          item20, 
-			result,        result_subject,   result_content,  req_id,        sts,
+			result,        result_subject,   result_content,  reg_id,        sts,
 			reg_dt
 		) VALUES (
 			#{mem_seq},    current_timestamp,     #{chk_dt},     #{hospital_no},   #{subject},   
@@ -94,7 +94,7 @@
 			#{item06},     #{item07},             #{item08},     #{item09},        #{item10},
 			#{item11},     #{item12},             #{item13},     #{item14},        #{item15},
 			#{item16},     #{item17},             #{item18},     #{item19},        #{item20},
-			#{result},     #{result_subject},     #{result_content},   #{req_id},    #{sts},
+			#{result},     #{result_subject},     #{result_content},   #{reg_id},    #{sts},
 			current_timestamp
 		)
 	</insert>	
@@ -129,7 +129,8 @@
 			   result         = #{result},        
 			   result_subject = #{result_subject},   
 			   result_content = #{result_content},  
-			   req_id         = #{req_id},        
+			   reg_id         = #{reg_id}, 
+			   reg_dt         = current_timestamp,        
 			   sts            = #{sts}
 	     WHERE
 	           seq = #{seq}

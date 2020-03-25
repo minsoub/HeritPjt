@@ -130,6 +130,29 @@
     <delete id="deleteMember" parameterType="HashMap">
 		delete from herit_member 
 		 where seq = #{seq}
-	</delete>	
+	</delete>
+	
+	<!-- 팝업화면이나 기타에서 사용될 수 있는 사용자 리스트 검색  -->
+	<select id="selectMemberSearchList" parameterType="HashMap" resultType="HashMap">
+        <![CDATA[
+            SELECT 
+                  a.seq, a.id, a.name, a.phone, a.birthday, a.sex, a.agree_dt, a.mark_chk, a.mark_dt, a.mem_sts, a.use_yn,  a.last_login_dt
+             FROM herit_member a
+            WHERE  1=1
+        ]]>
+        <if test="searchString != null and !searchString.equals('') ">
+        	<if test="searchId == 'id'">
+        	  
+        		and id like CONCAT('%',#{searchString},'%')	  
+        	</if>
+        	<if test="searchId == 'name'">
+        		and name like CONCAT('%',#{searchString},'%')	
+        	</if>
+        	<if test="searchId == 'htel'">
+        		and ( phone like CONCAT('%',#{searchString},'%')	)
+        	</if>        	        	
+        </if>
+        order by reg_dt desc	
+	</select>		
 		
 </mapper>

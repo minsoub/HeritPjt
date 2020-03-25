@@ -1,6 +1,7 @@
 package kr.co.neodreams.herit.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -84,4 +85,12 @@ public interface MemberMapper {
 	 * @throws Exception
 	 */
 	int deleteMember(Member data) throws Exception;
+	
+	/**
+	 * 팝업이나 기타에서 사용되는 사용자 검색 리스트 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	List<Map<String, Object>> selectMemberSearchList(Member data) throws Exception;
 }

@@ -1,6 +1,7 @@
 package kr.co.neodreams.herit.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -132,6 +133,19 @@ public class MemberService {
 	public int deleteMember(Member data) throws Exception
 	{
 		int result = mapper.deleteMember(data);
+		
+		return result;
+	}
+	
+	/**
+	 * 팝업이나 기타 화면에서 호출되는 사용자 검색 리스트 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Map<String, Object>> selectMemberSearchList(Member data) throws Exception
+	{
+		List<Map<String, Object>> result = mapper.selectMemberSearchList(data);
 		
 		return result;
 	}

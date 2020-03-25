@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  *
  */
 @Configuration
+@EnableWebMvc
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
 public class WebConfig implements WebMvcConfigurer{
@@ -33,6 +36,13 @@ public class WebConfig implements WebMvcConfigurer{
 				.addResourceLocations("classpath:/static/resources/", "classpath:/META-INF/resources/");		
 		registry.addResourceHandler("/img/**").addResourceLocations("file:/"+uploadPath+"/").setCachePeriod(0);		// upload directory setup
 		//  <resources mapping="/img/**" location="지정한 업로드 폴더 절대경로" />
+	}
+	
+	@Override
+	public void addCorsMappings(CorsRegistry cr) {
+		cr.addMapping("/**")
+			.allowedOrigins("http://127.0.0.1:8080")  // 허용할 주소 및 포트
+			.allowedOrigins("http://localhost:8080");  // 허용할 주소 및 포트
 	}
 	
 	@Bean

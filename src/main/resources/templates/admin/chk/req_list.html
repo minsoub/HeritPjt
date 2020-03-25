@@ -35,21 +35,21 @@
 					<tbody>
 						<tr>
 							<th>아이디</th>
-							<td><input type="text" name="id" id="id" maxlength="80"></td>
+							<td><input type="text" name="id" id="id" maxlength="80" th:value="${paging.id}"></td>
 							<th>연락처</th>
-							<td><input type="text" name="phone" id="phone" maxlength="14"></td>
+							<td><input type="text" name="phone" id="phone" maxlength="14" th:value="${paging.phone}"></td>
 						</tr>
 						<tr>
 							<th>성명</th>
-							<td><input type="text" name="name" id="name" maxlength="20"></td>
+							<td><input type="text" name="name" id="name" maxlength="20" th:value="${paging.name}"></td>
 							<th>생년월일</th>
-							<td><input type="text" name="birthday" id="birtyday" maxlength="10"></td>
+							<td><input type="text" name="birthday" id="birthday" maxlength="10" th:value="${paging.birthday}"></td>
 						</tr>
 						<tr>
 							<th>요청일</th>
-							<td><input type="text" value="" id="searchFromDt" name="searchFromDt"class="datePic"> <span class="dash">~</span> <input type="text" id="searchToDt" name="searchToDt" value="" class="datePic"></td>
+							<td><input type="text" th:value="${paging.searchFromDt}" id="searchFromDt" name="searchFromDt"class="datePic"> <span class="dash">~</span> <input type="text" id="searchToDt" name="searchToDt" th:value="${paging.searchToDt}" class="datePic"></td>
 							<th>최종접속일</th>
-							<td><input type="text" value="" id="searchLastFrom" name="searchLastFrom" class="datePic"> <span class="dash">~</span> <input type="text" id="searchLastTo" name="searchLastFrom" value="" class="datePic"></td>
+							<td><input type="text" th:value="${paging.searchLastFrom}" id="searchLastFrom" name="searchLastFrom" class="datePic"> <span class="dash">~</span> <input type="text" id="searchLastTo" name="searchLastTo" th:value="${paging.searchLastTo}" class="datePic"></td>
 						</tr>				
 					</tbody>
 				</table>
@@ -98,16 +98,19 @@
 						<td th:text="${info.phone}">
 						<td th:text="${info.name}">
 						<td th:text="${info.birthday}">
-						<td th:text="${info.hospital_name}">
+						<td th:text="${info.h_name}">
 						<td th:text="${info.chk_dt}">
 						<td th:text="${info.req_dt}">
 						<td class="colorB" th:text="${info.sts_name}">
-						<td><span class="btnWrap"><a href="@{reqregform(seq=${info.seq})}" class="btnColorE">등록</a></span></td>
+						<td><span class="btnWrap">
+							<th:block th:if="${info.sts == 'R'}"><a th:href="@{reqregform(seq=${info.seq})}" class="btnColorE">등록</a></th:block>
+							<th:block th:if="${info.sts == 'Y'}"><a th:href="@{reqregform(seq=${info.seq})}" class="btnColorE">보기</a></th:block>
+						</span></td>
 					</tr>
 					</th:block>
 					
 					
-					<tr>
+					<!-- tr>
 						<td>naodkls@nts.com</td>
 						<td>010-1234-5678</td>
 						<td>홍길동</td>
@@ -139,7 +142,7 @@
 						<td>2020.01.15</td>
 						<td>자료요청</td>
 						<td><span class="btnWrap"><a href="" class="btnColorE">등록</a></span></td>
-					</tr>
+					</tr  -->
 				</tbody>
 			</table>
 			</form>
@@ -170,7 +173,7 @@ $(document).ready(function() {
 	});
 	
 	$('#btnReg').click(function(){
-		location.href="reqregform";
+		location.href="reqnewform";
 	});
 });
 </script>

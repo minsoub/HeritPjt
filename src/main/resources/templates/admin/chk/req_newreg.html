@@ -9,21 +9,20 @@
 		<!-- SNB -->
 		<th:block th:with="menu=1" th:include="admin/chk/chk_menu"></th:block>
 		<!-- //SNB -->
-		
 		<!-- contents -->
 		<div class="contents">
 			<div class="cntTitWrap">
-				<h2 class="cntTitXL fl">건강검진 수기등록</h2>
+				<h2 class="cntTitXL fl">건강검진 등록</h2>
 				<ol class="bcNav">
 					<li><a href="" class="home">Home</a></li>
 					<li><a href="">검진데이터</a></li>
-					<li><a href="">건강검진 수기등록</a></li>
+					<li><a href="">건강검진 등록</a></li>
 				</ol>
 			</div>
 			<h3 class="cntTitLg">사용자 정보</h3>
 			<!-- 검색 영역 -->
 			<form name="frm" id="frm" method="post">
-			<input type="hidden" name="seq" id="seq" th:value="${info.seq}">
+			<input type="hidden" name="mem_seq" id="mem_seq" th:value="${info.mem_seq}">			
 			<div class="bxCnt mtSm">
 				<table class="tblTypeB">
 					<colgroup>
@@ -35,18 +34,21 @@
 					<tbody>
 						<tr>
 							<th>아이디</th>
-							<td class="disabled" th:text="${info.id}">
+							<td class="disabled"> <span id="id"></span></td>
 							<th>연락처</th>
-							<td class="disabled" th:text="${info.phone}">
+							<td class="disabled"> <span id="phone"></span></td>
 						</tr>
 						<tr>
 							<th>성명</th>
-							<td class="disabled" th:text="${info.name}">
+							<td class="disabled"><span id="name"></span></td>
 							<th>생년월일</th>
-							<td class="disabled" th:text="${info.birthday}">
+							<td class="disabled"><span id="birthday"></span></td>
 						</tr>				
 					</tbody>
 				</table>
+				<div class="btnWrap mtSm tac">
+					<a href="javascript:openLayer('.popSrchUser');javascript:goFocus();" class="btnPrimary">사용자 정보 검색</a>
+				</div>
 			</div>
 			<!-- //검색 영역 -->
 
@@ -110,13 +112,17 @@
 			</form>
 			<div class="btnWrap mtMmd">
 				<button id="btnSave" class="btnDefault">저장</button>
-				<button id="btnDelete" class="btnDefault">삭제</button>
 				<button id="btnCancel" class="btnDefault">취소</button>
 			</div>
+			
+			
 		</div>
 		<!-- //contents -->
 	</div>
 	<!-- //contaier -->
+	
+	<th:block th:include="admin/chk/req_member_search"></th:block>
+	
 </th:block>
 </html>
 
@@ -133,7 +139,7 @@ $(document).ready(function() {
 		}
 		
 		var params = {
-				"seq"   : $("#seq").val(),
+				"mem_seq"   : $("#mem_seq").val(),
 				"chk_dt" : $("#chk_dt").val(),
 				"hospital_no" : $('#hospital_no').val(),
 				"subject" : $("#subject").val(),
@@ -147,35 +153,18 @@ $(document).ready(function() {
 				"sts" : "Y"
 		};
 
-		url = "reqmodify";
+		url = "reqinsert";
 		url2 = "reqlist";
 		goJsonInput(params, url, url2);	
-	});	
-	
-	$('#btnDelete').click(function(){
-
-		var params = {
-				"seq"   : $("#seq").val(),
-				"chk_dt" : $("#chk_dt").val(),
-				"hospital_no" : $('#hospital_no').val(),
-				"subject" : $("#subject").val(),
-				"item01" : $("#item01").val(), 
-				"item02" : $("#item02").val(),
-				"item03" : $("#item03").val(),
-				"item04" : $("#item04").val(),
-				"result" : $("#result").val(),
-				"result_subject" : $("#result_subject").val(),
-				"result_content" : $("#result_content").val(), 
-				"sts" : "Y"
-		};
-
-		url = "reqdelete";
-		url2 = "reqlist";
-		goJsonInput(params, url, url2);	
+		
+		
+		//frm.action = "reqmodify";
+		//frm.submit();
 	});	
 	
 	$('#btnCancel').click(function(){
 		location.href = "reqlist";
-	});
-});
+	});	
+	
+}); 
 </script>

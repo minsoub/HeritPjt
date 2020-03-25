@@ -28,7 +28,7 @@ public class ChkInfo  extends CommonModel  {
 	private String	req_dt;
 	private String	chk_dt;
 	private int		hospital_no;
-	private String	hospital_name;
+	private String	h_name;		//건강검진 병원명
 	private String	subject;
 	private String	item01;
 	private String	item02;

@@ -65,6 +65,7 @@
 					<button id="btnSearch" class="btnPrimary">검색하기</button>
 				</div>
 			</div>
+			</form>
 			<!-- //검색 영역 -->
 
 			<div class="clearfix mtSMd">
@@ -72,7 +73,7 @@
 				<div class="fr">
 					<select name="hospital_no" id="hospital_no">
 						<option value="">전체</option>
-						<option th:each="itemData: ${codeList}" th:value="${itemData.seq}" th:text="${itemData.hospital_name}" th:selected="${itemData.seq == paging.hospital_no}"></option>
+						<option th:each="itemData: ${codeList}" th:value="${itemData.seq}" th:text="${itemData.h_name}" th:selected="${itemData.seq == paging.hospital_no}"></option>
 					</select>					
 				</div>
 			</div>
@@ -91,8 +92,8 @@
 				</thead>
 				<tbody>
 					<tr th:each="info, index : ${list}">
-						<td th:text="${totalCnt - ($paging.pageNo - 1) * 10 - index.index}">
-						<td th:text="${info.hospital_name}">
+						<td th:text="${totalCnt - (paging.pageNo - 1) * 10 - index.index}">
+						<td th:text="${info.h_name}">
 						<td th:text="${info.chk_dt}">
 						<td th:text="${info.name}">
 						<td th:text="${info.birthday}">
@@ -100,7 +101,7 @@
 						<td th:text="${info.reg_dt}">
 						<td th:text="${info.reg_id}">
 					</tr>
-					<tr>
+					<!-- tr>
 						<td>9</td>
 						<td>서울대병원</td>
 						<td>2019.12.31</td>
@@ -109,17 +110,7 @@
 						<td>건강검진 3차</td>
 						<td>2019.12.31</td>
 						<td>홍길동</td>
-					</tr>
-					<tr>
-						<td>8</td>
-						<td>서울대병원</td>
-						<td>2019.12.31</td>
-						<td>홍길동</td>
-						<td>1982.12.11</td>
-						<td>건강검진 3차</td>
-						<td>2019.12.31</td>
-						<td>홍길동</td>
-					</tr>
+					</tr  -->
 				</tbody>
 			</table>
 			<!--  Paging  -->
