@@ -37,6 +37,19 @@ public class HospitalService {
 	}
 	
 	/**
+	 * search the Hospital All
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Hospital> selectHospitalAll() throws Exception
+	{
+		List<Hospital> result = mapper.selectHospitalAll();
+		
+		return result;
+	}
+	
+	/**
 	 * search the Hospital list
 	 * 
 	 * @param data

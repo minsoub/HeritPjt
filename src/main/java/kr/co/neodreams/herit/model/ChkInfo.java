@@ -21,6 +21,7 @@ import lombok.ToString;
 public class ChkInfo  extends CommonModel  {
 	private int		seq;
 	private int		mem_seq;
+	private String	id;
 	private String	name;
 	private String	phone;
 	private String	birthday;
@@ -56,4 +57,10 @@ public class ChkInfo  extends CommonModel  {
 	private String	sts;
 	private String	sts_name;
 	private String	reg_dt;
+	
+	// 검색조건
+	private String searchFromDt;
+	private String searchToDt;
+	private String searchLastFrom;
+	private String searchLastTo;
 }

@@ -43,6 +43,14 @@ public interface HospitalMapper {
 	int selectHospitalListCount(Hospital data) throws Exception;
 	
 	/**
+	 * search the Hospital All
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	List<Hospital> selectHospitalAll() throws Exception;
+	
+	/**
 	 * return total Hospital count
 	 * 
 	 * @return

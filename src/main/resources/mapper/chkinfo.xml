@@ -5,7 +5,7 @@
 	
 	<!--  검진결과 상세현황을 조회  -->
 	<select id="selectChkInfoById" parameterType="HashMap" resultType="chkinfo">
-		SELECT a.seq,   a.mem_seq,  date_format(req_dt, '%Y-%m-%d %H:%i') as req_dt, 
+		SELECT a.seq,   a.mem_seq,  b.id, date_format(req_dt, '%Y-%m-%d %H:%i') as req_dt, 
 		       a.chk_dt, a.hospital_no,  a.subject,
 		       a.item01, a.item02, a.item03, a.item04, a.item05, a.item06, a.item07, a.item08, a.item09, a.item10, 
 		       a.item11, a.item12, a.item13, a.item14, a.item15, a.item16, a.item17, a.item18, a.item19, a.item20, 
@@ -25,41 +25,52 @@
              FROM herit_chk_info a, herit_member b 
             WHERE  a.mem_seq = b.seq
         ]]>
-        <if test='searchString != null'>
-        	<if test="searchId == 'id'">
-        		and b.id like CONCAT('%',#{searchString},'%')	    
-        	</if>
-        	<if test="searchId == 'name'">
-        		and b.name like CONCAT('%',#{searchString},'%')
-        	</if>
-        	<if test="searchId == 'htel'">
-        		and ( b.phone like CONCAT('%',#{searchString},'%'))
-        	</if>        	        	
+        <if test="id != null and !id.equals('')">
+        	 and b.id like CONCAT('%',#{id},'%')
         </if>
+        <if test="name != null and !name.equals('')">
+        	 and b.name like CONCAT('%',#{name},'%')
+        </if> 
+        <if test="phone != null and !phone.equals('')">
+        	 and b.phone like CONCAT('%',#{phone},'%')
+        </if>               
+        <if test='searchFromDt != null and searchToDt != null and !searchFromDt.equals("") and !searchToDt.equals("")'>
+        	and date_format(a.req_dt, 'YYYY.mm.dd') between #{searchFromDt} and #{searchToDt}
+        </if>  
+        <if test='searchLastFrom != null and searchLastTo != null and !searchLastFrom.equals("") and !searchLastTo.equals("")'>
+        	and date_format(b.last_login_dt, 'YYYY.mm.dd') between #{searchLastFrom} and #{searchLastTo}
+        </if>              
 	</select>
 		
 	<!-- 검진결과 list search  -->
 	<select id="selectChkInfoList" parameterType="HashMap" resultType="chkinfo">
         <![CDATA[
-		SELECT a.seq,   a.mem_seq,  date_format(req_dt, '%Y-%m-%d %H:%i') as req_dt, 
+		SELECT a.seq,   b.id, a.mem_seq,  date_format(req_dt, '%Y-%m-%d %H:%i') as req_dt, 
 		       a.chk_dt, a.hospital_no,  a.subject,
 		       a.item01, a.item02, a.item03, a.item04, a.item05, a.item06, a.item07, a.item08, a.item09, a.item10, 
 		       a.item11, a.item12, a.item13, a.item14, a.item15, a.item16, a.item17, a.item18, a.item19, a.item20, 
 		       a.result, a.result_subject, a.result_content, a.reg_id, a.sts, a.reg_dt, 
+		       case when a.sts = 'R' then '요청'
+		            when a.sts = 'Y' then '처리완료'
+		            else '' end as sts_name, 
 		       b.name, b.phone, b.birthday, c.hospital_name 
 		  from herit_chk_info a, herit_member b left outer join herit_hospital_info c on a.hospital_no = c.seq
 		 where a.mem_seq = b.seq
         ]]>
-        <if test='searchString != null'>
-        	<if test="searchId == 'id'">
-        		and b.id like CONCAT('%',#{searchString},'%')	    
-        	</if>
-        	<if test="searchId == 'name'">
-        		and b.name like CONCAT('%',#{searchString},'%')
-        	</if>
-        	<if test="searchId == 'htel'">
-        		and ( b.phone like CONCAT('%',#{searchString},'%'))
-        	</if>        	        	
+        <if test="id != null and !id.equals('')">
+        	 and b.id like CONCAT('%',#{id},'%')
+        </if>
+        <if test="name != null and !name.equals('')">
+        	 and b.name like CONCAT('%',#{name},'%')
+        </if> 
+        <if test="phone != null and !phone.equals('')">
+        	 and b.phone like CONCAT('%',#{phone},'%')
+        </if>               
+        <if test='searchFromDt != null and searchToDt != null and !searchFromDt.equals("") and !searchToDt.equals("")'>
+        	and date_format(a.req_dt, 'YYYY.mm.dd') between #{searchFromDt} and #{searchToDt}
+        </if>  
+        <if test='searchLastFrom != null and searchLastTo != null and !searchLastFrom.equals("") and !searchLastTo.equals("")'>
+        	and date_format(b.last_login_dt, 'YYYY.mm.dd') between #{searchLastFrom} and #{searchLastTo}
         </if>
         order by a.reg_dt desc	
         LIMIT #{perPageCnt} OFFSET #{pageStartNo}

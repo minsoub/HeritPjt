@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=2" th:include="admin/chk/chk_menu"></th:block>
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">건강검진 현황</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">검진데이터</a></li>
+					<li><a href="">건강검진 현황</a></li>
+				</ol>
+			</div>
+			<!-- 검색 영역 -->
+			<form id="frm" name="frm">
+			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />			
+			<div class="bxCnt mtSm">
+				<table class="tblTypeB">
+					<colgroup>
+						<col width="100px">
+						<col>
+						<col width="100px">
+						<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>아이디</th>
+							<td><input type="text" name="id" id="id" maxlength="80"></td>
+							<th>연락처</th>
+							<td><input type="text" name="phone" id="phone" maxlength="14"></td>
+						</tr>
+						<tr>
+							<th>성명</th>
+							<td><input type="text" name="name" id="name" maxlength="20"></td>
+							<th>생년월일</th>
+							<td><input type="text" name="birthday" id="birtyday" maxlength="10"></td>
+						</tr>
+						<tr>
+							<th>검진일</th>
+							<td><input type="text" id="searchFromDt" name="searchFromDt" value="" class="datePic"> <span class="dash">~</span> <input type="text" id="searchToDt" name="searchToDt" value="" class="datePic"></td>
+							<th>병원명</th>
+							<td><input type="text" id="hospital_name" name="hospital_name" value=""></td>
+						</tr>
+						<tr>
+							<th>등록일</th>
+							<td><input type="text" id="searchLastFrom" name="searchLastFrom" value="" class="datePic"> <span class="dash">~</span> <input type="text" id="searchLastTo" name="searchLastTo" value="" class="datePic"></td>
+							<th>등록자</th>
+							<td><input type="text" id="name" name="name" value=""></td>
+						</tr>
+						<tr>
+							<th>제목</th>
+							<td colspan="3"><input type="text" id="subject" name="subject" value=""></td>
+						</tr>				
+					</tbody>
+				</table>
+				<div class="btnWrap mtSm tac">
+					<button id="btnSearch" class="btnPrimary">검색하기</button>
+				</div>
+			</div>
+			<!-- //검색 영역 -->
+
+			<div class="clearfix mtSMd">
+				<div class="txtBbs fl">총[[${totalCnt}]] 건</div>
+				<div class="fr">
+					<select name="hospital_no" id="hospital_no">
+						<option value="">전체</option>
+						<option th:each="itemData: ${codeList}" th:value="${itemData.seq}" th:text="${itemData.hospital_name}" th:selected="${itemData.seq == paging.hospital_no}"></option>
+					</select>					
+				</div>
+			</div>
+			<table class="tblTypeA mtSm">
+				<thead>
+					<tr>
+						<th></th>
+						<th>병원</th>
+						<th>검진일</th>
+						<th>성명</th>
+						<th>생년월일</th>
+						<th>제목</th>
+						<th>등록일</th>
+						<th>등록자</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="info, index : ${list}">
+						<td th:text="${totalCnt - ($paging.pageNo - 1) * 10 - index.index}">
+						<td th:text="${info.hospital_name}">
+						<td th:text="${info.chk_dt}">
+						<td th:text="${info.name}">
+						<td th:text="${info.birthday}">
+						<td th:text="${info.subject}">
+						<td th:text="${info.reg_dt}">
+						<td th:text="${info.reg_id}">
+					</tr>
+					<tr>
+						<td>9</td>
+						<td>서울대병원</td>
+						<td>2019.12.31</td>
+						<td>홍길동</td>
+						<td>1982.12.11</td>
+						<td>건강검진 3차</td>
+						<td>2019.12.31</td>
+						<td>홍길동</td>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td>서울대병원</td>
+						<td>2019.12.31</td>
+						<td>홍길동</td>
+						<td>1982.12.11</td>
+						<td>건강검진 3차</td>
+						<td>2019.12.31</td>
+						<td>홍길동</td>
+					</tr>
+				</tbody>
+			</table>
+			<!--  Paging  -->
+			<th:block th:if="${totalCnt > 0}">
+				<!-- paging -->
+				<th:block th:include="admin/layout/common_paging"></th:block>
+			</th:block>
+			<!--  Paging  -->
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('2', '0', '0'); //menu script	
+	
+	$('#btnSearch').click(function(){		
+		$("#frm").attr("method", "post");
+		$("#frm").attr("action", "hlist");
+		$("#frm").submit();
+	});
+	
+	$('#btnReg').click(function(){
+		location.href="reqregform";
+	});
+});
+</script>

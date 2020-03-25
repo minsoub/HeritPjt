@@ -84,6 +84,10 @@ public class AdminChkController {
 		}else {
 			mv.addObject("info", new Hospital());
 		}
+		// 병원 정보 조회
+		List<Hospital> codeList = hService.selectHospitalAll();
+		mv.addObject("codeList", codeList);
+		
 		mv.setViewName("admin/chk/chk_reg");
 		return mv;
 	}	
@@ -214,6 +218,31 @@ public class AdminChkController {
 			res.getWriter().write(retVal);
 		}
 	}	
+	
+	
+	/**
+	 * 건강검진 현황 list page 
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/chklist")
+	public ModelAndView chkList(ChkInfo param, HttpServletRequest request) throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		log.info("paramter : {}", param);
+		
+		param.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
+		int cnt = cService.selectChkInfoCount(param);
+		List<ChkInfo> lst = cService.selectChkInfoList(param);
+		log.info("search chklist list : {}", lst);
+		mv.addObject("totalCnt", cnt);		// need to Integer type
+
+		mv.addObject("list", lst);
+		mv.addObject("paging", param);
+		mv.setViewName("admin/chk/chk_list");
+		return mv;		
+	}	
+	
 	
 	/**
 	 * Hospital list page 

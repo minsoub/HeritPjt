@@ -22,6 +22,8 @@
 				</ol>
 			</div>
 			<!-- 검색 영역 -->
+			<form id="frm" name="frm">
+			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />
 			<div class="bxCnt mtSm">
 				<table class="tblTypeB">
 					<colgroup>
@@ -33,21 +35,21 @@
 					<tbody>
 						<tr>
 							<th>아이디</th>
-							<td><input type="text" name=""></td>
+							<td><input type="text" name="id" id="id" maxlength="80"></td>
 							<th>연락처</th>
-							<td><input type="text" name=""></td>
+							<td><input type="text" name="phone" id="phone" maxlength="14"></td>
 						</tr>
 						<tr>
 							<th>성명</th>
-							<td><input type="text" name=""></td>
+							<td><input type="text" name="name" id="name" maxlength="20"></td>
 							<th>생년월일</th>
-							<td><input type="text" name=""></td>
+							<td><input type="text" name="birthday" id="birtyday" maxlength="10"></td>
 						</tr>
 						<tr>
 							<th>요청일</th>
-							<td><input type="text" value="" class="datePic"> <span class="dash">~</span> <input type="text" value="" class="datePic"></td>
+							<td><input type="text" value="" id="searchFromDt" name="searchFromDt"class="datePic"> <span class="dash">~</span> <input type="text" id="searchToDt" name="searchToDt" value="" class="datePic"></td>
 							<th>최종접속일</th>
-							<td><input type="text" value="" class="datePic"> <span class="dash">~</span> <input type="text" value="" class="datePic"></td>
+							<td><input type="text" value="" id="searchLastFrom" name="searchLastFrom" class="datePic"> <span class="dash">~</span> <input type="text" id="searchLastTo" name="searchLastFrom" value="" class="datePic"></td>
 						</tr>				
 					</tbody>
 				</table>
@@ -58,7 +60,7 @@
 			<!-- //검색 영역 -->
 
 			<div class="clearfix mtSMd">
-				<div class="txtBbs fl">총 50건</div>
+				<div class="txtBbs fl">총 [[${totalCnt}]]건</div>
 				<div class="btnWrap fr">
 					<select name="">
 						<option value="">전체</option>
@@ -91,16 +93,16 @@
 					</tr>
 					</th:block>
 					<th:block th:if="${totalCnt > 0}">
-					<tr>
-						<td>naodkls@nts.com</td>
-						<td>010-1234-5678</td>
-						<td>홍길동</td>
-						<td>1982.12.11</td>
-						<td>서울대병원</td>
-						<td>2019.12.31</td>
-						<td>2020.01.15</td>
-						<td class="colorB">미처리</td>
-						<td><span class="btnWrap"><a href="" class="btnColorE">등록</a></span></td>
+					<tr th:each="info : ${list}">
+						<td th:text="${info.id}">
+						<td th:text="${info.phone}">
+						<td th:text="${info.name}">
+						<td th:text="${info.birthday}">
+						<td th:text="${info.hospital_name}">
+						<td th:text="${info.chk_dt}">
+						<td th:text="${info.req_dt}">
+						<td class="colorB" th:text="${info.sts_name}">
+						<td><span class="btnWrap"><a href="@{reqregform(seq=${info.seq})}" class="btnColorE">등록</a></span></td>
 					</tr>
 					</th:block>
 					
@@ -140,6 +142,7 @@
 					</tr>
 				</tbody>
 			</table>
+			</form>
 			<!--  Paging  -->
 			<th:block th:if="${totalCnt > 0}">
 				<!-- paging -->
@@ -147,7 +150,7 @@
 			</th:block>
 			<!--  Paging  -->
 			<div class="btnWrap mtMmd">
-				<a href="" class="btnDefault">등록</a>
+				<button id="btnReg" class="btnDefault">등록</button>
 			</div>
 		</div>
 		<!-- //contents -->
@@ -160,15 +163,14 @@
 $(document).ready(function() {
 	load_fnc('2', '0', '0'); //menu script	
 	
-	$('#btnSearch').click(function(){
-		if ($("#hname").val() == "" && $("#name").val() == "" && $("#phone").val() == "")
-		{
-			alert("검색조건을 입력하세요!!!");
-			return;
-		}
+	$('#btnSearch').click(function(){		
 		$("#frm").attr("method", "post");
 		$("#frm").attr("action", "hlist");
 		$("#frm").submit();
+	});
+	
+	$('#btnReg').click(function(){
+		location.href="reqregform";
 	});
 });
 </script>
