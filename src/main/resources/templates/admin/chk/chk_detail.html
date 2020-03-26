@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=2" th:include="admin/chk/chk_menu"></th:block>
+		<!-- //SNB -->
+		
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">건강검진 현황 상세</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">검진데이터</a></li>
+					<li><a href="">건강검진 현황 상세</a></li>
+				</ol>
+			</div>
+			<h3 class="cntTitLg">사용자 정보</h3>
+			<!-- 검색 영역 -->
+			<form name="frm" id="frm" method="post">
+			<input type="hidden" name="seq" id="seq" th:value="${info.seq}">
+			<div class="bxCnt mtSm">
+				<table class="tblTypeB">
+					<colgroup>
+						<col width="100px">
+						<col>
+						<col width="100px">
+						<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>아이디</th>
+							<td class="disabled" th:text="${info.id}">
+							<th>연락처</th>
+							<td class="disabled" th:text="${info.phone}">
+						</tr>
+						<tr>
+							<th>성명</th>
+							<td class="disabled" th:text="${info.name}">
+							<th>생년월일</th>
+							<td class="disabled" th:text="${info.birthday}">
+						</tr>				
+					</tbody>
+				</table>
+			</div>
+			<!-- //검색 영역 -->
+
+			<h3 class="cntTitLg mtSLg">건강검진 정보</h3>
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="100px">
+					<col>
+					<col width="100px">
+					<col>
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>검진일</th>
+						<td th:text="${info.chk_dt}">
+						<th>병원명</th>
+						<td th:text="${info.h_name}">
+					</tr>
+					<tr>
+						<th>제목</th>
+						<td colspan="3" th:text="${info.subject}">
+					</tr>
+					<tr>
+						<th>대사질환</th>
+						<td th:text="${info.item01}">
+						<th>BRCA1</th>
+						<td th:text="${info.item02}">
+					</tr>
+					<tr>
+						<th>항목3</th>
+						<td th:text="${info.item03}">
+						<th>항목4</th>
+						<td th:text="${info.item04}">
+					</tr>
+					<tr>
+						<th>종합분석</th>
+						<td colspan="3">
+							<select name="result" id="result">
+									<option value="1" th:selected="${info.result == '1'}">위험</option>
+									<option value="2" th:selected="${info.result == '2'}">주의</option>
+									<option value="3" th:selected="${info.result == '3'}">정상</option>
+							</select>
+							<span class="mlSm" th:text="${info.result_subject}"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>상세내용</th>
+						<td colspan="3">
+							<div class="wrapCnt"><pre>[[${info.result_content}]]</pre></div>
+						</td>
+					</tr>				
+				</tbody>
+			</table>
+			</form>
+			<div class="btnWrap mtMmd">
+				<button id="btnModify" class="btnDefault">수정</button>
+				<button id="btnDelete" class="btnDefault">삭제</button>
+				<button id="btnList"   class="btnDefault">목록</button>
+			</div>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('2', '0', '0'); //menu script
+	
+	$("#btnModify").click(function(){
+		frm.action = "chkregform";
+		frm.submit();
+	});
+	
+	$("#btnDelete").clcik(function(){
+		var params = {
+				"seq"   : $("#seq").val()
+		};
+
+		url = "chkdelete";
+		url2 = "chklist";
+		goJsonInput(params, url, url2);			
+	});
+	
+	$('#btnList').click(function(){
+		location.href = "chklist";
+	});	
+});
+</script>

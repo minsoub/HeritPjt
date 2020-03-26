@@ -7,17 +7,17 @@
 	<!-- contaier -->
 	<div class="innerWrap">
 		<!-- SNB -->
-		<th:block th:with="menu=1" th:include="admin/member/member_menu"></th:block>
+		<th:block th:with="menu=3" th:include="admin/member/member_menu"></th:block>
 		<!-- //SNB -->
 		
 		<!-- contents -->
 		<div class="contents">
 			<div class="cntTitWrap">
-				<h2 class="cntTitXL fl">정회원</h2>
+				<h2 class="cntTitXL fl">탈퇴회원</h2>
 				<ol class="bcNav">
 					<li><a href="" class="home">Home</a></li>
 					<li><a href="">회원관리</a></li>
-					<li><a href="">정회원</a></li>
+					<li><a href="">탈퇴회원</a></li>
 				</ol>
 			</div>
 			<!-- 검색 영역 -->
@@ -59,7 +59,6 @@
 			<!-- //검색 영역 -->
 			<div class="clearfix mtSm">
 				<div class="txtBbs fl mtSMd">검색 <span class="colorA">[[${totalCnt}]]</span> 명 / 전체 <span class="colorA">[[${total}]]</span> 명</div>
-				<div class="btnWrap fr"><button id="btnReg" class="btnDefault">회원등록</button></div>
 			</div>
 			<table class="tblTypeA mtSm">
 				<thead>
@@ -71,12 +70,13 @@
 						<th>생년월일</th>
 						<th>가입일</th>
 						<th>최종 접속일</th>
+						<th>탈퇴일</th>
 					</tr>
 				</thead>
 				<tbody>	
 					<th:block th:if="${totalCnt == 0}">
 						<tr>
-							<td colspan="7" class="noData">
+							<td colspan="8" class="noData">
 								<p class="ico"><img src="/resources/images/contents/ico_nodata01.gif" alt=""></p>
 								검색 결과가 없습니다.
 							</td>
@@ -91,6 +91,7 @@
 							<td th:text="${info.birthday}">
 							<td th:text="${info.reg_dt}">
 							<td th:text="${info.last_login_dt}">
+							<td th:text="${info.st_dt}">
 						</tr>
 					</th:block>
 				</tbody>
@@ -98,8 +99,7 @@
 			<!-- paging -->
 			<th:block th:include="admin/layout/common_paging"></th:block>
 			</form>
-			
-			<div class="btnWrap"><button id="btnReg" class="btnDefault">회원등록</button></div>
+
 		</div>
 		<!-- //contents -->
 	</div>

@@ -17,8 +17,10 @@
 					<li><a href="">회원관리</a></li>
 					<li><a href="">정회원</a></li>
 				</ol>
-			</div>
+			</div>			
 			<div class="bxCnt mtMmd">
+				<form name="frm" id="frm" method="post">
+				<input type="hidden" name="seq" id="seq" th:value="${info.seq}">
 				<table class="tblTypeB">
 					<colgroup>
 						<col width="100px">
@@ -72,18 +74,17 @@
 						<tr>
 							<th>검진데이터<br>연동 병원</th>
 							<td colspan="3">
-								<ul>
-									<li>서울대병원(2018.12.31. 15:00)</li>
-									<li>인하대병원(2019.05.13. 17:24)</li>
-									<li>아산현대병원(2019. 05.13. 17:24)</li>
+								<ul th:each="info : ${chklist}">
+									<li th:text="|${info.h_name}(info.chk_dt)}|"></li>
 								</ul>
 							</td>
 						</tr>				
 					</tbody>
 				</table>
+				</form>
 				<div class="btnWrap mtSm tac">
-					<a href="" class="btnColorA">회원탈퇴</a>
-					<a href="" class="btnDefault">목록</a>
+					<button id="btnDelete" class="btnColorA">회원탈퇴</button>
+					<button id="btnList"   class="btnDefault">목록</button>
 				</div>
 			</div>
 			<!--  결제 내역/포인트 내역/미션현황/검진데이터  -->
@@ -96,28 +97,7 @@
 
 
 <!-- laeyr poup - 임시비밀번호 발송 -->
-<div class="wrapPop popSendPw">
-	<div class="popCnt sizeMd">
-		<h1 class="titPop">임시 비밀번호 발송</h1>
-		<p class="btnClose">
-			<a href=""><img src="/resources/images/common/btn_close_pop.png" alt="레이어 닫기"></a>
-		</p>
-		<div class="cnt">
-			<div class="bxCnt">
-				<h2 class="tit">임시 비밀번호 발송</h2>
-				<ul class="listTxt">
-					<li>- SMS를 통해 회원에게 비밀번호를 발송합니다.</li>
-					<li>- 전송 성공여부와 관계없이 임시 비밀번호로 설정됩니다.</li>
-				</ul>
-			</div>
-			<!-- btn -->
-			<p class="btnWrap">
-				<a href="" class="btnColorB">발송</a>
-				<a href="" class="btnDefault btnClose">취소</a>
-			</p>
-		</div>
-	</div>
-</div>
+<th:block th:include="admin/member/pass_create_form"></th:block>
 <!-- //laeyr poup - 임시비밀번호 발송 -->
 	
 </th:block>
@@ -126,5 +106,20 @@
 <script>
 $(document).ready(function() {
 	load_fnc('1', '0', '0'); //menu script
+	
+	$("#btnDelete").click(function(){
+		var params = {
+				"seq"   : $("#mem_seq").val(),
+				"mem_sts" : "4", 
+				"use_yn" : "N"
+		};
+
+		url = "delete";
+		url2 = "list";
+		goJsonInput(params, url, url2);			
+	});
+	$("#btnList").click(function(){
+		location.href="list";
+	});
 });
 </script>

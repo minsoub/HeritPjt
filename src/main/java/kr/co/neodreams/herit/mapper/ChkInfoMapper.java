@@ -17,6 +17,15 @@ import kr.co.neodreams.herit.model.ChkInfo;
 public interface ChkInfoMapper {
 
 	/**
+	 * 사용자가 검진한 검진결과 리스트를 조회한다. 
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	List<ChkInfo> selectChkInfoByUserId(ChkInfo data) throws Exception;
+	
+	/**
 	 * Key에 의해서 검진결과 상세 현황을 조회한다.
 	 * 
 	 * @param data

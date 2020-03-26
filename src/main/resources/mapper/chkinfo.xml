@@ -3,6 +3,25 @@
 
 <mapper namespace="kr.co.neodreams.herit.mapper.ChkInfoMapper">
 	
+	<!--  사용자가 검진한 검진결과 상세 리스트 조회  -->
+	<select id="selectChkInfoByUserId" parameterType="HashMap" resultType="chkinfo">
+		SELECT a.seq,   a.mem_seq,  b.id, date_format(req_dt, '%Y-%m-%d %H:%i') as req_dt, 
+		       a.chk_dt, a.hospital_no,  a.subject,
+		       a.item01, a.item02, a.item03, a.item04, a.item05, a.item06, a.item07, a.item08, a.item09, a.item10, 
+		       a.item11, a.item12, a.item13, a.item14, a.item15, a.item16, a.item17, a.item18, a.item19, a.item20, 
+		       a.result, a.result_subject, a.result_content, a.reg_id, a.sts, a.reg_dt, 
+		       b.name, b.phone, b.birthday, c.h_name, 
+		       case when a.result = '1' then '위험' 
+		            when a.result = '2' then '주의'
+		            when a.result = '3' then '정상'
+		            else '' end as result_name
+		  from herit_chk_info a left outer join herit_hospital c on (a.hospital_no = c.seq) , herit_member b
+		 where
+		        a.mem_seq = b.seq
+		   and  a.mem_seq = #{mem_seq}
+		 order by a.chk_dt asc
+	</select>
+		
 	<!--  검진결과 상세현황을 조회  -->
 	<select id="selectChkInfoById" parameterType="HashMap" resultType="chkinfo">
 		SELECT a.seq,   a.mem_seq,  b.id, date_format(req_dt, '%Y-%m-%d %H:%i') as req_dt, 
@@ -10,7 +29,11 @@
 		       a.item01, a.item02, a.item03, a.item04, a.item05, a.item06, a.item07, a.item08, a.item09, a.item10, 
 		       a.item11, a.item12, a.item13, a.item14, a.item15, a.item16, a.item17, a.item18, a.item19, a.item20, 
 		       a.result, a.result_subject, a.result_content, a.reg_id, a.sts, a.reg_dt, 
-		       b.name, b.phone, b.birthday, c.h_name 
+		       b.name, b.phone, b.birthday, c.h_name, 
+		       case when a.result = '1' then '위험' 
+		            when a.result = '2' then '주의'
+		            when a.result = '3' then '정상'
+		            else '' end as result_name
 		  from herit_chk_info a left outer join herit_hospital c on (a.hospital_no = c.seq) , herit_member b
 		 where
 		       a.seq = #{seq}
@@ -25,6 +48,9 @@
              FROM herit_chk_info a, herit_member b 
             WHERE  a.mem_seq = b.seq
         ]]>
+        <if test="mem_seq > 0">
+        	and a.mem_seq = ${mem_seq}
+        </if>
         <if test="id != null and !id.equals('')">
         	 and b.id like CONCAT('%',#{id},'%')
         </if>
@@ -53,10 +79,17 @@
 		       case when a.sts = 'R' then '요청'
 		            when a.sts = 'Y' then '처리완료'
 		            else '' end as sts_name, 
-		       b.name, b.phone, b.birthday, c.h_name 
+		       b.name, b.phone, b.birthday, c.h_name, 
+		       case when a.result = '1' then '위험' 
+		            when a.result = '2' then '주의'
+		            when a.result = '3' then '정상'
+		            else '' end as result_name 
 		  from herit_chk_info a left outer join herit_hospital c on (a.hospital_no = c.seq) ,  herit_member b 
 		 where a.mem_seq = b.seq
         ]]>
+        <if test="mem_seq > 0">
+        	and a.mem_seq = ${mem_seq}
+        </if>        
         <if test="id != null and !id.equals('')">
         	 and b.id like CONCAT('%',#{id},'%')
         </if>

@@ -51,6 +51,7 @@ public class ChkInfo  extends CommonModel  {
 	private String	item19;
 	private String	item20;
 	private String	result;
+	private String	result_name;
 	private String	result_subject;
 	private String	result_content;
 	private String	reg_id;

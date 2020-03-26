@@ -138,6 +138,19 @@ public class MemberService {
 	}
 	
 	/**
+	 * 임시 비밀번호를 업데이트 한다.
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public int updateMemberPassword(Member data) throws Exception
+	{
+		int result = mapper.updateMemberPassword(data);
+		return result;
+	}
+	
+	/**
 	 * 팝업이나 기타 화면에서 호출되는 사용자 검색 리스트 
 	 * @param data
 	 * @return

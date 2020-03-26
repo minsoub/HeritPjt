@@ -1,0 +1,59 @@
+<script>
+	function PassClose()
+	{
+		var el = $(".wrapPop");
+		closeLayer(el);
+	}
+	
+	function SendSms()
+	{
+		var params = {"seq" : $("#seq").val() }
+		// ajax data call
+		$.ajax({
+			type : 'post',
+			url : "reqPasswordCreateSendSms",
+			dataType : 'json',
+			data : params,
+			success : function(result){					
+				console.log(result);
+				
+				if (result == "1")
+				{
+					alert("임시 비밀번호가 발송되었습니다!!!");	
+					var el = $(".wrapPop");
+					closeLayer(el);
+				}else {
+					alert("임시 비밀번호 발송하는데 에러가 발생하였습니다!!!");
+				}
+			},
+			error : function(e){
+				alert(e);
+			}
+		});	
+	}
+	
+</script>
+<!-- laeyr poup - 임시비밀번호 발송 -->
+<div class="wrapPop popSendPw">
+	<div class="popCnt sizeMd">
+		<h1 class="titPop">임시 비밀번호 발송</h1>
+		<p class="btnClose">
+			<a href=""><img src="/resources/images/common/btn_close_pop.png" alt="레이어 닫기"></a>
+		</p>
+		<div class="cnt">
+			<div class="bxCnt">
+				<h2 class="tit">임시 비밀번호 발송</h2>
+				<ul class="listTxt">
+					<li>- SMS를 통해 회원에게 비밀번호를 발송합니다.</li>
+					<li>- 전송 성공여부와 관계없이 임시 비밀번호로 설정됩니다.</li>
+				</ul>
+			</div>
+			<!-- btn -->
+			<p class="btnWrap">
+				<a href="javascript:SendSms();" class="btnColorB">발송</a>
+				<a href="javascript:PassClose();" class="btnDefault btnClose">취소</a>
+			</p>
+		</div>
+	</div>
+</div>
+<!-- //laeyr poup - 임시비밀번호 발송 -->

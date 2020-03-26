@@ -32,9 +32,11 @@
              FROM herit_member
             WHERE  1=1
         ]]>
+        <if test="mem_sts != null and !mem_sts.equals('')">
+        	  and mem_sts = ${mem_sts}
+        </if>
         <if test="searchString != null and !searchString.equals('') ">
-        	<if test="searchId == 'id'">
-        	  
+        	<if test="searchId == 'id'">        	  
         		and id like CONCAT('%',#{searchString},'%')	  
         	</if>
         	<if test="searchId == 'name'">
@@ -50,10 +52,16 @@
 	<select id="selectMemberList" parameterType="HashMap" resultType="member">
         <![CDATA[
             SELECT 
-                  a.seq, a.id, a.name, a.phone, a.birthday, a.sex, a.agree_dt, a.mark_chk, a.mark_dt, a.mem_sts, a.use_yn,  a.last_login_dt
+                  a.seq, a.id, a.name, a.phone, a.birthday, a.sex, a.agree_dt, a.mark_chk, a.mark_dt, a.mem_sts, a.use_yn,  
+                  date_format(a.reg_dt, '%Y-%m-%d %H:%i') as reg_dt,
+                  date_format(a.last_login_dt, '%Y-%m-%d %H:%i') as last_login_dt, 
+                  date_format(a.st_dt, '%Y-%m-%d %H:%i') as st_dt
              FROM herit_member a
             WHERE  1=1
         ]]>
+        <if test="mem_sts != null and !mem_sts.equals('')">
+        	  and a.mem_sts = ${mem_sts}
+        </if>       
         <if test="searchString != null and !searchString.equals('') ">
         	<if test="searchId == 'id'">
         	  
@@ -127,10 +135,22 @@
 	</update>	
 	
 	<!--  administrator delete  -->
-    <delete id="deleteMember" parameterType="HashMap">
-		delete from herit_member 
+    <update id="deleteMember" parameterType="HashMap">
+		update herit_member
+		   set mem_sts = ${mem_sts}, 
+		       use_yn = ${use_yn},
+		       sts_dt = current_timestamp
 		 where seq = #{seq}
-	</delete>
+	</update>
+	
+	<!--  임시 비밀번호 저장  -->
+	<update id="updateMemberPassword" parameterType="HashMap">
+		update herit_member
+		   set pass = ${pass}
+		       sts_dt = current_timestamp
+		 where seq = #{seq}
+	</update>
+	 
 	
 	<!-- 팝업화면이나 기타에서 사용될 수 있는 사용자 리스트 검색  -->
 	<select id="selectMemberSearchList" parameterType="HashMap" resultType="HashMap">

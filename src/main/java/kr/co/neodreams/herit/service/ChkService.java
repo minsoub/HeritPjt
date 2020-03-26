@@ -22,6 +22,20 @@ public class ChkService {
 	private ChkInfoMapper mapper;
 	
 	/**
+	 * 사용자에 의해서 검진결과 리스트를 조회한다.
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	public List<ChkInfo> selectChkInfoByUserId(ChkInfo data) throws Exception
+	{
+		List<ChkInfo> result = mapper.selectChkInfoByUserId(data);
+		
+		return result;
+	}
+	
+	/**
 	 * Key에 의해서 검진결과 상세 현황을 조회한다.
 	 * 
 	 * @param data

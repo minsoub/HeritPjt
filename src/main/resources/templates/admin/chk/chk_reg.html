@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="admin/layout/main_layout">
+
+<th:block layout:fragment="content_body">
+
+
+	<!-- contaier -->
+	<div class="innerWrap">
+		<!-- SNB -->
+		<th:block th:with="menu=2" th:include="admin/chk/chk_menu"></th:block>
+		<!-- //SNB -->
+		<!-- contents -->
+		<div class="contents">
+			<div class="cntTitWrap">
+				<h2 class="cntTitXL fl">건강검진 현황 수정</h2>
+				<ol class="bcNav">
+					<li><a href="" class="home">Home</a></li>
+					<li><a href="">검진데이터</a></li>
+					<li><a href="">건강검진 현황 수정</a></li>
+				</ol>
+			</div>
+			<h3 class="cntTitLg">사용자 정보</h3>
+			<!-- 검색 영역 -->
+			<form name="frm" id="frm" method="post">
+			<input type="hidden" name="seq" id="seq" th:value="${info.seq}">
+			<div class="bxCnt mtSm">
+				<table class="tblTypeB">
+					<colgroup>
+						<col width="100px">
+						<col>
+						<col width="100px">
+						<col>
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>아이디</th>
+							<td class="disabled" th:text="${info.id}">
+							<th>연락처</th>
+							<td class="disabled" th:text="${info.phone}">
+						</tr>
+						<tr>
+							<th>성명</th>
+							<td class="disabled" th:text="${info.name}">
+							<th>생년월일</th>
+							<td class="disabled" th:text="${info.birthday}">
+						</tr>				
+					</tbody>
+				</table>
+			</div>
+			<!-- //검색 영역 -->
+
+			<h3 class="cntTitLg mtSLg">건강검진 정보</h3>
+			<table class="tblTypeC mtSm">
+				<colgroup>
+					<col width="100px">
+					<col>
+					<col width="100px">
+					<col>
+				</colgroup>
+				<tbody>
+					<tr>
+					<tr>
+						<th>검진일</th>
+						<td><input type="text" name="chk_dt" id="chk_dt" th:value="${info.chk_dt}" class="datePic"></td>
+						<th>병원명</th>
+						<td>
+							<select name="hospital_no" id="hospital_no">
+								<option value="">병원명 선택</option>
+								<option th:each="itemData: ${codeList}" th:value="${itemData.seq}" th:text="${itemData.h_name}" th:selected="${itemData.seq == info.hospital_no}"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>제목</th>
+						<td colspan="3"><input type="text" name="subject" id="subject" th:value="${info.subject}"></td>
+					</tr>
+					<tr>
+						<th>대사질환</th>
+						<td><input type="text" name="item01" id="item01" th:value="${info.item01}"></td>
+						<th>BRCA1</th>
+						<td><input type="text" name="item02" id="item02" th:value="${info.item02}"></td>
+					</tr>
+					<tr>
+						<th>항목3</th>
+						<td><input type="text" name="item03" id="item03" th:value="${info.item03}"></td>
+						<th>항목4</th>
+						<td><input type="text" name="item04" id="item04" th:value="${info.item04}"></td>
+					</tr>
+					<tr>
+						<th>종합분석</th>
+						<td colspan="3">
+							<div class="wrapInput">
+								<select name="result" id="result">
+									<option value="1" th:selected="${info.result == '1'}">위험</option>
+									<option value="2" th:selected="${info.result == '2'}">주의</option>
+									<option value="3" th:selected="${info.result == '3'}">정상</option>
+								</select>
+								<input type="text" name="result_subject" id="result_subject"  th:value="${info.result_subject}" class="mlSm">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>상세내용</th>
+						<td colspan="3">
+							<textarea name="result_content" id="result_content" th:text="${info.result_content}"></textarea>
+						</td>
+					</tr>			
+				</tbody>
+			</table>
+			</form>
+			<div class="btnWrap mtMmd">
+				<button id="btnSave" class="btnDefault">저장</button>
+				<button id="btnDelete" class="btnDefault">삭제</button>
+				<button id="btnCancel" class="btnDefault">취소</button>
+			</div>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //contaier -->
+</th:block>
+</html>
+
+<script>
+$(document).ready(function() {
+	load_fnc('2', '0', '0'); //menu script	
+	
+	$('#btnSave').click(function(){
+		if ($("#hospital_no").val() == "")
+		{
+			alert("병원명을 선택하세요!!!");
+			$("#hospital_no").focus();
+			return;
+		}
+		
+		var params = {
+				"seq"   : $("#seq").val(),
+				"chk_dt" : $("#chk_dt").val(),
+				"hospital_no" : $('#hospital_no').val(),
+				"subject" : $("#subject").val(),
+				"item01" : $("#item01").val(), 
+				"item02" : $("#item02").val(),
+				"item03" : $("#item03").val(),
+				"item04" : $("#item04").val(),
+				"result" : $("#result").val(),
+				"result_subject" : $("#result_subject").val(),
+				"result_content" : $("#result_content").val(), 
+				"sts" : "Y"
+		};
+
+		url = "chkmodify";
+		url2 = "chklist";
+		goJsonInput(params, url, url2);	
+	});	
+	
+	$('#btnDelete').click(function(){
+
+		var params = {
+				"seq"   : $("#seq").val(),
+				"chk_dt" : $("#chk_dt").val(),
+				"hospital_no" : $('#hospital_no').val(),
+				"subject" : $("#subject").val(),
+				"item01" : $("#item01").val(), 
+				"item02" : $("#item02").val(),
+				"item03" : $("#item03").val(),
+				"item04" : $("#item04").val(),
+				"result" : $("#result").val(),
+				"result_subject" : $("#result_subject").val(),
+				"result_content" : $("#result_content").val(), 
+				"sts" : "Y"
+		};
+
+		url = "chkdelete";
+		url2 = "chklist";
+		goJsonInput(params, url, url2);	
+	});	
+	
+	$('#btnCancel').click(function(){
+		location.href = "chklist";
+	});
+});
+</script>

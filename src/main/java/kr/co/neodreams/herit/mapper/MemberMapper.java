@@ -87,6 +87,15 @@ public interface MemberMapper {
 	int deleteMember(Member data) throws Exception;
 	
 	/**
+	 * 임시 비밀번호를 저장한다. 
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	int updateMemberPassword(Member data) throws Exception;
+	
+	/**
 	 * 팝업이나 기타에서 사용되는 사용자 검색 리스트 
 	 * @param data
 	 * @return

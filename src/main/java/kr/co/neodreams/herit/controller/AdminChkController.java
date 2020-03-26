@@ -216,7 +216,7 @@ public class AdminChkController {
 	@CrossOrigin
 	@ResponseBody
 	@PostMapping("/reqmodify")
-	public void modifyChkInfo(HttpServletRequest req, HttpServletResponse res, HttpSession session, ChkInfo param) throws Exception {
+	public void reqmodify(HttpServletRequest req, HttpServletResponse res, HttpSession session, ChkInfo param) throws Exception {
 		String retVal = "0";
 		
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
@@ -323,6 +323,134 @@ public class AdminChkController {
 		return mv;		
 	}	
 	
+	/**
+	 * 건강검진 현황 상세보기
+	 * 
+	 * @param param
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/chkdetail")
+	public ModelAndView chkDetail(ChkInfo param, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		log.info("paramter : {}", param);
+
+		ChkInfo info = cService.selectChkInfoById(param);
+		
+		if (info == null)
+		{
+			mv.setViewName("redirect:chklist");
+		}else {
+			log.info("search chkDetail info : {}", info);
+			mv.addObject("info", info);
+			mv.addObject("paging", param);
+			mv.setViewName("/admin/chk/chk_detail");
+		}
+		return mv;
+	}	
+	
+	/**
+	 * 건강검진 현황 수정 폼 출력
+	 * 
+	 * @param param
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/chkregform")
+	public ModelAndView chkRegForm(ChkInfo param, HttpServletRequest request,  HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		String reg_id = (String) session.getAttribute("id");
+		log.debug("admin id : " + reg_id);
+		
+		if (param.getSeq() > 0)
+		{
+			ChkInfo info = cService.selectChkInfoById(param);
+			log.info("건강검진 현황 수정 폼 출력 info : {}", info);
+			mv.addObject("info", info);
+		}else {
+			mv.addObject("info", new ChkInfo());
+		}
+		// 병원 정보 조회
+		List<Hospital> codeList = hService.selectHospitalAll();
+		mv.addObject("codeList", codeList);
+		
+		mv.setViewName("admin/chk/chk_reg");
+		return mv;
+	}	
+	
+	/**
+	 * 건강검진 현황 정보를 수정한다. 
+	 * 
+	 * @param req
+	 * @param res
+	 * @param param
+	 * @throws Exception
+	 */
+	@CrossOrigin
+	@ResponseBody
+	@PostMapping("/chkmodify")
+	public void chkmodify(HttpServletRequest req, HttpServletResponse res, HttpSession session, ChkInfo param) throws Exception {
+		String retVal = "0";
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		TransactionStatus status = dataSourceTransactionManager.getTransaction(def);
+		
+		try{
+			// 관리자 아이디 등록
+			String reg_id = (String) session.getAttribute("id");
+			log.debug("admin id : " + reg_id);
+			param.setReg_id(reg_id);
+			
+			log.debug("modifyChkInfo param {}", param);			
+			retVal = Integer.toString(cService.updateChkInfo(param));
+			
+			log.debug("retVal : {}", retVal);
+			dataSourceTransactionManager.commit(status);
+		}catch (Exception e) {
+			retVal = "-1";
+			log.debug("modifyChkInfo error : {}", e);
+			dataSourceTransactionManager.rollback(status);
+		}finally {
+			res.getWriter().write(retVal);
+		}
+	}	
+	
+	/**
+	 * 건강검진 현황 정보를 삭제한다.
+	 * 
+	 * @param req
+	 * @param res
+	 * @param param
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@PostMapping("/chkdelete")
+	public void chkDelete(HttpServletRequest req, HttpServletResponse res, ChkInfo param) throws Exception {
+		
+		String retVal = "0";
+		
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		TransactionStatus status = dataSourceTransactionManager.getTransaction(def);
+		
+		try{
+			log.debug("건강검진 현황 정보를 삭제 param {}", param);			
+			retVal = Integer.toString(cService.deleteChkInfo(param));
+			
+			log.debug("retVal : {}", retVal);
+			dataSourceTransactionManager.commit(status);
+		}catch (Exception e) {
+			retVal = "-1";
+			log.debug("건강검진 현황 정보를 삭제 error : {}", e);
+			dataSourceTransactionManager.rollback(status);
+		}finally {
+			res.getWriter().write(retVal);
+		}
+	}
 	
 	/**
 	 * Hospital list page 
