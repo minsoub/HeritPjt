@@ -32,8 +32,13 @@
              FROM herit_member
             WHERE  1=1
         ]]>
-        <if test="mem_sts != null and !mem_sts.equals('')">
-        	  and mem_sts = ${mem_sts}
+        <if test="mem_sts != null and !mem_sts.equals('')">        	  
+        	  <if test="mem_sts == '3'">
+        	  	and (mem_sts = ${mem_sts} or TIMESTAMPDIFF(DAY, last_login_dt, CURRENT_TIMESTAMP) > 30)	  
+        	  </if>
+        	  <if test="mem_sts <> '3'">
+        	  	and mem_sts = ${mem_sts}
+        	  </if>
         </if>
         <if test="searchString != null and !searchString.equals('') ">
         	<if test="searchId == 'id'">        	  
@@ -43,7 +48,7 @@
         		and name like CONCAT('%',#{searchString},'%')	
         	</if>
         	<if test="searchId == 'htel'">
-        		and ( phone like CONCAT('%',#{searchString},'%')	)
+        		and  phone like CONCAT('%',#{searchString},'%')	
         	</if>        	        	
         </if>
 	</select>	
@@ -52,7 +57,17 @@
 	<select id="selectMemberList" parameterType="HashMap" resultType="member">
         <![CDATA[
             SELECT 
-                  a.seq, a.id, a.name, a.phone, a.birthday, a.sex, a.agree_dt, a.mark_chk, a.mark_dt, a.mem_sts, a.use_yn,  
+                  a.seq, a.id, a.name, a.phone, a.birthday, a.sex, a.agree_dt, a.mark_chk, a.mark_dt, 
+			      case when TIMESTAMPDIFF(DAY, a.last_login_dt, CURRENT_TIMESTAMP) > 30 then '3'
+			           else a.mem_sts end as mem_sts,
+                  a.use_yn,  
+			   	  case
+			        when TIMESTAMPDIFF(DAY, a.last_login_dt, CURRENT_TIMESTAMP) > 30 then '3' then '휴면회원'
+			        when a.mem_sts = '1' then '일반회원'
+			        when a.mem_sts = '2' then '정회원'
+			        when a.mem_sts = '3' then '휴면회원'
+			        when a.mem_sts = '4' then '탈퇴회원' 
+			   	  end as mem_sts_name,                   
                   date_format(a.reg_dt, '%Y-%m-%d %H:%i') as reg_dt,
                   date_format(a.last_login_dt, '%Y-%m-%d %H:%i') as last_login_dt, 
                   date_format(a.st_dt, '%Y-%m-%d %H:%i') as st_dt
@@ -60,18 +75,23 @@
             WHERE  1=1
         ]]>
         <if test="mem_sts != null and !mem_sts.equals('')">
-        	  and a.mem_sts = ${mem_sts}
+        	  <if test="mem_sts == '3'">
+        	  	and (a.mem_sts = ${mem_sts} or TIMESTAMPDIFF(DAY, a.last_login_dt, CURRENT_TIMESTAMP) > 30)	  
+        	  </if>
+        	  <if test="mem_sts <> '3'">
+        	  	and a.mem_sts = ${mem_sts}
+        	  </if>
         </if>       
         <if test="searchString != null and !searchString.equals('') ">
         	<if test="searchId == 'id'">
         	  
-        		and id like CONCAT('%',#{searchString},'%')	  
+        		and a.id like CONCAT('%',#{searchString},'%')	  
         	</if>
         	<if test="searchId == 'name'">
-        		and name like CONCAT('%',#{searchString},'%')	
+        		and a.name like CONCAT('%',#{searchString},'%')	
         	</if>
         	<if test="searchId == 'htel'">
-        		and ( phone like CONCAT('%',#{searchString},'%')	)
+        		and  a.phone like CONCAT('%',#{searchString},'%')	
         	</if>        	        	
         </if>
         order by reg_dt desc	
@@ -90,12 +110,14 @@
 			   date_format(agree_dt, '%Y-%m-%d %H:%i') as agree_dt, 
 			   mark_chk, 
 			   date_format(mark_dt, '%Y-%m-%d %H:%i') as mark_dt,
-			   mem_sts, 
+			   case when TIMESTAMPDIFF(DAY, last_login_dt, CURRENT_TIMESTAMP) > 30 then '3'
+			        else mem_sts end as mem_sts, 
 			   case
+			        when TIMESTAMPDIFF(DAY, last_login_dt, CURRENT_TIMESTAMP) > 30 then '3' then '휴면회원'
 			        when mem_sts = '1' then '일반회원'
 			        when mem_sts = '2' then '정회원'
 			        when mem_sts = '3' then '휴면회원'
-			        when mem_sts = '4' then '탈퇴회원'
+			        when mem_sts = '4' then '탈퇴회원' 
 			   end as mem_sts_name, 
 			   use_yn, 
 			   date_format(reg_dt, '%Y-%m-%d %H:%i') as reg_dt, 
@@ -136,11 +158,17 @@
 	
 	<!--  administrator delete  -->
     <update id="deleteMember" parameterType="HashMap">
+    	<if test="mem_sts == '0'">
+		delete from herit_member
+		 where seq = #{seq}    	
+    	</if>
+    	<if test="mem_sts <> '0'">
 		update herit_member
 		   set mem_sts = ${mem_sts}, 
 		       use_yn = ${use_yn},
 		       sts_dt = current_timestamp
 		 where seq = #{seq}
+		 </if>
 	</update>
 	
 	<!--  임시 비밀번호 저장  -->

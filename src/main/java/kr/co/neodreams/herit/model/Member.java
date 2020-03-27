@@ -43,4 +43,5 @@ public class Member extends CommonModel {
 	private String searchFromDt;
 	private String searchToDt;	
 	private String searchSts;
+	private String pay_sts;		// 세부사항에서 검색 조건
 }

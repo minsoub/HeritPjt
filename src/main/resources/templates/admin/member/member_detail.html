@@ -9,18 +9,21 @@
 		<th:block th:with="menu=1" th:include="admin/member/member_menu"></th:block>
 		<!-- //SNB -->
 		<!-- contents -->
+		<form name="frm" id="frm" method="post">
+		<input type="hidden" name="seq" id="seq" th:value="${info.seq}">
+		<input type="hidden" name="mem_sts" id="mem_sts" th:value="${info.mem_sts}">
+		<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />	
+				
 		<div class="contents">
 			<div class="cntTitWrap">
-				<h2 class="cntTitXL fl">정회원 상세</h2>
+				<h2 class="cntTitXL fl">[[${info.mem_sts_name}]] 상세</h2>
 				<ol class="bcNav">
 					<li><a href="" class="home">Home</a></li>
 					<li><a href="">회원관리</a></li>
-					<li><a href="">정회원</a></li>
+					<li><a href="">[[${info.mem_sts_name}]]</a></li>
 				</ol>
 			</div>			
-			<div class="bxCnt mtMmd">
-				<form name="frm" id="frm" method="post">
-				<input type="hidden" name="seq" id="seq" th:value="${info.seq}">
+			<div class="bxCnt mtMmd">				
 				<table class="tblTypeB">
 					<colgroup>
 						<col width="100px">
@@ -81,15 +84,23 @@
 						</tr>				
 					</tbody>
 				</table>
-				</form>
+				
 				<div class="btnWrap mtSm tac">
-					<button id="btnDelete" class="btnColorA">회원탈퇴</button>
+					<th:block th:if="${info.mem_sts == '2'}">
+						<button id="btnDelete" class="btnColorA">회원탈퇴처리</button>
+						<button id="btnFree" class="btnColorA">휴면회원처리</button>
+					</th:block>
+					<th:block th:if="${info.mem_sts == '4'}">
+						<button id="btnRestore" class="btnColorA">회원복구</button>
+						<button id="btnCompleteDelete" class="btnColorA">완전삭제</button>
+					</th:block>
 					<button id="btnList"   class="btnDefault">목록</button>
 				</div>
 			</div>
 			<!--  결제 내역/포인트 내역/미션현황/검진데이터  -->
 			<th:block th:with="menu=${paging.menu}" th:include="admin/member/member_bottom_menu"></th:block>
 
+			</form>
 		</div>
 		<!-- //contents -->
 	</div>
@@ -106,7 +117,7 @@
 <script>
 $(document).ready(function() {
 	load_fnc('1', '0', '0'); //menu script
-	
+	// 탈퇴 처리
 	$("#btnDelete").click(function(){
 		var params = {
 				"seq"   : $("#mem_seq").val(),
@@ -118,8 +129,62 @@ $(document).ready(function() {
 		url2 = "list";
 		goJsonInput(params, url, url2);			
 	});
+	// 휴면회원처리
+	$("#btnFree").click(function(){
+		var params = {
+				"seq"   : $("#mem_seq").val(),
+				"mem_sts" : "3", 
+				"use_yn" : "Y"
+		};
+
+		url = "delete";
+		url2 = "list";
+		goJsonInput(params, url, url2);			
+	});	
+	// 회워복구
+	$("#btnRestore").click(function(){
+		var params = {
+				"seq"   : $("#mem_seq").val(),
+				"mem_sts" : "2", 
+				"use_yn" : "Y"
+		};
+
+		url = "delete";
+		url2 = "dellist";
+		goJsonInput(params, url, url2);			
+	});	
+
+	// 완전삭제
+	$("#btnCompleteDelete").click(function(){
+		var params = {
+				"seq"   : $("#mem_seq").val(),
+				"mem_sts" : "0", 
+				"use_yn" : "N"
+		};
+
+		url = "delete";
+		url2 = "dellist";
+		goJsonInput(params, url, url2);			
+	});	
 	$("#btnList").click(function(){
-		location.href="list";
+		
+		var url = "";
+		if ($("#mem_sts").val() == "2")  // 정회원
+		{
+			url = "list";
+		} else if($("#mem_sts")val() == "3")  // 휴면 회원
+		{
+			url = "freelist";
+		}else if($("#mem_sts").val() == "4")  // 탈퇴회원
+		{
+			url = "dellist";
+		}
+		location.href = url;
 	});
+	
+	$("#btnSearch").click(function(){
+		frm.action = "detail";
+		frm.submit();
+	})#
 });
 </script>

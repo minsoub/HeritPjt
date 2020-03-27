@@ -9,12 +9,12 @@
 			<div class="bxSrchForm mtSm">
 				<select name="pay_sts" id="pay_sts">
 					<option value="">전체</option>
-					<option value="Y">결제완료</option>
-					<option value="C">결제 취소</option>
+					<option value="Y" th:selected="${paging.pay_sts == 'Y'}">결제완료</option>
+					<option value="C" th:selected="${paging.pay_sts == 'N'}">결제 취소</option>
 				</select>
 				<label for="" class="mlSMd">조회기간</label>
-				<input type="text" value="" name="searchFromDt" id="searchFromDt" class="datePic"> <span class="dash">~</span> <input type="text" name="searchFromDt" id="searchFromDt" value="" class="datePic">
-				<button type="button" class="btnPrimary sizeSm">검색</button>
+				<input type="text" name="searchFromDt" id="searchFromDt" class="datePic" th:value="${paging.searchFromDt}"> <span class="dash">~</span> <input type="text" name="searchToDt" id="searchToDt" th:value="${paging.searchToDt}"class="datePic">
+				<button id="btnSearch" type="button" class="btnPrimary sizeSm">검색</button>
 			</div>
 			<table class="tblTypeA mtSm">
 				<thead>
@@ -28,35 +28,45 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="info : ${mlist}">
-						<td th:text="${info.pay_dt}">
-						<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="${info.pay_sts_name}">
-						<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="${info.product_name}">
-						<th:block th:if="${info.pay_sts == 'Y'}">
-							<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="|${info.pay_total_str} 원|">
-							<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="|${info.pay_total_str} 원|">
-							<td><p class="btnWrap"><a href="" class="btnColorC">결제 취소</a></p></td>
-						</th:block>
-						<th:block th:if="${info.pay_sts == 'C'}">
-							<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="|-${info.pay_total_str} 원|">
-							<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="|-${info.pay_total_str} 원|">	
-							<td class="colorB" >결제 취소 완료</td>					
-						</th:block>
-					</tr>
+					<th:block th:if="$totalCnt == 0">
+						<tr>
+						<td colspan="6" class="noData">
+							<p class="ico"><img src="/resources/images/contents/ico_nodata03.gif" alt=""></p>
+							등록된 정보가 없습니다.
+						</td>
+						</tr>
+					</th:block>
+					<th:block th:if="$totalCnt > 0">
+						<tr th:each="info : ${mlist}">
+							<td th:text="${info.pay_dt}">
+							<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="${info.pay_sts_name}">
+							<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="${info.product_name}">
+							<th:block th:if="${info.pay_sts == 'Y'}">
+								<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="|${info.pay_total_str} 원|">
+								<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="|${info.pay_total_str} 원|">
+								<td><p class="btnWrap"><a href="" class="btnColorC">결제 취소</a></p></td>
+							</th:block>
+							<th:block th:if="${info.pay_sts == 'C'}">
+								<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="|-${info.pay_total_str} 원|">
+								<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="|-${info.pay_total_str} 원|">	
+								<td class="colorB" >결제 취소 완료</td>					
+							</th:block>
+						</tr>
+					</th:block>
 				</tbody>
 			</table>
 	</th:block>
 	<th:block th:if="${menu == '2'}">
 	<!--  포인트 내역  -->
 			<div class="bxSrchForm mtSm">
-				<select name="">
+				<select name="use_yn">
 					<option value="">전체</option>
-					<option value="">적립</option>
-					<option value="">사용</option>
+					<option value="Y" th:selected="${paging.use_yn == 'Y'}">적립</option>
+					<option value="P" th:selected="${paging.use_yn == 'P'}">사용</option>
 				</select>
 				<label for="" class="mlSMd">조회기간</label>
-				<input type="text" value="" class="datePic"> <span class="dash">~</span> <input type="text" value="" class="datePic">
-				<button type="button" class="btnPrimary sizeSm">검색</button>
+				<input type="text" name="searchFromDt" id="searchFromDt" class="datePic" th:value="${paging.searchFromDt}"> <span class="dash">~</span> <input type="text" name="searchToDt" id="searchToDt" th:value="${paging.searchToDt}"class="datePic">
+				<button type="button" id="btnSearch" class="btnPrimary sizeSm">검색</button>
 			</div>
 			<table class="tblTypeA mtSm">
 				<thead>
@@ -68,12 +78,22 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="info : ${plist}">
-						<td th:text="${info.reg_dt}">
-						<td class="tal" th:text="${info.content}">
-						<td th:text="${info.str_point}">
-						<td th:text="|${info.total_point} 원|">
-					</tr>
+					<th:block th:if="$totalCnt == 0">
+						<tr>
+						<td colspan="4" class="noData">
+							<p class="ico"><img src="/resources/images/contents/ico_nodata03.gif" alt=""></p>
+							등록된 정보가 없습니다.
+						</td>
+						</tr>
+					</th:block>
+					<th:block th:if="$totalCnt > 0">				
+						<tr th:each="info : ${plist}">
+							<td th:text="${info.reg_dt}">
+							<td class="tal" th:text="${info.content}">
+							<td th:text="${info.str_point}">
+							<td th:text="|${info.total_point} 원|">
+						</tr>
+					</th:block>
 					<tr>
 						<td>2019.12.31 15:00</td>
 						<td class="tal colorB">포인트 몰구매 (스타벅스쿠폰)</td>
@@ -93,8 +113,8 @@
 		<!--  미션 현황  -->
 			<div class="bxSrchForm mtSm">
 				<label for="" class="mlSMd">조회기간</label>
-				<input type="text" value="" class="datePic"> <span class="dash">~</span> <input type="text" value="" class="datePic">
-				<button type="button" class="btnPrimary sizeSm">검색</button>
+				<input type="text" name="searchFromDt" id="searchFromDt" class="datePic" th:value="${paging.searchFromDt}"> <span class="dash">~</span> <input type="text" name="searchToDt" id="searchToDt" th:value="${paging.searchToDt}"class="datePic">
+				<button type="button" id="btnSearch" class="btnPrimary sizeSm">검색</button>
 			</div>
 			<table class="tblTypeA mtSm">
 				<thead>
@@ -106,12 +126,23 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>2019.12.31</td>
-						<td>7000보</td>
-						<td>7,823보</td>
-						<td>O</td>
-					</tr>
+					<th:block th:if="$totalCnt == 0">
+						<tr>
+						<td colspan="4" class="noData">
+							<p class="ico"><img src="/resources/images/contents/ico_nodata03.gif" alt=""></p>
+							등록된 정보가 없습니다.
+						</td>
+						</tr>
+					</th:block>
+					<th:block th:if="$totalCnt > 0">				
+						<tr th:each="info : ${slist}">
+							<td th:text="${info.reg_dt}">
+							<td>7000보</td>
+							<td th:text="${info.result}">
+							<td th:text="${info.succ_yn_name}">
+						</tr>
+					</th:block>
+					
 					<tr>
 						<td>2019.12.31</td>
 						<td>6000보</td>
@@ -132,8 +163,8 @@
 		<!-- 검진데이터  -->
 			<div class="bxSrchForm mtSm">
 				<label for="" class="mlSMd">조회기간</label>
-				<input type="text" value="" class="datePic"> <span class="dash">~</span> <input type="text" value="" class="datePic">
-				<button type="button" class="btnPrimary sizeSm">검색</button>
+				<input type="text" name="searchFromDt" id="searchFromDt" class="datePic" th:value="${paging.searchFromDt}"> <span class="dash">~</span> <input type="text" name="searchToDt" id="searchToDt" th:value="${paging.searchToDt}"class="datePic">
+				<button type="button" id="btnSearch" class="btnPrimary sizeSm">검색</button>
 			</div>
 			<table class="tblTypeA mtSm">
 				<thead>
@@ -146,14 +177,23 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="info : ${plist}">>
-						<td th:text="${info.chk_dt}">
-						<td class="tal" th:text="${info.subject}">
-						<td th:text="${info.h_name}">
-						<td th:text="${info.result_name}">
-						<td><p class="btnWrap"><a href="javascript:openLayer('.popHscreen');" class="btnColorC">보기</a></p></td>
-					</tr>
-
+					<th:block th:if="$totalCnt == 0">
+						<tr>
+						<td colspan="6" class="noData">
+							<p class="ico"><img src="/resources/images/contents/ico_nodata03.gif" alt=""></p>
+							등록된 정보가 없습니다.
+						</td>
+						</tr>
+					</th:block>
+					<th:block th:if="$totalCnt > 0">				
+						<tr th:each="info : ${plist}">>
+							<td th:text="${info.chk_dt}">
+							<td class="tal" th:text="${info.subject}">
+							<td th:text="${info.h_name}">
+							<td th:text="${info.result_name}">
+							<td><p class="btnWrap"><a href="javascript:openLayer('.popHscreen');" class="btnColorC">보기</a></p></td>
+						</tr>
+					</th:block>
 				</tbody>
 			</table>		
 	</th:block>

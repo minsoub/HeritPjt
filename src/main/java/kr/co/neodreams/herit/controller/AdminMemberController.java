@@ -124,6 +124,9 @@ public class AdminMemberController {
 				p.setMem_seq(param.getSeq());
 				p.setPageNo(param.getPageNo());
 				p.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
+				p.setSearchFromDt(param.getSearchFromDt());
+				p.setSearchToDt(param.getSearchToDt());
+				p.setPay_sts(param.getPay_sts());
 				int cnt = payService.selectPayListCountByPayPlan(p);				
 				List<PayInfo> lst = payService.selectPayListByPayPlan(p);
 				
@@ -135,6 +138,9 @@ public class AdminMemberController {
 				p.setMem_seq(param.getSeq());
 				p.setPageNo(param.getPageNo());
 				p.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
+				p.setSearchFromDt(param.getSearchFromDt());
+				p.setSearchToDt(param.getSearchToDt());
+				p.setUse_yn(param.getUse_yn());
 				int cnt = memService.selectMemPointByIdListCount(p);				
 				List<MemPoint> lst = memService.selectMemPointByIdList(p);
 				
@@ -146,6 +152,8 @@ public class AdminMemberController {
 				p.setMem_seq(param.getSeq());
 				p.setPageNo(param.getPageNo());
 				p.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
+				p.setSearchFromDt(param.getSearchFromDt());
+				p.setSearchToDt(param.getSearchToDt());
 				int cnt = missService.selectMissionListCount(p);				
 				List<Mission> lst = missService.selectMissionList(p);
 				
@@ -157,6 +165,8 @@ public class AdminMemberController {
 				p.setMem_seq(param.getSeq());
 				p.setPageNo(param.getPageNo());
 				p.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
+				p.setSearchFromDt(param.getSearchFromDt());
+				p.setSearchToDt(param.getSearchToDt());
 				int cnt = chkService.selectChkInfoCount(p);				
 				List<ChkInfo> lst = chkService.selectChkInfoList(p);
 				
@@ -164,7 +174,7 @@ public class AdminMemberController {
 				mv.addObject("clist", lst);
 			}
 				
-			
+			mv.addObject("paging", param);
 			mv.setViewName("/admin/member/member_detail");
 		}
 		return mv;

@@ -30,3 +30,7 @@ build/
 ### VS Code ###
 .vscode/
 /bin/
+
+### User define ###
+logs/
+*.log
