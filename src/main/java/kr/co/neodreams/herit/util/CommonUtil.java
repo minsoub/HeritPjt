@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -35,6 +37,42 @@ public class CommonUtil {
         String today = dateFormat.format(dToday) ;
         return today;
     }
+    
+	/**
+	 * 현재 년을 리턴한다. 
+	 * 형식 :: yyyy
+	 * 
+	 * @return
+	 */
+    public static String getCurrentYear() {
+        java.util.Date dToday = new java.util.Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+        String today = dateFormat.format(dToday) ;
+        return today;
+    }   
+    
+    public static String getClientIpAddr(HttpServletRequest request) {
+        String ip = request.getHeader("X-Forwarded-For");
+     
+        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("HTTP_CLIENT_IP");
+        }
+        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+        }
+        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+     
+        return ip;
+    }
+
     
     /**
      * 월의 이전, 다음을 구해서 리턴한다.

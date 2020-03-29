@@ -78,6 +78,7 @@
             	  a.pay_amt, 
             	  a.pay_cnt,
             	  a.pay_total, 
+            	  a.pay_sts,
 				  case when a.pay_sts = 'Y' then '결제완료'
 				       when a.pay_sts = 'N' then '미승인'
 				       when a.pay_sts = 'C' then '결제취소'
@@ -123,19 +124,22 @@
         </if>
         <if test='mem_seq != 0'>
         	  and a.mem_seq = #{mem_seq}        
-        </if>        
-        <if test="searchDt != null and !searchDt.equals('')">
+        </if>    
+        <if test="pay_dt != null and !''.equals(pay_dt)">
+        	  and date_format(a.pay_dt, '%Y.%m.%d') = #{pay_dt}
+        </if>             
+        <if test="searchDt != null and !''.equals(searchDt)">
         	  and date_format(a.pay_dt, '%Y.%m.%d') = #{searchDt}
         </if>
-        <if test="searchFromDt != null and searchToDt != null and !searchFromDt.equals('')">
-        	<if test="pay_sts == null">
+        <if test="searchFromDt != null and searchToDt != null and !''.equals(searchFromDt)">
+        	<if test="pay_sts == null and ''.equals(pay_sts) ">
         		and date_format(a.pay_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
         	</if>
-        	<if test="pay_sts != null">
+        	<if test="pay_sts != null and !''.equals(pay_sts) ">
         		and a.pay_sts = #{pay_sts} and date_format(a.pay_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
         	</if>       	        	
         </if>
-        <if test="searchString != null and !searchString.equals('') ">
+        <if test="searchString != null and !''.equals(searchString) ">
         	<if test="searchId == 'id'">
         	  
         		and b.id like CONCAT('%',#{searchString},'%')	  
@@ -152,7 +156,8 @@
 	<!-- 요금제를 결제한 결제 내역 리스트  -->
 	<select id="selectPayListByPayPlan" parameterType="HashMap" resultType="payinfo">
         <![CDATA[
-            SELECT                  
+            SELECT  
+            	   a.seq,                       
                    date_format(a.pay_dt, '%Y.%m.%d %H:%i') as pay_dt, 
                    case when a.pay_sts = 'Y' then '결제 완료'
                         when a.pay_sts = 'C' then '결제 취소'
@@ -161,7 +166,12 @@
                    a.pay_sts, 
                    c.subject as product_name, 
                    format(a.pay_total, 0) as pay_total_str,
-                   b.id, b.name, b.phone 
+                   b.id, b.name, b.phone, 
+                   case when ( a.pay_sts = 'Y' and (select count(*) from herit_pay_info where ref_pay_key=a.seq) > 0 ) then 'N' 
+                        when a.pay_sts = 'C' then 'N'
+                        when a.pay_sts = 'N' then 'N'
+                        else 'Y' 
+                   end as cancel_yn   -- 결제 취소 여부                   
              FROM herit_pay_info a, herit_member b, herit_payplan_info c
             WHERE  a.pay_type = #{pay_type}
               and  a.mem_seq = b.seq
@@ -172,19 +182,22 @@
         </if>
         <if test='mem_seq != 0'>
         	  and a.mem_seq = #{mem_seq}        
-        </if>        
-        <if test="searchDt != null and !searchDt.equals('')">
+        </if>
+        <if test="pay_dt != null and !''.equals(pay_dt)">
+        	  and date_format(a.pay_dt, '%Y.%m.%d') = #{pay_dt}
+        </if>                   
+        <if test="searchDt != null and !''.equals(searchDt)">
         	  and date_format(a.pay_dt, '%Y.%m.%d') = #{searchDt}
-        </if>        
-        <if test="searchFromDt != null and searchToDt != null and !searchFromDt.equals('')">
-        	<if test="pay_sts == null">
+        </if>
+        <if test="searchFromDt != null and searchToDt != null and !''.equals(searchFromDt)">
+        	<if test="pay_sts == null and ''.equals(pay_sts) ">
         		and date_format(a.pay_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
         	</if>
-        	<if test="pay_sts != null">
+        	<if test="pay_sts != null and !''.equals(pay_sts) ">
         		and a.pay_sts = #{pay_sts} and date_format(a.pay_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
         	</if>       	        	
         </if>
-        <if test="searchString != null and !searchString.equals('') ">
+        <if test="searchString != null and !''.equals(searchString) ">
         	<if test="searchId == 'id'">
         	  
         		and b.id like CONCAT('%',#{searchString},'%')	  
@@ -195,7 +208,7 @@
         	<if test="searchId == 'htel'">
         		and ( b.phone like CONCAT('%',#{searchString},'%')	)
         	</if>        	        	
-        </if> 
+        </if>
         order by a.pay_dt desc	
         LIMIT #{perPageCnt} OFFSET #{pageStartNo}
 	</select>	
@@ -204,7 +217,8 @@
 	<!-- 요금제를 결제한 결제 내역 리스트  -->
 	<select id="selectPayListById" parameterType="HashMap" resultType="HashMap">
         <![CDATA[
-            SELECT                  
+            SELECT     
+            	   a.seq,              
                    date_format(a.pay_dt, '%Y.%m.%d %H:%i') as pay_dt, 
                    case when a.pay_sts = 'Y' then '결제 완료'
                         when a.pay_sts = 'C' then '결제 취소'
@@ -214,7 +228,12 @@
                    c.subject as product_name, 
                    format(a.pay_total, 0) as pay_total_str,
                    b.id, b.name, b.phone,
-                   a.seq
+                   a.seq, 
+                   case when ( a.pay_sts = 'Y' and (select count(*) from herit_pay_info where ref_pay_key=a.seq) > 0 ) then 'N' 
+                        when a.pay_sts = 'C' then 'N'
+                        when a.pay_sts = 'N' then 'N'
+                        else 'Y' 
+                   end as cancel_yn   -- 결제 취소 여부
              FROM herit_pay_info a, herit_member b, herit_payplan_info c
             WHERE  a.pay_type = #{pay_type}
               and  b.id = #{id}
@@ -229,13 +248,17 @@
 	
 	<!-- 요금제를 결제한 결제 취소 등록   -->
 	<insert id="deletePayByIdandSeq" parameterType="HashMap">
-		insert into herit_pay_info (mem_seq, p_key, pay_amt, pay_cnt, pay_total, pay_sts, pay_dt, send_sts, pay_type) 
+		insert into herit_pay_info (mem_seq, p_key, pay_amt, pay_cnt, pay_total, pay_sts, pay_dt, send_sts, pay_type, ref_pay_key) 
 		select
-		       a.mem_seq, a.p_key, a.pay_amt, a.pay_cnt, a.pay_total, 'C', current_timestamp, 'Y', '2'
+		       a.mem_seq, a.p_key, a.pay_amt, a.pay_cnt, a.pay_total, 'C', current_timestamp, 'Y', '2', #{seq}
 		  from herit_pay_info a, herit_member b
 		 where 
 		       a.mem_seq = b.seq
 		   and b.id = #{id}
 		   and a.seq = #{seq}		
+		   
+		<selectKey keyProperty="seq" resultType="int" order="AFTER">
+        	SELECT LAST_INSERT_ID()
+    	</selectKey>    		   
 	</insert>		
 </mapper>

@@ -11,6 +11,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.TransactionDefinition;
@@ -33,6 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@EnableAutoConfiguration
 @RequestMapping("/admin/pay")
 public class AdminPayController {
 	@Value("${file.uploadpath}")
@@ -144,6 +146,9 @@ public class AdminPayController {
 
 		param.setPay_type("2");    // 2 : 요금제 결제
 		int result = pService.deletePayByIdandSeq(param);
+		
+		// 이전 결제 내역에 대해서 상태를 업데이트 한다. - 결제 취소키 저장.
+		log.debug("last reg key : {}" ,result);
 					
 		res.getWriter().write(String.valueOf(result));
 	}	

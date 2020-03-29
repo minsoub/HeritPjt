@@ -2,8 +2,47 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.neodreams.herit.mapper.MemPointMapper">
+	<!-- 전체 포인트 현황 누적 조회  -->
+	<select id="selectPointTotal" resultType="HashMap">
+         		SELECT 
+           				format(sum(case when b.use_yn = 'Y' then b.point else 0 end), 0) as plus_point, 
+           				format(sum(case when b.use_yn = 'P' then b.point else 0 end), 0) as minus_point, 
+           				format(sum(case when b.use_yn = 'N' then b.point else 0 end), 0) as del_point,
+           				format(sum(case when b.use_yn = 'Y' then b.point else 0 end) -
+           				       sum(case when b.use_yn = 'P' then b.point else 0 end) -
+           				       sum(case when b.use_yn = 'N' then b.point else 0 end), 0) as total_point                   			
+         	 	 FROM herit_mem_point b
+          		WHERE  1=1		
+	</select>
 	
-
+	<!-- 월 전체 포인트 현황 누적 조회  -->
+	<select id="selectPointYearDataSum" parameterType="HashMap" resultType="HashMap">
+         		SELECT 
+           				format(sum(case when b.use_yn = 'Y' then b.point else 0 end), 0) as plus_point, 
+           				format(sum(case when b.use_yn = 'P' then b.point else 0 end), 0) as minus_point, 
+           				format(sum(case when b.use_yn = 'N' then b.point else 0 end), 0) as del_point,
+           				format(sum(case when b.use_yn = 'Y' then b.point else 0 end) -
+           				sum(case when b.use_yn = 'P' then b.point else 0 end) -
+           				sum(case when b.use_yn = 'N' then b.point else 0 end), 0) as total_point                   			
+         	 	 FROM herit_mem_point b
+          		WHERE date_format(b.reg_dt, '%Y') = #{searchDt}             		
+    </select> 
+    	
+	<!-- 월 전체 포인트 현황 누적 조회  -->
+	<select id="selectPointYearData" parameterType="HashMap" resultType="HashMap">
+         		SELECT 
+         		        date_format(b.reg_dt, '%m') as mon, 
+           				format(sum(case when b.use_yn = 'Y' then b.point else 0 end), 0) as plus_point, 
+           				format(sum(case when b.use_yn = 'P' then b.point else 0 end), 0) as minus_point, 
+           				format(sum(case when b.use_yn = 'N' then b.point else 0 end), 0) as del_point,
+           				format(sum(case when b.use_yn = 'Y' then b.point else 0 end) -
+           				sum(case when b.use_yn = 'P' then b.point else 0 end) -
+           				sum(case when b.use_yn = 'N' then b.point else 0 end), 0) as total_point                   			
+         	 	 FROM herit_mem_point b
+          		WHERE date_format(b.reg_dt, '%Y') = #{searchDt}
+          		 group by date_format(b.reg_dt, '%m') desc
+          		 order by date_format(b.reg_dt, '%m') desc               		
+    </select>      		
 	<!-- Private Point list count search -->
 	<select id="selectMemPointListCount" parameterType="HashMap" resultType="int">
         <![CDATA[
@@ -139,7 +178,16 @@
         </if>  
         <if test='mem_seq != 0 '>
         		  and a.seq = #{mem_seq}
-        </if>                            		                      
+        </if>    
+        <if test="searchFromDt != null and searchToDt != null and !''.equals(searchFromDt)">
+        	<if test="use_yn == null and ''.equals(use_yn) ">
+        		and date_format(b.reg_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
+        	</if>
+        	<if test="use_yn != null and !''.equals(use_yn) ">
+        		and b.use_yn = #{use_yn} and date_format(b.reg_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
+        	</if>       	        	
+        </if>        
+                                		                      
 	</select>	
 	
 	<!-- Private Point list search  -->
@@ -152,7 +200,7 @@
            				case when b.use_yn = 'N' then format(b.point, 0) else 0 end as del_point,
            				format(b.rest_point, 0) as total_point, 
            				b.content, 
-           				date_format(b.point, 0) as str_point,
+           				format(b.point, 0) as str_point,
            				b.use_yn, 
            				date_format(b.reg_dt, '%Y-%m-%d %H:%i') as reg_dt        			
          	 	 FROM herit_member a left outer join herit_mem_point b on a.seq = b.mem_seq
@@ -163,8 +211,16 @@
         </if>  
         <if test='mem_seq != 0 '>
         		  and a.seq = #{mem_seq}
-        </if>                       		                      
-              order by a.seq desc      
+        </if> 
+        <if test="searchFromDt != null and searchToDt != null and !''.equals(searchFromDt)">
+        	<if test="use_yn == null and ''.equals(use_yn) ">
+        		and date_format(b.reg_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
+        	</if>
+        	<if test="use_yn != null and !''.equals(use_yn) ">
+        		and b.use_yn = #{use_yn} and date_format(b.reg_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
+        	</if>       	        	
+        </if>                               		                      
+              order by b.seq desc      
          LIMIT #{perPageCnt} OFFSET #{pageStartNo}
 	</select>	
 </mapper>

@@ -1,6 +1,12 @@
 package kr.co.neodreams.herit.model;
 
+import java.io.Serializable;
+
 import org.apache.ibatis.type.Alias;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

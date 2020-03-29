@@ -33,31 +33,33 @@
 					<tbody>
 						<tr>
 							<th>아이디</th>
-							<td><input type="text" name="id" id="id" maxlength="80"></td>
+							<td><input type="text" name="id" id="id" maxlength="80" th:value="${paging.id}"></td>
 							<th>연락처</th>
-							<td><input type="text" name="phone" id="phone" maxlength="14"></td>
+							<td><input type="text" name="phone" id="phone" maxlength="14" th:value="${paging.phone}"></td>
 						</tr>
 						<tr>
 							<th>성명</th>
-							<td><input type="text" name="name" id="name" maxlength="20"></td>
+							<td><input type="text" name="name" id="name" maxlength="20" th:value="${paging.name}"></td>
 							<th>생년월일</th>
-							<td><input type="text" name="birthday" id="birtyday" maxlength="10"></td>
+							<td><input type="text" name="birthday" id="birtyday" maxlength="10" th:value="${paging.birthday}"></td>
 						</tr>
 						<tr>
 							<th>검진일</th>
-							<td><input type="text" id="searchFromDt" name="searchFromDt" value="" class="datePic"> <span class="dash">~</span> <input type="text" id="searchToDt" name="searchToDt" value="" class="datePic"></td>
+							<td><input type="text" id="searchFromDt" name="searchFromDt" th:value="${paging.searchFromDt}" class="datePic"> <span class="dash">~</span> 
+							<input type="text" id="searchToDt" name="searchToDt" th:value="${paging.searchToDt}" class="datePic"></td>
 							<th>병원명</th>
-							<td><input type="text" id="hospital_name" name="hospital_name" value=""></td>
+							<td><input type="text" id="h_name" name="h_name" th:value="${paging.h_name}"></td>
 						</tr>
 						<tr>
 							<th>등록일</th>
-							<td><input type="text" id="searchLastFrom" name="searchLastFrom" value="" class="datePic"> <span class="dash">~</span> <input type="text" id="searchLastTo" name="searchLastTo" value="" class="datePic"></td>
+							<td><input type="text" id="searchRegFrom" name="searchRegFrom" th:value="${paging.searchRegFrom}" class="datePic"> <span class="dash">~</span> 
+							<input type="text" id="searchRegTo" name="searchRegTo" th:value="${paging.searchRegTo}" class="datePic"></td>
 							<th>등록자</th>
-							<td><input type="text" id="name" name="name" value=""></td>
+							<td><input type="text" id="reg_id" name="reg_id" th:value="${paging.reg_id}"></td>
 						</tr>
 						<tr>
 							<th>제목</th>
-							<td colspan="3"><input type="text" id="subject" name="subject" value=""></td>
+							<td colspan="3"><input type="text" id="subject" name="subject" th:value="${paging.subject}"></td>
 						</tr>				
 					</tbody>
 				</table>
@@ -93,7 +95,7 @@
 				<tbody>
 					<tr th:each="info, index : ${list}">
 						<td th:text="${totalCnt - (paging.pageNo - 1) * 10 - index.index}">
-						<td th:text="${info.h_name}">
+						<td><a th:href="@{chkdetail(seq=${info.seq})}" th:text="${info.h_name}"></a>
 						<td th:text="${info.chk_dt}">
 						<td th:text="${info.name}">
 						<td th:text="${info.birthday}">
@@ -132,7 +134,7 @@ $(document).ready(function() {
 	
 	$('#btnSearch').click(function(){		
 		$("#frm").attr("method", "post");
-		$("#frm").attr("action", "hlist");
+		$("#frm").attr("action", "chklist");
 		$("#frm").submit();
 	});
 	

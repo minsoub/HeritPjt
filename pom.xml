@@ -57,11 +57,12 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
- 		<!-- dependency>
+		
+ 		<dependency>
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter-tomcat</artifactId>
     		<scope>provided</scope>
-  		</dependency  -->
+  		</dependency>
 
 
 		<!-- Lombok 의존성 추가 -->
@@ -149,9 +150,33 @@
     		<version>2.10.2</version>
 		</dependency>
 		
+		<dependency>
+    		<groupId>org.springframework.session</groupId>
+    		<artifactId>spring-session-core</artifactId>
+		</dependency>
 		
+		<!--  redis lib -->		
+		<!-- dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+  			<exclusions>
+    			<exclusion>
+     			<groupId>io.lettuce</groupId>
+     			<artifactId>lettuce-core</artifactId>
+    			</exclusion>
+  			</exclusions>             
+        </dependency>
+                
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>		
 		
-		
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency  -->
+				
 	</dependencies>
 
 	<build>
@@ -163,4 +188,5 @@
 		</plugins>
 	</build>
 
+	<packaging>war</packaging>
 </project>

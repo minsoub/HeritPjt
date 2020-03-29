@@ -89,3 +89,32 @@ function goPage(page){
 	f.action = location.href;	
 	f.submit();
 }
+
+/**
+ * 두 날짜를 비교해서 시작날짜와 종료날짜를 체크해서 리턴한다. 
+ * 날짜 형식은 yyyy.mm.dd 형식으로 넘어와야 된다. 
+ * 
+ * @param from
+ * @param to
+ * @returns
+ */
+function getDiffDate(from, to)
+{
+	console.log(from);
+	console.log(to);
+	if (from == "" && to == "") return true;
+	else if (from == "" || to == "") return false;
+	var stDt = from.split('.');
+	var etDt = to.split('.');
+	
+	var stDateCompare = new Date(stDt[0], parseInt(stDt[1])-1, stDt[2]);
+	var etDateCompare = new Date(etDt[0], parseInt(etDt[1])-1, etDt[2]);
+	
+	if (stDateCompare.getTime() > etDateCompare.getTime() )
+	{
+		return false;
+	}else {
+		return true;
+	}
+}
+

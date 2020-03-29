@@ -11,6 +11,7 @@
 		<!-- contents -->
 		<form name="frm" id="frm" method="post">
 		<input type="hidden" name="seq" id="seq" th:value="${info.seq}">
+		<input type="hidden" name="menu" id="menu" th:value="${paging.menu}">
 		<input type="hidden" name="mem_sts" id="mem_sts" th:value="${info.mem_sts}">
 		<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />	
 				
@@ -48,37 +49,37 @@
 							<th>생년월일</th>
 							<td th:text="${info.birthday}">
 							<th>성별</th>
-							<td th:text="${sex_name}">
+							<td th:text="${info.sex_name}">
 						</tr>
 						<tr>
 							<th>요금제</th>
-							<td>BLUE</td>
+							<td th:text="${info.subject}">
 							<th>요금종료일</th>
-							<td>2020.12.31. 17:15</td>
+							<td th:text="${info.end_dt}">
 						</tr>
 						<tr>
 							<th>가입일</th>
-							<td th:text="${reg_dt}">
+							<td th:text="${info.reg_dt}">
 							<th>최종접속일</th>
-							<td th:text="${last_login_dt}">
+							<td th:text="${info.last_login_dt}">
 						</tr>
 						<tr>
 							<th>약관 동의일</th>
-							<td th:text="${agree_dt}">
+							<td th:text="${info.agree_dt}">
 							<th>마케팅동의</th>
-							<td th:text="${mark_chk}">
+							<td th:text="${info.mark_chk}">
 						</tr>
 						<tr>
 							<th>회원상태</th>
-							<td th:text="${mem_sts_name}">
+							<td th:text="${info.mem_sts_name}">
 							<th>최종마케팅 동의일</th>
-							<td th:text="${mark_dt}">
+							<td th:text="${info.mark_dt}">
 						</tr>
 						<tr>
 							<th>검진데이터<br>연동 병원</th>
 							<td colspan="3">
-								<ul th:each="info : ${chklist}">
-									<li th:text="|${info.h_name}(info.chk_dt)}|"></li>
+								<ul th:each="info : ${chkList}">
+									<li th:text="|${info.h_name}(${info.chk_dt})|"></li>
 								</ul>
 							</td>
 						</tr>				
@@ -110,6 +111,10 @@
 <!-- laeyr poup - 임시비밀번호 발송 -->
 <th:block th:include="admin/member/pass_create_form"></th:block>
 <!-- //laeyr poup - 임시비밀번호 발송 -->
+
+<!--  layer popup - 검진데이터 상세보기  -->
+<th:block th:include="admin/member/check_detail_form"></th:block>
+<!--  layer popup - 검진데이터 상세보기 끝  -->
 	
 </th:block>
 </html>
@@ -120,7 +125,7 @@ $(document).ready(function() {
 	// 탈퇴 처리
 	$("#btnDelete").click(function(){
 		var params = {
-				"seq"   : $("#mem_seq").val(),
+				"seq"   : $("#seq").val(),
 				"mem_sts" : "4", 
 				"use_yn" : "N"
 		};
@@ -132,7 +137,7 @@ $(document).ready(function() {
 	// 휴면회원처리
 	$("#btnFree").click(function(){
 		var params = {
-				"seq"   : $("#mem_seq").val(),
+				"seq"   : $("#seq").val(),
 				"mem_sts" : "3", 
 				"use_yn" : "Y"
 		};
@@ -144,7 +149,7 @@ $(document).ready(function() {
 	// 회워복구
 	$("#btnRestore").click(function(){
 		var params = {
-				"seq"   : $("#mem_seq").val(),
+				"seq"   : $("#seq").val(),
 				"mem_sts" : "2", 
 				"use_yn" : "Y"
 		};
@@ -157,7 +162,7 @@ $(document).ready(function() {
 	// 완전삭제
 	$("#btnCompleteDelete").click(function(){
 		var params = {
-				"seq"   : $("#mem_seq").val(),
+				"seq"   : $("#seq").val(),
 				"mem_sts" : "0", 
 				"use_yn" : "N"
 		};
@@ -172,19 +177,23 @@ $(document).ready(function() {
 		if ($("#mem_sts").val() == "2")  // 정회원
 		{
 			url = "list";
-		} else if($("#mem_sts")val() == "3")  // 휴면 회원
+		} else if($("#mem_sts").val() == "3")  // 휴면 회원
 		{
 			url = "freelist";
 		}else if($("#mem_sts").val() == "4")  // 탈퇴회원
 		{
 			url = "dellist";
 		}
-		location.href = url;
+		console.log(url);
+		//location.href = url;
+		frm.action = url;
+		frm.submit();
+		
 	});
 	
 	$("#btnSearch").click(function(){
 		frm.action = "detail";
 		frm.submit();
-	})#
+	});
 });
 </script>

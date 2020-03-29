@@ -1,3 +1,19 @@
+<script>
+
+	function PayCancel(seq, id)
+	{
+		var params = {
+				"id"    : id,
+				"seq"   : seq
+		};
+
+		url = "deletePayCancel";
+		url2 = "detail";
+		goJsonInput(params, url, url2);	
+	}
+
+</script>
+
 	<ul class="tab typeA mtXl">
 		<li><a th:href="@{detail(seq=${info.seq},menu='1')}" th:class="${menu == '1'}?active:no">결제내역</a></li>
 		<li><a th:href="@{detail(seq=${info.seq},menu='2')}" th:class="${menu == '2'}?active:no">포인트 내역</a></li>
@@ -28,7 +44,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<th:block th:if="$totalCnt == 0">
+					<th:block th:if="${totalCnt == 0}">
 						<tr>
 						<td colspan="6" class="noData">
 							<p class="ico"><img src="/resources/images/contents/ico_nodata03.gif" alt=""></p>
@@ -36,21 +52,19 @@
 						</td>
 						</tr>
 					</th:block>
-					<th:block th:if="$totalCnt > 0">
+					<th:block th:if="${totalCnt > 0}">
 						<tr th:each="info : ${mlist}">
 							<td th:text="${info.pay_dt}">
-							<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="${info.pay_sts_name}">
-							<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="${info.product_name}">
-							<th:block th:if="${info.pay_sts == 'Y'}">
-								<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="|${info.pay_total_str} 원|">
-								<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="|${info.pay_total_str} 원|">
-								<td><p class="btnWrap"><a href="" class="btnColorC">결제 취소</a></p></td>
-							</th:block>
-							<th:block th:if="${info.pay_sts == 'C'}">
-								<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="|-${info.pay_total_str} 원|">
-								<td th:class="${info.pay_sts == 'C'?colorB:empty}" th:text="|-${info.pay_total_str} 원|">	
-								<td class="colorB" >결제 취소 완료</td>					
-							</th:block>
+							<td th:class="${info.pay_sts == 'C'} ? colorB : empty" th:text="${info.pay_sts_name}">
+							<td th:class="${info.pay_sts == 'C'} ? colorB : empty" th:text="${info.product_name}">
+							<td th:class="${info.pay_sts == 'C'} ? colorB : empty" th:text="|${info.pay_total_str} 원|">
+							<td th:class="${info.pay_sts == 'C'} ? colorB : empty" th:text="|${info.pay_total_str} 원|">		
+							
+							<td th:if="${info.pay_sts == 'C'}" class="colorB" >결제 취소 완료</td>					
+																																				
+							<td th:if="${info.pay_sts == 'Y' and info.cancel_yn == 'Y'}"><p class="btnWrap"><a th:href="|javascript:PayCancel('${info.seq}', '${info.id}');|" class="btnColorC">결제 취소</a></p></td>
+							<td th:if="${info.pay_sts == 'Y' and info.cancel_yn == 'N'}">결제 완료(취소건)</td>
+							
 						</tr>
 					</th:block>
 				</tbody>
@@ -78,7 +92,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<th:block th:if="$totalCnt == 0">
+					<th:block th:if="${totalCnt == 0}">
 						<tr>
 						<td colspan="4" class="noData">
 							<p class="ico"><img src="/resources/images/contents/ico_nodata03.gif" alt=""></p>
@@ -86,26 +100,14 @@
 						</td>
 						</tr>
 					</th:block>
-					<th:block th:if="$totalCnt > 0">				
+					<th:block th:if="${totalCnt > 0}">				
 						<tr th:each="info : ${plist}">
 							<td th:text="${info.reg_dt}">
-							<td class="tal" th:text="${info.content}">
-							<td th:text="${info.str_point}">
-							<td th:text="|${info.total_point} 원|">
+							<td th:class="${info.use_yn == 'P'}?colorB:empty" class="tal" th:text="${info.content}">
+							<td th:class="${info.use_yn == 'P'}?colorB:empty" th:text="${info.str_point}">
+							<td th:class="${info.use_yn == 'P'}?colorB:empty" th:text="|${info.total_point} 원|">
 						</tr>
 					</th:block>
-					<tr>
-						<td>2019.12.31 15:00</td>
-						<td class="tal colorB">포인트 몰구매 (스타벅스쿠폰)</td>
-						<td class="colorB">-4,000</td>
-						<td class="colorB">-7,400원</td>
-					</tr>
-					<tr>
-						<td>2019.12.31 15:00</td>
-						<td>미션공유</td>
-						<td>300</td>
-						<td>11,400원</td>
-					</tr>
 				</tbody>
 			</table>	
 	</th:block>
@@ -126,7 +128,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<th:block th:if="$totalCnt == 0">
+					<th:block th:if="${totalCnt == 0}">
 						<tr>
 						<td colspan="4" class="noData">
 							<p class="ico"><img src="/resources/images/contents/ico_nodata03.gif" alt=""></p>
@@ -134,7 +136,7 @@
 						</td>
 						</tr>
 					</th:block>
-					<th:block th:if="$totalCnt > 0">				
+					<th:block th:if="${totalCnt > 0}">				
 						<tr th:each="info : ${slist}">
 							<td th:text="${info.reg_dt}">
 							<td>7000보</td>
@@ -177,7 +179,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<th:block th:if="$totalCnt == 0">
+					<th:block th:if="${totalCnt == 0}">
 						<tr>
 						<td colspan="6" class="noData">
 							<p class="ico"><img src="/resources/images/contents/ico_nodata03.gif" alt=""></p>
@@ -185,13 +187,13 @@
 						</td>
 						</tr>
 					</th:block>
-					<th:block th:if="$totalCnt > 0">				
-						<tr th:each="info : ${plist}">>
+					<th:block th:if="${totalCnt > 0}">				
+						<tr th:each="info : ${clist}">
 							<td th:text="${info.chk_dt}">
 							<td class="tal" th:text="${info.subject}">
 							<td th:text="${info.h_name}">
 							<td th:text="${info.result_name}">
-							<td><p class="btnWrap"><a href="javascript:openLayer('.popHscreen');" class="btnColorC">보기</a></p></td>
+							<td><p class="btnWrap"><a th:href="|javascript:openLayer('.popHscreen');javascript:setData('${info.seq}', '${info.mem_seq}');|" class="btnColorC">보기</a></p></td>
 						</tr>
 					</th:block>
 				</tbody>

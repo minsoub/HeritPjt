@@ -12,9 +12,17 @@
 		   and pass = #{pass}
 	</select>
 	
-	<select id="selectMemberTotal"  resultType="int">
+	<select id="selectMemberTotal"  parameterType="HashMap" resultType="int">
 		SELECT count(*)
 		  from herit_member
+        <if test="mem_sts != null and !mem_sts.equals('')">        	  
+        	  <if test="mem_sts == '3'">
+        	  	where (mem_sts = ${mem_sts} or TIMESTAMPDIFF(DAY, last_login_dt, CURRENT_TIMESTAMP) > 30)	  
+        	  </if>
+        	  <if test="mem_sts != '3'">
+        	  	where mem_sts = ${mem_sts}
+        	  </if>
+        </if>		  
 	</select>	
 
 	<!--  last login date update  -->
@@ -36,7 +44,7 @@
         	  <if test="mem_sts == '3'">
         	  	and (mem_sts = ${mem_sts} or TIMESTAMPDIFF(DAY, last_login_dt, CURRENT_TIMESTAMP) > 30)	  
         	  </if>
-        	  <if test="mem_sts <> '3'">
+        	  <if test="mem_sts != '3'">
         	  	and mem_sts = ${mem_sts}
         	  </if>
         </if>
@@ -51,6 +59,24 @@
         		and  phone like CONCAT('%',#{searchString},'%')	
         	</if>        	        	
         </if>
+        <if test="id != null and !id.equals('')">
+        	and id like CONCAT('%', #{id}, '%')
+        </if>
+        <if test="phone != null and !phone.equals('')">
+        	and phone like CONCAT('%', #{phone}, '%')
+        </if>
+        <if test="name != null and !name.equals('')">
+        	and name like CONCAT('%', #{name}, '%')
+        </if>   
+        <if test="birthday != null and !birthday.equals('')">
+        	and birthday like CONCAT('%', #{birthday}, '%')
+        </if> 
+        <if test="searchFromDt != null and searchToDt != null and !searchFromDt.equals('') and !searchToDt.equals('')">
+        		and date_format(reg_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
+        </if>
+        <if test="searchLastFrom != null and searchLastTo != null and !searchLastFrom.equals('') and !searchLastTo.equals('')">
+        		and date_format(last_login_dt, '%Y.%m.%d') between #{searchLastFrom} and #{searchLastTo}
+        </if>        
 	</select>	
 	
 	<!-- member list search  -->
@@ -62,7 +88,7 @@
 			           else a.mem_sts end as mem_sts,
                   a.use_yn,  
 			   	  case
-			        when TIMESTAMPDIFF(DAY, a.last_login_dt, CURRENT_TIMESTAMP) > 30 then '3' then '휴면회원'
+			        when TIMESTAMPDIFF(DAY, a.last_login_dt, CURRENT_TIMESTAMP) > 30 then '휴면회원'
 			        when a.mem_sts = '1' then '일반회원'
 			        when a.mem_sts = '2' then '정회원'
 			        when a.mem_sts = '3' then '휴면회원'
@@ -70,7 +96,7 @@
 			   	  end as mem_sts_name,                   
                   date_format(a.reg_dt, '%Y-%m-%d %H:%i') as reg_dt,
                   date_format(a.last_login_dt, '%Y-%m-%d %H:%i') as last_login_dt, 
-                  date_format(a.st_dt, '%Y-%m-%d %H:%i') as st_dt
+                  date_format(a.sts_dt, '%Y-%m-%d %H:%i') as sts_dt
              FROM herit_member a
             WHERE  1=1
         ]]>
@@ -78,7 +104,7 @@
         	  <if test="mem_sts == '3'">
         	  	and (a.mem_sts = ${mem_sts} or TIMESTAMPDIFF(DAY, a.last_login_dt, CURRENT_TIMESTAMP) > 30)	  
         	  </if>
-        	  <if test="mem_sts <> '3'">
+        	  <if test="mem_sts != '3'">
         	  	and a.mem_sts = ${mem_sts}
         	  </if>
         </if>       
@@ -94,37 +120,73 @@
         		and  a.phone like CONCAT('%',#{searchString},'%')	
         	</if>        	        	
         </if>
-        order by reg_dt desc	
+        <if test="id != null and !id.equals('')">
+        	and a.id like CONCAT('%', #{id}, '%')
+        </if>
+        <if test="phone != null and !phone.equals('')">
+        	and a.phone like CONCAT('%', #{phone}, '%')
+        </if>
+        <if test="name != null and !name.equals('')">
+        	and a.name like CONCAT('%', #{name}, '%')
+        </if>   
+        <if test="birthday != null and !birthday.equals('')">
+        	and a.birthday like CONCAT('%', #{birthday}, '%')
+        </if>         
+        <if test="searchFromDt != null and searchToDt != null and !searchFromDt.equals('') and !searchToDt.equals('')">
+        		and date_format(a.reg_dt, '%Y.%m.%d') between #{searchFromDt} and #{searchToDt}
+        </if>
+        <if test="searchLastFrom != null and searchLastTo != null and !searchLastFrom.equals('') and !searchLastTo.equals('')">
+        		and date_format(a.last_login_dt, '%Y.%m.%d') between #{searchLastFrom} and #{searchLastTo}
+        </if>        
+        order by a.reg_dt desc	
         LIMIT #{perPageCnt} OFFSET #{pageStartNo}
 	</select>	
 	
 	
 	<!--  search member detatil information  -->
 	<select id="selectMemberById" parameterType="HashMap" resultType="member">
-		SELECT seq, id, name, pass, phone, birthday, sex, 
+	<![CDATA[ 
+		SELECT a.seq, a.id, a.name, a.pass, a.phone, a.birthday, a.sex, 
 			   case 
-  					when sex = 'M' then '남자'
-  					when sex = 'F' then '여자'
+  					when a.sex = 'M' then '남자'
+  					when a.sex = 'F' then '여자'
   					else  ''
   			   end as sex_name, 
-			   date_format(agree_dt, '%Y-%m-%d %H:%i') as agree_dt, 
-			   mark_chk, 
-			   date_format(mark_dt, '%Y-%m-%d %H:%i') as mark_dt,
-			   case when TIMESTAMPDIFF(DAY, last_login_dt, CURRENT_TIMESTAMP) > 30 then '3'
-			        else mem_sts end as mem_sts, 
+			   date_format(a.agree_dt, '%Y-%m-%d %H:%i') as agree_dt, 
+			   a.mark_chk, 
+			   date_format(a.mark_dt, '%Y-%m-%d %H:%i') as mark_dt,
+			   case when TIMESTAMPDIFF(DAY, a.last_login_dt, CURRENT_TIMESTAMP) > 30 then '3'
+			        else a.mem_sts end as mem_sts, 
 			   case
-			        when TIMESTAMPDIFF(DAY, last_login_dt, CURRENT_TIMESTAMP) > 30 then '3' then '휴면회원'
-			        when mem_sts = '1' then '일반회원'
-			        when mem_sts = '2' then '정회원'
-			        when mem_sts = '3' then '휴면회원'
-			        when mem_sts = '4' then '탈퇴회원' 
+			        when TIMESTAMPDIFF(DAY, a.last_login_dt, CURRENT_TIMESTAMP) > 30 then '휴면회원'
+			        when a.mem_sts = '1' then '일반회원'
+			        when a.mem_sts = '2' then '정회원'
+			        when a.mem_sts = '3' then '휴면회원'
+			        when a.mem_sts = '4' then '탈퇴회원' 
 			   end as mem_sts_name, 
-			   use_yn, 
-			   date_format(reg_dt, '%Y-%m-%d %H:%i') as reg_dt, 
-			   date_format(last_login_dt, '%Y-%m-%d %H:%i') as last_login_dt
-		  from herit_member
+			   a.use_yn, 
+			   date_format(a.reg_dt, '%Y-%m-%d %H:%i') as reg_dt, 
+			   date_format(a.last_login_dt, '%Y-%m-%d %H:%i') as last_login_dt, 
+			   b.subject,   -- 요금제
+			   case when (b.period > 0 and b.period < 999) then date_format(date_add(b.pay_dt, interval b.period YEAR), '%Y-%m-%d %H:%i')
+			        when b.period = 999 then '평생요금제' 
+			        else '' 
+			   end as end_dt 
+		  from herit_member a left outer join (
+		  										select c.mem_seq, c.pay_dt, d.subject, d.period
+		  										  from 
+		  										       herit_pay_info c,  herit_payplan_info d
+		  										 where c.mem_seq = #{seq}
+		  										   and c.p_key = d.seq  -- 결제상품 key
+		  										   and c.pay_type = '2'  -- 요금제 결제
+		  										   and c.pay_sts = 'Y'  -- 결제완료
+		  										   and d.use_yn = 'Y'	
+		  										 order by c.pay_dt desc 
+		  										 limit 1	  										   
+		  									) as b on (a.seq = b.mem_seq) 
 		 where
-		       seq = #{seq}
+		       a.seq = #{seq}
+		]]>
 	</select>	
 	
 	<!--  member register  -->
@@ -157,24 +219,23 @@
 	</update>	
 	
 	<!--  administrator delete  -->
-    <update id="deleteMember" parameterType="HashMap">
-    	<if test="mem_sts == '0'">
+    <delete id="deleteMember" parameterType="HashMap">
 		delete from herit_member
 		 where seq = #{seq}    	
-    	</if>
-    	<if test="mem_sts <> '0'">
+	</delete>
+	
+    <update id="updateStsMember" parameterType="HashMap">
 		update herit_member
-		   set mem_sts = ${mem_sts}, 
-		       use_yn = ${use_yn},
-		       sts_dt = current_timestamp
-		 where seq = #{seq}
-		 </if>
-	</update>
+	   	   set mem_sts = #{mem_sts}, 
+	    	   use_yn = #{use_yn},
+	           sts_dt = current_timestamp
+	 	where seq = #{seq}
+	</update>	
 	
 	<!--  임시 비밀번호 저장  -->
 	<update id="updateMemberPassword" parameterType="HashMap">
 		update herit_member
-		   set pass = ${pass}
+		   set pass = #{pass}
 		       sts_dt = current_timestamp
 		 where seq = #{seq}
 	</update>

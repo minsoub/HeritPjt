@@ -20,10 +20,11 @@
 					<li><a href="">정회원</a></li>
 				</ol>
 			</div>
-			<!-- 검색 영역 -->
-			<form name="frm" id="frm" method="post">
-			<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />			
+			
+			<!-- 검색 영역 -->					
 			<div class="bxCnt mtMmd">
+				<form name="frm" id="frm" method="post">
+				<input type="hidden" name="pageNo" id="pageNo"  th:value="${paging.pageNo}" />	
 				<table class="tblTypeB">
 					<colgroup>
 						<col width="100px">
@@ -34,29 +35,33 @@
 					<tbody>
 						<tr>
 							<th>아이디</th>
-							<td><input type="text" name=""></td>
+							<td><input type="text" name="id" id="id" th:value="${paging.id}"></td>
 							<th>연락처</th>
-							<td><input type="text" name=""></td>
+							<td><input type="text" name="phone" id="phone" th:value="${paging.phone}"></td>
 						</tr>
 						<tr>
 							<th>성명</th>
-							<td><input type="text" name=""></td>
+							<td><input type="text" name="name" id="name" th:value="${paging.name}"></td>
 							<th>생년월일</th>
-							<td><input type="text" name=""></td>
+							<td><input type="text" name="birthday" id="birthday" th:value="${paging.birthday}"></td>
 						</tr>
 						<tr>
 							<th>가입일</th>
-							<td><input type="text" value="" class="datePic"> <span class="dash">~</span> <input type="text" value="" class="datePic"></td>
+							<td><input type="text" id="searchFromDt" name="searchFromDt" th:value="${paging.searchFromDt}" class="datePic"> <span class="dash">~</span> 
+							<input type="text" id="searchToDt" name="searchToDt" th:value="${paging.searchToDt}" class="datePic"></td>
 							<th>최종접속일</th>
-							<td><input type="text" value="" class="datePic"> <span class="dash">~</span> <input type="text" value="" class="datePic"></td>
+							<td><input type="text" id="searchLastFrom" name="searchLastFrom" th:value="${paging.searchLastFrom}" class="datePic"> <span class="dash">~</span> 
+							<input type="text" id="searchLastTo" name="searchLastTo" th:value="${paging.searchLastTo}" class="datePic"></td>
 						</tr>				
 					</tbody>
 				</table>
+				</form>
 				<div class="btnWrap mtSm tac">
-					<a href="" class="btnPrimary">검색하기</a>
+					<button id="btnSearch" class="btnPrimary">검색하기</button>
 				</div>
 			</div>
 			<!-- //검색 영역 -->
+			
 			<div class="clearfix mtSm">
 				<div class="txtBbs fl mtSMd">검색 <span class="colorA">[[${totalCnt}]]</span> 명 / 전체 <span class="colorA">[[${total}]]</span> 명</div>
 				<div class="btnWrap fr"><button id="btnReg" class="btnDefault">회원등록</button></div>
@@ -97,7 +102,7 @@
 			</table>
 			<!-- paging -->
 			<th:block th:include="admin/layout/common_paging"></th:block>
-			</form>
+			
 			
 			<div class="btnWrap"><button id="btnReg" class="btnDefault">회원등록</button></div>
 		</div>
@@ -115,6 +120,24 @@ $(document).ready(function() {
     $('#btnReg' ).click( function() {
         // 회원 등록 페이지 호출
     } );
+	
+	$("#btnSearch").click(function(){
+		if (getDiffDate($("#searchFromDt").val(), $("#searchToDt").val()) == false)
+		{
+			alert("시작날짜와 종료날짜를 확인해 주세요!!!");
+			$("#searchToDt").focus();
+			return false;
+		}
+		if (getDiffDate($("#searchLastFrom").val(), $("#searchLastTo").val()) == false)
+		{
+			alert("시작날짜와 종료날짜를 확인해 주세요!!!");
+			$("#searchLastTo").focus();
+			return false;
+		}		
+		
+		frm.action = "list";
+		frm.submit();
+	})
 	
     $('#groupdelete').click(function() {
         var chklen = $("input[id=groupid]:checkbox:checked").length;

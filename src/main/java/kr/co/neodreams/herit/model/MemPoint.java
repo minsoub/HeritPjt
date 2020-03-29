@@ -39,4 +39,5 @@ public class MemPoint extends CommonModel  {
 	private String searchToDt;
 	private String searchFromPoint;
 	private String searchToPoint;
+	private String searchDt;		// 년 검색
 }

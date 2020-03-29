@@ -10,6 +10,8 @@
 		<th:block th:with="menu=1" th:include="admin/point/point_menu"></th:block>
 		<!-- //SNB -->	
 		<!-- contents -->
+		<form name="frm" id="frm" method="post">
+		<input type="hidden" name="mode" id="mode">
 		<div class="contents">
 			<div class="cntTitWrap">
 				<h2 class="cntTitXL fl">포인트 현황</h2>
@@ -32,27 +34,23 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>200,000</td>
-							<td>160,000</td>
-							<td>150,000</td>
-							<td>15,300</td>
+							<td th:text="${info.plus_point}">
+							<td th:text="${info.minus_point}">
+							<td th:text="${info.del_point}">
+							<td th:text="${info.total_point}">
 						</tr>
 					</tbody>
 				</table>
 			</div>
 
 			<div class="slctDate">
-				<a href=""><img src="/resources/images/contents/btn_date_prev.gif" alt="이전"></a><span class="yearPic"><input type="text" readonly value="2019"></span><a href=""><img src="/resources/images/contents/btn_date_next.gif" alt="다음"></a>
+				<a href="javascript:Prev();"><img src="/resources/images/contents/btn_date_prev.gif" alt="이전"></a>
+				<span class="yearPic"><input type="text" name="searchDt" id="searchDt" readonly class="yearPic" th:value="${paging.searchDt}"></span>
+				<a href="javascript:Next();"><img src="/resources/images/contents/btn_date_next.gif" alt="다음"></a>
+							
+				<!-- a href=""><img src="/resources/images/contents/btn_date_prev.gif" alt="이전"></a><span class="yearPic"><input type="text" readonly value="2019"></span><a href=""><img src="/resources/images/contents/btn_date_next.gif" alt="다음"></a  -->
 			</div>
-			<script type="text/javascript" src="/resources/js/moment.min.js"></script>
-			<script type="text/javascript" src="/resources/js/datepicker.all.js"></script>
-			<script type="text/javascript" src="/resources/js/datepicker.en.js"></script>
-			<link rel="stylesheet" href="/resources/css/yearpicker.css">
-			<script type="text/javascript">
-				$(function(){
-					yearPicker();
-				});
-			</script>
+
 			<table class="tblTypeA mtSm">
 				<thead>
 					<tr>
@@ -64,102 +62,40 @@
 					</tr>
 				</thead>
 				<tfoot>
+					<th:block th:if="${result == null}">
 					<tr>
 						<td>총 계</td>
-						<td>106,400</td>
-						<td>-33,000</td>
-						<td>3,400</td>
-						<td>15,300</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
 					</tr>
+					</th:block>
+					<th:block th:if="${result != null}">
+					<tr>
+						<tr>
+						    <td>총 계</td>
+							<td th:text="${result.plus_point}">
+							<td th:text="${result.minus_point}">
+							<td th:text="${result.del_point}">
+							<td th:text="${result.total_point}">
+						</tr>
+					</tr>
+					</th:block>
+									
 				</tfoot>
 				<tbody>
-						<tr>
-							<td>12월</td>
-							<td>2,500</td>
-							<td>-1,300</td>
-							<td>50</td>
-							<td>15,300</td>
-						</tr>
-						<tr>
-							<td>11월</td>
-							<td>4,000</td>
-							<td>-3,000</td>
-							<td>100</td>
-							<td>13,200</td>
-						</tr>
-						<tr>
-							<td>10월</td>
-							<td>8,400</td>
-							<td>-3,000</td>
-							<td>100</td>
-							<td>10,500</td>
-						</tr>
-						<tr>
-							<td>9월</td>
-							<td>9,300</td>
-							<td>-3,000</td>
-							<td>100</td>
-							<td>8,600</td>
-						</tr>
-						<tr>
-							<td>8월</td>
-							<td>8,700</td>
-							<td>-3,000</td>
-							<td>100</td>
-							<td>4,300</td>
-						</tr>
-						<tr>
-							<td>7월</td>
-							<td>10,000</td>
-							<td>-3,000</td>
-							<td>100</td>
-							<td>16,230</td>
-						</tr>
-						<tr>
-							<td>6월</td>
-							<td>9,700</td>
-							<td>-3,000</td>
-							<td>100</td>
-							<td>14,320</td>
-						</tr>
-						<tr>
-							<td>5월</td>
-							<td>6,400</td>
-							<td>-3,000</td>
-							<td>600</td>
-							<td>10,000</td>
-						</tr>
-						<tr>
-							<td>4월</td>
-							<td>10,000</td>
-							<td>-3,000</td>
-							<td>400</td>
-							<td>8,500</td>
-						</tr>
-						<tr>
-							<td>3월</td>
-							<td>9,700</td>
-							<td>-3,000</td>
-							<td>700</td>
-							<td>3,200</td>
-						</tr>
-						<tr>
-							<td>2월</td>
-							<td>10,000</td>
-							<td>-3,000</td>
-							<td>600</td>
-							<td>10,000</td>
-						</tr>
-						<tr>
-							<td>1월</td>
-							<td>9,700</td>
-							<td>-3,000</td>
-							<td>700</td>
-							<td>7,500</td>
+						<tr th:each="info, index : ${list}">
+							<td th:text="|${info.mon} 월 |">
+							<td th:text="${info.plus_point}">
+							<td th:text="${info.minus_point}">
+							<td th:text="${info.del_point}">
+							<td th:text="${info.total_point}">
 						</tr>
 				</tbody>
 			</table>
 		</div>
+		</form>
 		<!-- //contents -->
 	</div>
 	<!-- //contaier -->
@@ -175,4 +111,17 @@ $(document).ready(function() {
         frm.submit();
     });	 
 });
+
+function Prev()
+{
+	frm.mode.value = "prev";
+	frm.action = "pointlist";
+	frm.submit();
+}
+function Next()
+{
+	frm.mode.value = "next";
+	frm.action = "pointlist";
+	frm.submit();
+}
 </script>	

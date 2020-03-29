@@ -128,19 +128,16 @@
 	</select>		
 	
 	<!--  register the administrator authority data  -->
-    <insert id="insertAuthority" parameterType="authchk">
-		<selectKey keyProperty="new_seq" resultType="int" order="BEFORE">
-			SELECT COALESCE(max(seq), 0)+1 FROM herit_auth_chk
-		</selectKey>     
+    <insert id="insertAuthority" parameterType="authchk">    
 		INSERT INTO herit_auth_chk (
-		       seq,       auth_name,   auth_desc,           
+		       auth_name,   auth_desc,           
 		       a01,       b01,         b02,       b03,         b04, 
 		       c01,       c02,         d01,       d02,         d03,
 		       d04,       d05,         d06,       e01,         e02,
 		       e03,       f01,         f02,       f03,         g01,
 		       g02,       g03,         g04,       use_yn,      reg_dt
 		) VALUES (
-		       #{new_seq},    #{auth_name}, #{auth_desc},           
+		       #{auth_name}, #{auth_desc},           
 		       #{a01},    #{b01},       #{b02},       #{b03},      #{b04}, 
 		       #{c01},    #{c02},       #{d01},       #{d02},      #{d03},
 		       #{d04},    #{d05},       #{d06},       #{e01},      #{e02},

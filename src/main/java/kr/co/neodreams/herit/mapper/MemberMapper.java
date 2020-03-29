@@ -57,7 +57,7 @@ public interface MemberMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	int selectMemberTotal() throws Exception;
+	int selectMemberTotal(Member data) throws Exception;
 	
 	/**
 	 * register the User information.
@@ -85,6 +85,15 @@ public interface MemberMapper {
 	 * @throws Exception
 	 */
 	int deleteMember(Member data) throws Exception;
+	
+	/**
+	 * 사용자의 상태를 변경한다. - 휴면회원, 탈퇴회원 등
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	int updateStsMember(Member data) throws Exception;
 	
 	/**
 	 * 임시 비밀번호를 저장한다. 

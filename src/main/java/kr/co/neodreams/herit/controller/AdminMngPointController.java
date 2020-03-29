@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +28,7 @@ import kr.co.neodreams.herit.service.MallService;
 import kr.co.neodreams.herit.service.MemPointService;
 import kr.co.neodreams.herit.service.PayInfoService;
 import kr.co.neodreams.herit.service.ProductService;
+import kr.co.neodreams.herit.util.CommonUtil;
 import kr.co.neodreams.herit.util.ExcelUtil;
 import kr.co.neodreams.herit.config.PropertyConfiguration;
 import kr.co.neodreams.herit.model.Admin;
@@ -69,20 +71,39 @@ public class AdminMngPointController {
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings("unused")
 	@RequestMapping("/pointlist")
 	public ModelAndView pointlist(MemPoint param, HttpServletRequest request) throws Exception {
 		
 		ModelAndView mv = new ModelAndView();
 		log.info("paramter : {}", param);
 		
-		param.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
-		int cnt = service.selectMemPointListCount(param);
-		List<MemPoint> lst = service.selectMemPointList(param);
-		log.info("search pointlist list : {}", lst);
-		mv.addObject("totalCnt", cnt);		// need to Integer type
-
-		mv.addObject("list", lst);
+		if (param.getSearchDt() == null || "".equals(param.getSearchDt()))
+		{
+			param.setSearchDt(CommonUtil.getCurrentYear());
+		}
+		if (param.getMode() != null && !param.getMode().equals(""))
+		{
+			// 날짜 조절
+			if (param.getMode().equals("prev"))
+			{
+				param.setSearchDt(String.valueOf(Integer.parseInt(param.getSearchDt())-1));
+			}else if(param.getMode().equals("next"))
+			{
+				param.setSearchDt(String.valueOf(Integer.parseInt(param.getSearchDt())+1));
+			}
+		}
+		
+		// prevYear, nextYear		
+		Map result1 = service.selectPointTotal(param);	
+		List<Map> result2 = service.selectPointYearData(param);
+		Map result3 = service.selectPointYearDataSum(param);
+		
 		mv.addObject("paging", param);
+		mv.addObject("info",   result1);		
+		mv.addObject("list",   result2);
+		mv.addObject("result", result3);
+		
 		mv.setViewName("admin/point/point_list");
 		return mv;		
 	}

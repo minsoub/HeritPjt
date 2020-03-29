@@ -26,15 +26,15 @@
 				<div class="fl w50">
 					<span class="txt">총 [[${totalCnt}]]명</span>
 					<label for="" class="mlMmd">보유 포인트 범위</label>
-					<input type="number" name="searchFromPoint" class="w20"><span class="dash">~</span><input type="number" name="searchToPoint" class="w20">
+					<input type="number" name="searchFromPoint" class="w20" th:value="${paging.searchFromPoint}"><span class="dash">~</span><input type="number" name="searchToPoint" class="w20" th:value="${paging.searchToPoint}">
 				</div>
 				<div class="fr tar w50">
 					<select name="searchId" class="mlSm">
-						<option value="id">ID</option>
-						<option value="phone">연락처</option>
-						<option value="name">성명</option>
+						<option value="id" th:selected="${paging.searchId == 'id'}">ID</option>
+						<option value="phone" th:selected="${paging.searchId == 'phone'}">연락처</option>
+						<option value="name" th:selected="${paging.searchId == 'name'}">성명</option>
 					</select>
-					<input type="text" name="searchString" class="mlXs w50">
+					<input type="text" name="searchString" class="mlXs w50" th:value="${paging.searchString}">
 					<button type="button" id="btnSearch" class="btnPrimary">검색</button>
 				</div>
 			</div>

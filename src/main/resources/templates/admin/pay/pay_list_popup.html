@@ -28,8 +28,12 @@ function setData(id, name)
 					html += "<td class='"+cls+" tar'>"+dd.pay_total_str+"원</td>";
 					if (dd.pay_sts == "Y")
 					{
-						html += "<td><span class='btnWrap'><a href=\"javascript:PayCancel('"+dd.id+"', '"+name+"', '"+dd.seq+"');\" class='btnColorC'>결제 취소</a></span></td>";
-					}else {
+						if (dd.cancel_yn == "Y") {
+							html += "<td><span class='btnWrap'><a href=\"javascript:PayCancel('"+dd.id+"', '"+name+"', '"+dd.seq+"');\" class='btnColorC'>결제 취소</a></span></td>";
+						}else {
+							html += "<td>결제완료(취소건)</td>";
+						}
+					}else if(dd.pay_sts == "C") {
 						html += "<td class='colorB'>결제 취소 완료</td>";
 					}
 					html += "</tr>";

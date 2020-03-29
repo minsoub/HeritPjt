@@ -32,6 +32,8 @@ public class PayInfo extends CommonModel  {
 	private String pay_type_name;		// 구분 : 포인트 몰
 	private int pay_count;				// 구매자수
 	private String pay_type;			// 결제타입 : 1 (포인트몰), 2: 요금제 결제
+	private int ref_pay_key;			// 결제 취소시 이전 Key
+	private String cancel_yn;			// 결제취소 가능 여부 (Y/N)
 	// search variable type
 	private String searchFromDt;
 	private String searchToDt;

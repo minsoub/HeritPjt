@@ -88,9 +88,9 @@ public class MemberService {
 	 * @return
 	 * @throws Exception
 	 */
-	public int selectMemberTotal() throws Exception
+	public int selectMemberTotal(Member data) throws Exception
 	{
-		int result = mapper.selectMemberTotal();
+		int result = mapper.selectMemberTotal(data);
 		
 		return result;
 	}
@@ -132,7 +132,14 @@ public class MemberService {
 	 */
 	public int deleteMember(Member data) throws Exception
 	{
-		int result = mapper.deleteMember(data);
+		int result;
+		if (data.getMem_sts().equals("0"))
+		{
+			result = mapper.deleteMember(data);	
+		}else {
+			result = mapper.updateStsMember(data);
+		}
+		
 		
 		return result;
 	}

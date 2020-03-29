@@ -4,7 +4,7 @@
 							 perPageCnt=${paging.perPageCnt}, 
 							 pageCnt=${paging.pageRange},
 					  		 totCount=${totalCnt/perPageCnt}, 
-					  		 totPageCnt=${T(Math).floor((totalCnt*1.0)/(perPageCnt *1.0))+1},
+					  		 totPageCnt=${T(Math).ceil((totalCnt*1.0)/(perPageCnt *1.0)) - 1 +1},
 					  		 firstCount=${(pageNo-1)/pageCnt - ((pageNo-1)/pageCnt%1)},
 					  		 firstPage=${(firstCount * pageCnt) + 1}">		  
 	<th:block th:if="${firstPage > pageCnt}">	
@@ -13,7 +13,10 @@
 	<a class="btnPrev" href="javascript:goPage(${firstPage-1})">이전 페이지</a>
 	<!--  Prev Page End -->
 	</th:block>
-
+	<li>
+	pageNo=[[${pageNo}]], perPageCnt=[[${perPageCnt}]], pageCnt=[[${pageCnt}]], totCount=[[${totCount}]], 
+	totPageCnt=[[${totPageCnt}]], firstCount=[[${firstCount}]], firstPage=[[${firstPage}]], 
+	</li>
 	<th:block th:each="counter : ${#numbers.sequence(firstPage, firstPage+pageCnt-1)}">
 		<th:block th:if="${counter <= totPageCnt }">
 			<th:block th:if="${counter == pageNo}">

@@ -47,14 +47,15 @@
 						</tr>
 						<tr>
 							<th>요청일</th>
-							<td><input type="text" th:value="${paging.searchFromDt}" id="searchFromDt" name="searchFromDt"class="datePic"> <span class="dash">~</span> <input type="text" id="searchToDt" name="searchToDt" th:value="${paging.searchToDt}" class="datePic"></td>
+							<td><input type="text" th:value="${paging.searchReqFrom}" id="searchReqFrom" name="searchReqFrom"class="datePic"> <span class="dash">~</span> 
+							<input type="text" id="searchReqTo" name="searchReqTo" th:value="${paging.searchReqTo}" class="datePic"></td>
 							<th>최종접속일</th>
 							<td><input type="text" th:value="${paging.searchLastFrom}" id="searchLastFrom" name="searchLastFrom" class="datePic"> <span class="dash">~</span> <input type="text" id="searchLastTo" name="searchLastTo" th:value="${paging.searchLastTo}" class="datePic"></td>
 						</tr>				
 					</tbody>
 				</table>
 				<div class="btnWrap mtSm tac">
-					<a href="" class="btnPrimary">검색하기</a>
+					<button id="btnSearch" class="btnPrimary">검색하기</button>
 				</div>
 			</div>
 			<!-- //검색 영역 -->
@@ -153,7 +154,7 @@
 			</th:block>
 			<!--  Paging  -->
 			<div class="btnWrap mtMmd">
-				<button id="btnReg" class="btnDefault">등록</button>
+				<a th:href="@{reqnewform}" id="btnReg" class="btnDefault">등록</a>
 			</div>
 		</div>
 		<!-- //contents -->
@@ -168,12 +169,9 @@ $(document).ready(function() {
 	
 	$('#btnSearch').click(function(){		
 		$("#frm").attr("method", "post");
-		$("#frm").attr("action", "hlist");
+		$("#frm").attr("action", "reqlist");
 		$("#frm").submit();
 	});
-	
-	$('#btnReg').click(function(){
-		location.href="reqnewform";
-	});
+
 });
 </script>

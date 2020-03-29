@@ -2,12 +2,17 @@ package kr.co.neodreams.herit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class HeritPjtApplication {
+public class HeritPjtApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HeritPjtApplication.class, args);
 	}
-
+	@Override 
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) { 
+		return builder.sources(HeritPjtApplication.class); 
+	}
 }

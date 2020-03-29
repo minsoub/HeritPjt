@@ -3,11 +3,13 @@ package kr.co.neodreams.herit.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.TransactionDefinition;
@@ -19,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.neodreams.herit.model.Admin;
 import kr.co.neodreams.herit.model.ChkInfo;
 import kr.co.neodreams.herit.model.Hospital;
 import kr.co.neodreams.herit.model.Member;
 import kr.co.neodreams.herit.model.PayInfo;
+import kr.co.neodreams.herit.model.UserInfo;
 import kr.co.neodreams.herit.service.ChkService;
 import kr.co.neodreams.herit.service.HospitalService;
 import kr.co.neodreams.herit.service.MemberService;
@@ -37,11 +41,12 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Controller
+@EnableAutoConfiguration
 @RequestMapping("/admin/chk")
 public class AdminChkController {
 	@Autowired
 	private HospitalService hService;
-	
+
 	@Autowired
 	private MemberService  mService;
 	
@@ -51,17 +56,20 @@ public class AdminChkController {
 	@Autowired
 	DataSourceTransactionManager dataSourceTransactionManager;
 	
+	@Resource
+	private UserInfo userInfo;
+	
 	/**
 	 * 건강검진 요청 list page 
 	 * 
 	 * @return
 	 */
 	@RequestMapping("/reqlist")
-	public ModelAndView reqList(ChkInfo param, HttpServletRequest request) throws Exception {
-		HttpSession session = request.getSession();
+	public ModelAndView reqList(ChkInfo param, final HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		log.info("paramter : {}", param);
-		log.debug("session id : " + session.getAttribute("id"));
+		//log.debug("session id : " + session.getAttribute("id").toString());
+		
 		param.setPageStartNo((param.getPageNo()-1) * param.getPerPageCnt());
 		int cnt = cService.selectChkInfoCount(param);
 		List<ChkInfo> lst = cService.selectChkInfoList(param);
@@ -83,11 +91,12 @@ public class AdminChkController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/reqnewform")
-	public ModelAndView reqNewRegForm(ChkInfo param, HttpServletRequest request, HttpSession session) throws Exception {
+	public ModelAndView reqNewRegForm(ChkInfo param, final HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
-		String reg_id = (String) session.getAttribute("id");
-		log.debug("admin id : " + reg_id);
+
+		String reg_id = session.getAttribute("id").toString();  // (String) session.getAttribute("id");
+		//log.debug("session id : " + userInfo.getId());
+		log.debug("session id : " + reg_id);
 		
 		if (param.getSeq() > 0)
 		{

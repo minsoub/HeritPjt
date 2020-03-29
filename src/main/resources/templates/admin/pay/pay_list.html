@@ -35,7 +35,7 @@
 						<option value="name" th:selected="${paging.searchId == 'name'}">성명</option>
 					</select>
 					<input type="text" name="searchString" id="searchString" th:value="${paging.searchString}" class="mlXs w50">
-					<button type="button" class="btnPrimary">검색</button>
+					<button type="button" id="btnSearch" class="btnPrimary">검색</button>
 				</div>
 			</div>
 			<div class="clearfix">
@@ -103,5 +103,11 @@
 <script>
 $(document).ready(function() {
 	load_fnc('5', '0', '0'); //menu script		
+	
+	$("#btnSearch").click(function(){
+		frm.action = "paydetail";
+		frm.submit();
+	});
+	
 });
 </script>

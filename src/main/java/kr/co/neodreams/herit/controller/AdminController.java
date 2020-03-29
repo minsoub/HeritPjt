@@ -1,14 +1,20 @@
 package kr.co.neodreams.herit.controller;
 
+import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.neodreams.herit.model.Admin;
+import kr.co.neodreams.herit.model.UserInfo;
 import kr.co.neodreams.herit.service.LoginService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,6 +25,9 @@ public class AdminController {
 	
 	@Autowired
 	private LoginService service;
+	@Resource
+	private UserInfo userInfo;
+	
 	
 	/**
 	 * 관리자 로그인 페이지를 호출한다.
@@ -26,8 +35,11 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping("/")
-	public String adminLogin() {
+	public String adminLogin(HttpServletRequest request, HttpSession session) {
 		log.debug("administrator login page called...");
+
+		
+		
 		return "admin/login";
 	}
 	
@@ -40,23 +52,27 @@ public class AdminController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/loginProcess")
-	public ModelAndView loginProcess(Admin param, HttpServletRequest request, HttpSession session) throws Exception
+	public ModelAndView loginProcess(Admin param,  HttpServletRequest request, HttpSession session, ModelAndView mv,RedirectAttributes redirectAttributes) throws Exception
 	{	
-		session = request.getSession(true);
-		
+				
 		Admin data = service.selectAdminLoginById(param);
 		log.info("/loginProcess [data] : {}", data);
-		ModelAndView mv = new ModelAndView();
+		//ModelAndView mv = new ModelAndView();
 		
 		if (data != null)
 		{
-			// 세션 등록
-			session.setAttribute("auth_chk", "0");
-			session.setAttribute("id", data.getId());
-			// 메뉴 권한에 대해서 처리해야 한다.
-			session.setAttribute("adminCheck", true);
+			session = request.getSession(true);
 			
-			log.debug("session id : {}", session.getAttribute("id"));
+			// 세션 등록
+			//session.setAttribute("auth_chk", "0");
+			session.setAttribute("id",        data.getId());
+			session.setAttribute("adminInfo", data);
+			// 메뉴 권한에 대해서 처리해야 한다.
+			//session.setAttribute("adminCheck", true);
+			session.setMaxInactiveInterval(60*10);
+		    			
+			//log.debug("session id : {}", session.getAttribute("id"));
+			
 			// 관리자 last_login_dt 업데이트
 			int result = service.updateAdminLoginDt(data);
 			

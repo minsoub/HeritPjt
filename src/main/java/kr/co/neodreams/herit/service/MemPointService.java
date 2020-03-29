@@ -1,6 +1,7 @@
 package kr.co.neodreams.herit.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,55 @@ import lombok.extern.slf4j.Slf4j;
 public class MemPointService {
 	@Autowired
 	private MemPointMapper mapper;
+	
+	/**
+	 * 포인트 현황 전체 누적 현황을 조회한다. 
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("rawtypes")
+	public Map selectPointTotal(MemPoint data) throws Exception
+	{
+		Map result = mapper.selectPointTotal(data);
+		log.info("selectPointTotal : {}", result);
+		
+		return result;
+	}
+	
+	/**
+	 * 포인트 현황 년간(월별) 내역을 조회한다. 
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("rawtypes")
+	public List<Map> selectPointYearData(MemPoint data) throws Exception
+	{
+		List<Map> result = mapper.selectPointYearData(data);
+		log.info("selectPointYearData : {}", result);
+		
+		return result;
+	}
+	
+	/**
+	 * 포인트 현황 년간 SUM 내역을 조회한다. 
+	 * 
+	 * @param data
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("rawtypes")
+	public Map selectPointYearDataSum(MemPoint data) throws Exception
+	{
+		Map result = mapper.selectPointYearDataSum(data);
+		log.info("selectPointYearDataSum : {}", result);
+		
+		return result;
+	}
+	
 	
 	/**
 	 * search the  Member Point history list

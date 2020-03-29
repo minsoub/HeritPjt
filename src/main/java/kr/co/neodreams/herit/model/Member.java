@@ -35,6 +35,9 @@ public class Member extends CommonModel {
 	private String use_yn;
 	private String reg_dt;
 	private String last_login_dt;
+	private String sts_dt;  // 상태 변경일
+	private String subject;  // 요금제명
+	private String end_dt;   // 요금제 종료일
 	
 	private String menu;		// bottom menu (1 결제내역, 2 포인트내역, 3 미션현황, 4 검진데이터)
 	
@@ -42,6 +45,8 @@ public class Member extends CommonModel {
 	// search variable type
 	private String searchFromDt;
 	private String searchToDt;	
+	private String searchLastFrom;
+	private String searchLastTo;
 	private String searchSts;
 	private String pay_sts;		// 세부사항에서 검색 조건
 }

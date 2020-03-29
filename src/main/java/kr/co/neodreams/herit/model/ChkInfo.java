@@ -64,4 +64,8 @@ public class ChkInfo  extends CommonModel  {
 	private String searchToDt;
 	private String searchLastFrom;
 	private String searchLastTo;
+	private String searchReqFrom;		// 검진데이터 - 건강검진 요청 : 요청일
+	private String searchReqTo;
+	private String searchRegFrom;		// 검진데이터 - 건강검진 요청 : 등록일
+	private String searchRegTo;	
 }

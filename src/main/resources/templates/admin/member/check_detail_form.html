@@ -1,0 +1,123 @@
+<script>
+function setData(seq, mem_seq)
+{	
+	var params = {"seq" : seq }
+	// ajax data call
+	$.ajax({
+		type : 'post',
+		url : "chkDetailInfo",
+		dataType : 'json',
+		data : params,
+		success : function(result){					
+			console.log(result);
+
+			$(result).each(function(index, dd){
+				$("#chk_title").text(dd.subject+"-"+dd.chk_dt);
+				$("#chk_dt").text(dd.chk_dt);
+				$("#h_name").text(dd.h_name);
+				$("#subject").text(dd.subject);
+				$("#item01").text(dd.item01);
+				$("#item02").text(dd.item02);
+				$("#item03").text(dd.item03);
+				$("#item04").text(dd.item04);
+				
+				$("#result_subject").text(dd.result_subject);
+				$("#result_content").text(dd.result_content);
+				//$("#result > option[@value='"+dd.result+"']").attr("selected", "true");
+				$("#result").val(dd.result);
+				
+/* 				var cls = "empty";
+				if (dd.pay_sts == 'C') cls = "colorB";
+				
+				var html = "<tr>";
+					html += "<td>"+dd.pay_dt+"</td>";
+					html += "<td class='"+cls+"'>"+dd.pay_sts_name+"</td>";
+					html += "<td class='"+cls+"'>"+dd.product_name+"</td>";
+					html += "<td class='"+cls+" tar'>"+dd.pay_total_str+"원</td>";
+					html += "<td class='"+cls+" tar'>"+dd.pay_total_str+"원</td>";
+					if (dd.pay_sts == "Y")
+					{
+						if (dd.cancel_yn == "Y") {
+							html += "<td><span class='btnWrap'><a href=\"javascript:PayCancel('"+dd.id+"', '"+name+"', '"+dd.seq+"');\" class='btnColorC'>결제 취소</a></span></td>";
+						}else {
+							html += "<td>결제완료(취소건)</td>";
+						}
+					}else if(dd.pay_sts == "C") {
+						html += "<td class='colorB'>결제 취소 완료</td>";
+					}
+					html += "</tr>";
+					
+				$('#memberTable > tbody:last-child').append(html);	 */
+			});				
+		},
+		error : function(e){
+			alert(e);
+		}
+	});			
+}
+</script>
+<!-- laeyr poup - 검진결과 상세 -->
+<div class="wrapPop popHscreen">
+	<div class="popCnt sizeLg">
+		<h1 class="titPop"><span id="chk_title">건강검진 7차  - 2019.12.10</span></h1>
+		<p class="btnClose">
+			<a href=""><img src="/resources/images/common/btn_close_pop.png" alt="레이어 닫기"></a>
+		</p>
+		<div class="cnt">
+			<table class="tblTypeC">
+				<colgroup>
+					<col width="100px">
+					<col>
+					<col width="100px">
+					<col>
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>검진일</th>
+						<td><span id="chk_dt">2019.12.11</span></td>
+						<th>병원명</th>
+						<td><span id="h_name">서울대병원</span></td>
+					</tr>
+					<tr>
+						<th>제목</th>
+						<td colspan="3"><span id="subject">제7차 정기 건강검진</span></td>
+					</tr>
+					<tr>
+						<th>대사질환</th>
+						<td><span id="item01">45</span></td>
+						<th>BRCA1</th>
+						<td><span id="item02">92</span></td>
+					</tr>
+					<tr>
+						<th>항목3</th>
+						<td><span id="item03">45</span></td>
+						<th>항목4</th>
+						<td><span id="item04">92</span></td>
+					</tr>
+					<tr>
+						<th>종합분석</th>
+						<td colspan="3">
+							<select name="result" id="result">
+								<option value="1">위험</option>
+								<option value="2">주의</option>
+								<option value="3">정상</option>
+							</select>
+							<span id="result_subject">당뇨병 초기 증상이 의심되어 꾸준한 운동이 필요해 보임</span>
+						</td>
+					</tr>
+					<tr>
+						<th>상세내용</th>
+						<td colspan="3">
+							<div class="wrapCnt"><pre><span id="result_content"></span></pre></div>
+						</td>
+					</tr>					
+				</tbody>
+			</table>
+			<!-- btn -->
+			<p class="btnWrap">
+				<a href="" class="btnDefault btnClose">확인</a>
+			</p>
+		</div>
+	</div>
+</div>
+<!-- //laeyr poup - 검진결과 상세 -->
